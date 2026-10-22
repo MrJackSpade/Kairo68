@@ -373,6 +373,10 @@
    "reason": "MobyGames Adult genre",
    "title": "Tenshin Ranma"
   },
+  "x68000:157723": {
+   "reason": "MobyGames Adult genre",
+   "title": "Toushin Toshi"
+  },
   "x68000:157725": {
    "reason": "MobyGames Adult genre",
    "title": "Uchuu Kaitou Funny Bee"
@@ -385,6 +389,10 @@
    "reason": "MobyGames Adult genre",
    "title": "Viper V6"
   },
+  "x68000:157736": {
+   "reason": "MobyGames Adult genre",
+   "title": "Viper-V8 Twin Turbo"
+  },
   "x68000:157737": {
    "reason": "MobyGames Adult genre",
    "title": "Virgin Angel"
@@ -396,6 +404,10 @@
   "x68000:157740": {
    "reason": "MobyGames Adult genre",
    "title": "Words Worth"
+  },
+  "x68000:157743": {
+   "reason": "MobyGames Adult genre",
+   "title": "Wrestle Angels Special"
   },
   "x68000:157750": {
    "reason": "MobyGames Adult genre",
@@ -437,9 +449,17 @@
    "reason": "MobyGames Adult genre",
    "title": "Mahjong Gensoukyoku"
   },
+  "x68000:186785": {
+   "reason": "MobyGames Adult genre",
+   "title": "Mahjong Gensoukyoku II"
+  },
   "x68000:187145": {
    "reason": "Adult-content review",
    "title": "Binbin Mahjong: Peach Angel"
+  },
+  "x68000:187495": {
+   "reason": "MobyGames Adult genre",
+   "title": "D.P.S. SG Set 2"
   },
   "x68000:187585": {
    "reason": "Adult-content review",
@@ -540,6 +560,10 @@
   "x68000:188673": {
    "reason": "Adult-content review",
    "title": "SAP Tokushu Koudou Keisatsu File: M661-51"
+  },
+  "x68000:188883": {
+   "reason": "MobyGames Adult genre",
+   "title": "Setsujuu: Yuganda Kioku"
   },
   "x68000:188885": {
    "reason": "Adult-content review",
@@ -645,14 +669,6 @@
    "reason": "MobyGames Adult genre",
    "title": "Be Rain"
   },
-  "x68000:moby-123176": {
-   "reason": "MobyGames Adult genre",
-   "title": "Setsujū"
-  },
-  "x68000:moby-18730": {
-   "reason": "MobyGames Adult genre",
-   "title": "Tōshin Toshi"
-  },
   "x68000:moby-258712": {
    "reason": "MobyGames Adult genre",
    "title": "Bell's Avenue Vol.3"
@@ -669,14 +685,6 @@
    "reason": "MobyGames Adult genre",
    "title": "Long Night: Maiko-chan no Kiken na Yoru"
   },
-  "x68000:moby-43488": {
-   "reason": "MobyGames Adult genre",
-   "title": "Viper V8"
-  },
-  "x68000:moby-43629": {
-   "reason": "MobyGames Adult genre",
-   "title": "Wrestle Angels Special: Mō Hitori no Top Eventer"
-  },
   "x68000:moby-45838": {
    "reason": "MobyGames Adult genre",
    "title": "Tenshitachi no Gogo: Tenkōsei"
@@ -689,33 +697,13 @@
    "reason": "MobyGames Adult genre",
    "title": "Alice-tachi no Gogo Vol. 2"
   },
-  "x68000:moby-46067": {
-   "reason": "MobyGames Adult genre",
-   "title": "Mahjong Fantasia II"
-  },
   "x68000:moby-47162": {
    "reason": "MobyGames Adult genre",
    "title": "Battle High School"
   },
-  "x68000:moby-47526": {
-   "reason": "MobyGames Adult genre",
-   "title": "Dream Program System SG set 2"
-  },
   "x68000:moby-53139": {
    "reason": "MobyGames Adult genre",
    "title": "Kyarukan: Super Break Down !!"
-  },
-  "x68000:moby-58120": {
-   "reason": "MobyGames Adult genre",
-   "title": "Ayayo's Life After"
-  },
-  "x68000:moby-58899": {
-   "reason": "MobyGames Adult genre",
-   "title": "Pasocomic Purple Cat Volume. 1: Bunny Girl Tokushū!!"
-  },
-  "x68000:moby-58900": {
-   "reason": "MobyGames Adult genre",
-   "title": "Pasocomic Purple Cat Volume. 2: Hospital Tokushū"
   },
   "x68000:moby-64520": {
    "reason": "MobyGames Adult genre",

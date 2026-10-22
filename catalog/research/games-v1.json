@@ -107,6 +107,7 @@
    "description": "A World War II air combat game: fly an F6F Hellcat over the Pacific on bombing and dogfight missions against Japanese forces.",
    "developer": "Brøderbund Software",
    "launchbox": "126598",
+   "mobygames": 2215,
    "publisher": "Brøderbund Japan",
    "screenshotUrl": "https://images.launchbox-app.com/3aca509a-ec80-482e-aee6-e1774d5ff3bf.png",
    "sourceGroups": [
@@ -399,6 +400,7 @@
    "description": "The second Fatal Fury fighting game: Terry, Andy, Joe and new challengers enter Wolfgang Krauser's tournament, fighting across two planes of each stage.",
    "developer": "Magical Company",
    "launchbox": "141507",
+   "mobygames": 6600,
    "publisher": "Magical Company",
    "screenshotUrl": "https://images.launchbox-app.com/6e1e313f-0382-496c-aabd-9add205e3d8a.png",
    "title": "Garou Densetsu 2",
@@ -537,6 +539,7 @@
    "description": "A mecha fighting game set in a future city where police and rogue combat robots called SlaveGears clash.",
    "developer": "Fill in Café",
    "launchbox": "144226",
+   "mobygames": 57122,
    "publisher": "Family Soft",
    "screenshotUrl": "https://images.launchbox-app.com/941f78eb-7737-40f4-b649-dd69d8025287.png",
    "sourceGroups": [
@@ -717,6 +720,7 @@
    "description": "A post-apocalyptic shooter set as humanity recovers from a 20th-century nuclear war and faces a new threat in the skies.",
    "developer": "System Sacom",
    "launchbox": "150091",
+   "mobygames": 48394,
    "publisher": "System Sacom",
    "screenshotUrl": "https://images.launchbox-app.com/a64babf5-721d-4223-b7e1-0fafa411a328.png",
    "sourceGroups": [
@@ -819,6 +823,7 @@
    "description": "Grow a city from a patch of land and a bank loan: build rail lines and stations, buy and sell property and businesses, and trade stocks.",
    "developer": "ArtDink",
    "launchbox": "150272",
+   "mobygames": 822,
    "publisher": "Brother Kougyou",
    "screenshotUrl": "https://images.launchbox-app.com/001b2914-9e13-4487-850a-1791b3759aee.png",
    "title": "A Ressha de Ikou III",
@@ -1032,6 +1037,7 @@
    "description": "The fourth Street Fighter II, adding Cammy, Fei Long, Dee Jay and T. Hawk to the roster, with refreshed graphics and sound.",
    "developer": "Capcom",
    "launchbox": "151017",
+   "mobygames": 10119,
    "publisher": "Capcom",
    "screenshotUrl": "https://images.launchbox-app.com/53608df7-25ba-4eed-afdc-ce22f6519bb2.png",
    "sourceGroups": [
@@ -1200,6 +1206,7 @@
    "description": "Technos's two-on-two beach volleyball game: bump, set and spike your way through a championship tour.",
    "developer": "Technōs Japan",
    "launchbox": "153482",
+   "mobygames": 8499,
    "publisher": "Sharp",
    "screenshotUrl": "https://images.launchbox-app.com/cab0d1e0-e278-41b6-b420-ee7794c0cb98.png",
    "sourceGroups": [
@@ -1419,6 +1426,7 @@
    "description": "A comedy visual novel loosely tied to Wolf Team's Arcus series, packed with parodies of the pop culture of its day.",
    "developer": "Wolf Team",
    "launchbox": "156897",
+   "mobygames": 78428,
    "publisher": "Wolf Team",
    "sourceGroups": [
     "x68000:Aakushu Youen No Jidai Wo Koete (1990)(Wolf Team).zip"
@@ -1455,6 +1463,7 @@
    "description": "Konami's Gradius parody: pick a pilot such as Vic Viper, TwinBee or the octopus Tako and shoot through absurd, cheerful stages.",
    "developer": "Konami Industry",
    "launchbox": "156905",
+   "mobygames": 9408,
    "publisher": "Konami Industry",
    "screenshotUrl": "https://images.launchbox-app.com/40e3d52f-ac3e-4829-b529-c2c016dd6a09.png",
    "sourceGroups": [
@@ -1519,11 +1528,18 @@
   },
   "x68000:156936": {
    "boxArtUrl": "https://images.launchbox-app.com/b256da9e-821f-488d-b755-ffe15a32be02.jpg",
+   "contentIds": [
+    "sha256-fd-v1:e51112114c2f09b6fb9c52a643107c65d04dd7f4ced838af36316737a7e97c04"
+   ],
    "description": "Namco's bumper-car arcade game: ram enemy cars off floating platforms while avoiding being pushed off yourself.",
    "developer": "Namco",
    "launchbox": "156936",
+   "mobygames": 14838,
    "publisher": "Micomsoft",
    "screenshotUrl": "https://images.launchbox-app.com/43daaea9-dad8-4206-9f5c-58d82527e118.png",
+   "sourceGroups": [
+    "x68000:Motos (1989)(Dempa).zip"
+   ],
    "title": "Motos",
    "year": 1988
   },
@@ -2194,6 +2210,7 @@
    "description": "A mystery adventure set in 1945: a reporter looking into her school friend's disappearance finds the friend's diary.",
    "developer": "Thinking Rabbit",
    "launchbox": "157445",
+   "mobygames": 54750,
    "publisher": "Thinking Rabbit",
    "screenshotUrl": "https://images.launchbox-app.com/c17711d4-09f2-4d6d-881c-772cbec81593.png",
    "sourceGroups": [
@@ -2880,6 +2897,7 @@
    "description": "A high school baseball management game: create a coach and train a team to reach the national championship.",
    "developer": "ArtDink",
    "launchbox": "157504",
+   "mobygames": 54422,
    "publisher": "ArtDink",
    "screenshotUrl": "https://images.launchbox-app.com/49ad59fe-2134-4d23-98ef-7ded18c8dc98.png",
    "sourceGroups": [
@@ -3127,6 +3145,7 @@
    "description": "Delphine's point-and-click adventure: a window cleaner finds a time machine and travels through history to stop an alien plot.",
    "developer": "Delphine Software International",
    "launchbox": "157518",
+   "mobygames": 2205,
    "publisher": "StarCraft",
    "screenshotUrl": "https://images.launchbox-app.com/a58c8edd-5a17-405e-8dd3-d2dadf1a2fb8.jpg",
    "title": "Future Wars: Toki no Boukensha",
@@ -4223,6 +4242,7 @@
    "description": "An adventure based on Rumiko Takahashi's manga Maison Ikkoku, set around a boarding house in 1980s Tokyo.",
    "developer": "Micro Cabin",
    "launchbox": "157630",
+   "mobygames": 46111,
    "publisher": "Micro Cabin",
    "screenshotUrl": "https://images.launchbox-app.com/749fc102-058f-4e2f-83e9-3ecc30c22f7b.png",
    "title": "Maison Ikkoku: Kanketsuhen special",
@@ -4522,6 +4542,7 @@
    "description": "A detective adventure: J.B. Harold investigates the murder of a wealthy man by questioning suspects and checking alibis.",
    "developer": "Riverhill Soft",
    "launchbox": "157647",
+   "mobygames": 9703,
    "publisher": "Riverhill Soft",
    "screenshotUrl": "https://images.launchbox-app.com/24dffbf7-9e81-4aa5-98e2-1217601cb89e.png",
    "title": "Murder Club DX",
@@ -5144,11 +5165,18 @@
   },
   "x68000:157695": {
    "boxArtUrl": "https://images.launchbox-app.com/d205e8eb-e250-44ac-91b1-2ec8318f73c9.jpg",
+   "contentIds": [
+    "sha256-fd-v1:c95f7c9f462144bea0544a6afe031cec4566df609af9429cd603022539ab9e7c"
+   ],
    "description": "Run an ant colony: control a single ant to forage, dig and recruit, and expand the nest to drive out rival red ants and the house's owners.",
    "developer": "Maxis Software",
    "launchbox": "157695",
+   "mobygames": 1809,
    "publisher": "Imagineer",
    "screenshotUrl": "https://images.launchbox-app.com/9c1ab4f3-cdd5-4aac-8532-13d6cf108971.png",
+   "sourceGroups": [
+    "x68000:Sim Ant (1993)(Imagineer).zip"
+   ],
    "title": "SimAnt: The Electronic Ant Colony",
    "year": 1993
   },
@@ -5297,6 +5325,7 @@
    "description": "Tehkan's vertical shooter: blast enemy craft and ground targets and collect letters for power-ups and bonuses.",
    "developer": "Tehkan",
    "launchbox": "157705",
+   "mobygames": 19689,
    "publisher": "Micomsoft",
    "screenshotUrl": "https://images.launchbox-app.com/82284255-722f-4ae5-8968-b35e6eba3270.jpg",
    "sourceGroups": [
@@ -5357,6 +5386,7 @@
    "description": "A turn-based modern war strategy game in SystemSoft's Daisenryaku series, with many refinements to the Daisenryaku II rules.",
    "developer": "SystemSoft",
    "launchbox": "157708",
+   "mobygames": 44630,
    "publisher": "SystemSoft",
    "screenshotUrl": "https://images.launchbox-app.com/57390037-84c5-4f28-b12c-6e84356b8220.png",
    "sourceGroups": [
@@ -5711,6 +5741,7 @@
    "year": 1990
   },
   "x68000:157723": {
+   "adult": true,
    "aliases": [
     "トウシントシ",
     "闘神都市"
@@ -5719,6 +5750,7 @@
    "description": "An Alice Soft role-playing game set in a city of gladiator tournaments, where a young fighter competes.",
    "developer": "Alice Soft",
    "launchbox": "157723",
+   "mobygames": 18730,
    "publisher": "Alice Soft",
    "screenshotUrl": "https://images.launchbox-app.com/6e7eccfe-84c8-4f6f-bebd-4de89ec893c6.png",
    "title": "Toushin Toshi",
@@ -5838,10 +5870,12 @@
    "year": 1993
   },
   "x68000:157736": {
+   "adult": true,
    "boxArtUrl": "https://images.launchbox-app.com/r2_951e417b-7a55-478b-8403-009723edf449.jpg",
    "description": "The second Viper: three short animated stories with minimal interaction.",
    "developer": "Sogna",
    "launchbox": "157736",
+   "mobygames": 43488,
    "publisher": "Sogna",
    "screenshotUrl": "https://images.launchbox-app.com/e5bddd69-c7a3-4ee3-bc1d-3415248ae07c.png",
    "title": "Viper-V8 Twin Turbo",
@@ -5950,10 +5984,12 @@
    "year": 1994
   },
   "x68000:157743": {
+   "adult": true,
    "boxArtUrl": "https://images.launchbox-app.com/36a4cf33-7ba8-4a3c-8f62-3408480416a3.jpg",
    "description": "A Wrestle Angels game in which you create your own wrestler.",
    "developer": "Communication Group Plum",
    "launchbox": "157743",
+   "mobygames": 43629,
    "publisher": "Xing Entertainment",
    "screenshotUrl": "https://images.launchbox-app.com/49883973-87d5-47b1-a8b0-8bae92bf5afc.png",
    "title": "Wrestle Angels Special"
@@ -6009,6 +6045,7 @@
    "description": "A detective adventure: a sharp-eyed designer nicknamed the famous detective is drawn into a murder case.",
    "developer": "System Sacom",
    "launchbox": "157747",
+   "mobygames": 55025,
    "publisher": "System Sacom",
    "screenshotUrl": "https://images.launchbox-app.com/b15565a5-bd97-438a-824b-7e8122938384.png",
    "title": "Yami no Ketsuzoku",
@@ -6293,6 +6330,7 @@
    "description": "Technos's soccer game starring the Nekketsu dodgeball team, with rough, comic matches and special shots.",
    "developer": "SPS",
    "launchbox": "183520",
+   "mobygames": 11275,
    "publisher": "Sharp",
    "screenshotUrl": "https://images.launchbox-app.com/f303ab4d-a146-4e87-9a22-333aa055ac50.png",
    "sourceGroups": [
@@ -6800,6 +6838,7 @@
    "description": "Taito's road racer in the style of Out Run: drive a sports car through traffic and beat the checkpoint times.",
    "developer": "Taito",
    "launchbox": "184712",
+   "mobygames": 66699,
    "publisher": "Sharp",
    "screenshotUrl": "https://images.launchbox-app.com/9e58dd87-e1b5-4c09-a544-724a2078d964.png",
    "title": "Full Throttle",
@@ -7179,6 +7218,7 @@
    "description": "Jaleco's arena game: pigs throw bombs at each other, and the last pig standing wins.",
    "developer": "Jaleco",
    "launchbox": "185739",
+   "mobygames": 18582,
    "publisher": "Micomsoft",
    "screenshotUrl": "https://images.launchbox-app.com/47888431-a58a-4811-bd8e-4f214832fc0d.png",
    "title": "Video Game Anthology Vol. 06: Butasan",
@@ -7797,6 +7837,7 @@
    "year": 1992
   },
   "x68000:186785": {
+   "adult": true,
    "aliases": [
     "Mahjong Fantasia: The 2nd Stage"
    ],
@@ -7804,6 +7845,7 @@
    "description": "The second Mahjong Gensoukyoku: mahjong with story and free play modes.",
    "developer": "Active Software",
    "launchbox": "186785",
+   "mobygames": 46067,
    "publisher": "Active Software",
    "screenshotUrl": "https://images.launchbox-app.com/b2867524-0fe0-4eea-9a99-65eceda86752.png",
    "title": "Mahjong Gensoukyoku II",
@@ -8077,6 +8119,7 @@
    "description": "A raising simulation: as a high school teacher, guide five troubled girls through their final school year.",
    "developer": "Headroom",
    "launchbox": "187019",
+   "mobygames": 43243,
    "publisher": "Japan Home Video",
    "screenshotUrl": "https://images.launchbox-app.com/e21ed0f7-e70a-437e-b758-36f0c946ce8f.png",
    "title": "Sotsugyou: Graduation",
@@ -8276,6 +8319,7 @@
    "description": "A doujin fighting game based on Sailor Moon, updated several times.",
    "developer": "Sprite",
    "launchbox": "187151",
+   "mobygames": 196508,
    "publisher": "Sprite",
    "screenshotUrl": "https://images.launchbox-app.com/9cb6423d-4abe-41c1-bd4f-e8e0965177b5.png",
    "sourceGroups": [
@@ -8431,6 +8475,7 @@
    "year": 1991
   },
   "x68000:187495": {
+   "adult": true,
    "aliases": [
     "D.P.S. SG System Ver 2",
     "Dream Program System SG Set 2"
@@ -8439,6 +8484,7 @@
    "description": "A Dream Program System collection of three short scenarios.",
    "developer": "Alice Soft",
    "launchbox": "187495",
+   "mobygames": 47526,
    "publisher": "Alice Soft",
    "screenshotUrl": "https://images.launchbox-app.com/d7e5d8ba-45a5-4436-93c1-fb50ebe94119.png",
    "title": "D.P.S. SG Set 2",
@@ -8595,6 +8641,7 @@
    "description": "A murder mystery adventure by Thinking Rabbit, centered on a killing involving a clown.",
    "developer": "Thinking Rabbit",
    "launchbox": "187673",
+   "mobygames": 233229,
    "publisher": "Thinking Rabbit",
    "screenshotUrl": "https://images.launchbox-app.com/2aca8e2f-40f8-47a1-a925-eaefc3c9f12a.png",
    "sourceGroups": [
@@ -8635,6 +8682,7 @@
    "description": "A golf game by T&E Soft, released in 1991.",
    "developer": "T&E Soft",
    "launchbox": "187763",
+   "mobygames": 71396,
    "publisher": "T&E Soft",
    "screenshotUrl": "https://images.launchbox-app.com/11065f2c-817d-4aad-9cc9-0e580acdc8e5.jpg",
    "title": "Eight Lakes G.C.",
@@ -8704,6 +8752,7 @@
    "description": "Koei's World War II strategy game: plan and fight the war in Europe from 1939 as the Axis or the Allies.",
    "developer": "Koei",
    "launchbox": "187791",
+   "mobygames": 1934,
    "publisher": "Koei",
    "screenshotUrl": "https://images.launchbox-app.com/30c360d0-68b1-4162-8019-78ff2c10d95c.png",
    "sourceGroups": [
@@ -8799,6 +8848,7 @@
    "description": "The third Hacchake Ayayo-san visual novel, following Ayayo and her friend.",
    "developer": "HARD",
    "launchbox": "187804",
+   "mobygames": 58120,
    "publisher": "HARD",
    "screenshotUrl": "https://images.launchbox-app.com/2fd7b82c-08cd-49e7-adb1-b44154b77d14.png",
    "title": "Hacchake Ayayo-san 3: Watashi, Icchatta n' desu",
@@ -9247,6 +9297,7 @@
    "description": "T&E Soft's 3D golf game set at Augusta, with smooth polygon courses.",
    "developer": "T&E Soft",
    "launchbox": "188083",
+   "mobygames": 56201,
    "publisher": "T&E Soft",
    "screenshotUrl": "https://images.launchbox-app.com/36ec5c5e-276d-4588-89c7-ed3c54529cb8.png",
    "title": "New 3D Golf Simulation: Harukanaru Augusta",
@@ -9548,6 +9599,7 @@
    "description": "A mystery adventure by Riverhill Soft, released in 1988.",
    "developer": "Riverhill Soft",
    "launchbox": "188210",
+   "mobygames": 71207,
    "publisher": "Riverhill Soft",
    "screenshotUrl": "https://images.launchbox-app.com/53399cde-8f49-4964-b893-c10aea80458d.png",
    "title": "Kiss of Murder: Satsui no Seppun",
@@ -10076,6 +10128,7 @@
    "description": "A collection of seven unrelated short stories.",
    "developer": "Palmtree Soft",
    "launchbox": "188473",
+   "mobygames": 58899,
    "publisher": "Babylon",
    "screenshotUrl": "https://images.launchbox-app.com/5e031ffa-2fcb-4556-a752-9369a07dc54a.png",
    "title": "PasoComic Purple Cat Vol. 1: Bunny Girl Tokushuu",
@@ -10087,6 +10140,7 @@
    "description": "A collection of six short stories set mostly in a hospital.",
    "developer": "Palmtree Soft",
    "launchbox": "188514",
+   "mobygames": 58900,
    "publisher": "Babylon",
    "screenshotUrl": "https://images.launchbox-app.com/29a833f4-6dd1-4c3b-a910-3b6f9645bf10.png",
    "title": "PasoComic Purple Cat Vol. 2: Hospital Tokushuu",
@@ -10550,6 +10604,7 @@
    "year": 1992
   },
   "x68000:188883": {
+   "adult": true,
    "aliases": [
     "Setsujū: Yuganda Kioku"
    ],
@@ -10557,6 +10612,7 @@
    "description": "A JAST adventure game, released in 1995.",
    "developer": "JAST",
    "launchbox": "188883",
+   "mobygames": 123176,
    "publisher": "Jast",
    "screenshotUrl": "https://images.launchbox-app.com/e7dd4ce5-1ff9-4bd9-a3d4-33c1bf465f17.png",
    "title": "Setsujuu: Yuganda Kioku",
@@ -10592,11 +10648,22 @@
   },
   "x68000:188914": {
    "boxArtUrl": "https://images.launchbox-app.com/482b74d1-857a-4f80-b3c5-1e1a7935b0d4.jpg",
+   "contentIds": [
+    "sha256-fd-v1:14cc83905a58e21436282c0943f67f76cec251379b3e70ac20f2110cfd694fe9",
+    "sha256-fd-v1:407821fe69ff8d97f5a06ad1f25a4365827a94d951afbece0bb921e1f563fe5e",
+    "sha256-fd-v1:71ba81fd7219541c3770c05e9034fee1ec5e3542a21486898cf81efcc0111bdb",
+    "sha256-fd-v1:7971f4b08e98148ea83840701bee8b6b4073bbd0bd63c3d1a6e94bf0c6dcfc58",
+    "sha256-fd-v1:a8bf03ee8f6d9a6a502f6056ae910060201bdb94c3642dd2ffcb597924d97128"
+   ],
    "description": "An adventure game by Tenky, released in 1991.",
    "developer": "Tenky",
    "launchbox": "188914",
+   "mobygames": 159542,
    "publisher": "NCS",
    "screenshotUrl": "https://images.launchbox-app.com/0b10509d-0af2-44e8-8074-67c37e3a4c26.png",
+   "sourceGroups": [
+    "x68000:Signatory (1991)(NCS).zip"
+   ],
    "title": "Signatory Chouinsha",
    "year": 1991
   },
@@ -10680,6 +10747,7 @@
    "description": "A Sokoban collection of crate-pushing puzzles made by players.",
    "developer": "Thinking Rabbit",
    "launchbox": "188979",
+   "mobygames": 119633,
    "publisher": "Sharp",
    "screenshotUrl": "https://images.launchbox-app.com/548ed3b5-73cd-41fb-88b9-7e5cc709ed8a.jpg",
    "title": "Soukoban Revenge SX-68K: User no Gyakushuu-Hen",
@@ -10719,6 +10787,7 @@
    "description": "A map collection for Super Daisenryaku 68K.",
    "developer": "SystemSoft",
    "launchbox": "189027",
+   "mobygames": 175038,
    "publisher": "SystemSoft",
    "title": "Super Daisenryaku 68K: Map Collection",
    "year": 1989
@@ -11861,6 +11930,7 @@
    "description": "An action game by Fix, released in 1992.",
    "developer": "Fix",
    "launchbox": "189830",
+   "mobygames": 236047,
    "publisher": "Brother Kougyou",
    "screenshotUrl": "https://images.launchbox-app.com/4f39884d-bd6c-49bc-9877-0f1bbb446a11.png",
    "sourceGroups": [
@@ -21448,31 +21518,10 @@
    ],
    "title": "Entfuhrer"
   },
-  "x68000:moby-10119": {
-   "mobygames": 10119,
-   "title": "Super Street Fighter II",
-   "year": 1994
-  },
-  "x68000:moby-11275": {
-   "mobygames": 11275,
-   "title": "Nintendo World Cup",
-   "year": 1990
-  },
   "x68000:moby-117422": {
    "mobygames": 117422,
    "title": "A Ressha de Ikō II: Shin Map",
    "year": 1988
-  },
-  "x68000:moby-119633": {
-   "mobygames": 119633,
-   "title": "Soko-ban Revenge",
-   "year": 1993
-  },
-  "x68000:moby-123176": {
-   "adult": true,
-   "mobygames": 123176,
-   "title": "Setsujū",
-   "year": 1995
   },
   "x68000:moby-134858": {
    "mobygames": 134858,
@@ -21484,17 +21533,6 @@
    "title": "Hydlide 3: Special Version",
    "year": 1990
   },
-  "x68000:moby-14838": {
-   "contentIds": [
-    "sha256-fd-v1:e51112114c2f09b6fb9c52a643107c65d04dd7f4ced838af36316737a7e97c04"
-   ],
-   "mobygames": 14838,
-   "sourceGroups": [
-    "x68000:Motos (1989)(Dempa).zip"
-   ],
-   "title": "Motos",
-   "year": 1989
-  },
   "x68000:moby-15149": {
    "mobygames": 15149,
    "title": "Railroad Empire",
@@ -21505,67 +21543,10 @@
    "title": "A-Train Construction Set",
    "year": 1991
   },
-  "x68000:moby-159542": {
-   "contentIds": [
-    "sha256-fd-v1:14cc83905a58e21436282c0943f67f76cec251379b3e70ac20f2110cfd694fe9",
-    "sha256-fd-v1:407821fe69ff8d97f5a06ad1f25a4365827a94d951afbece0bb921e1f563fe5e",
-    "sha256-fd-v1:71ba81fd7219541c3770c05e9034fee1ec5e3542a21486898cf81efcc0111bdb",
-    "sha256-fd-v1:7971f4b08e98148ea83840701bee8b6b4073bbd0bd63c3d1a6e94bf0c6dcfc58",
-    "sha256-fd-v1:a8bf03ee8f6d9a6a502f6056ae910060201bdb94c3642dd2ffcb597924d97128"
-   ],
-   "mobygames": 159542,
-   "sourceGroups": [
-    "x68000:Signatory (1991)(NCS).zip"
-   ],
-   "title": "Signatory",
-   "year": 1991
-  },
   "x68000:moby-159552": {
    "mobygames": 159552,
    "title": "Ys I & II: Lost Ancient Kingdom",
    "year": 2021
-  },
-  "x68000:moby-175038": {
-   "mobygames": 175038,
-   "title": "Super Daisenryaku: Map Collection",
-   "year": 1989
-  },
-  "x68000:moby-1809": {
-   "contentIds": [
-    "sha256-fd-v1:c95f7c9f462144bea0544a6afe031cec4566df609af9429cd603022539ab9e7c"
-   ],
-   "mobygames": 1809,
-   "sourceGroups": [
-    "x68000:Sim Ant (1993)(Imagineer).zip"
-   ],
-   "title": "SimAnt",
-   "year": 1993
-  },
-  "x68000:moby-18582": {
-   "mobygames": 18582,
-   "title": "Psycho Pigs UXB",
-   "year": 1993
-  },
-  "x68000:moby-18730": {
-   "adult": true,
-   "mobygames": 18730,
-   "title": "Tōshin Toshi",
-   "year": 1991
-  },
-  "x68000:moby-1934": {
-   "mobygames": 1934,
-   "title": "Operation Europe: Path to Victory 1939-45",
-   "year": 1992
-  },
-  "x68000:moby-196508": {
-   "mobygames": 196508,
-   "title": "Moon Fighter",
-   "year": 1993
-  },
-  "x68000:moby-19689": {
-   "mobygames": 19689,
-   "title": "Megaforce",
-   "year": 1993
   },
   "x68000:moby-197788": {
    "mobygames": 197788,
@@ -21576,26 +21557,6 @@
    "mobygames": 207007,
    "title": "Ginga Eiyū Densetsu +Set",
    "year": 1990
-  },
-  "x68000:moby-2205": {
-   "mobygames": 2205,
-   "title": "Future Wars: Adventures in Time",
-   "year": 1991
-  },
-  "x68000:moby-2215": {
-   "mobygames": 2215,
-   "title": "Wings of Fury",
-   "year": 1989
-  },
-  "x68000:moby-233229": {
-   "mobygames": 233229,
-   "title": "Dōkeshi Satsujin Jiken",
-   "year": 1988
-  },
-  "x68000:moby-236047": {
-   "mobygames": 236047,
-   "title": "Chōjin",
-   "year": 1992
   },
   "x68000:moby-258712": {
    "adult": true,
@@ -21633,28 +21594,6 @@
    "title": "Long Night: Maiko-chan no Kiken na Yoru",
    "year": 1991
   },
-  "x68000:moby-43243": {
-   "mobygames": 43243,
-   "title": "Graduation",
-   "year": 1994
-  },
-  "x68000:moby-43488": {
-   "adult": true,
-   "mobygames": 43488,
-   "title": "Viper V8",
-   "year": 1994
-  },
-  "x68000:moby-43629": {
-   "adult": true,
-   "mobygames": 43629,
-   "title": "Wrestle Angels Special: Mō Hitori no Top Eventer",
-   "year": 1994
-  },
-  "x68000:moby-44630": {
-   "mobygames": 44630,
-   "title": "Super Daisenryaku",
-   "year": 1989
-  },
   "x68000:moby-45838": {
    "adult": true,
    "mobygames": 45838,
@@ -21673,33 +21612,11 @@
    "title": "Alice-tachi no Gogo Vol. 2",
    "year": 1989
   },
-  "x68000:moby-46067": {
-   "adult": true,
-   "mobygames": 46067,
-   "title": "Mahjong Fantasia II",
-   "year": 1993
-  },
-  "x68000:moby-46111": {
-   "mobygames": 46111,
-   "title": "Maison Ikkoku: Kanketsuhen",
-   "year": 1988
-  },
   "x68000:moby-47162": {
    "adult": true,
    "mobygames": 47162,
    "title": "Battle High School",
    "year": 1993
-  },
-  "x68000:moby-47526": {
-   "adult": true,
-   "mobygames": 47526,
-   "title": "Dream Program System SG set 2",
-   "year": 1991
-  },
-  "x68000:moby-48394": {
-   "mobygames": 48394,
-   "title": "380000 Kilo no Kokū",
-   "year": 1989
   },
   "x68000:moby-49150": {
    "mobygames": 49150,
@@ -21727,57 +21644,14 @@
    "title": "Tōdō Ryūnosuke Tantei Nikki: Ōgon no Rashinban",
    "year": 1991
   },
-  "x68000:moby-54422": {
-   "mobygames": 54422,
-   "title": "Eikan wa Kimi ni: Kōkō Yakyū Zenkoku Taikai",
-   "year": 1990
-  },
-  "x68000:moby-54750": {
-   "mobygames": 54750,
-   "title": "Casablanca ni Ai o: Satsujinsha wa Jikū o Koete",
-   "year": 1988
-  },
-  "x68000:moby-55025": {
-   "mobygames": 55025,
-   "title": "Yami no Ketsuzoku",
-   "year": 1990
-  },
-  "x68000:moby-56201": {
-   "mobygames": 56201,
-   "title": "Harukanaru Augusta",
-   "year": 1991
-  },
-  "x68000:moby-57122": {
-   "mobygames": 57122,
-   "title": "Mad Stalker: Full Metal Force",
-   "year": 1994
-  },
   "x68000:moby-57206": {
    "mobygames": 57206,
    "title": "Schwarzschild II: Teikoku no Haishin",
    "year": 1991
   },
-  "x68000:moby-58120": {
-   "adult": true,
-   "mobygames": 58120,
-   "title": "Ayayo's Life After",
-   "year": 1992
-  },
   "x68000:moby-58418": {
    "mobygames": 58418,
    "title": "Hōma Hunter Lime",
-   "year": 1993
-  },
-  "x68000:moby-58899": {
-   "adult": true,
-   "mobygames": 58899,
-   "title": "Pasocomic Purple Cat Volume. 1: Bunny Girl Tokushū!!",
-   "year": 1993
-  },
-  "x68000:moby-58900": {
-   "adult": true,
-   "mobygames": 58900,
-   "title": "Pasocomic Purple Cat Volume. 2: Hospital Tokushū",
    "year": 1993
   },
   "x68000:moby-64520": {
@@ -21786,35 +21660,15 @@
    "title": "Bishōjo Shashinkan Special: The Double Vision",
    "year": 1988
   },
-  "x68000:moby-6600": {
-   "mobygames": 6600,
-   "title": "Fatal Fury 2",
-   "year": 1993
-  },
   "x68000:moby-66120": {
    "mobygames": 66120,
    "title": "Cue Brick",
    "year": 1990
   },
-  "x68000:moby-66699": {
-   "mobygames": 66699,
-   "title": "Top Speed",
-   "year": 1988
-  },
-  "x68000:moby-71207": {
-   "mobygames": 71207,
-   "title": "Kiss of Murder",
-   "year": 1988
-  },
   "x68000:moby-7139": {
    "mobygames": 7139,
    "title": "Aerobiz",
    "year": 1992
-  },
-  "x68000:moby-71396": {
-   "mobygames": 71396,
-   "title": "New 3D Golf Simulation: Eight Lakes G.C.",
-   "year": 1991
   },
   "x68000:moby-71627": {
    "mobygames": 71627,
@@ -21824,31 +21678,6 @@
   "x68000:moby-7297": {
    "mobygames": 7297,
    "title": "Life Force",
-   "year": 1988
-  },
-  "x68000:moby-78428": {
-   "mobygames": 78428,
-   "title": "Arcshu: Kagerō no Jidai o Koete",
-   "year": 1990
-  },
-  "x68000:moby-822": {
-   "mobygames": 822,
-   "title": "A-Train",
-   "year": 1991
-  },
-  "x68000:moby-8499": {
-   "mobygames": 8499,
-   "title": "U.S. Championship V'Ball",
-   "year": 1989
-  },
-  "x68000:moby-9408": {
-   "mobygames": 9408,
-   "title": "Parodius",
-   "year": 1991
-  },
-  "x68000:moby-9703": {
-   "mobygames": 9703,
-   "title": "Murder Club",
    "year": 1988
   }
  },
