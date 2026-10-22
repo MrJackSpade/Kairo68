@@ -79,12 +79,18 @@
   },
   "x68000:125631": {
    "boxArtUrl": "https://images.launchbox-app.com/a89bd419-ae55-446b-8aa2-fae865b05cea.jpg",
+   "contentIds": [
+    "sha256-fd-v1:16b64214ea1b451455d7cf92dca521b4854fe5efa3b94f0110ae886a7fcc2e04"
+   ],
    "description": "Bub and Bob, turned into bubble-blowing dragons, trap monsters in bubbles and pop them across a hundred single-screen cave levels, alone or with a second player.",
    "developer": "Dempa Shimbunsha",
    "launchbox": "125631",
    "mobygames": 787,
    "publisher": "Micomsoft",
    "screenshotUrl": "https://images.launchbox-app.com/4d6fe2dc-2758-499f-9ea5-b757f3f7cc52.png",
+   "sourceGroups": [
+    "x68000:Bubble Bobble (1989)(Dempa).zip"
+   ],
    "title": "Bubble Bobble",
    "year": 1990
   },
@@ -449,12 +455,18 @@
     "The Cockpit X68000 Special"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/fa65eab0-cf1b-4d1a-a83c-5f3a78cb09dc.png",
+   "contentIds": [
+    "sha256-fd-v1:0ae56fe67cbaafc8e957e01b539181d1ab99ecb48ae80795421b69e7997e919b"
+   ],
    "description": "An airliner landing simulator: bring a passenger jet down on runways across Japan, with wind and conditions growing harder at each airport.",
    "developer": "Compac",
    "launchbox": "143601",
    "mobygames": 101058,
    "publisher": "Compac",
    "screenshotUrl": "https://images.launchbox-app.com/d2253872-14d3-4f5a-b637-819af66b8095.png",
+   "sourceGroups": [
+    "x68000:Cockpit, The (1988)(Compac).zip"
+   ],
    "title": "The Cockpit",
    "year": 1988
   },
@@ -1014,12 +1026,19 @@
   },
   "x68000:150612": {
    "boxArtUrl": "https://images.launchbox-app.com/427b5906-731c-423b-b9c1-76ec1f26765b.jpg",
+   "contentIds": [
+    "sha256-fd-v1:9e0fc3357c297e90892b78995357d062e0a802ca19ca04541032c0273706d2f1",
+    "sha256-fd-v1:9fe4040ba24e6e1d770fe7da86855bfc0d8c9dc66fcc8575702e9b2e77a815b7"
+   ],
    "description": "Bomberman places bombs to clear blocks and enemies through maze-like stages, collecting items that extend his blasts and add bombs.",
    "developer": "SystemSoft",
    "launchbox": "150612",
    "mobygames": 5143,
    "publisher": "Hudson Soft",
    "screenshotUrl": "https://images.launchbox-app.com/3bf04d5c-9d0d-4593-8a71-dd97797c5c3e.png",
+   "sourceGroups": [
+    "x68000:Bomber Man (1990)(System Soft).zip"
+   ],
    "title": "Bomber Man",
    "year": 1991
   },
@@ -1710,12 +1729,20 @@
     "Valusa no Fukushū"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/aaedf7ed-409a-49e1-a239-fa51ef544e90.png",
+   "contentIds": [
+    "sha256-fd-v1:98ac512f40dbd288457b0bf750cd432d0594001cc9fd7b4839f31d00857735ad",
+    "sha256-fd-v1:a7843f5508ef3479d97998ad3b06706d80e7565c7957197e80f42dc8c9794195",
+    "sha256-fd-v1:ac26eda9a9d0a82d30e14c3b8e79b2f52119068e13e311ed6db5c214eb47bc6e"
+   ],
    "description": "A side-view action game in which a princess escapes a resurrected demon's invasion of her kingdom and fights back.",
    "developer": "Zainsoft",
    "launchbox": "156958",
    "mobygames": 55675,
    "publisher": "Zainsoft",
    "screenshotUrl": "https://images.launchbox-app.com/47cf900c-c350-4710-8947-e63ed4cf152f.png",
+   "sourceGroups": [
+    "x68000:Baruusa No Fukushuu (1991)(Zain Soft).zip"
+   ],
    "title": "Baruusa No Fukushuu",
    "year": 1990
   },
@@ -1845,12 +1872,19 @@
   },
   "x68000:156972": {
    "boxArtUrl": "https://images.launchbox-app.com/b4fcb785-417f-41ca-9aef-fd1460536c27.jpg",
+   "contentIds": [
+    "sha256-fd-v1:750c21ac3b8d2f6aa1922aa888a805f33c22e1f2274e930c81796fa92c2c3c77",
+    "sha256-fd-v1:92839acec980d3ed140aef5606d5a9c5740b9ae4aabc92bd28522e87fdf3ebf2"
+   ],
    "description": "The Bitmap Brothers' vertical shooter: destroy waves of creatures, collect money and spend it on weapons in a shop between levels.",
    "developer": "The Bitmap Brothers",
    "launchbox": "156972",
    "mobygames": 277,
    "publisher": "Epic",
    "screenshotUrl": "https://images.launchbox-app.com/9f160d2b-2310-4615-89bc-c76563604289.png",
+   "sourceGroups": [
+    "x68000:Xenon 2 Megablast (1990)(Imageworks).zip"
+   ],
    "title": "Xenon 2: Megablast",
    "year": 1991
   },
@@ -2189,12 +2223,18 @@
   },
   "x68000:157443": {
    "boxArtUrl": "https://images.launchbox-app.com/1f6c9f32-b7e7-4cfe-a8d3-c31bcd12f406.jpg",
+   "contentIds": [
+    "sha256-fd-v1:5fbf14a6bff868b4900b85b03f19860d35c7d14fffb49c634bd114fea2b400df"
+   ],
    "description": "A sci-fi role-playing game in 2051 Neo Tokyo, where the lead singer of the rock band Caroll is kidnapped by an organization called Metal Cats.",
    "developer": "Zig Zag",
    "launchbox": "157443",
    "mobygames": 43763,
    "publisher": "New System House Oh!",
    "screenshotUrl": "https://images.launchbox-app.com/1ef79bd4-7b4c-42a7-9818-c2ae0421c59c.png",
+   "sourceGroups": [
+    "x68000:Caroll (1990)(System House Oh!).zip"
+   ],
    "title": "Caroll ",
    "year": 1991
   },
@@ -2404,12 +2444,18 @@
     "ダーウィンズ ジレンマ"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/3200456c-23c8-47ac-9e06-59f7c1f867b0.png",
+   "contentIds": [
+    "sha256-fd-v1:adf12be058e17c3417378527c86854107364129d477c701680668d01fdb5fe90"
+   ],
    "description": "Push matching creatures together on a grid so they evolve into higher forms, working toward the most advanced species.",
    "developer": "Inline Design",
    "launchbox": "157459",
    "mobygames": 66142,
    "publisher": "StarCraft",
    "screenshotUrl": "https://images.launchbox-app.com/a993e6b3-05aa-4eed-9490-47af46dfa7ad.png",
+   "sourceGroups": [
+    "x68000:Darwin's Dilemma (1990)(Inline Design).zip"
+   ],
    "title": "Darwin's Dilemma",
    "year": 1991
   },
@@ -2501,12 +2547,26 @@
     "Doukyuusei"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/562e5f5b-856f-4ad2-be5c-df9679af81e1.jpg",
+   "contentIds": [
+    "sha256-fd-v1:0760abff3a9b3f80c06e4bd1986e534a78e3f98abdb1b8b8bf4958fc5746690a",
+    "sha256-fd-v1:0d782c9c6f4c967a80e449334dc30134061db27d04752efc194914843eb5df69",
+    "sha256-fd-v1:0e80d07da4f8b78ac18913ceeb36f28b30cacd4ff2c9032ca2253efd7ce1bb10",
+    "sha256-fd-v1:218f09084228d02a67cd8a98650d89fcc667b72502af54cbe17b705284c89047",
+    "sha256-fd-v1:67648c0c6ac8e0c8b59ba7039db9f0c4147fefba5c9c5d07495a5d25368a9e12",
+    "sha256-fd-v1:878326ee8a5b59e5afc9ac70ea97727b379e12f4e6c023ab2f1f125896fe65bb",
+    "sha256-fd-v1:8c2d2e7b0c3449995cf63363f6ee8206f3a2be4bf8e7daaa29a9afcd789fbd4c",
+    "sha256-fd-v1:d1f2b09f608a161af913ebf155b814fe2d839bd6adf823b1af92c930b277c42a",
+    "sha256-fd-v1:d3d6186ea06da0b2d9f5a54cb3e112352a66c1ff5faa7145633aec5790975e7e"
+   ],
    "description": "Elf's dating adventure: a high school student spends his summer vacation getting to know the girls of his town, with each day's events shaped by where he goes.",
    "developer": "Elf",
    "launchbox": "157478",
    "mobygames": 44026,
    "publisher": "elf",
    "screenshotUrl": "https://images.launchbox-app.com/57915df6-e429-4302-a79c-2d11d34468b1.png",
+   "sourceGroups": [
+    "x68000:Doukyuusei (1992)(Elf).zip"
+   ],
    "title": "Dōkyūsei",
    "year": 1993
   },
@@ -2761,12 +2821,20 @@
   },
   "x68000:157495": {
    "boxArtUrl": "https://images.launchbox-app.com/85401ac7-38ab-471a-b8a8-6023ccfef6f3.jpg",
+   "contentIds": [
+    "sha256-fd-v1:3d04969e677cb27d057dd313293eb5e42e11234241e55615e29846800803d03d",
+    "sha256-fd-v1:9c922e9768ff3dda8c82f238a4cbd64beb66b7109f9985dfbd2b1169fc31aca4",
+    "sha256-fd-v1:ea6a77e3386211bed6690b5d86cf25f82010731a0fcaea1d3df72a2746f85c7e"
+   ],
    "description": "Interplay's party role-playing game on the island of Dilmun, where magic is banned and the tyrant Namtar rules.",
    "developer": "Interplay Productions",
    "launchbox": "157495",
    "mobygames": 2026,
    "publisher": "StarCraft",
    "screenshotUrl": "https://images.launchbox-app.com/444693b9-bc8e-49c6-9c1c-19c20239b382.png",
+   "sourceGroups": [
+    "x68000:Dragon Wars (1990)(Starcraft).zip"
+   ],
    "title": "Dragon Wars",
    "year": 1991
   },
@@ -2856,12 +2924,19 @@
   },
   "x68000:157502": {
    "boxArtUrl": "https://images.launchbox-app.com/b94210b9-17b0-461b-936b-10f75d79d42d.jpg",
+   "contentIds": [
+    "sha256-fd-v1:66bb8b20951b96af1aa623fc4192f61680d71894e22a08e988a22c065f40a3eb",
+    "sha256-fd-v1:d761901dc8f683dff964bd06e6a12ceddd49e42f52c218f8682b3f2d8dcd6ed1"
+   ],
    "description": "FTL's real-time dungeon role-playing game: lead four champions through a deep dungeon, solving puzzles, casting runic spells and fighting monsters.",
    "developer": "FTL Games",
    "launchbox": "157502",
    "mobygames": 834,
    "publisher": "Victor Musical Industries",
    "screenshotUrl": "https://images.launchbox-app.com/r2_879be463-b753-45ca-8daf-7024e44db364.png",
+   "sourceGroups": [
+    "x68000:Dungeon Master (1989)(FTL).zip"
+   ],
    "title": "Dungeon Master",
    "year": 1990
   },
@@ -2989,11 +3064,20 @@
   },
   "x68000:157509": {
    "boxArtUrl": "https://images.launchbox-app.com/0f40172b-3ab2-4bac-98d5-2bf15ea4abc0.png",
+   "contentIds": [
+    "sha256-fd-v1:7c14136b55a90a468cda5674a5c955b7413d1b349bb92c6283276b66f9c964ca",
+    "sha256-fd-v1:87f9c1ef1247df601e98a9f6d2c3fa51fd5de84f61e39f181b9503fa6c00c592",
+    "sha256-fd-v1:9e878dd007c697ab1edac9c089d7a516ab94f3079c2f90ea6d9901b169f60883",
+    "sha256-fd-v1:f4934fbc0e0d380b60a6f49ee5796f84a30ea47c499620d14abb688e5914e3b1"
+   ],
    "description": "Taito's arcade platformer: Ptolemy the witch turns enemies into cakes and drops them on each other across a hundred single-screen rounds.",
    "developer": "Taito",
    "launchbox": "157509",
    "mobygames": 19636,
    "publisher": "SPS",
+   "sourceGroups": [
+    "x68000:Fairyland Story, The (1991)(SPS).zip"
+   ],
    "title": "The Fairyland Story",
    "year": 1991
   },
@@ -3301,12 +3385,19 @@
     "XIX!"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/3ce64172-8ca8-4750-8d08-ea7e42ff31d7.png",
+   "contentIds": [
+    "sha256-fd-v1:06dc01d2eff03abdbe8198107b14099d5f32f13342dbbfabc710adfa121bd3d9",
+    "sha256-fd-v1:80d5080ca8453afded56c49c5f9dfdc449e221ba4c7cb138f499f8fddb7dbc44"
+   ],
    "description": "A fantasy role-playing game in which an adventurer explores the desert ruins of a lost magical civilization.",
    "developer": "FairyTale",
    "launchbox": "157526",
    "mobygames": 44243,
    "publisher": "FairyTale",
    "screenshotUrl": "https://images.launchbox-app.com/d36b07fa-a755-49ea-8534-4e541f4fbda8.png",
+   "sourceGroups": [
+    "x68000:Giza! XIX (1991)(Fairytale).zip"
+   ],
    "title": "Gize! XIX",
    "year": 1992
   },
@@ -3375,12 +3466,18 @@
   },
   "x68000:157539": {
    "boxArtUrl": "https://images.launchbox-app.com/aa513b53-7029-44e8-bd9d-a55ac6803f0a.jpg",
+   "contentIds": [
+    "sha256-fd-v1:af752f9129c5b337e0947b6d1afdc109d93eea62e048e831814b9eb82c1c2de9"
+   ],
    "description": "A one-on-one fighting game between combat cyborgs who defend Earth from alien attacks.",
    "developer": "Holocronet",
    "launchbox": "157539",
    "mobygames": 21940,
    "publisher": "TAKERU",
    "screenshotUrl": "https://images.launchbox-app.com/8eb9bc7a-f5d7-4fff-867e-45e2b376ff3b.png",
+   "sourceGroups": [
+    "x68000:Heavy Nova (1991)(Micronet).zip"
+   ],
    "title": "Heavy Nova",
    "year": 1992
   },
@@ -3738,12 +3835,19 @@
   },
   "x68000:157573": {
    "boxArtUrl": "https://images.launchbox-app.com/434ef6b4-fb34-41a9-80b7-af66e21d0c7b.png",
+   "contentIds": [
+    "sha256-fd-v1:73918fa8b2ce80be7e66191d7ff8899ae988114f46c5432251d507a3636f3392",
+    "sha256-fd-v1:deb9ea3508d15030c1151ebb7554828878bf62753f54c05493b395f9598083b5"
+   ],
    "description": "Cinemaware's gangster adventure: as Pinky Callahan, take over Prohibition-era Chicago after Al Capone's fall through choices and quick shootouts.",
    "developer": "Cinemaware",
    "launchbox": "157573",
    "mobygames": 26,
    "publisher": "Bothtec",
    "screenshotUrl": "https://images.launchbox-app.com/7621c91d-5a2c-4e5a-a26e-1c4550090f27.jpg",
+   "sourceGroups": [
+    "x68000:King of Chicago, The (1988)(Master Designer).zip"
+   ],
    "title": "The King of Chicago",
    "year": 1988
   },
@@ -3896,12 +4000,18 @@
   },
   "x68000:157610": {
    "boxArtUrl": "https://images.launchbox-app.com/5c669665-6d59-4c33-a4b5-e9c6c44903e6.png",
+   "contentIds": [
+    "sha256-fd-v1:ba221cf54090acfca7e35a7ec4ec8cda13644ba23441b47bf0320df26424dbd5"
+   ],
    "description": "Guide the lemmings, who walk blindly onward, to the exit by giving some of them jobs such as digging, building or blocking, across 120 levels.",
    "developer": "DMA Design",
    "launchbox": "157610",
    "mobygames": 683,
    "publisher": "Imagineer",
    "screenshotUrl": "https://images.launchbox-app.com/f12bb91b-6835-421a-8892-217f1f3b6eda.png",
+   "sourceGroups": [
+    "x68000:Lemmings (1991)(Imagineer).zip"
+   ],
    "title": "Lemmings",
    "year": 1992
   },
@@ -4239,12 +4349,22 @@
   },
   "x68000:157630": {
    "boxArtUrl": "https://images.launchbox-app.com/14e584b0-70fe-418f-a696-51dc51f0380e.png",
+   "contentIds": [
+    "sha256-fd-v1:2de352e2792be7f55ab4fea1164bd6cce484628883589edc5ef877f2d7990884",
+    "sha256-fd-v1:6c828bde0a4762958989e556e73ee81966ed8286b2f11a8b67bcb1b523506802",
+    "sha256-fd-v1:9c98a02962c99fc8e75bfef6e55028d07187b6864636b2d5ce67589b4360fda9",
+    "sha256-fd-v1:9e67c9e733d764d6aa6d72b6f0fecff7135bb715806795e9a3e5df3c3e676450",
+    "sha256-fd-v1:b6201bc80ca865231883b1a20e6f0e6dc8b9ad7d465db09a847921f44137eccc"
+   ],
    "description": "An adventure based on Rumiko Takahashi's manga Maison Ikkoku, set around a boarding house in 1980s Tokyo.",
    "developer": "Micro Cabin",
    "launchbox": "157630",
    "mobygames": 46111,
    "publisher": "Micro Cabin",
    "screenshotUrl": "https://images.launchbox-app.com/749fc102-058f-4e2f-83e9-3ecc30c22f7b.png",
+   "sourceGroups": [
+    "x68000:Maison Ikkoku Kanketsuhen Special (1989)(Micro Cabin).zip"
+   ],
    "title": "Maison Ikkoku: Kanketsuhen special",
    "year": 1988
   },
@@ -4267,11 +4387,18 @@
     "The New Zealand Story"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/27d56251-c44d-4d5f-a5b4-814b2f93a6f7.png",
+   "contentIds": [
+    "sha256-fd-v1:42def477bea70b1f1ca752671612b1d51e51282dfe8dea3deea23b35c9902c44",
+    "sha256-fd-v1:f23a251bb4bdff5186ba57e7d0f280dcdd1d5721aad60dc50fa079682f87f2ee"
+   ],
    "description": "Taito's platformer: Tiki the kiwi escapes captivity and rescues his friends, riding balloons and other vehicles through New Zealand-themed levels.",
    "developer": "SPS",
    "launchbox": "157632",
    "mobygames": 9715,
    "publisher": "Sharp",
+   "sourceGroups": [
+    "x68000:New Zealand Story, The (1989)(Sharp - SPS).zip"
+   ],
    "title": "The NewZealand Story"
   },
   "x68000:157633": {
@@ -4314,12 +4441,20 @@
   "x68000:157636": {
    "adult": true,
    "boxArtUrl": "https://images.launchbox-app.com/a0086f3f-035e-4b1a-a5a7-371324fc0515.png",
+   "contentIds": [
+    "sha256-fd-v1:169e20319083030c50dffddf22c101844f96654d0b827d73e9bd874272d281f4",
+    "sha256-fd-v1:6822c24e40e6a5d22717f6ff4968e5f113a49bde298d56dfc3e19ce99cc1dd55",
+    "sha256-fd-v1:765624878378310953afe6fc33791098476cdd4afbc89ed31efbd3d6ed813f57"
+   ],
    "description": "An adventure about a teenage martial artist who would rather do anything than train.",
    "developer": "Tenshindo",
    "launchbox": "157636",
    "mobygames": 44548,
    "publisher": "Tenshindo",
    "screenshotUrl": "https://images.launchbox-app.com/bf5d611e-250f-4510-be39-48141afbc8d3.png",
+   "sourceGroups": [
+    "x68000:Martial Age (1992)(Tenshindou).zip"
+   ],
    "title": "Martial Age",
    "year": 1993
   },
@@ -5035,12 +5170,18 @@
     "The Return of Ishtar: Ishtar no Fukkatsu"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/3bc128a3-6474-4364-84df-a18eeb34e179.png",
+   "contentIds": [
+    "sha256-fd-v1:f77f888692ec45b00c7d775a1f486b5ad265bef920c0183cf87783353deb2514"
+   ],
    "description": "Namco's sequel to The Tower of Druaga for two players at once: Gil and Ki escape the tower, one fighting while the other casts spells.",
    "developer": "Namco",
    "launchbox": "157679",
    "mobygames": 19633,
    "publisher": "SPS",
    "screenshotUrl": "https://images.launchbox-app.com/b5613517-7311-497f-8a1e-1e26dd84ef5e.png",
+   "sourceGroups": [
+    "x68000:Return of Ishtar, The (1989)(SPS).zip"
+   ],
    "title": "The Return of Ishtar",
    "year": 1988
   },
@@ -5713,11 +5854,17 @@
   },
   "x68000:157721": {
    "boxArtUrl": "https://images.launchbox-app.com/f49ecfad-40d1-4237-ae20-330ec8650ecd.png",
+   "contentIds": [
+    "sha256-fd-v1:e92b56767fda261318b204e00bf64c67ef5dc5309a562f185e17b8bc13d52fa2"
+   ],
    "description": "A Columns-style puzzle: drop columns of fruit symbols and line up three of a kind to clear them.",
    "developer": "M.N.M Software",
    "launchbox": "157721",
    "mobygames": 65319,
    "publisher": "M.N.M Software",
+   "sourceGroups": [
+    "x68000:Thrice (1990)(MNM Software).zip"
+   ],
    "title": "Thrice",
    "year": 1991
   },
@@ -5963,12 +6110,20 @@
   },
   "x68000:157741": {
    "boxArtUrl": "https://images.launchbox-app.com/ec40e879-52b4-412d-b3aa-022fbcdb1ab5.jpg",
+   "contentIds": [
+    "sha256-fd-v1:33ddb392b18a9f350247f6d5d6a47973fae626f85f61e9c42cd909d304dd9b15",
+    "sha256-fd-v1:5217fc54cc578835336ea915d7e8e36a3eaf0b5f914b268e6e6b3635e48368ef",
+    "sha256-fd-v1:b0bd7e988b3930c2e17fff114d6fb0a6b2761700326c58b22eb42e03038fd339"
+   ],
    "description": "The Avatar travels to the Valley of Eodon, a land of dinosaurs and rival tribes, and must unite the tribes against an insectoid threat.",
    "developer": "Origin Systems",
    "launchbox": "157741",
    "mobygames": 1624,
    "publisher": "Pony Canyon",
    "screenshotUrl": "https://images.launchbox-app.com/de64d3e9-6210-44af-9c10-2d334aa9a58f.jpg",
+   "sourceGroups": [
+    "x68000:Worlds of Ultima The Savage Empire (1992)(Pony Canyon).zip"
+   ],
    "title": "Worlds of Ultima: The Savage Empire",
    "year": 1993
   },
@@ -6172,12 +6327,19 @@
   },
   "x68000:159970": {
    "boxArtUrl": "https://images.launchbox-app.com/e4d1538c-cc9f-4bcc-b262-010f9f4d6415.jpg",
+   "contentIds": [
+    "sha256-fd-v1:6c72153fd1307edbb723ec8fdbcae1814de62ed150fec98f70e109ae7eae8b98",
+    "sha256-fd-v1:a82902896fe45ab8eeb7d710ff26bf03e974bfade55d9eedf4f40db492fc9c5f"
+   ],
    "description": "Origin's space game: fly, fight and trade across a star sector, joining factions and talking to characters on stations.",
    "developer": "Origin Systems",
    "launchbox": "159970",
    "mobygames": 1635,
    "publisher": "Wave Train",
    "screenshotUrl": "https://images.launchbox-app.com/b2478dd4-6aa1-45ac-bef7-3cad48b4cfd7.png",
+   "sourceGroups": [
+    "x68000:Space Rogue (1989)(Wave Train).zip"
+   ],
    "title": "Space Rogue",
    "year": 1990
   },
@@ -6835,12 +6997,19 @@
     "Top Speed"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/873dec72-4794-4ee1-89cc-ba88cd1e65df.png",
+   "contentIds": [
+    "sha256-fd-v1:a5ba79b37e7006ebf163b2f479f6cdd08f7bdda23f14e756c2aa42319f09d9d3",
+    "sha256-fd-v1:e122329416423fb85e8e180ded9ae8936742aab39e890de5d3022dc228e9dfb4"
+   ],
    "description": "Taito's road racer in the style of Out Run: drive a sports car through traffic and beat the checkpoint times.",
    "developer": "Taito",
    "launchbox": "184712",
    "mobygames": 66699,
    "publisher": "Sharp",
    "screenshotUrl": "https://images.launchbox-app.com/9e58dd87-e1b5-4c09-a544-724a2078d964.png",
+   "sourceGroups": [
+    "x68000:Full Throttle (1988)(Sharp - SPS).zip"
+   ],
    "title": "Full Throttle",
    "year": 1987
   },
@@ -7056,11 +7225,20 @@
   },
   "x68000:184854": {
    "boxArtUrl": "https://images.launchbox-app.com/50682209-da7f-479b-adde-1fd25bd40225.png",
+   "contentIds": [
+    "sha256-fd-v1:4f7038d59955b304967d899909419c66e10349769a34f1a19b62fa79b45a0d4c",
+    "sha256-fd-v1:5c9625b554ee0606671dba5bf7afb281515e63057bb3dd518750ab0fa9cd0953",
+    "sha256-fd-v1:b6029e636e380849925736202e2b39c09c14bad8920a3ed654d0aac68c60f14b",
+    "sha256-fd-v1:d1125673b32507202e557198b593db607bc9a95671cf725fbeb2386b330df96b"
+   ],
    "description": "A baseball simulation of the 1989 pennant race.",
    "developer": "Victor Musical Industries",
    "launchbox": "184854",
    "publisher": "Cross Media Soft",
    "screenshotUrl": "https://images.launchbox-app.com/4a561d18-52e2-4a7c-84e2-2648d3481d29.png",
+   "sourceGroups": [
+    "x68000:Yajiuma Pennant Race 1989 (1989)(Crossmedia Soft).zip"
+   ],
    "title": "Yajiuma Pennant Race 1989",
    "year": 1990
   },
@@ -7087,10 +7265,16 @@
   },
   "x68000:185367": {
    "boxArtUrl": "https://images.launchbox-app.com/f37802b8-7089-42d0-ab8a-d014eca4831b.png",
+   "contentIds": [
+    "sha256-fd-v1:0e6ced71490b3d3870cc6b3e07e076b084e806265fb5c956a8fe6aeae0d7ffcd"
+   ],
    "developer": "Nihon Dexter",
    "launchbox": "185367",
    "publisher": "Nihon Dexter",
    "screenshotUrl": "https://images.launchbox-app.com/7b3ea218-c034-4788-9603-3a27d74d3f2f.png",
+   "sourceGroups": [
+    "x68000:Las Vegas, The (1987)(Nippon Dexter).zip"
+   ],
    "title": "The Las Vegas",
    "year": 1988
   },
@@ -7253,11 +7437,18 @@
     "Magical Block Carat"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/060e162a-d1c6-46c5-b52e-03298195febc.jpg",
+   "contentIds": [
+    "sha256-fd-v1:182ef584112477d635893a29c0db71f1e2e4613a554d81017cbb0526ac676c3a",
+    "sha256-fd-v1:878e44178f5ebfa526af0fda6eb0abbb5a5d100b26fdbff377df3579687bed20"
+   ],
    "description": "A block-matching puzzle game.",
    "developer": "Cybertech Custom",
    "launchbox": "185794",
    "publisher": "Cybertech Custom",
    "screenshotUrl": "https://images.launchbox-app.com/a3909147-af9a-4e8f-9539-36c5431b3c63.png",
+   "sourceGroups": [
+    "x68000:Carat (1992)(Custom).zip"
+   ],
    "title": "Carat",
    "year": 1993
   },
@@ -7375,11 +7566,20 @@
     "Taikairei Nankai No Shitou"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/eaed6658-a074-43c3-9e3e-ed21bb6ed2cf.jpg",
+   "contentIds": [
+    "sha256-fd-v1:a3400faaf737760bbf8114f4927c74757e074feecb1294f233c1d401bdca188f",
+    "sha256-fd-v1:b8b5a711299eda71ea8e823c09409ee584e192230024d68bc6e385cc6ca9a13f",
+    "sha256-fd-v1:c923a33a2cd7416f3d1c4badf14caab35cebaec2690ea1f4d5946dbca7e611a6",
+    "sha256-fd-v1:f1cefaf50cba8bb47fcd99c8a359b6d1c2b7695a0346ea35142ca49311e7c54b"
+   ],
    "description": "A naval war strategy game set in the South Pacific.",
    "developer": "ArtDink",
    "launchbox": "185921",
    "publisher": "ArtDink",
    "screenshotUrl": "https://images.launchbox-app.com/d6c6d1af-82fb-4ee8-938e-cfa5f26c1bf7.png",
+   "sourceGroups": [
+    "x68000:Taikairei Nankai No Shitou (1990)(Artdink).zip"
+   ],
    "title": "Daikairei: Nankai no Shitou",
    "year": 1989
   },
@@ -8064,12 +8264,20 @@
     "Shangai II: Dragon's Eye"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/d1e625df-1ccb-47b7-bee7-ccc255bdcc0f.jpg",
+   "contentIds": [
+    "sha256-fd-v1:59b490abaf5266afcc96fdd31ac0bc6404dcd8ae69eab05917b364bd5c59ee09",
+    "sha256-fd-v1:9fe6238d0dcb8b050977d27285a01fd5481a0980576992317b472ccf6014cf95"
+   ],
    "description": "Mahjong solitaire with the Dragon's Eye variant, where one player builds the layout and the other clears it.",
    "developer": "Hot-B",
    "launchbox": "187005",
    "mobygames": 2055,
    "publisher": "Brother Industries",
    "screenshotUrl": "https://images.launchbox-app.com/97dcd633-5aaa-4dd9-9933-2b6df4e1d88b.png",
+   "sourceGroups": [
+    "x68000:Super Shanghai Dragon's Eye (1991)(Hot B)(Disk 1 of 2)(System).zip",
+    "x68000:Super Shanghai Dragon's Eye (1991)(Hot B)(Disk 2 of 2)(Data).zip"
+   ],
    "title": "Super Shanghai: Dragon's Eye",
    "year": 1992
   },
@@ -8116,12 +8324,24 @@
     "Sotsugyō"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/39dfd008-eb64-491a-beb4-05aa02590aa3.jpg",
+   "contentIds": [
+    "sha256-fd-v1:0cf726366fa546034254c1696551ffe8e5a38431d424194fc7249c71351c46a1",
+    "sha256-fd-v1:1770048c1dd434663345acb0f666c45001cfa799590be5acad4cc97b7d3ecc5f",
+    "sha256-fd-v1:1f9b9460b25629a6b59adec22ea11a9ebf40481db4561ec6df1694b4cf7677cd",
+    "sha256-fd-v1:42b4ddd58813d10dc8a17f416d081a5f811de9566f70d91de1b86f49e507df7d",
+    "sha256-fd-v1:bccda660bf1bd7fc76f0edb76d55ff83a379db35af490c83ff2ea6a2483cedf7",
+    "sha256-fd-v1:dde41ce12d3195a8b99477a340b6e0cda95efd3d8aa0e16757c0153fc9ce610b",
+    "sha256-fd-v1:fbcb6a4ec8b49204f75f3ef330bd32921930ef68f531dd05c3d0d735a310e737"
+   ],
    "description": "A raising simulation: as a high school teacher, guide five troubled girls through their final school year.",
    "developer": "Headroom",
    "launchbox": "187019",
    "mobygames": 43243,
    "publisher": "Japan Home Video",
    "screenshotUrl": "https://images.launchbox-app.com/e21ed0f7-e70a-437e-b758-36f0c946ce8f.png",
+   "sourceGroups": [
+    "x68000:Sotsugyou Graduation (1993)(JHV).zip"
+   ],
    "title": "Sotsugyou: Graduation",
    "year": 1994
   },
@@ -8269,11 +8489,19 @@
   },
   "x68000:187146": {
    "boxArtUrl": "https://images.launchbox-app.com/4cfad9f5-3888-4a9c-969a-dfeed5e0cbdf.jpg",
+   "contentIds": [
+    "sha256-fd-v1:0aa34c348d88bfddaa99d807e063d4878a3d3e3039fed5ff70e3e0966cc32991",
+    "sha256-fd-v1:73b8d693a970c1f8e3b2e27882bc46d388721cdb2144e9432322c330c66c4c5f",
+    "sha256-fd-v1:d614cc85ffa0856c816b4ee78e1841eac4fd0464912b0356ac6f170933263fd8"
+   ],
    "description": "A board game from Birdy Soft starring characters from its games.",
    "developer": "Birdy Soft",
    "launchbox": "187146",
    "publisher": "Birdy Soft",
    "screenshotUrl": "https://images.launchbox-app.com/49aa035c-f256-4b04-b55d-726b3c0a7629.png",
+   "sourceGroups": [
+    "x68000:Birdy World (1991)(Birdy Soft).zip"
+   ],
    "title": "Birdy World",
    "year": 1992
   },
@@ -8949,12 +9177,18 @@
     "Fruits Fields"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/e34340ba-a15b-4ea6-86cd-9775ff1b9619.jpg",
+   "contentIds": [
+    "sha256-fd-v1:01f5e9b45247056d2170cb827c562533a40b785d9f9220ebc7cb8379bf6eef0c"
+   ],
    "description": "A puzzle game by F.F.C, released in 1989.",
    "developer": "F.F.C",
    "launchbox": "187846",
    "mobygames": 117273,
    "publisher": "Compac",
    "screenshotUrl": "https://images.launchbox-app.com/a9142f6f-4e6e-4909-9cf0-790d7f12b740.png",
+   "sourceGroups": [
+    "x68000:Fruits Fields (1988)(Compac).zip"
+   ],
    "title": "Fruits Field",
    "year": 1989
   },
@@ -8986,11 +9220,19 @@
     "G.R. Gravity Responce"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/b3e79187-bd50-490a-84c5-5162bf45144a.jpg",
+   "contentIds": [
+    "sha256-fd-v1:81cfbb7019b4154a23e60701bfc90eed5cc66a8944539577632a5678f27f2972",
+    "sha256-fd-v1:9fa81756de0c1ae7fbb827a5aaa6f0e048e9f9ffd7028a75e824a26642a5e1cc",
+    "sha256-fd-v1:edd8df5847d01f58837bd475b15f9c9be9c9cc59d404e9352ec146a2d70986d9"
+   ],
    "description": "An adventure game by Tenshindou, released in 1993.",
    "developer": "Team Vcut",
    "launchbox": "187848",
    "publisher": "Tenshindou",
    "screenshotUrl": "https://images.launchbox-app.com/ff6510d7-8464-4487-908b-6ea4e6247aad.png",
+   "sourceGroups": [
+    "x68000:G.R. Gravity Responce (1992)(Tenshindou).zip"
+   ],
    "title": "G.R.: Gravity Response",
    "year": 1993
   },
@@ -9284,11 +9526,18 @@
   },
   "x68000:188082": {
    "boxArtUrl": "https://images.launchbox-app.com/0e8a4ab8-048e-4cc0-a8fd-d600249427d1.jpg",
+   "contentIds": [
+    "sha256-fd-v1:32b2710a7740380b111452ef5baf10794fb4ba626b3dc6ad112de477fb364fa4",
+    "sha256-fd-v1:ba7d3dd6b72dd2c970aa8cfb690f9604d13497e7a9c6e2aba8ae76df46285841"
+   ],
    "description": "An adventure game by Cocktail Soft, released in 1990.",
    "developer": "Cocktail Soft",
    "launchbox": "188082",
    "publisher": "Cocktail Soft",
    "screenshotUrl": "https://images.launchbox-app.com/a8ac8682-1773-4424-8aa2-9bd3d26bf183.png",
+   "sourceGroups": [
+    "x68000:Hare Nochi Oosawagi (1989)(Cocktail Soft).zip"
+   ],
    "title": "Hare Nochi Oosawagi!",
    "year": 1990
   },
@@ -9390,11 +9639,17 @@
   },
   "x68000:188093": {
    "boxArtUrl": "https://images.launchbox-app.com/7bb48ba4-1f39-4e5b-b77e-1ed612959331.jpg",
+   "contentIds": [
+    "sha256-fd-v1:626d5c903e39f64790f9058681ad8ca87c21753dbc30a36bb77bbeadb251010e"
+   ],
    "description": "A role-playing game by Zig Zag, released in 1991.",
    "developer": "Zig Zag",
    "launchbox": "188093",
    "publisher": "New System House Oh!",
    "screenshotUrl": "https://images.launchbox-app.com/45b29c11-5f29-44d6-9526-dbbb6e82b3e2.jpg",
+   "sourceGroups": [
+    "x68000:Jane (1990)(System House Oh!).zip"
+   ],
    "title": "Jane",
    "year": 1991
   },
@@ -9533,11 +9788,18 @@
     "Kera Kera Hoshi"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/fb8c3729-05c5-436c-988b-459b62d95163.jpg",
+   "contentIds": [
+    "sha256-fd-v1:4eefeb2fe2c6b8fe11c3bb95b32672ec4e7eb43048d40b8ec508c48e6e76d019",
+    "sha256-fd-v1:cd2bc4c3ad094280eadc250241905b99535810d81a83354ccb93f7cbb82abf9d"
+   ],
    "description": "A comic adventure about a boy from a lowly boys' school who admires the girls of an elite school.",
    "developer": "Cocktail Soft",
    "launchbox": "188192",
    "publisher": "IDES",
    "screenshotUrl": "https://images.launchbox-app.com/4f2659b2-3661-41eb-a8ab-f310e256e0b7.png",
+   "sourceGroups": [
+    "x68000:Kera Kera Hoshi (1993)(Cocktail Soft).zip"
+   ],
    "title": "Kerakera Boshi",
    "year": 1992
   },
@@ -9583,11 +9845,19 @@
     "The Love Story in Kobe"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/1d33ebaf-cc07-4c48-bf5c-996612442423.jpg",
+   "contentIds": [
+    "sha256-fd-v1:3c807954bb5750cf6b51093cd688fbbf9a7b0ab429e8f29bedc1b9ccfe7aa1bd",
+    "sha256-fd-v1:898306b64e84b65887295269e61b3bf072378e283e6d0efc21037bb55249555f",
+    "sha256-fd-v1:ebe6d43f356c8728b06f548328dfbca97eb2df5f6c94af1f9abc655486b2d2a9"
+   ],
    "description": "A romance adventure set in Kobe.",
    "developer": "Zainsoft",
    "launchbox": "188207",
    "publisher": "Zainsoft",
    "screenshotUrl": "https://images.launchbox-app.com/e1f3d296-a684-4740-9d31-f85f6291dea8.png",
+   "sourceGroups": [
+    "x68000:Koube Renai Monogatari (1989)(Zain Soft).zip"
+   ],
    "title": "Kobe Renai Monogatari",
    "year": 1990
   },
@@ -9872,11 +10142,17 @@
   },
   "x68000:188414": {
    "boxArtUrl": "https://images.launchbox-app.com/a8024b4b-7606-4bb2-8664-28147667128c.jpg",
+   "contentIds": [
+    "sha256-fd-v1:01d16ecff8070f2e84692f397ff96e550b7bfa01643e6fff1450a7e574e25d01"
+   ],
    "description": "An adventure game by Thinking Rabbit, released in 1989.",
    "developer": "Thinking Rabbit",
    "launchbox": "188414",
    "publisher": "Thinking Rabbit",
    "screenshotUrl": "https://images.launchbox-app.com/12aaf694-9e55-4754-8fe0-e319867e6d0f.png",
+   "sourceGroups": [
+    "x68000:Man I Love, The (19xx)(Thinking Rabbit).zip"
+   ],
    "title": "The Man I Love",
    "year": 1989
   },
@@ -10714,11 +10990,17 @@
     "Uchuu Kakeru Businessman"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/9b2a7685-3310-4a62-bd65-dbd74087af74.jpg",
+   "contentIds": [
+    "sha256-fd-v1:a5935fdcde36beb30600ec957ef8fe319d91f7a00592adec41012da6dc1d6c33"
+   ],
    "description": "An adventure starring a businessman, by Studio Angel.",
    "developer": "Studio Angel",
    "launchbox": "188971",
    "publisher": "Zenryuutuu",
    "screenshotUrl": "https://images.launchbox-app.com/6805ccee-8f17-4903-b7b5-b9e41655772e.png",
+   "sourceGroups": [
+    "x68000:Uchuu Kakeru Businessman (1989)(Zenryuutsuu).zip"
+   ],
    "title": "Sorakakeru Businessman",
    "year": 1990
   },
@@ -10862,11 +11144,21 @@
     "Taiheiyō no Arashi DX"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/1a800e8d-690b-45a4-a512-12b6a46c3b7a.jpg",
+   "contentIds": [
+    "sha256-fd-v1:604e5192c941ddf6d64b23b1435cff06b475e15f5a475ef8c3ba56899b371892",
+    "sha256-fd-v1:93ce1b102315e61042102fb5a8eb00c93833fa9e7bcaf64903a26d5790084041",
+    "sha256-fd-v1:a051d65ae73278a2dcb7177abc1986c147d2c1b8b6529bb62264d765886eccba",
+    "sha256-fd-v1:c3ea211cec1449757a19ce1ec778c005eac3defb2d8dda42e2d702d8203f72a5",
+    "sha256-fd-v1:ce9ff6ff33deffe4fdcad040cabcde7c0b3fb2c9db535865a6a6050e8d2f4087"
+   ],
    "description": "A Pacific War strategy simulation by G.A.M.",
    "developer": "G.A.M.",
    "launchbox": "189061",
    "publisher": "G.A.M.",
    "screenshotUrl": "https://images.launchbox-app.com/4f228af6-459b-4d9c-b7dc-9e544b3d72e0.png",
+   "sourceGroups": [
+    "x68000:Taiheiyou No Arashi DX (1989)(Gam).zip"
+   ],
    "title": "Taiheiyou no Arashi DX",
    "year": 1988
   },
@@ -11125,12 +11417,22 @@
   "x68000:189133": {
    "adult": true,
    "boxArtUrl": "https://images.launchbox-app.com/74ee8150-ac3f-4aac-8258-7e65d72d1c05.jpg",
+   "contentIds": [
+    "sha256-fd-v1:6abe92ad9da8929644d00f83dc5073898330b0ddd50bfc5c4e7796e8baf3e4c6",
+    "sha256-fd-v1:71b3eab9276f19609d0ba27d54b4ccc5f59232e8812461bcea7676d773160758",
+    "sha256-fd-v1:b5b3e16fb373172a2c1ba0eb5fe517f4b189d416b763db52ab41618722f32d2a",
+    "sha256-fd-v1:eb45de88eed5169590c92afa01e4cfbe9a99673bf3bc81e9ddd43515e2ec5e1c",
+    "sha256-fd-v1:fbf39eacd7bf16db3df5246417e8bfdd1fd0ab6733af0df0374bab2a53e0909a"
+   ],
    "description": "A visual novel set at a high school with vampires.",
    "developer": "Inter Heart",
    "launchbox": "189133",
    "mobygames": 189697,
    "publisher": "Dot Plan",
    "screenshotUrl": "https://images.launchbox-app.com/5e136a5b-9de7-401c-aaee-1ef249ce4f6d.png",
+   "sourceGroups": [
+    "x68000:Vampire Highschool (1993)(Inter Heart).zip"
+   ],
    "title": "Vampire High School",
    "year": 1994
   },
@@ -11258,11 +11560,18 @@
     "Yoru no Tenshi-tachi"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/e40c432c-797f-43c7-898f-69efc3156188.jpg",
+   "contentIds": [
+    "sha256-fd-v1:55dff0665ebff5849ae43fe403fc3121c31dab083e8078cf648babe4f8a61c02",
+    "sha256-fd-v1:cd74693c6b6136a84ca4ace2353ad0e0aa0e907cfbc5da42552a47aaa8ae6607"
+   ],
    "description": "A murder mystery set along a private railway line.",
    "developer": "Crest",
    "launchbox": "189152",
    "publisher": "Jast",
    "screenshotUrl": "https://images.launchbox-app.com/fd031c2d-0e96-4160-8ed6-c836ddc8be77.png",
+   "sourceGroups": [
+    "x68000:Yoru No Tenshitachi (1989)(Jast).zip"
+   ],
    "title": "Yoru no Tenshitachi: Shitetsu Ensen Satsujin Jiken",
    "year": 1990
   },
@@ -11553,10 +11862,21 @@
     "Kounai Shasei"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/77022c3f-84fa-4adc-b8ce-63408d63f968.jpg",
+   "contentIds": [
+    "sha256-fd-v1:1559e64bd313b6c2c9b751bb32758b466c05113c80805cbd7a01e3ea4fabd6ef",
+    "sha256-fd-v1:2d643460937f882c15c375f93dc3a1df863cf5faef514e17d8c30b7ee510196f",
+    "sha256-fd-v1:5ae4589364e4f251bb0618a65819be261ec9020cd9eacd6fb60d601023251cbe",
+    "sha256-fd-v1:ab6ea02b80ae9de0e6e238ceb294f023047e0185e17bb9c85b5c9ff141df2839",
+    "sha256-fd-v1:c7332415fc61f3c8fbd5d422d177e14cd022829da8c18c11fb7869ab0df20a34",
+    "sha256-fd-v1:dfe6e3189466213d39f84405f98545411f66f0637c87761167fc4b6d99b210be"
+   ],
    "description": "A compilation of three Kounai Shasei collections of short episodes.",
    "developer": "Fairytale Red Zone",
    "launchbox": "189209",
    "publisher": "Fairytale Red Zone",
+   "sourceGroups": [
+    "x68000:Kounai Shasei (1992)(Fairytale).zip"
+   ],
    "title": "U-Jin Special Collection: Zen San Kan Goudou Hon!! Kounai Shasei 1, 2, 3",
    "year": 1993
   },
@@ -12247,11 +12567,17 @@
   },
   "x68000:189961": {
    "boxArtUrl": "https://images.launchbox-app.com/46877c4b-fd0d-4b40-8bef-e0ae840e8344.jpg",
+   "contentIds": [
+    "sha256-fd-v1:66ea420098e5b80cd8aa97236490acd33e88679b681fd41658f7b2020937aa32"
+   ],
    "description": "Hunt hidden submarines with sonar and depth charges, avoiding and sweeping mines.",
    "developer": "Blast Off Dennou",
    "launchbox": "189961",
    "publisher": "Blast Off Dennou",
    "screenshotUrl": "https://images.launchbox-app.com/64a40df7-84f0-4b21-88fa-e3e3f71681ae.png",
+   "sourceGroups": [
+    "x68000:Deep, The (1991)(Blast Off Dennou).zip"
+   ],
    "title": "The Deep"
   },
   "x68000:189963": {
@@ -12298,11 +12624,17 @@
    "title": "Dive On 2"
   },
   "x68000:189968": {
+   "contentIds": [
+    "sha256-fd-v1:1fd6ac33e541658973d49fa56beff8090468e41f61b82e943447dd1261f1899c"
+   ],
    "description": "Dive for treasure with limited air, spearing the sharks that try to bite you.",
    "developer": "Craftwork",
    "launchbox": "189968",
    "publisher": "Craftwork",
    "screenshotUrl": "https://images.launchbox-app.com/dad204e8-403b-44f0-8560-3987e82ade31.png",
+   "sourceGroups": [
+    "x68000:Diver, The (1994)(Craftwork).zip"
+   ],
    "title": "The Diver"
   },
   "x68000:189969": {
@@ -12618,11 +12950,17 @@
    "title": "Flame Wing"
   },
   "x68000:190109": {
+   "contentIds": [
+    "sha256-fd-v1:a6aac05c877246adc5be4a047eac8f6476eca66c975f44f3921478fc924bc24e"
+   ],
    "description": "A shooter by Kei-H, released through Login Soft.",
    "developer": "Kei-H",
    "launchbox": "190109",
    "publisher": "Login Soft",
    "screenshotUrl": "https://images.launchbox-app.com/5eca6842-929a-4b92-a84e-8258fd001051.png",
+   "sourceGroups": [
+    "x68000:Flaming Dart (1992)(Kei-H).zip"
+   ],
    "title": "Flaming Dart",
    "year": 1991
   },
@@ -13640,11 +13978,17 @@
    "aliases": [
     "The S.A.R.U.M.A.N.E of Tetris"
    ],
+   "contentIds": [
+    "sha256-fd-v1:7d246fccd21e8be89af3013ba95a5659fad46b2616f18083bc4abdfa34a9972f"
+   ],
    "description": "A Tetris game with a monkey that teaches you how to play.",
    "developer": "Pineapple",
    "launchbox": "190600",
    "publisher": "Pineapple",
    "screenshotUrl": "https://images.launchbox-app.com/0ed5df5e-a115-4cd7-9a96-2dc5e6579437.png",
+   "sourceGroups": [
+    "x68000:Sarumune of Tetris, The (1990)(Pineapple).zip"
+   ],
    "title": "The Sarumune of Tetris"
   },
   "x68000:190601": {
@@ -16731,11 +17075,18 @@
   },
   "x68000:424488": {
    "boxArtUrl": "https://images.launchbox-app.com/56b0970c-96fc-4b48-a1c0-2625df8ba1cd.jpg",
+   "contentIds": [
+    "sha256-fd-v1:74b111a09a46261580bb71698f4892c25bb7523ed0373e9fcad373cb72070321",
+    "sha256-fd-v1:d3f40d167ba5b2edb5913015cfd356f901992ee2bd17df716e8750cdfabd6f5b"
+   ],
    "description": "A snake-like action game in the style of Snake, Rattle 'n Roll: steer a serpentine head and grow.",
    "developer": "Koucha Kikaku",
    "launchbox": "424488",
    "publisher": "Tea Planning",
    "screenshotUrl": "https://images.launchbox-app.com/d8f60c72-0648-4dc7-9fb1-0881cba97062.jpg",
+   "sourceGroups": [
+    "x68000:Last Tempest, The (1994)(Koucha Kikaku).zip"
+   ],
    "title": "The Last Tempest"
   },
   "x68000:425257": {
@@ -16971,17 +17322,6 @@
    ],
    "title": "Yaritai Houdai I+II"
   },
-  "x68000:local-06a3c64979": {
-   "contentIds": [
-    "sha256-fd-v1:750c21ac3b8d2f6aa1922aa888a805f33c22e1f2274e930c81796fa92c2c3c77",
-    "sha256-fd-v1:92839acec980d3ed140aef5606d5a9c5740b9ae4aabc92bd28522e87fdf3ebf2"
-   ],
-   "sourceGroups": [
-    "x68000:Xenon 2 Megablast (1990)(Imageworks).zip"
-   ],
-   "title": "Xenon 2 Megablast",
-   "year": 1990
-  },
   "x68000:local-06a49e1d09": {
    "contentIds": [
     "sha256-fd-v1:77793995d1b30b8ac27657acd0093831e13ab4c5936cf99c30f997fd5dadc883"
@@ -17093,20 +17433,6 @@
    "title": "Breed",
    "year": 1989
   },
-  "x68000:local-0c854b1e2a": {
-   "contentIds": [
-    "sha256-fd-v1:6abe92ad9da8929644d00f83dc5073898330b0ddd50bfc5c4e7796e8baf3e4c6",
-    "sha256-fd-v1:71b3eab9276f19609d0ba27d54b4ccc5f59232e8812461bcea7676d773160758",
-    "sha256-fd-v1:b5b3e16fb373172a2c1ba0eb5fe517f4b189d416b763db52ab41618722f32d2a",
-    "sha256-fd-v1:eb45de88eed5169590c92afa01e4cfbe9a99673bf3bc81e9ddd43515e2ec5e1c",
-    "sha256-fd-v1:fbf39eacd7bf16db3df5246417e8bfdd1fd0ab6733af0df0374bab2a53e0909a"
-   ],
-   "sourceGroups": [
-    "x68000:Vampire Highschool (1993)(Inter Heart).zip"
-   ],
-   "title": "Vampire Highschool",
-   "year": 1993
-  },
   "x68000:local-0ca1cb2c1f": {
    "contentIds": [
     "sha256-fd-v1:20d2ac6fb0f4f629f1fb3c85042c0b6c5558924d408a4e8c34f1ceb9f33babdf",
@@ -17134,24 +17460,6 @@
    "title": "Akazukin Cha Cha Cha v1.04",
    "year": 1995
   },
-  "x68000:local-0e8b371d1f": {
-   "contentIds": [
-    "sha256-fd-v1:0760abff3a9b3f80c06e4bd1986e534a78e3f98abdb1b8b8bf4958fc5746690a",
-    "sha256-fd-v1:0d782c9c6f4c967a80e449334dc30134061db27d04752efc194914843eb5df69",
-    "sha256-fd-v1:0e80d07da4f8b78ac18913ceeb36f28b30cacd4ff2c9032ca2253efd7ce1bb10",
-    "sha256-fd-v1:218f09084228d02a67cd8a98650d89fcc667b72502af54cbe17b705284c89047",
-    "sha256-fd-v1:67648c0c6ac8e0c8b59ba7039db9f0c4147fefba5c9c5d07495a5d25368a9e12",
-    "sha256-fd-v1:878326ee8a5b59e5afc9ac70ea97727b379e12f4e6c023ab2f1f125896fe65bb",
-    "sha256-fd-v1:8c2d2e7b0c3449995cf63363f6ee8206f3a2be4bf8e7daaa29a9afcd789fbd4c",
-    "sha256-fd-v1:d1f2b09f608a161af913ebf155b814fe2d839bd6adf823b1af92c930b277c42a",
-    "sha256-fd-v1:d3d6186ea06da0b2d9f5a54cb3e112352a66c1ff5faa7145633aec5790975e7e"
-   ],
-   "sourceGroups": [
-    "x68000:Doukyuusei (1992)(Elf).zip"
-   ],
-   "title": "Doukyuusei",
-   "year": 1992
-  },
   "x68000:local-0f86f0a725": {
    "contentIds": [
     "sha256-fd-v1:02f47b7d7040c50ec5c93ab777d2ad06c3789045bb375fb9bc36e02a4715d2d0"
@@ -17159,7 +17467,7 @@
    "sourceGroups": [
     "x68000:Teruminachan, The (1989)(Micro Hage Chabin).zip"
    ],
-   "title": "Teruminachan, The",
+   "title": "The Teruminachan",
    "year": 1989
   },
   "x68000:local-0fe7b29aaa": {
@@ -17572,17 +17880,6 @@
    "title": "Hi Mega Sister",
    "year": 1990
   },
-  "x68000:local-2b2837d61d": {
-   "contentIds": [
-    "sha256-fd-v1:55dff0665ebff5849ae43fe403fc3121c31dab083e8078cf648babe4f8a61c02",
-    "sha256-fd-v1:cd74693c6b6136a84ca4ace2353ad0e0aa0e907cfbc5da42552a47aaa8ae6607"
-   ],
-   "sourceGroups": [
-    "x68000:Yoru No Tenshitachi (1989)(Jast).zip"
-   ],
-   "title": "Yoru No Tenshitachi",
-   "year": 1989
-  },
   "x68000:local-2b87c4ab96": {
    "contentIds": [
     "sha256-fd-v1:07a82cf47f0223529ee02dc39e088563418cebc20973afc8fa168665f1faecfa",
@@ -17619,17 +17916,6 @@
     "x68000:Dor I+II+III+Special'93+Sakigake.zip"
    ],
    "title": "Dor I+II+III+Special'93+Sakigake"
-  },
-  "x68000:local-2ba44e70a6": {
-   "contentIds": [
-    "sha256-fd-v1:42def477bea70b1f1ca752671612b1d51e51282dfe8dea3deea23b35c9902c44",
-    "sha256-fd-v1:f23a251bb4bdff5186ba57e7d0f280dcdd1d5721aad60dc50fa079682f87f2ee"
-   ],
-   "sourceGroups": [
-    "x68000:New Zealand Story, The (1989)(Sharp - SPS).zip"
-   ],
-   "title": "New Zealand Story, The",
-   "year": 1989
   },
   "x68000:local-2c876d7cd9": {
    "contentIds": [
@@ -17690,7 +17976,7 @@
    "sourceGroups": [
     "x68000:Baseball Knuckles '94, The (1994)(DCS).zip"
    ],
-   "title": "Baseball Knuckles '94, The",
+   "title": "The Baseball Knuckles '94",
    "year": 1994
   },
   "x68000:local-300ca09c5c": {
@@ -17781,16 +18067,6 @@
    "title": "Orange Iro No Biyaku",
    "year": 1989
   },
-  "x68000:local-35b3906949": {
-   "contentIds": [
-    "sha256-fd-v1:5fbf14a6bff868b4900b85b03f19860d35c7d14fffb49c634bd114fea2b400df"
-   ],
-   "sourceGroups": [
-    "x68000:Caroll (1990)(System House Oh!).zip"
-   ],
-   "title": "Caroll",
-   "year": 1990
-  },
   "x68000:local-3650deb038": {
    "contentIds": [
     "sha256-fd-v1:544ed81ed57a99a3ff10b87c6ffdaee5c9c7271ef8d30ae160d3a00a922fc47b"
@@ -17800,16 +18076,6 @@
    ],
    "title": "Human 68k v3.02 with WINDVR",
    "year": 1993
-  },
-  "x68000:local-37a87b347d": {
-   "contentIds": [
-    "sha256-fd-v1:0e6ced71490b3d3870cc6b3e07e076b084e806265fb5c956a8fe6aeae0d7ffcd"
-   ],
-   "sourceGroups": [
-    "x68000:Las Vegas, The (1987)(Nippon Dexter).zip"
-   ],
-   "title": "Las Vegas, The",
-   "year": 1987
   },
   "x68000:local-3817f1fb01": {
    "contentIds": [
@@ -17875,18 +18141,6 @@
    ],
    "title": "Butasan Quest",
    "year": 1994
-  },
-  "x68000:local-3a5d500264": {
-   "contentIds": [
-    "sha256-fd-v1:33ddb392b18a9f350247f6d5d6a47973fae626f85f61e9c42cd909d304dd9b15",
-    "sha256-fd-v1:5217fc54cc578835336ea915d7e8e36a3eaf0b5f914b268e6e6b3635e48368ef",
-    "sha256-fd-v1:b0bd7e988b3930c2e17fff114d6fb0a6b2761700326c58b22eb42e03038fd339"
-   ],
-   "sourceGroups": [
-    "x68000:Worlds of Ultima The Savage Empire (1992)(Pony Canyon).zip"
-   ],
-   "title": "Worlds of Ultima The Savage Empire",
-   "year": 1992
   },
   "x68000:local-3b01daa7e8": {
    "contentIds": [
@@ -18019,18 +18273,6 @@
    ],
    "title": "Biyoyon Car Game"
   },
-  "x68000:local-43c7aa3ef6": {
-   "contentIds": [
-    "sha256-fd-v1:169e20319083030c50dffddf22c101844f96654d0b827d73e9bd874272d281f4",
-    "sha256-fd-v1:6822c24e40e6a5d22717f6ff4968e5f113a49bde298d56dfc3e19ce99cc1dd55",
-    "sha256-fd-v1:765624878378310953afe6fc33791098476cdd4afbc89ed31efbd3d6ed813f57"
-   ],
-   "sourceGroups": [
-    "x68000:Martial Age (1992)(Tenshindou).zip"
-   ],
-   "title": "Martial Age",
-   "year": 1992
-  },
   "x68000:local-4671285210": {
    "contentIds": [
     "sha256-fd-v1:5d2570058914916609b3407d1f85859f8c935d0af522f652dbe11d2997444540",
@@ -18065,16 +18307,6 @@
    ],
    "title": "Mega Powerful Jangken Pro-68K v1.05",
    "year": 1992
-  },
-  "x68000:local-4809a21e3a": {
-   "contentIds": [
-    "sha256-fd-v1:e92b56767fda261318b204e00bf64c67ef5dc5309a562f185e17b8bc13d52fa2"
-   ],
-   "sourceGroups": [
-    "x68000:Thrice (1990)(MNM Software).zip"
-   ],
-   "title": "Thrice",
-   "year": 1990
   },
   "x68000:local-491c418fe5": {
    "contentIds": [
@@ -18156,47 +18388,6 @@
    "title": "Momotarou I+II+III",
    "year": 1989
   },
-  "x68000:local-4c8e55bd38": {
-   "contentIds": [
-    "sha256-fd-v1:66ea420098e5b80cd8aa97236490acd33e88679b681fd41658f7b2020937aa32"
-   ],
-   "sourceGroups": [
-    "x68000:Deep, The (1991)(Blast Off Dennou).zip"
-   ],
-   "title": "Deep, The",
-   "year": 1991
-  },
-  "x68000:local-4caaedf931": {
-   "contentIds": [
-    "sha256-fd-v1:01d16ecff8070f2e84692f397ff96e550b7bfa01643e6fff1450a7e574e25d01"
-   ],
-   "sourceGroups": [
-    "x68000:Man I Love, The (19xx)(Thinking Rabbit).zip"
-   ],
-   "title": "Man I Love, The"
-  },
-  "x68000:local-4cf82c4749": {
-   "contentIds": [
-    "sha256-fd-v1:3c807954bb5750cf6b51093cd688fbbf9a7b0ab429e8f29bedc1b9ccfe7aa1bd",
-    "sha256-fd-v1:898306b64e84b65887295269e61b3bf072378e283e6d0efc21037bb55249555f",
-    "sha256-fd-v1:ebe6d43f356c8728b06f548328dfbca97eb2df5f6c94af1f9abc655486b2d2a9"
-   ],
-   "sourceGroups": [
-    "x68000:Koube Renai Monogatari (1989)(Zain Soft).zip"
-   ],
-   "title": "Koube Renai Monogatari",
-   "year": 1989
-  },
-  "x68000:local-4d6eae37f0": {
-   "contentIds": [
-    "sha256-fd-v1:f77f888692ec45b00c7d775a1f486b5ad265bef920c0183cf87783353deb2514"
-   ],
-   "sourceGroups": [
-    "x68000:Return of Ishtar, The (1989)(SPS).zip"
-   ],
-   "title": "Return of Ishtar, The",
-   "year": 1989
-  },
   "x68000:local-4dcd743646": {
    "contentIds": [
     "sha256-fd-v1:c79f2b64d9bef7d8c69e55e71e75555c091555a554b5fbc988fd353235f86f98"
@@ -18215,16 +18406,6 @@
     "x68000:Half Mind (19xx)(Pasoket).zip"
    ],
    "title": "Half Mind"
-  },
-  "x68000:local-4e10fea3fa": {
-   "contentIds": [
-    "sha256-fd-v1:adf12be058e17c3417378527c86854107364129d477c701680668d01fdb5fe90"
-   ],
-   "sourceGroups": [
-    "x68000:Darwin's Dilemma (1990)(Inline Design).zip"
-   ],
-   "title": "Darwin's Dilemma",
-   "year": 1990
   },
   "x68000:local-4e87e5fb2f": {
    "contentIds": [
@@ -18313,16 +18494,6 @@
    ],
    "title": "Marmalade Bomb",
    "year": 1995
-  },
-  "x68000:local-53535f2b29": {
-   "contentIds": [
-    "sha256-fd-v1:16b64214ea1b451455d7cf92dca521b4854fe5efa3b94f0110ae886a7fcc2e04"
-   ],
-   "sourceGroups": [
-    "x68000:Bubble Bobble (1989)(Dempa).zip"
-   ],
-   "title": "Bubble Bobble",
-   "year": 1989
   },
   "x68000:local-53582af059": {
    "contentIds": [
@@ -18438,31 +18609,6 @@
    ],
    "title": "projectmoon"
   },
-  "x68000:local-577a6281f1": {
-   "contentIds": [
-    "sha256-fd-v1:604e5192c941ddf6d64b23b1435cff06b475e15f5a475ef8c3ba56899b371892",
-    "sha256-fd-v1:93ce1b102315e61042102fb5a8eb00c93833fa9e7bcaf64903a26d5790084041",
-    "sha256-fd-v1:a051d65ae73278a2dcb7177abc1986c147d2c1b8b6529bb62264d765886eccba",
-    "sha256-fd-v1:c3ea211cec1449757a19ce1ec778c005eac3defb2d8dda42e2d702d8203f72a5",
-    "sha256-fd-v1:ce9ff6ff33deffe4fdcad040cabcde7c0b3fb2c9db535865a6a6050e8d2f4087"
-   ],
-   "sourceGroups": [
-    "x68000:Taiheiyou No Arashi DX (1989)(Gam).zip"
-   ],
-   "title": "Taiheiyou No Arashi DX",
-   "year": 1989
-  },
-  "x68000:local-57bb7bd242": {
-   "contentIds": [
-    "sha256-fd-v1:182ef584112477d635893a29c0db71f1e2e4613a554d81017cbb0526ac676c3a",
-    "sha256-fd-v1:878e44178f5ebfa526af0fda6eb0abbb5a5d100b26fdbff377df3579687bed20"
-   ],
-   "sourceGroups": [
-    "x68000:Carat (1992)(Custom).zip"
-   ],
-   "title": "Carat",
-   "year": 1992
-  },
   "x68000:local-58ebafd27d": {
    "contentIds": [
     "sha256-fd-v1:aa9757809963c32b26cd0cbd6febe8f6447e8b6b363a9039a482cf6b0ae910c1",
@@ -18482,16 +18628,6 @@
    ],
    "title": "Gardis Light v2.10",
    "year": 1994
-  },
-  "x68000:local-59dbd56ddf": {
-   "contentIds": [
-    "sha256-fd-v1:01f5e9b45247056d2170cb827c562533a40b785d9f9220ebc7cb8379bf6eef0c"
-   ],
-   "sourceGroups": [
-    "x68000:Fruits Fields (1988)(Compac).zip"
-   ],
-   "title": "Fruits Fields",
-   "year": 1988
   },
   "x68000:local-5adb23bec5": {
    "sourceGroups": [
@@ -18595,16 +18731,6 @@
    ],
    "title": "Bodhidharma + Mark II"
   },
-  "x68000:local-62fde6bd93": {
-   "contentIds": [
-    "sha256-fd-v1:7d246fccd21e8be89af3013ba95a5659fad46b2616f18083bc4abdfa34a9972f"
-   ],
-   "sourceGroups": [
-    "x68000:Sarumune of Tetris, The (1990)(Pineapple).zip"
-   ],
-   "title": "Sarumune of Tetris, The",
-   "year": 1990
-  },
   "x68000:local-63943acada": {
    "contentIds": [
     "sha256-fd-v1:40f491b0d946744fa7e40163ea7e7905ca5b5d8b68dfbae6abdc6d2745f041b8"
@@ -18697,7 +18823,7 @@
    "sourceGroups": [
     "x68000:Super Las Vegas I+II, The (1990)(Nippon Dexter).zip"
    ],
-   "title": "Super Las Vegas I+II, The",
+   "title": "The Super Las Vegas I+II",
    "year": 1990
   },
   "x68000:local-687aeb68cf": {
@@ -18710,16 +18836,6 @@
    ],
    "title": "Prince & Princess",
    "year": 1990
-  },
-  "x68000:local-698f778655": {
-   "contentIds": [
-    "sha256-fd-v1:ba221cf54090acfca7e35a7ec4ec8cda13644ba23441b47bf0320df26424dbd5"
-   ],
-   "sourceGroups": [
-    "x68000:Lemmings (1991)(Imagineer).zip"
-   ],
-   "title": "Lemmings",
-   "year": 1991
   },
   "x68000:local-6abbea965c": {
    "contentIds": [
@@ -18773,17 +18889,6 @@
    "title": "Aikoku Pro Uso-68K",
    "year": 1990
   },
-  "x68000:local-6d0d775975": {
-   "contentIds": [
-    "sha256-fd-v1:73918fa8b2ce80be7e66191d7ff8899ae988114f46c5432251d507a3636f3392",
-    "sha256-fd-v1:deb9ea3508d15030c1151ebb7554828878bf62753f54c05493b395f9598083b5"
-   ],
-   "sourceGroups": [
-    "x68000:King of Chicago, The (1988)(Master Designer).zip"
-   ],
-   "title": "King of Chicago, The",
-   "year": 1988
-  },
   "x68000:local-6d9c9a9cef": {
    "contentIds": [
     "sha256-fd-v1:649a906aa44833cb3bb7e5d1f9e7d9a24c122be0938b91dbdc11a3aab785c806",
@@ -18801,17 +18906,6 @@
    ],
    "title": "Alice No Yakata I + II"
   },
-  "x68000:local-6f7e3a9d17": {
-   "contentIds": [
-    "sha256-fd-v1:a5ba79b37e7006ebf163b2f479f6cdd08f7bdda23f14e756c2aa42319f09d9d3",
-    "sha256-fd-v1:e122329416423fb85e8e180ded9ae8936742aab39e890de5d3022dc228e9dfb4"
-   ],
-   "sourceGroups": [
-    "x68000:Full Throttle (1988)(Sharp - SPS).zip"
-   ],
-   "title": "Full Throttle",
-   "year": 1988
-  },
   "x68000:local-6ff4c92ceb": {
    "contentIds": [
     "sha256-fd-v1:026a2b788fd8d942811c2daf2ea16458878d3f6058a67bc961951adf47814ad4",
@@ -18824,17 +18918,6 @@
    ],
    "title": "Zark Legend",
    "year": 1990
-  },
-  "x68000:local-6ff8395d1f": {
-   "contentIds": [
-    "sha256-fd-v1:32b2710a7740380b111452ef5baf10794fb4ba626b3dc6ad112de477fb364fa4",
-    "sha256-fd-v1:ba7d3dd6b72dd2c970aa8cfb690f9604d13497e7a9c6e2aba8ae76df46285841"
-   ],
-   "sourceGroups": [
-    "x68000:Hare Nochi Oosawagi (1989)(Cocktail Soft).zip"
-   ],
-   "title": "Hare Nochi Oosawagi",
-   "year": 1989
   },
   "x68000:local-705ca48d68": {
    "contentIds": [
@@ -18856,18 +18939,6 @@
     "x68000:OraShooter.zip"
    ],
    "title": "OraShooter"
-  },
-  "x68000:local-70b164776f": {
-   "contentIds": [
-    "sha256-fd-v1:98ac512f40dbd288457b0bf750cd432d0594001cc9fd7b4839f31d00857735ad",
-    "sha256-fd-v1:a7843f5508ef3479d97998ad3b06706d80e7565c7957197e80f42dc8c9794195",
-    "sha256-fd-v1:ac26eda9a9d0a82d30e14c3b8e79b2f52119068e13e311ed6db5c214eb47bc6e"
-   ],
-   "sourceGroups": [
-    "x68000:Baruusa No Fukushuu (1991)(Zain Soft).zip"
-   ],
-   "title": "Baruusa No Fukushuu",
-   "year": 1991
   },
   "x68000:local-70c53b431e": {
    "contentIds": [
@@ -19074,17 +19145,6 @@
    "title": "Battletech",
    "year": 1992
   },
-  "x68000:local-7caa4a6ffb": {
-   "contentIds": [
-    "sha256-fd-v1:74b111a09a46261580bb71698f4892c25bb7523ed0373e9fcad373cb72070321",
-    "sha256-fd-v1:d3f40d167ba5b2edb5913015cfd356f901992ee2bd17df716e8750cdfabd6f5b"
-   ],
-   "sourceGroups": [
-    "x68000:Last Tempest, The (1994)(Koucha Kikaku).zip"
-   ],
-   "title": "Last Tempest, The",
-   "year": 1994
-  },
   "x68000:local-7d9894be8f": {
    "contentIds": [
     "sha256-fd-v1:2127d1fe679e566d80fc6d203e838178de7c5f9a228f49d4d7e91601abba5859",
@@ -19146,18 +19206,6 @@
     "x68000:Shiken Ni Denai Maison (19xx)(Melty Club).zip"
    ],
    "title": "Shiken Ni Denai Maison"
-  },
-  "x68000:local-81a9947e71": {
-   "contentIds": [
-    "sha256-fd-v1:81cfbb7019b4154a23e60701bfc90eed5cc66a8944539577632a5678f27f2972",
-    "sha256-fd-v1:9fa81756de0c1ae7fbb827a5aaa6f0e048e9f9ffd7028a75e824a26642a5e1cc",
-    "sha256-fd-v1:edd8df5847d01f58837bd475b15f9c9be9c9cc59d404e9352ec146a2d70986d9"
-   ],
-   "sourceGroups": [
-    "x68000:G.R. Gravity Responce (1992)(Tenshindou).zip"
-   ],
-   "title": "G.R. Gravity Responce",
-   "year": 1992
   },
   "x68000:local-8236d0bfb6": {
    "contentIds": [
@@ -19245,20 +19293,6 @@
    ],
    "title": "Shimai Mahjongg v1.10",
    "year": 1993
-  },
-  "x68000:local-84fc9a9c55": {
-   "contentIds": [
-    "sha256-fd-v1:2de352e2792be7f55ab4fea1164bd6cce484628883589edc5ef877f2d7990884",
-    "sha256-fd-v1:6c828bde0a4762958989e556e73ee81966ed8286b2f11a8b67bcb1b523506802",
-    "sha256-fd-v1:9c98a02962c99fc8e75bfef6e55028d07187b6864636b2d5ce67589b4360fda9",
-    "sha256-fd-v1:9e67c9e733d764d6aa6d72b6f0fecff7135bb715806795e9a3e5df3c3e676450",
-    "sha256-fd-v1:b6201bc80ca865231883b1a20e6f0e6dc8b9ad7d465db09a847921f44137eccc"
-   ],
-   "sourceGroups": [
-    "x68000:Maison Ikkoku Kanketsuhen Special (1989)(Micro Cabin).zip"
-   ],
-   "title": "Maison Ikkoku Kanketsuhen Special",
-   "year": 1989
   },
   "x68000:local-858f8246d8": {
    "contentIds": [
@@ -19354,16 +19388,6 @@
    ],
    "title": "Deg-On",
    "year": 1990
-  },
-  "x68000:local-8e75a6dece": {
-   "contentIds": [
-    "sha256-fd-v1:9fe6238d0dcb8b050977d27285a01fd5481a0980576992317b472ccf6014cf95"
-   ],
-   "sourceGroups": [
-    "x68000:Super Shanghai Dragon's Eye (1991)(Hot B)(Disk 1 of 2)(System).zip"
-   ],
-   "title": "Super Shanghai Dragon's Eye",
-   "year": 1991
   },
   "x68000:local-8ec44d045a": {
    "contentIds": [
@@ -19478,19 +19502,6 @@
    ],
    "title": "Quiz Mangaka No Yabou"
   },
-  "x68000:local-94ff96e6af": {
-   "contentIds": [
-    "sha256-fd-v1:a3400faaf737760bbf8114f4927c74757e074feecb1294f233c1d401bdca188f",
-    "sha256-fd-v1:b8b5a711299eda71ea8e823c09409ee584e192230024d68bc6e385cc6ca9a13f",
-    "sha256-fd-v1:c923a33a2cd7416f3d1c4badf14caab35cebaec2690ea1f4d5946dbca7e611a6",
-    "sha256-fd-v1:f1cefaf50cba8bb47fcd99c8a359b6d1c2b7695a0346ea35142ca49311e7c54b"
-   ],
-   "sourceGroups": [
-    "x68000:Taikairei Nankai No Shitou (1990)(Artdink).zip"
-   ],
-   "title": "Taikairei Nankai No Shitou",
-   "year": 1990
-  },
   "x68000:local-95611f0396": {
    "contentIds": [
     "sha256-fd-v1:058543552ee3fabe9e4c0aa08449be9b34e9d9906f1cea33d564df29d123c0be",
@@ -19589,26 +19600,6 @@
    ],
    "title": "177",
    "year": 1986
-  },
-  "x68000:local-9a120a0d27": {
-   "contentIds": [
-    "sha256-fd-v1:a5935fdcde36beb30600ec957ef8fe319d91f7a00592adec41012da6dc1d6c33"
-   ],
-   "sourceGroups": [
-    "x68000:Uchuu Kakeru Businessman (1989)(Zenryuutsuu).zip"
-   ],
-   "title": "Uchuu Kakeru Businessman",
-   "year": 1989
-  },
-  "x68000:local-9aee29451f": {
-   "contentIds": [
-    "sha256-fd-v1:1fd6ac33e541658973d49fa56beff8090468e41f61b82e943447dd1261f1899c"
-   ],
-   "sourceGroups": [
-    "x68000:Diver, The (1994)(Craftwork).zip"
-   ],
-   "title": "Diver, The",
-   "year": 1994
   },
   "x68000:local-9afd36b804": {
    "contentIds": [
@@ -19751,19 +19742,6 @@
    ],
    "title": "Marble Reverser v1.0",
    "year": 1992
-  },
-  "x68000:local-a46db8f472": {
-   "contentIds": [
-    "sha256-fd-v1:4f7038d59955b304967d899909419c66e10349769a34f1a19b62fa79b45a0d4c",
-    "sha256-fd-v1:5c9625b554ee0606671dba5bf7afb281515e63057bb3dd518750ab0fa9cd0953",
-    "sha256-fd-v1:b6029e636e380849925736202e2b39c09c14bad8920a3ed654d0aac68c60f14b",
-    "sha256-fd-v1:d1125673b32507202e557198b593db607bc9a95671cf725fbeb2386b330df96b"
-   ],
-   "sourceGroups": [
-    "x68000:Yajiuma Pennant Race 1989 (1989)(Crossmedia Soft).zip"
-   ],
-   "title": "Yajiuma Pennant Race 1989",
-   "year": 1989
   },
   "x68000:local-a4dbaf70eb": {
    "contentIds": [
@@ -19961,28 +19939,6 @@
     "x68000:CY.zip"
    ],
    "title": "CY"
-  },
-  "x68000:local-b01413f6c2": {
-   "contentIds": [
-    "sha256-fd-v1:af752f9129c5b337e0947b6d1afdc109d93eea62e048e831814b9eb82c1c2de9"
-   ],
-   "sourceGroups": [
-    "x68000:Heavy Nova (1991)(Micronet).zip"
-   ],
-   "title": "Heavy Nova",
-   "year": 1991
-  },
-  "x68000:local-b199ce1c4f": {
-   "contentIds": [
-    "sha256-fd-v1:3d04969e677cb27d057dd313293eb5e42e11234241e55615e29846800803d03d",
-    "sha256-fd-v1:9c922e9768ff3dda8c82f238a4cbd64beb66b7109f9985dfbd2b1169fc31aca4",
-    "sha256-fd-v1:ea6a77e3386211bed6690b5d86cf25f82010731a0fcaea1d3df72a2746f85c7e"
-   ],
-   "sourceGroups": [
-    "x68000:Dragon Wars (1990)(Starcraft).zip"
-   ],
-   "title": "Dragon Wars",
-   "year": 1990
   },
   "x68000:local-b3ce9510d7": {
    "contentIds": [
@@ -20217,16 +20173,6 @@
    "title": "Daikon Oroshi Pro Uso-68K",
    "year": 1990
   },
-  "x68000:local-c0280aef1b": {
-   "contentIds": [
-    "sha256-fd-v1:0ae56fe67cbaafc8e957e01b539181d1ab99ecb48ae80795421b69e7997e919b"
-   ],
-   "sourceGroups": [
-    "x68000:Cockpit, The (1988)(Compac).zip"
-   ],
-   "title": "Cockpit, The",
-   "year": 1988
-  },
   "x68000:local-c111b0f064": {
    "contentIds": [
     "sha256-fd-v1:224c333caea810efe58328d2518773fcf9ffa0942adaa3a362acb4e008482feb"
@@ -20387,17 +20333,6 @@
    "title": "Quiz Jan!",
    "year": 1990
   },
-  "x68000:local-c96cbd5657": {
-   "contentIds": [
-    "sha256-fd-v1:06dc01d2eff03abdbe8198107b14099d5f32f13342dbbfabc710adfa121bd3d9",
-    "sha256-fd-v1:80d5080ca8453afded56c49c5f9dfdc449e221ba4c7cb138f499f8fddb7dbc44"
-   ],
-   "sourceGroups": [
-    "x68000:Giza! XIX (1991)(Fairytale).zip"
-   ],
-   "title": "Giza! XIX",
-   "year": 1991
-  },
   "x68000:local-cb302091df": {
    "contentIds": [
     "sha256-fd-v1:6442d015bac62e514f3be4d6ebfcd9cdc296664d5627392c45adf81a9b5c8c4f"
@@ -20446,17 +20381,6 @@
     "x68000:Tokusou Keiji (199x)(-).zip"
    ],
    "title": "Tokusou Keiji"
-  },
-  "x68000:local-cd93998ee2": {
-   "contentIds": [
-    "sha256-fd-v1:4eefeb2fe2c6b8fe11c3bb95b32672ec4e7eb43048d40b8ec508c48e6e76d019",
-    "sha256-fd-v1:cd2bc4c3ad094280eadc250241905b99535810d81a83354ccb93f7cbb82abf9d"
-   ],
-   "sourceGroups": [
-    "x68000:Kera Kera Hoshi (1993)(Cocktail Soft).zip"
-   ],
-   "title": "Kera Kera Hoshi",
-   "year": 1993
   },
   "x68000:local-cecfa67793": {
    "contentIds": [
@@ -20524,21 +20448,6 @@
    ],
    "title": "Sword Master I+II"
   },
-  "x68000:local-d04680738e": {
-   "contentIds": [
-    "sha256-fd-v1:1559e64bd313b6c2c9b751bb32758b466c05113c80805cbd7a01e3ea4fabd6ef",
-    "sha256-fd-v1:2d643460937f882c15c375f93dc3a1df863cf5faef514e17d8c30b7ee510196f",
-    "sha256-fd-v1:5ae4589364e4f251bb0618a65819be261ec9020cd9eacd6fb60d601023251cbe",
-    "sha256-fd-v1:ab6ea02b80ae9de0e6e238ceb294f023047e0185e17bb9c85b5c9ff141df2839",
-    "sha256-fd-v1:c7332415fc61f3c8fbd5d422d177e14cd022829da8c18c11fb7869ab0df20a34",
-    "sha256-fd-v1:dfe6e3189466213d39f84405f98545411f66f0637c87761167fc4b6d99b210be"
-   ],
-   "sourceGroups": [
-    "x68000:Kounai Shasei (1992)(Fairytale).zip"
-   ],
-   "title": "Kounai Shasei",
-   "year": 1992
-  },
   "x68000:local-d0585debaf": {
    "contentIds": [
     "sha256-fd-v1:d86e482b8e3162412cf30e04494ed01ad562083d2246bfe40aca8cfd71ba455f"
@@ -20548,18 +20457,6 @@
    ],
    "title": "Hero Hero Disk 6",
    "year": 1992
-  },
-  "x68000:local-d0f3623315": {
-   "contentIds": [
-    "sha256-fd-v1:0aa34c348d88bfddaa99d807e063d4878a3d3e3039fed5ff70e3e0966cc32991",
-    "sha256-fd-v1:73b8d693a970c1f8e3b2e27882bc46d388721cdb2144e9432322c330c66c4c5f",
-    "sha256-fd-v1:d614cc85ffa0856c816b4ee78e1841eac4fd0464912b0356ac6f170933263fd8"
-   ],
-   "sourceGroups": [
-    "x68000:Birdy World (1991)(Birdy Soft).zip"
-   ],
-   "title": "Birdy World",
-   "year": 1991
   },
   "x68000:local-d0f8d7c198": {
    "contentIds": [
@@ -20730,17 +20627,6 @@
    "title": "Refresh!",
    "year": 1990
   },
-  "x68000:local-dd7a19a760": {
-   "contentIds": [
-    "sha256-fd-v1:6c72153fd1307edbb723ec8fdbcae1814de62ed150fec98f70e109ae7eae8b98",
-    "sha256-fd-v1:a82902896fe45ab8eeb7d710ff26bf03e974bfade55d9eedf4f40db492fc9c5f"
-   ],
-   "sourceGroups": [
-    "x68000:Space Rogue (1989)(Wave Train).zip"
-   ],
-   "title": "Space Rogue",
-   "year": 1989
-  },
   "x68000:local-dddd4abecc": {
    "contentIds": [
     "sha256-fd-v1:4789610eb8f4ab51746d33bd674865af045810e51038328526cf9d9354161bbe"
@@ -20828,17 +20714,6 @@
     "x68000:Naniwa Do Konjou Series Bangaihen Nouten Chokudake! I+II+III.zip"
    ],
    "title": "Naniwa Do Konjou Series Bangaihen Nouten Chokudake! I+II+III"
-  },
-  "x68000:local-e1f39ae058": {
-   "contentIds": [
-    "sha256-fd-v1:66bb8b20951b96af1aa623fc4192f61680d71894e22a08e988a22c065f40a3eb",
-    "sha256-fd-v1:d761901dc8f683dff964bd06e6a12ceddd49e42f52c218f8682b3f2d8dcd6ed1"
-   ],
-   "sourceGroups": [
-    "x68000:Dungeon Master (1989)(FTL).zip"
-   ],
-   "title": "Dungeon Master",
-   "year": 1989
   },
   "x68000:local-e253732ff4": {
    "contentIds": [
@@ -20948,22 +20823,6 @@
    "title": "Liberty Half Grade Up",
    "year": 1994
   },
-  "x68000:local-e8e04d2467": {
-   "contentIds": [
-    "sha256-fd-v1:0cf726366fa546034254c1696551ffe8e5a38431d424194fc7249c71351c46a1",
-    "sha256-fd-v1:1770048c1dd434663345acb0f666c45001cfa799590be5acad4cc97b7d3ecc5f",
-    "sha256-fd-v1:1f9b9460b25629a6b59adec22ea11a9ebf40481db4561ec6df1694b4cf7677cd",
-    "sha256-fd-v1:42b4ddd58813d10dc8a17f416d081a5f811de9566f70d91de1b86f49e507df7d",
-    "sha256-fd-v1:bccda660bf1bd7fc76f0edb76d55ff83a379db35af490c83ff2ea6a2483cedf7",
-    "sha256-fd-v1:dde41ce12d3195a8b99477a340b6e0cda95efd3d8aa0e16757c0153fc9ce610b",
-    "sha256-fd-v1:fbcb6a4ec8b49204f75f3ef330bd32921930ef68f531dd05c3d0d735a310e737"
-   ],
-   "sourceGroups": [
-    "x68000:Sotsugyou Graduation (1993)(JHV).zip"
-   ],
-   "title": "Sotsugyou Graduation",
-   "year": 1993
-  },
   "x68000:local-e9287469c6": {
    "contentIds": [
     "sha256-fd-v1:141bdca451e3580b5a4973c0dcffd137700f2f567b3cb44e42a84f39fcb3b202",
@@ -21037,16 +20896,6 @@
     "x68000:Snell (1991)(-).zip"
    ],
    "title": "Snell",
-   "year": 1991
-  },
-  "x68000:local-ec13b57cea": {
-   "contentIds": [
-    "sha256-fd-v1:59b490abaf5266afcc96fdd31ac0bc6404dcd8ae69eab05917b364bd5c59ee09"
-   ],
-   "sourceGroups": [
-    "x68000:Super Shanghai Dragon's Eye (1991)(Hot B)(Disk 2 of 2)(Data).zip"
-   ],
-   "title": "Super Shanghai Dragon's Eye",
    "year": 1991
   },
   "x68000:local-ecc2006db8": {
@@ -21205,19 +21054,6 @@
    "title": "Yuugai Casino Trump No Trump",
    "year": 1992
   },
-  "x68000:local-f07f2dad58": {
-   "contentIds": [
-    "sha256-fd-v1:7c14136b55a90a468cda5674a5c955b7413d1b349bb92c6283276b66f9c964ca",
-    "sha256-fd-v1:87f9c1ef1247df601e98a9f6d2c3fa51fd5de84f61e39f181b9503fa6c00c592",
-    "sha256-fd-v1:9e878dd007c697ab1edac9c089d7a516ab94f3079c2f90ea6d9901b169f60883",
-    "sha256-fd-v1:f4934fbc0e0d380b60a6f49ee5796f84a30ea47c499620d14abb688e5914e3b1"
-   ],
-   "sourceGroups": [
-    "x68000:Fairyland Story, The (1991)(SPS).zip"
-   ],
-   "title": "Fairyland Story, The",
-   "year": 1991
-  },
   "x68000:local-f332f8d6d7": {
    "contentIds": [
     "sha256-fd-v1:90898550d7078b57187aa8d7b8e604978de72ed23dd5f088158f444db35d5ecc"
@@ -21289,16 +21125,6 @@
    "title": "Hey! Say! Education Committee v0.10",
    "year": 1993
   },
-  "x68000:local-f4a2279d59": {
-   "contentIds": [
-    "sha256-fd-v1:626d5c903e39f64790f9058681ad8ca87c21753dbc30a36bb77bbeadb251010e"
-   ],
-   "sourceGroups": [
-    "x68000:Jane (1990)(System House Oh!).zip"
-   ],
-   "title": "Jane",
-   "year": 1990
-  },
   "x68000:local-f4ef1d7985": {
    "contentIds": [
     "sha256-fd-v1:bc3e6d9c83da8acf962e5acb72f863876cd17e45eb915bca6cd9e0c71ed44745"
@@ -21308,17 +21134,6 @@
    ],
    "title": "Giga Fight 68K",
    "year": 1992
-  },
-  "x68000:local-f5a91a3907": {
-   "contentIds": [
-    "sha256-fd-v1:9e0fc3357c297e90892b78995357d062e0a802ca19ca04541032c0273706d2f1",
-    "sha256-fd-v1:9fe4040ba24e6e1d770fe7da86855bfc0d8c9dc66fcc8575702e9b2e77a815b7"
-   ],
-   "sourceGroups": [
-    "x68000:Bomber Man (1990)(System Soft).zip"
-   ],
-   "title": "Bomber Man",
-   "year": 1990
   },
   "x68000:local-f68f5f59d0": {
    "contentIds": [
@@ -21478,16 +21293,6 @@
    ],
    "title": "Butarian",
    "year": 1994
-  },
-  "x68000:local-ff748bf900": {
-   "contentIds": [
-    "sha256-fd-v1:a6aac05c877246adc5be4a047eac8f6476eca66c975f44f3921478fc924bc24e"
-   ],
-   "sourceGroups": [
-    "x68000:Flaming Dart (1992)(Kei-H).zip"
-   ],
-   "title": "Flaming Dart",
-   "year": 1992
   },
   "x68000:local-ff8904ac5b": {
    "contentIds": [
