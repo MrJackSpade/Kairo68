@@ -378,10 +378,12 @@ void upd765_family_device::device_start()
 	// live_sync, which will crash if the live structure isn't
 	// initialized enough
 
+	cur_live = live_info(); // Kairo68: every field defined, as a saved state holds them
 	cur_live.tm = attotime::never;
 	cur_live.state = IDLE;
 	cur_live.next_state = -1;
 	cur_live.fi = nullptr;
+	checkpoint_live = cur_live; // Kairo68
 
 	if(ready_polled) {
 		poll_timer = timer_alloc(FUNC(upd765_family_device::run_drive_ready_polling), this);

@@ -1,6 +1,6 @@
-// Boots an X68000 floppy on the host and checks what the app relies on.
+// Boots an X68000 floppy or SASI hard disk on the host and checks what the app relies on.
 //
-//   boot_test <rom dir> <work dir> <floppy image> <seconds>
+//   boot_test <rom dir> <work dir> <image> <seconds>
 //
 // Runs the floppy for <seconds> of guest time, writing <work dir>/boot.ppm of the last picture
 // and boot.wav of the sound, then presses the pad's A button, Space and Return and writes pressed.ppm. Then it saves a state, runs on, loads the state, and checks that the
@@ -95,12 +95,16 @@ void write_wav(const std::string &file, const std::vector<int16_t> &sound, uint3
 } // namespace
 
 int main(int argc, char **argv) {
-    if (argc != 5) return fail("usage: boot_test <rom dir> <work dir> <floppy image> <seconds>");
+    if (argc != 5) return fail("usage: boot_test <rom dir> <work dir> <image> <seconds>");
     const std::string work = argv[2];
     Config config;
     config.rom_dir = argv[1];
     config.home = work + "/home";
-    config.fd[0] = argv[3];
+    // A .hdf image is a SASI hard disk; anything else goes in floppy drive 0.
+    const std::string image = argv[3];
+    const bool hard_disk = image.size() > 4 && (image.substr(image.size() - 4) == ".hdf" || image.substr(image.size() - 4) == ".HDF");
+    const kairo68::Drive drive = hard_disk ? kairo68::kHardDisk : kairo68::kFloppy0;
+    config.media[drive] = image;
     const double seconds = std::atof(argv[4]);
 
     std::string error;
@@ -114,7 +118,7 @@ int main(int argc, char **argv) {
                 boot.width, boot.height, (unsigned long long) boot.audio_frames, (unsigned long long) boot.loud_frames,
                 boot.seconds, machine->frame_seconds());
     if (boot.picture.empty()) return fail("no picture");
-    std::printf("drive 0 after boot: %s\n", machine->fd_path(0).c_str());
+    std::printf("drive after boot: %s\n", machine->media_path(drive).c_str());
     const double expected = boot.seconds * machine->sample_rate();
     if (boot.audio_frames < expected * 0.95 || boot.audio_frames > expected * 1.05)
         return fail("audio does not follow guest time");
@@ -168,7 +172,7 @@ int main(int argc, char **argv) {
                 after_save.sound == after_load.sound ? "matches" : "differs");
     if (drifted || after_save.picture != after_load.picture || after_save.sound != after_load.sound)
         return fail("state round trip");
-    std::printf("drive 0: %s\n", machine->fd_path(0).c_str());
+    std::printf("drive: %s\n", machine->media_path(drive).c_str());
 
     machine.reset();
     auto second = X68kMachine::create(config, error);

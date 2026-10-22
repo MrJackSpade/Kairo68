@@ -270,6 +270,7 @@ protected:
 	virtual void machine_reset() override ATTR_COLD;
 	void set_bus_error(uint32_t address, bool write, uint16_t mem_mask);
 	bool m_bus_error = false;
+	device_image_interface *m_sasi = nullptr; // Kairo68: the SASI hard disk, for the SRAM drive count
 };
 
 class x68ksupr_state : public x68k_state

@@ -13,6 +13,9 @@
 
 namespace kairo68 {
 
+// The X68000's drives: floppy drives 0 and 1, and the SASI hard disk.
+enum Drive { kFloppy0, kFloppy1, kHardDisk, kDrives };
+
 // What a machine starts with.
 struct Config {
     // The folder holding the ROM set as MAME looks for it: <rom_dir>/x68000/iplrom.dat and
@@ -24,8 +27,8 @@ struct Config {
     int ram_mb = 4;
     // A private folder for MAME's NVRAM and configuration.
     std::string home;
-    // Floppy images for drives 0 and 1; "" for an empty drive.
-    std::string fd[2];
+    // The image in each Drive (floppy images, a SASI hard disk image); "" for an empty drive.
+    std::string media[kDrives];
     // The audio sample rate.
     int sample_rate = 48000;
 };
@@ -67,9 +70,10 @@ public:
     // loaded state restores the machine exactly.
     std::vector<std::pair<std::string, std::vector<uint8_t>>> state_entries();
 
-    // Inserts an image in floppy drive 0 or 1, or ejects it for ""; true when it is in.
-    bool insert_fd(int drive, const std::string &path);
-    std::string fd_path(int drive);
+    // Inserts an image in a drive, or ejects it for ""; true when it is in.
+    bool insert(Drive drive, const std::string &path);
+    // The image in a drive; "" when it is empty.
+    std::string media_path(Drive drive);
 
 private:
     struct Impl;

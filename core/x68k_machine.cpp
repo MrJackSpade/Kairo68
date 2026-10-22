@@ -59,6 +59,8 @@ namespace kairo68 {
 namespace {
 
 constexpr const char *kSystem = "x68000";
+// Each Drive's image device by its command-line (brief instance) name.
+constexpr const char *kDriveNames[kDrives] = {"flop1", "flop2", "sasi"};
 // A guest frame's sound is read by the host after every frame; more than a second waiting means
 // the host stopped reading, and the machine stops instead of growing the buffer.
 constexpr size_t kMaxQueuedSeconds = 1;
@@ -228,10 +230,10 @@ void X68kMachine::Impl::run_mame() {
         options.set_value(OPTION_BIOS, config.bios, OPTION_PRIORITY_CMDLINE);
         options.set_system_name(kSystem);
         options.set_value(OPTION_RAMSIZE, std::to_string(config.ram_mb) + "M", OPTION_PRIORITY_CMDLINE);
-        for (int drive = 0; drive < 2; ++drive)
-            if (!config.fd[drive].empty())
+        for (int drive = 0; drive < kDrives; ++drive)
+            if (!config.media[drive].empty())
                 // By the drive's command-line name; image_option() wants its full instance name.
-                options.set_value("flop" + std::to_string(drive + 1), config.fd[drive], OPTION_PRIORITY_CMDLINE);
+                options.set_value(kDriveNames[drive], config.media[drive], OPTION_PRIORITY_CMDLINE);
         Manager manager(options, *this);
         // running_machine requires the manager's HTTP manager; with OPTION_HTTP off it serves nothing.
         manager.start_http_server();
@@ -587,27 +589,31 @@ std::vector<std::pair<std::string, std::vector<uint8_t>>> X68kMachine::state_ent
     });
 }
 
-bool X68kMachine::insert_fd(int drive, const std::string &path) {
-    if (drive < 0 || drive > 1) return false;
+namespace {
+
+device_image_interface &drive_image(running_machine &machine, Drive drive) {
+    for (device_image_interface &image : image_interface_enumerator(machine.root_device()))
+        if (image.brief_instance_name() == kDriveNames[drive]) return image;
+    throw emu_fatalerror("The X68000 has no %s drive", kDriveNames[drive]);
+}
+
+} // namespace
+
+bool X68kMachine::insert(Drive drive, const std::string &path) {
     return impl_->between_frames<bool>([drive, path](running_machine &m) {
-        for (device_image_interface &image : image_interface_enumerator(m.root_device())) {
-            if (image.brief_instance_name() != "flop" + std::to_string(drive + 1)) continue;
-            if (path.empty()) {
-                image.unload();
-                return true;
-            }
-            return !image.load(path).first;
+        device_image_interface &image = drive_image(m, drive);
+        if (path.empty()) {
+            image.unload();
+            return true;
         }
-        return false;
+        return !image.load(path).first;
     });
 }
 
-std::string X68kMachine::fd_path(int drive) {
+std::string X68kMachine::media_path(Drive drive) {
     return impl_->between_frames<std::string>([drive](running_machine &m) {
-        for (device_image_interface &image : image_interface_enumerator(m.root_device()))
-            if (image.brief_instance_name() == "flop" + std::to_string(drive + 1))
-                return image.exists() ? std::string(image.filename()) : std::string();
-        return std::string();
+        device_image_interface &image = drive_image(m, drive);
+        return image.exists() ? std::string(image.filename()) : std::string();
     });
 }
 

@@ -106,12 +106,18 @@ public:
 	void hdc_w(offs_t offset, u16 data);
 	u16 hdc_r(offs_t offset);
 
+	// Kairo68: DMA request, REQ during a data phase
+	auto drq_callback() { return m_drq_cb.bind(); }
+
 protected:
 	// device_t implementation
 	virtual void device_start() override ATTR_COLD;
 
 private:
 	TIMER_CALLBACK_MEMBER(req_timer_callback);
+	void hdc_access_w(offs_t offset, u16 data);
+	u16 hdc_access_r(offs_t offset);
+	void update_drq();
 
 	sasi_phase m_phase{};
 	u8 m_status_port = 0;  // read at 0xe96003
@@ -124,6 +130,8 @@ private:
 	u16 m_transfer_byte_count = 0;
 	u16 m_transfer_byte_total = 0;
 	emu_timer *m_req_timer = nullptr;
+	devcb_write_line m_drq_cb;
+	bool m_drq = false;
 };
 
 // device type definition

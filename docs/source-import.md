@@ -41,6 +41,11 @@ MAME does not mark the x68000 driver as supporting save states. These changes ma
 - `rtc-save-state` (`src/emu/dirtc.h`, `dirtc.cpp`, `src/devices/machine/rp5c15.cpp`): `device_rtc_interface` counts the date and time in registers no state held, so after a load the clock ticked on from the time before it; the RP5C15 also left out its RAM.
 - `hd63450-save-state` (`src/devices/machine/hd63450.cpp`): the DMA controller leaves out its latched bus-error code and its DTACK line.
 
+MAME's x68000 SASI hard disk controller was not usable for booting:
+
+- `x68k-sasi-count` (`src/mame/sharp/x68k.cpp`, `x68k.h`): the IPL boots from SASI only when SRAM byte 0x5a counts the connected drives, which the owner sets with SWITCH.X; MAME's SRAM starts blank. The driver reports the attached drive in that byte, as it already reports the configured RAM size at 0x08.
+- `x68k-sasi-dma` (`src/mame/sharp/x68k_hdc.cpp`, `x68k_hdc.h`, `x68k.cpp`): the IPL and Human68k move SASI data through DMA channel 1 on the controller's REQ line, which MAME never connected, so the first read never finished. The controller drives DRQ from REQ during its data phases, connected to the HD63450's DRQ1, and requests the first byte of a read or write after the average rotational latency of a 3600 rpm disk (1/120 s) rather than 450 ns: the HD63450 takes the request on its edge, and a request made before the IPL starts its DMA channel is never served.
+
 The core also builds MAME with `SOUND_DISABLE_THREADING`, as MAME's emscripten build does, and turns off MAME's output audio effects (high-pass filter and EQ by default) through its configuration callbacks; neither changes MAME's sources.
 
 ## Generated sources

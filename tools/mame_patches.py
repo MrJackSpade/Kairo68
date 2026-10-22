@@ -80,7 +80,8 @@ void x68k_state::device_post_load()
 # out), the data separator PLL inside it, or which drive it reads: after a load a read in progress
 # continues from the state, time and drive of before the load, so it loses the sector it was in the
 # middle of (the X68000 then sees End of Cylinder and retries). Save the live states, their PLLs
-# and their drives.
+# and their drives, and start both live states defined: the checkpoint is otherwise uninitialized
+# until the first read.
 UPD765_SAVE_STATE = [
     ('src/devices/machine/upd765.h',
      '''	upd765_family_device(const machine_config &mconfig, device_type type, const char *tag, device_t *owner, uint32_t clock);
@@ -141,6 +142,21 @@ UPD765_SAVE_STATE = [
 
 	for(int i=0; i != 4; i++) {
 		char name[2];''',),
+    ('src/devices/machine/upd765.cpp',
+     '''	cur_live.tm = attotime::never;
+	cur_live.state = IDLE;
+	cur_live.next_state = -1;
+	cur_live.fi = nullptr;
+
+	if(ready_polled) {''',
+     '''	cur_live = live_info(); // Kairo68: every field defined, as a saved state holds them
+	cur_live.tm = attotime::never;
+	cur_live.state = IDLE;
+	cur_live.next_state = -1;
+	cur_live.fi = nullptr;
+	checkpoint_live = cur_live; // Kairo68
+
+	if(ready_polled) {''',),
     ('src/devices/machine/upd765.cpp',
      '''void upd765_family_device::device_reset()
 {''',
@@ -218,7 +234,140 @@ HD63450_SAVE_STATE = [
 	save_item(NAME(m_dtack)); // Kairo68''',),
 ]
 
-PATCHES = {'x68k-save-state': X68K_SAVE_STATE, 'upd765-save-state': UPD765_SAVE_STATE, 'rtc-save-state': RTC_SAVE_STATE,
+# The IPL boots from SASI hard disks only when SRAM says some are connected (byte 0x5a), which the
+# owner sets with SWITCH.X; MAME's SRAM starts blank, so an attached .hdf never boots. Report the
+# attached drive in that byte, as the driver already reports the configured RAM size at 0x08.
+X68K_SASI_COUNT = [
+    ('src/mame/sharp/x68k.h',
+     '''	bool m_bus_error = false;
+''',
+     '''	bool m_bus_error = false;
+	device_image_interface *m_sasi = nullptr; // Kairo68: the SASI hard disk, for the SRAM drive count
+''',),
+    ('src/mame/sharp/x68k.cpp',
+     '''	m_fdc.motor = 0;
+''',
+     '''	m_fdc.motor = 0;
+	m_sasi = subdevice<device_image_interface>("x68k_hdc");
+''',),
+    ('src/mame/sharp/x68k.cpp',
+     '''	if(offset == 0x08/2)
+		return m_ram->size() >> 16;  // RAM size
+	return m_nvram[offset];''',
+     '''	if(offset == 0x08/2)
+		return m_ram->size() >> 16;  // RAM size
+	if(offset == 0x5a/2)  // Kairo68: the number of SASI hard disks, in the high byte
+		return (m_nvram[offset] & 0x00ff) | ((m_sasi && m_sasi->exists()) ? 0x0100 : 0x0000);
+	return m_nvram[offset];''',),
+]
+
+# The SASI controller's REQ line requests DMA channel 1 for each data byte, and the IPL and Human68k
+# move SASI data that way (external request mode), but MAME never connects it: a hard disk read
+# waits forever. Drive DRQ from REQ during the data phases and connect it to the HD63450's DRQ1.
+X68K_SASI_DMA = [
+    ('src/mame/sharp/x68k_hdc.h',
+     '''	void hdc_w(offs_t offset, u16 data);
+	u16 hdc_r(offs_t offset);
+''',
+     '''	void hdc_w(offs_t offset, u16 data);
+	u16 hdc_r(offs_t offset);
+
+	// Kairo68: DMA request, REQ during a data phase
+	auto drq_callback() { return m_drq_cb.bind(); }
+''',),
+    ('src/mame/sharp/x68k_hdc.h',
+     '''	TIMER_CALLBACK_MEMBER(req_timer_callback);
+''',
+     '''	TIMER_CALLBACK_MEMBER(req_timer_callback);
+	void hdc_access_w(offs_t offset, u16 data);
+	u16 hdc_access_r(offs_t offset);
+	void update_drq();
+''',),
+    ('src/mame/sharp/x68k_hdc.h',
+     '''	emu_timer *m_req_timer = nullptr;
+};''',
+     '''	emu_timer *m_req_timer = nullptr;
+	devcb_write_line m_drq_cb;
+	bool m_drq = false;
+};''',),
+    ('src/mame/sharp/x68k_hdc.cpp',
+     '''	: harddisk_image_base_device(mconfig, X68KHDC, tag, owner, clock)
+{
+}''',
+     '''	: harddisk_image_base_device(mconfig, X68KHDC, tag, owner, clock)
+	, m_drq_cb(*this)
+{
+}
+
+// Kairo68: the DMA request follows REQ while data moves.
+void x68k_hdc_image_device::update_drq()
+{
+	bool const drq = (m_phase == sasi_phase::READ || m_phase == sasi_phase::WRITE) && (m_status_port & SASI_STATUS_REQ);
+	if(drq != m_drq)
+	{
+		m_drq = drq;
+		m_drq_cb(drq);
+	}
+}''',),
+    ('src/mame/sharp/x68k_hdc.cpp',
+     '''	m_status_port |= SASI_STATUS_REQ;
+}''',
+     '''	m_status_port |= SASI_STATUS_REQ;
+	update_drq();
+}''',),
+    ('src/mame/sharp/x68k_hdc.cpp',
+     '''	save_item(NAME(m_sense));''',
+     '''	save_item(NAME(m_sense));
+	save_item(NAME(m_drq)); // Kairo68''',),
+    ('src/mame/sharp/x68k_hdc.cpp',
+     '''void x68k_hdc_image_device::hdc_w(offs_t offset, u16 data)
+{''',
+     '''void x68k_hdc_image_device::hdc_w(offs_t offset, u16 data)
+{
+	hdc_access_w(offset, data);
+	update_drq();
+}
+
+void x68k_hdc_image_device::hdc_access_w(offs_t offset, u16 data)
+{''',),
+    ('src/mame/sharp/x68k_hdc.cpp',
+     '''u16 x68k_hdc_image_device::hdc_r(offs_t offset)
+{''',
+     '''u16 x68k_hdc_image_device::hdc_r(offs_t offset)
+{
+	u16 const result = hdc_access_r(offset);
+	update_drq();
+	return result;
+}
+
+u16 x68k_hdc_image_device::hdc_access_r(offs_t offset)
+{''',),
+    ('src/mame/sharp/x68k_hdc.cpp',
+     '''						fseek(lba * 256,SEEK_SET);
+						logerror("SASI: READ (LBA 0x%06x, blocks = %i)\\n",lba,m_command[4]);''',
+     '''						fseek(lba * 256,SEEK_SET);
+						logerror("SASI: READ (LBA 0x%06x, blocks = %i)\\n",lba,m_command[4]);
+						m_req_timer->adjust(ACCESS_TIME); // Kairo68''',),
+    ('src/mame/sharp/x68k_hdc.cpp',
+     '''						fseek(lba * 256,SEEK_SET);
+						logerror("SASI: WRITE (LBA 0x%06x, blocks = %i)\\n",lba,m_command[4]);''',
+     '''						fseek(lba * 256,SEEK_SET);
+						logerror("SASI: WRITE (LBA 0x%06x, blocks = %i)\\n",lba,m_command[4]);
+						m_req_timer->adjust(ACCESS_TIME); // Kairo68''',),
+    ('src/mame/sharp/x68k_hdc.cpp',
+     '''TIMER_CALLBACK_MEMBER(x68k_hdc_image_device::req_timer_callback)''',
+     '''// Kairo68: the drive finds the first sector of a read or write before it requests data: the
+// average rotational latency of a 3600 rpm disk. The host starts its DMA channel in that time;
+// the HD63450 takes the request on its edge, so a request made sooner is never served.
+static const attotime ACCESS_TIME = attotime::from_hz(120);
+
+TIMER_CALLBACK_MEMBER(x68k_hdc_image_device::req_timer_callback)''',),
+    ('src/mame/sharp/x68k.cpp',
+     '''	X68KHDC(config, "x68k_hdc");''',
+     '''	X68KHDC(config, "x68k_hdc").drq_callback().set(m_hd63450, FUNC(hd63450_device::drq1_w)); // Kairo68''',),
+]
+
+PATCHES = {'x68k-save-state': X68K_SAVE_STATE, 'x68k-sasi-count': X68K_SASI_COUNT, 'x68k-sasi-dma': X68K_SASI_DMA, 'upd765-save-state': UPD765_SAVE_STATE, 'rtc-save-state': RTC_SAVE_STATE,
            'floppy-save-state': FLOPPY_SAVE_STATE, 'hd63450-save-state': HD63450_SAVE_STATE}
 
 

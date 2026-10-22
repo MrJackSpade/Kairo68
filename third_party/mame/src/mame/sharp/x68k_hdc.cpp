@@ -28,12 +28,30 @@ DEFINE_DEVICE_TYPE(X68KHDC, x68k_hdc_image_device, "x68k_hdc_image", "SASI Hard 
 
 x68k_hdc_image_device::x68k_hdc_image_device(const machine_config &mconfig, const char *tag, device_t *owner, u32 clock)
 	: harddisk_image_base_device(mconfig, X68KHDC, tag, owner, clock)
+	, m_drq_cb(*this)
 {
 }
+
+// Kairo68: the DMA request follows REQ while data moves.
+void x68k_hdc_image_device::update_drq()
+{
+	bool const drq = (m_phase == sasi_phase::READ || m_phase == sasi_phase::WRITE) && (m_status_port & SASI_STATUS_REQ);
+	if(drq != m_drq)
+	{
+		m_drq = drq;
+		m_drq_cb(drq);
+	}
+}
+
+// Kairo68: the drive finds the first sector of a read or write before it requests data: the
+// average rotational latency of a 3600 rpm disk. The host starts its DMA channel in that time;
+// the HD63450 takes the request on its edge, so a request made sooner is never served.
+static const attotime ACCESS_TIME = attotime::from_hz(120);
 
 TIMER_CALLBACK_MEMBER(x68k_hdc_image_device::req_timer_callback)
 {
 	m_status_port |= SASI_STATUS_REQ;
+	update_drq();
 }
 
 void x68k_hdc_image_device::device_start()
@@ -48,6 +66,7 @@ void x68k_hdc_image_device::device_start()
 	save_item(NAME(m_status));
 	save_item(NAME(m_command));
 	save_item(NAME(m_sense));
+	save_item(NAME(m_drq)); // Kairo68
 	save_item(NAME(m_command_byte_count));
 	save_item(NAME(m_command_byte_total));
 	save_item(NAME(m_current_command));
@@ -74,6 +93,12 @@ std::pair<std::error_condition, std::string> x68k_hdc_image_device::call_create(
 }
 
 void x68k_hdc_image_device::hdc_w(offs_t offset, u16 data)
+{
+	hdc_access_w(offset, data);
+	update_drq();
+}
+
+void x68k_hdc_image_device::hdc_access_w(offs_t offset, u16 data)
 {
 	unsigned int lba = 0;
 	std::vector<char> blk;
@@ -205,6 +230,7 @@ void x68k_hdc_image_device::hdc_w(offs_t offset, u16 data)
 						lba |= (m_command[1] & 0x1f) << 16;
 						fseek(lba * 256,SEEK_SET);
 						logerror("SASI: READ (LBA 0x%06x, blocks = %i)\n",lba,m_command[4]);
+						m_req_timer->adjust(ACCESS_TIME); // Kairo68
 					}
 					break;
 				case SASI_CMD_WRITE:
@@ -228,6 +254,7 @@ void x68k_hdc_image_device::hdc_w(offs_t offset, u16 data)
 						lba |= (m_command[1] & 0x1f) << 16;
 						fseek(lba * 256,SEEK_SET);
 						logerror("SASI: WRITE (LBA 0x%06x, blocks = %i)\n",lba,m_command[4]);
+						m_req_timer->adjust(ACCESS_TIME); // Kairo68
 					}
 					break;
 				case SASI_CMD_SEEK:
@@ -302,6 +329,13 @@ void x68k_hdc_image_device::hdc_w(offs_t offset, u16 data)
 }
 
 u16 x68k_hdc_image_device::hdc_r(offs_t offset)
+{
+	u16 const result = hdc_access_r(offset);
+	update_drq();
+	return result;
+}
+
+u16 x68k_hdc_image_device::hdc_access_r(offs_t offset)
 {
 	int retval = 0xff;
 

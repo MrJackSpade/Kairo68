@@ -506,6 +506,8 @@ uint16_t x68k_state::sram_r(offs_t offset)
 //      return 0x0000;
 	if(offset == 0x08/2)
 		return m_ram->size() >> 16;  // RAM size
+	if(offset == 0x5a/2)  // Kairo68: the number of SASI hard disks, in the high byte
+		return (m_nvram[offset] & 0x00ff) | ((m_sasi && m_sasi->exists()) ? 0x0100 : 0x0000);
 	return m_nvram[offset];
 }
 
@@ -936,6 +938,7 @@ void x68k_state::machine_start()
 		}
 	}
 	m_fdc.motor = 0;
+	m_sasi = subdevice<device_image_interface>("x68k_hdc");
 
 	m_exp_irq2[0] = m_exp_irq2[1] = false;
 	m_exp_irq4[0] = m_exp_irq4[1] = false;
@@ -1172,7 +1175,7 @@ void x68k_state::x68000(machine_config &config)
 	m_crtc->gvram_read_cb().set(FUNC(x68k_state::gvram_read));
 	m_crtc->gvram_write_cb().set(FUNC(x68k_state::gvram_write));
 
-	X68KHDC(config, "x68k_hdc");
+	X68KHDC(config, "x68k_hdc").drq_callback().set(m_hd63450, FUNC(hd63450_device::drq1_w)); // Kairo68
 }
 
 static void scsi_devices(device_slot_interface &device)
