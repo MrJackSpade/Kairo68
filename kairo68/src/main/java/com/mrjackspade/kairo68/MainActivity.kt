@@ -25,7 +25,7 @@ class MainActivity : MachineActivity<DiskImageEntry>() {
         "Folder access expired. Select the ROM folder again.",
         MachineFirstRun.Folder("Choose a ROM folder", "Select the folder containing your X68000 games. Kairo68 " +
             "will scan its floppy and hard disk images and the ZIP and 7z archives holding them.", "Choose ROM folder…"),
-        "SAVE STATES")
+        "SAVE STATES", "MrJackSpade/Kairo68")
     override val machine = Machine(768, 512, 4.0 / 3.0, "state.sta")
     override val bridge by lazy { NativeMachine("kairo68") }
     override val keyboard = X68kKeys.layout
