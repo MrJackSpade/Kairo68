@@ -19,8 +19,14 @@ import sys
 
 OPTION_RE = re.compile(r'^(BUSES|CPUS|MACHINES|SOUNDS|VIDEOS|FORMATS)\["([^"]+)"\] = true$')
 IF_RE = re.compile(r'^if (.*) then\s*$')
-REF_RE = re.compile(r'(BUSES|CPUS|MACHINES|SOUNDS|VIDEOS|FORMATS)\["([^"]+)"\]')
-FILE_RE = re.compile(r'MAME_DIR \.\. "([^"]+)"')
+# An option reference: CPUS["Z80"], or opt_tool(CPUS, "Z80") in blocks also built for tools.
+REF_RE = re.compile(r'(BUSES|CPUS|MACHINES|SOUNDS|VIDEOS|FORMATS)(?:\["([^"]+)"\]|\s*,\s*"([^"]+)"\))')
+FILE_RE = re.compile(r'MAME_DIR\s*\.\.\s*"([^"]+)"')
+LOCAL_RE = re.compile(r'^local (\w+)\s*=\s*(.*)$')
+
+
+def option_refs(text):
+    return {(kind, square or call) for kind, square, call in REF_RE.findall(text)}
 INCLUDE_RE = re.compile(r'^\s*#\s*include\s*"([^"]+)"', re.M)
 
 # The include directories MAME's build passes to device, emulator and driver code.
@@ -33,10 +39,20 @@ INCLUDE_DIRS = [
 BASE_TREES = ['src/emu', 'src/lib/util']
 BASE_FILES = ['COPYING', 'README.md']
 BASE_DIRS_FLAT = ['src/osd']
+# The OSD's platform services (files, directories, timing, threads) for Android and the
+# Windows host test; Kairo68 supplies its own video, sound and input in place of MAME's modules.
+OSD_PLATFORM = [f'src/osd/modules/file/{n}' for n in (
+    'posixdir.cpp', 'posixfile.cpp', 'posixfile.h', 'posixptty.cpp', 'posixsocket.cpp',
+    'windir.cpp', 'winfile.cpp', 'winfile.h', 'winptty.cpp', 'winsocket.cpp')] + [
+    'src/osd/modules/lib/osdlib_unix.cpp', 'src/osd/modules/lib/osdlib_win32.cpp'] + [
+    f'src/osd/windows/{n}' for n in ('winutil.cpp', 'winutil.h', 'winutf8.cpp', 'winutf8.h')] + [
+    f'src/osd/interface/{n}' for n in ('audio.cpp', 'inputseq.cpp', 'nethandler.cpp')]
 LEGAL_TREE = 'docs/legal'
 
 # 3rdparty libraries the core links whether or not a source includes them directly.
-BASE_3RDPARTY = ['expat', 'zlib', 'lzma', 'zstd', 'utf8proc', 'flac', 'softfloat3', 'rapidjson', 'asio']
+BASE_3RDPARTY = ['expat', 'zlib', 'lzma', 'zstd', 'utf8proc', 'flac', 'softfloat3', 'rapidjson', 'asio',
+                 # Included through their own include directories, which resolve_include does not search.
+                 'pugixml', 'libjpeg', 'nanosvg', 'aes256cbc']
 
 SOURCE_EXTS = ('.cpp', '.c', '.ipp', '.hxx')
 
@@ -57,20 +73,28 @@ def run_makedep(root, drivers):
 
 
 def lua_option_files(root, options):
-    """Files from every `if <option refs> then ... end` block with an enabled option."""
+    """Files from every `if <option refs> then ... end` block with an enabled option. A condition
+    may name a local the script set from option references (`local want_disasm_z80 =
+    opt_tool(CPUS, "Z80")`), which stands for those references."""
     files = set()
     for name in ('bus', 'cpu', 'machine', 'sound', 'video', 'formats'):
         path = os.path.join(root, 'scripts', 'src', name + '.lua')
         with open(path, encoding='utf-8') as f:
             lines = f.read().splitlines()
+        aliases = {}
         active = None
         depth = 0
         for line in lines:
             stripped = line.strip()
+            local = LOCAL_RE.match(stripped)
+            if local:
+                aliases[local.group(1)] = option_refs(local.group(2))
             if active is None:
                 m = IF_RE.match(stripped)
                 if m:
-                    refs = set(REF_RE.findall(m.group(1)))
+                    refs = option_refs(m.group(1))
+                    for word in re.findall(r'\w+', m.group(1)):
+                        refs |= aliases.get(word, set())
                     active = bool(refs & options)
                     depth = 1
                 continue
@@ -92,12 +116,16 @@ def without_include_dirs(root, paths):
 
 
 def unconditional_formats(root):
-    """formats.lua lists the shared floppy/format core outside any option block."""
-    path = os.path.join(root, 'scripts', 'src', 'formats.lua')
-    with open(path, encoding='utf-8') as f:
-        text = f.read()
-    head = text.split('\nif ', 1)[0]
-    return without_include_dirs(root, set(FILE_RE.findall(head)))
+    """Files the device scripts list outside any option block: the floppy and format core in
+    formats.lua, and the always-built devices (NVRAM, RAM, floppy drives, volume filters and the
+    like) at the top of machine.lua, sound.lua and video.lua."""
+    files = set()
+    for name in ('bus', 'cpu', 'machine', 'sound', 'video', 'formats'):
+        path = os.path.join(root, 'scripts', 'src', name + '.lua')
+        with open(path, encoding='utf-8') as f:
+            head = f.read().split('\nif ', 1)[0]
+        files.update(FILE_RE.findall(head))
+    return without_include_dirs(root, files)
 
 
 def walk(root, rel):
@@ -182,6 +210,7 @@ def main():
     seed = set(driver_files) | lua_option_files(root, options) | unconditional_formats(root)
     for t in BASE_TREES:
         seed.update(walk(root, t))
+    seed.update(OSD_PLATFORM)
     for d in BASE_DIRS_FLAT:
         seed.update(f'{d}/{n}' for n in os.listdir(os.path.join(root, d))
                     if os.path.isfile(os.path.join(root, d, n)))

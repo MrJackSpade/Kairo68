@@ -12,11 +12,15 @@ The bundled MAME 3rdparty libraries keep their own licenses:
 
 | Library | License |
 | --- | --- |
+| aes256cbc | MIT |
 | asio | Boost Software License 1.0 |
 | asmjit | Zlib |
 | expat | MIT |
+| libjpeg (Independent JPEG Group) | IJG license: this software is based in part on the work of the Independent JPEG Group. Only the library is built. |
 | flac | libFLAC is BSD-3-Clause (Xiph). The directory also holds the `flac`/`metaflac` programs (GPL) and documentation (GFDL), which are not built. |
 | lzma (LZMA SDK) | Public domain |
+| nanosvg | Zlib |
+| pugixml | MIT |
 | rapidjson | MIT (the JSON-licensed `bin/jsonchecker/` is not included) |
 | softfloat3 | BSD-3-Clause |
 | utf8proc | MIT, with Unicode data under the Unicode license |

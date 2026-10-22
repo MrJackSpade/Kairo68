@@ -1,0 +1,534 @@
+// See x68k_machine.h. MAME's front end (src/frontend) is not part of the subset: this file is the
+// whole host side, a machine manager that runs one machine and an OSD that hands each frame,
+// its sound, and the player's input across to the host thread.
+
+#include "x68k_machine.h"
+
+#include <array>
+#include <atomic>
+#include <condition_variable>
+#include <deque>
+#include <functional>
+#include <mutex>
+#include <sstream>
+#include <thread>
+#include <vector>
+
+#include "emu.h"
+#include "emuopts.h"
+#include "fileio.h"
+#include "input.h"
+#include "inputdev.h"
+#include "main.h"
+#include "drivenum.h"
+#include "render.h"
+#include "rendersw.hxx"
+#include "screen.h"
+#include "ui/uimain.h"
+#include "osdepend.h"
+#include "modules/lib/osdlib.h"
+
+extern const char bare_build_version[];
+extern const char build_version[];
+
+// MAME's front end defines these; Kairo68 runs MAME without one.
+const char *emulator_info::get_appname() { return "kairo68"; }
+const char *emulator_info::get_appname_lower() { return "kairo68"; }
+const char *emulator_info::get_configname() { return "kairo68"; }
+const char *emulator_info::get_copyright() { return "Copyright Nicola Salmoria and the MAME team"; }
+const char *emulator_info::get_copyright_info() { return get_copyright(); }
+const char *emulator_info::get_bare_build_version() { return bare_build_version; }
+const char *emulator_info::get_build_version() { return build_version; }
+void emulator_info::display_ui_chooser(running_machine &) {}
+int emulator_info::start_frontend(emu_options &, osd_interface &, std::vector<std::string> &) { return 0; }
+int emulator_info::start_frontend(emu_options &, osd_interface &, int, char *[]) { return 0; }
+bool emulator_info::draw_user_interface(running_machine &) { return false; }
+void emulator_info::periodic_check() {}
+bool emulator_info::frame_hook() { return false; }
+void emulator_info::sound_hook(const std::map<std::string, std::vector<std::pair<const float *, int>>> &) {}
+void emulator_info::layout_script_cb(layout_file &, const char *) {}
+bool emulator_info::standalone() { return false; }
+
+namespace kairo68 {
+namespace {
+
+constexpr const char *kSystem = "x68000";
+// A guest frame's sound is read by the host after every frame; more than a second waiting means
+// the host stopped reading, and the machine stops instead of growing the buffer.
+constexpr size_t kMaxQueuedSeconds = 1;
+
+// Errors MAME reports through osd_printf_error, for the message the host shows.
+class ErrorCapture : public osd_output {
+public:
+    void output_callback(osd_output_channel channel, util::format_argument_pack<char> const &args) override {
+        if (channel == OSD_OUTPUT_CHANNEL_ERROR) {
+            std::ostringstream text;
+            util::stream_format(text, args);
+            std::lock_guard<std::mutex> lock(mutex_);
+            errors_ += text.str();
+        }
+        chain_output(channel, args);
+    }
+    std::string text() {
+        std::lock_guard<std::mutex> lock(mutex_);
+        return errors_;
+    }
+
+private:
+    std::mutex mutex_;
+    std::string errors_;
+};
+
+class Manager : public machine_manager {
+public:
+    Manager(emu_options &options, osd_interface &osd) : machine_manager(options, osd) {}
+    ui_manager *create_ui(running_machine &machine) override {
+        ui_ = std::make_unique<ui_manager>(machine);
+        return ui_.get();
+    }
+
+private:
+    std::unique_ptr<ui_manager> ui_;
+};
+
+} // namespace
+
+struct X68kMachine::Impl : public osd_interface {
+    Config config;
+
+    // The frame handshake: MAME stops at the end of each frame until the host asks for the next.
+    std::mutex mutex;
+    std::condition_variable changed;
+    bool frame_ready = false;
+    bool go = false;
+    bool exiting = false;
+    bool finished = false;
+    std::string error;
+    std::thread thread;
+    running_machine *machine = nullptr;
+    // Work the host asks for, run on MAME's thread between frames. The frame ends inside the
+    // screen's VBLANK timer callback, where loading a state or an image would be undone by the
+    // scheduler re-arming its timers afterwards; so when work arrives, the machine pauses and
+    // leaves the callback, and MAME's run loop calls update() again from its paused branch,
+    // between timeslices, where the work runs.
+    std::vector<std::function<void(running_machine &)>> tasks;
+    uint64_t tasks_done = 0;
+    bool paused_for_tasks = false;
+
+    // Video.
+    render_target *target = nullptr;
+    std::vector<uint32_t> pixels;
+    uint32_t width = 0, height = 0;
+    double frame_period = 1.0 / 55.46;
+
+    // Sound: interleaved stereo frames MAME has produced and the host has not read.
+    std::deque<int16_t> sound;
+    uint32_t stream_id = 0;
+
+    // Input, read by MAME's input polling on its thread while the host waits for the frame.
+    std::array<std::atomic<bool>, ITEM_ID_ABSOLUTE_MAXIMUM> keys{};
+    std::array<std::atomic<bool>, kJoystickControls> joystick{};
+    std::atomic<int> mouse_dx{0}, mouse_dy{0};
+    int mouse_frame_dx = 0, mouse_frame_dy = 0;
+    std::array<std::atomic<bool>, 2> mouse_buttons{};
+
+    ErrorCapture errors;
+
+    void run_mame();
+
+    // osd_interface
+    void init(running_machine &machine) override;
+    void free_target();
+    void update(bool skip_redraw) override;
+    void render_frame();
+    void run_tasks(std::unique_lock<std::mutex> &lock);
+    void input_update(bool relative_reset) override;
+    void check_osd_inputs() override {}
+    void set_verbose(bool) override {}
+    void init_debugger() override {}
+    void wait_for_debugger(device_t &, bool) override {}
+    bool no_sound() override { return false; }
+    bool sound_external_per_channel_volume() override { return false; }
+    bool sound_split_streams_per_source() override { return false; }
+    uint32_t sound_get_generation() override { return 1; }
+    osd::audio_info sound_get_information() override;
+    uint32_t sound_stream_sink_open(uint32_t, std::string, uint32_t) override { return stream_id = 1; }
+    uint32_t sound_stream_source_open(uint32_t, std::string, uint32_t) override { return 0; }
+    void sound_stream_close(uint32_t id) override { if (id == stream_id) stream_id = 0; }
+    void sound_stream_sink_update(uint32_t id, const int16_t *buffer, int samples_this_frame) override;
+    void sound_stream_source_update(uint32_t, int16_t *, int) override {}
+    void sound_stream_set_volumes(uint32_t, const std::vector<float> &) override {}
+    void sound_begin_update() override {}
+    void sound_end_update() override {}
+    void customize_input_type_list(std::vector<input_type_entry> &) override {}
+    void add_audio_to_recording(const int16_t *, int) override {}
+    std::vector<ui::menu_item> get_slider_list() override { return {}; }
+    osd_font::ptr font_alloc() override { return nullptr; }
+    bool get_font_families(std::string const &, std::vector<std::pair<std::string, std::string>> &) override { return false; }
+    bool execute_command(const char *) override { return false; }
+    std::unique_ptr<osd::midi_input_port> create_midi_input(std::string_view) override { return nullptr; }
+    std::unique_ptr<osd::midi_output_port> create_midi_output(std::string_view) override { return nullptr; }
+    std::vector<osd::midi_port_info> list_midi_ports() override { return {}; }
+    std::unique_ptr<osd::network_device> open_network_device(int, osd::network_handler &) override { return nullptr; }
+    std::vector<osd::network_device_info> list_network_devices() override { return {}; }
+
+    // Runs task on MAME's thread, which is waiting at the end of a frame, and waits for it. The
+    // machine does not advance.
+    template <typename Result>
+    Result between_frames(std::function<Result(running_machine &)> task) {
+        Result result{};
+        std::unique_lock<std::mutex> lock(mutex);
+        if (!machine || finished) return result;
+        tasks.push_back([&result, task](running_machine &m) { result = task(m); });
+        const uint64_t wanted = tasks_done + tasks.size();
+        changed.notify_all();
+        changed.wait(lock, [&] { return tasks_done >= wanted || finished; });
+        return result;
+    }
+};
+
+X68kMachine::X68kMachine(std::unique_ptr<Impl> impl) : impl_(std::move(impl)) {}
+
+void X68kMachine::Impl::run_mame() {
+    osd_output::push(&errors);
+    int result = EMU_ERR_NONE;
+    try {
+        emu_options options;
+        options.set_value(OPTION_READCONFIG, "0", OPTION_PRIORITY_CMDLINE);
+        options.set_value(OPTION_WRITECONFIG, "0", OPTION_PRIORITY_CMDLINE);
+        options.set_value(OPTION_SKIP_GAMEINFO, "1", OPTION_PRIORITY_CMDLINE);
+        // The host paces frames.
+        options.set_value(OPTION_THROTTLE, "0", OPTION_PRIORITY_CMDLINE);
+        options.set_value(OPTION_SLEEP, "0", OPTION_PRIORITY_CMDLINE);
+        options.set_value(OPTION_FRAMESKIP, "0", OPTION_PRIORITY_CMDLINE);
+        options.set_value(OPTION_MOUSE, "1", OPTION_PRIORITY_CMDLINE);
+        options.set_value(OPTION_JOYSTICK, "1", OPTION_PRIORITY_CMDLINE);
+        options.set_value(OPTION_SAMPLERATE, std::to_string(config.sample_rate), OPTION_PRIORITY_CMDLINE);
+        options.set_value(OPTION_MEDIAPATH, config.rom_dir, OPTION_PRIORITY_CMDLINE);
+        options.set_value(OPTION_CFG_DIRECTORY, config.home + "/cfg", OPTION_PRIORITY_CMDLINE);
+        options.set_value(OPTION_NVRAM_DIRECTORY, config.home + "/nvram", OPTION_PRIORITY_CMDLINE);
+        options.set_value(OPTION_STATE_DIRECTORY, config.home + "/sta", OPTION_PRIORITY_CMDLINE);
+        options.set_system_name(kSystem);
+        for (int drive = 0; drive < 2; ++drive)
+            if (!config.fd[drive].empty())
+                // By the drive's command-line name; image_option() wants its full instance name.
+                options.set_value("flop" + std::to_string(drive + 1), config.fd[drive], OPTION_PRIORITY_CMDLINE);
+        Manager manager(options, *this);
+        // running_machine requires the manager's HTTP manager; with OPTION_HTTP off it serves nothing.
+        manager.start_http_server();
+        machine_config machine_config(*options.system(), options);
+        running_machine running(machine_config, manager);
+        manager.set_machine(&running);
+        result = running.run(false);
+        manager.set_machine(nullptr);
+    } catch (emu_fatalerror &failure) {
+        std::lock_guard<std::mutex> lock(mutex);
+        error = failure.what();
+    } catch (std::exception &failure) {
+        std::lock_guard<std::mutex> lock(mutex);
+        error = failure.what();
+    }
+    osd_output::pop(&errors);
+    std::lock_guard<std::mutex> lock(mutex);
+    if (error.empty() && !exiting) {
+        error = errors.text();
+        if (error.empty()) error = "The X68000 stopped (MAME error " + std::to_string(result) + ")";
+    }
+    machine = nullptr;
+    finished = true;
+    changed.notify_all();
+}
+
+void X68kMachine::Impl::free_target() {
+    machine->render().target_free(target);
+    target = nullptr;
+}
+
+void X68kMachine::Impl::init(running_machine &running) {
+    machine = &running;
+    // Only the screen, at its native pixels: no views with artwork (the driver's floppy lamps), and
+    // the screen stretched to the target, so its minimum size is the visible area.
+    target = running.render().target_alloc(nullptr, RENDER_CREATE_NO_ART);
+    target->set_keepaspect(false);
+    // Freed while the machine exits, as MAME's windows free theirs: a target outliving that frees
+    // its layouts' textures through a render manager that is already gone.
+    running.add_notifier(MACHINE_NOTIFY_EXIT, machine_notify_delegate(&Impl::free_target, this));
+    auto &input = running.input();
+
+    // The keyboard: every key MAME names, each read from keys[].
+    auto &keyboard = input.add_device(DEVICE_CLASS_KEYBOARD, "Kairo68 keyboard", "kairo68-keyboard", this);
+    for (int item = ITEM_ID_A; item <= ITEM_ID_CANCEL; ++item) {
+        keyboard.add_item("Key " + std::to_string(item), "", input_item_id(item),
+            [](void *device, void *id) -> s32 {
+                return static_cast<Impl *>(device)->keys[reinterpret_cast<intptr_t>(id)].load() ? 1 : 0;
+            }, reinterpret_cast<void *>(intptr_t(item)));
+    }
+
+    // The joystick: two axes from the direction controls, and two triggers.
+    auto &pad = input.add_device(DEVICE_CLASS_JOYSTICK, "Kairo68 joystick", "kairo68-joystick", this);
+    pad.add_item("X", "", ITEM_ID_XAXIS, [](void *device, void *) -> s32 {
+        auto *self = static_cast<Impl *>(device);
+        return (self->joystick[3] ? osd::input_device::ABSOLUTE_MAX : 0) - (self->joystick[2] ? osd::input_device::ABSOLUTE_MAX : 0);
+    }, nullptr);
+    pad.add_item("Y", "", ITEM_ID_YAXIS, [](void *device, void *) -> s32 {
+        auto *self = static_cast<Impl *>(device);
+        return (self->joystick[1] ? osd::input_device::ABSOLUTE_MAX : 0) - (self->joystick[0] ? osd::input_device::ABSOLUTE_MAX : 0);
+    }, nullptr);
+    for (int button = 0; button < 2; ++button) {
+        pad.add_item("Button " + std::to_string(button + 1), "", input_item_id(ITEM_ID_BUTTON1 + button),
+            [](void *device, void *index) -> s32 {
+                return static_cast<Impl *>(device)->joystick[4 + reinterpret_cast<intptr_t>(index)].load() ? 1 : 0;
+            }, reinterpret_cast<void *>(intptr_t(button)));
+    }
+
+    // The mouse: motion since the last poll, and two buttons.
+    auto &mouse = input.add_device(DEVICE_CLASS_MOUSE, "Kairo68 mouse", "kairo68-mouse", this);
+    mouse.add_item("X", "", ITEM_ID_XAXIS, [](void *device, void *) -> s32 {
+        return static_cast<Impl *>(device)->mouse_frame_dx * osd::input_device::RELATIVE_PER_PIXEL;
+    }, nullptr);
+    mouse.add_item("Y", "", ITEM_ID_YAXIS, [](void *device, void *) -> s32 {
+        return static_cast<Impl *>(device)->mouse_frame_dy * osd::input_device::RELATIVE_PER_PIXEL;
+    }, nullptr);
+    for (int button = 0; button < 2; ++button) {
+        mouse.add_item("Button " + std::to_string(button + 1), "", input_item_id(ITEM_ID_BUTTON1 + button),
+            [](void *device, void *index) -> s32 {
+                return static_cast<Impl *>(device)->mouse_buttons[reinterpret_cast<intptr_t>(index)].load() ? 1 : 0;
+            }, reinterpret_cast<void *>(intptr_t(button)));
+    }
+}
+
+void X68kMachine::Impl::input_update(bool) {
+    mouse_frame_dx = mouse_dx.exchange(0);
+    mouse_frame_dy = mouse_dy.exchange(0);
+}
+
+osd::audio_info X68kMachine::Impl::sound_get_information() {
+    // One stereo output at the configured rate, as MAME's own single-device modules describe theirs.
+    osd::audio_info result;
+    result.m_generation = 1;
+    result.m_default_sink = 1;
+    result.m_default_source = 0;
+    result.m_nodes.resize(1);
+    auto &node = result.m_nodes[0];
+    node.m_name = "kairo68";
+    node.m_display_name = "Kairo68";
+    node.m_id = 1;
+    node.m_rate.m_default_rate = 0;
+    node.m_rate.m_min_rate = 0;
+    node.m_rate.m_max_rate = 0;
+    node.m_sinks = 2;
+    node.m_sources = 0;
+    node.m_port_names = {"L", "R"};
+    node.m_port_positions = {osd::channel_position::FL(), osd::channel_position::FR()};
+    if (stream_id) result.m_streams.emplace_back(stream_id, 1);
+    return result;
+}
+
+void X68kMachine::Impl::sound_stream_sink_update(uint32_t id, const int16_t *buffer, int samples_this_frame) {
+    if (id != stream_id || samples_this_frame <= 0) return;
+    std::lock_guard<std::mutex> lock(mutex);
+    if (sound.size() / 2 + size_t(samples_this_frame) > size_t(config.sample_rate) * kMaxQueuedSeconds) {
+        error = "The X68000's sound was not read (" + std::to_string(sound.size() / 2) + " frames queued, " +
+                std::to_string(samples_this_frame) + " more)";
+        exiting = true;
+        return;
+    }
+    sound.insert(sound.end(), buffer, buffer + samples_this_frame * 2);
+}
+
+void X68kMachine::Impl::update(bool skip_redraw) {
+    std::unique_lock<std::mutex> lock(mutex);
+    if (paused_for_tasks) {
+        // From the run loop's paused branch: between timeslices, outside any timer.
+        run_tasks(lock);
+        paused_for_tasks = false;
+        machine->resume();
+    } else {
+        // The end of a frame, inside the VBLANK callback.
+        lock.unlock();
+        if (!skip_redraw) render_frame();
+        lock.lock();
+        if (!exiting) {
+            frame_ready = true;
+            changed.notify_all();
+            changed.wait(lock, [this] { return go || exiting || !tasks.empty(); });
+            if (!tasks.empty() && !exiting) {
+                paused_for_tasks = true;
+                machine->pause();
+                return;
+            }
+        }
+    }
+    go = false;
+    if (exiting) machine->schedule_exit();
+}
+
+// Runs the host's work until the host asks for the next frame.
+void X68kMachine::Impl::run_tasks(std::unique_lock<std::mutex> &lock) {
+    while (true) {
+        changed.wait(lock, [this] { return go || exiting || !tasks.empty(); });
+        if (tasks.empty()) return;
+        auto pending = std::move(tasks);
+        tasks.clear();
+        lock.unlock();
+        for (auto &task : pending) task(*machine);
+        lock.lock();
+        tasks_done += pending.size();
+        changed.notify_all();
+    }
+}
+
+void X68kMachine::Impl::render_frame() {
+    if (target) {
+        s32 w = 0, h = 0;
+        target->compute_minimum_size(w, h);
+        if (w > 0 && h > 0) {
+            target->set_bounds(w, h);
+            pixels.assign(size_t(w) * h, 0);
+            render_primitive_list &primitives = target->get_primitives();
+            primitives.acquire_lock();
+            software_renderer<uint32_t, 0, 0, 0, 0, 8, 16>::draw_primitives(primitives, pixels.data(), w, h, w);
+            primitives.release_lock();
+            for (auto &pixel : pixels) pixel |= 0xff000000u;
+            width = uint32_t(w);
+            height = uint32_t(h);
+        }
+    }
+    if (machine) {
+        if (screen_device *screen = screen_device_enumerator(machine->root_device()).first())
+            frame_period = screen->frame_period().as_double();
+    }
+}
+
+std::unique_ptr<X68kMachine> X68kMachine::create(const Config &config, std::string &error) {
+    auto impl = std::make_unique<Impl>();
+    impl->config = config;
+    Impl *state = impl.get();
+    impl->thread = std::thread([state] { state->run_mame(); });
+    {
+        std::unique_lock<std::mutex> lock(state->mutex);
+        state->changed.wait(lock, [state] { return state->frame_ready || state->finished; });
+        if (state->finished) {
+            error = state->error;
+            lock.unlock();
+            state->thread.join();
+            return nullptr;
+        }
+    }
+    return std::unique_ptr<X68kMachine>(new X68kMachine(std::move(impl)));
+}
+
+X68kMachine::~X68kMachine() {
+    {
+        std::lock_guard<std::mutex> lock(impl_->mutex);
+        impl_->exiting = true;
+        impl_->changed.notify_all();
+    }
+    impl_->thread.join();
+}
+
+bool X68kMachine::run_frame(std::string &error) {
+    std::unique_lock<std::mutex> lock(impl_->mutex);
+    if (impl_->finished || impl_->exiting) {
+        error = impl_->error.empty() ? "The X68000 stopped" : impl_->error;
+        return false;
+    }
+    impl_->frame_ready = false;
+    impl_->go = true;
+    impl_->changed.notify_all();
+    impl_->changed.wait(lock, [this] { return impl_->frame_ready || impl_->finished; });
+    if (impl_->finished || impl_->exiting) {
+        error = impl_->error.empty() ? "The X68000 stopped" : impl_->error;
+        return false;
+    }
+    return true;
+}
+
+double X68kMachine::frame_seconds() const { return impl_->frame_period; }
+
+const uint8_t *X68kMachine::frame(uint32_t &width, uint32_t &height) const {
+    if (impl_->pixels.empty()) return nullptr;
+    width = impl_->width;
+    height = impl_->height;
+    return reinterpret_cast<const uint8_t *>(impl_->pixels.data());
+}
+
+int X68kMachine::sample_rate() const { return impl_->config.sample_rate; }
+
+uint32_t X68kMachine::read_audio(int16_t *stereo, uint32_t max_frames) {
+    std::lock_guard<std::mutex> lock(impl_->mutex);
+    const uint32_t frames = std::min<uint32_t>(max_frames, uint32_t(impl_->sound.size() / 2));
+    std::copy_n(impl_->sound.begin(), frames * 2, stereo);
+    impl_->sound.erase(impl_->sound.begin(), impl_->sound.begin() + frames * 2);
+    return frames;
+}
+
+void X68kMachine::key(int item, bool down) {
+    if (item >= ITEM_ID_A && item <= ITEM_ID_CANCEL) impl_->keys[item] = down;
+}
+
+void X68kMachine::joystick(int control, bool down) {
+    if (control >= 0 && control < kJoystickControls) impl_->joystick[control] = down;
+}
+
+void X68kMachine::mouse_move(int dx, int dy) {
+    impl_->mouse_dx += dx;
+    impl_->mouse_dy += dy;
+}
+
+void X68kMachine::mouse_button(int button, bool down) {
+    if (button == 1 || button == 2) impl_->mouse_buttons[button - 1] = down;
+}
+
+void X68kMachine::reset() {
+    impl_->between_frames<bool>([](running_machine &m) {
+        m.schedule_soft_reset();
+        return true;
+    });
+}
+
+bool X68kMachine::save_state(const std::string &file) {
+    return impl_->between_frames<bool>([file](running_machine &m) {
+        // As running_machine::handle_saveload: anonymous timers cannot be saved or restored.
+        if (!m.scheduler().can_save()) return false;
+        emu_file out(OPEN_FLAG_WRITE | OPEN_FLAG_CREATE | OPEN_FLAG_CREATE_PATHS);
+        if (out.open(file)) return false;
+        return m.save().write_file(out) == STATERR_NONE;
+    });
+}
+
+bool X68kMachine::load_state(const std::string &file) {
+    return impl_->between_frames<bool>([file](running_machine &m) {
+        // As running_machine::handle_saveload: anonymous timers cannot be saved or restored.
+        if (!m.scheduler().can_save()) return false;
+        emu_file in(OPEN_FLAG_READ);
+        if (in.open(file)) return false;
+        return m.save().read_file(in) == STATERR_NONE;
+    });
+}
+
+bool X68kMachine::insert_fd(int drive, const std::string &path) {
+    if (drive < 0 || drive > 1) return false;
+    return impl_->between_frames<bool>([drive, path](running_machine &m) {
+        for (device_image_interface &image : image_interface_enumerator(m.root_device())) {
+            if (image.brief_instance_name() != "flop" + std::to_string(drive + 1)) continue;
+            if (path.empty()) {
+                image.unload();
+                return true;
+            }
+            return !image.load(path).first;
+        }
+        return false;
+    });
+}
+
+std::string X68kMachine::fd_path(int drive) {
+    return impl_->between_frames<std::string>([drive](running_machine &m) {
+        for (device_image_interface &image : image_interface_enumerator(m.root_device()))
+            if (image.brief_instance_name() == "flop" + std::to_string(drive + 1))
+                return image.exists() ? std::string(image.filename()) : std::string();
+        return std::string();
+    });
+}
+
+} // namespace kairo68

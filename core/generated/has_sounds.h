@@ -1,0 +1,14 @@
+// Generated file, edition is futile
+
+#ifndef GENERATED_HAS_SOUNDS_H
+#define GENERATED_HAS_SOUNDS_H
+
+#define HAS_SOUNDS_AY8910
+#define HAS_SOUNDS_BEEP
+#define HAS_SOUNDS_CDDA
+#define HAS_SOUNDS_OKIM6258
+#define HAS_SOUNDS_VOTRAX_SC01
+#define HAS_SOUNDS_VOTRAX_SC01A
+#define HAS_SOUNDS_YM2151
+
+#endif

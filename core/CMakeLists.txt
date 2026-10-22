@@ -1,0 +1,114 @@
+# The X68000 machine on MAME's x68k driver (third_party/mame), driven one frame at a time
+# (x68k_machine.h), for the Android app and for host tests. Source lists come from MAME's own
+# project files (generated/sources.cmake, tools/generate_mame.py); defines and include directories
+# follow MAME's scripts/genie.lua and scripts/src/*.lua.
+cmake_minimum_required(VERSION 3.22.1)
+project(kairo68_core LANGUAGES C CXX)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_C_STANDARD 99)
+
+get_filename_component(MAME_ROOT "${CMAKE_CURRENT_LIST_DIR}/../third_party/mame" ABSOLUTE)
+set(GENERATED "${CMAKE_CURRENT_LIST_DIR}/generated")
+include("${GENERATED}/sources.cmake")
+
+# The emulator runs in real time only optimized, so the core is optimized in debug builds too.
+add_compile_options(-O3 -Wno-deprecated-declarations -Wno-unused-variable -Wno-unknown-warning-option)
+add_compile_definitions(CRLF=2 LSB_FIRST NDEBUG FLAC__NO_DLL NATIVE_DRC=drcbe_c PUGIXML_HEADER_ONLY)
+if(WIN32)
+    # MAME's Windows OSD configuration (scripts/src/osd/windows_cfg.lua), for the host test.
+    add_compile_definitions(UNICODE _UNICODE WIN32_LEAN_AND_MEAN NOMINMAX _WIN32_WINNT=0x0A00)
+endif()
+# Some MAME files use std::vector, std::abs and friends without including their headers, which
+# libc++ does not include for them.
+add_compile_options("$<$<COMPILE_LANGUAGE:CXX>:SHELL:-include vector>" "$<$<COMPILE_LANGUAGE:CXX>:SHELL:-include cmath>"
+    "$<$<COMPILE_LANGUAGE:CXX>:SHELL:-include cstdlib>")
+
+add_library(mame_zlib STATIC ${MAME_ZLIB_SOURCES})
+target_compile_definitions(mame_zlib PRIVATE ZLIB_CONST)
+target_include_directories(mame_zlib PUBLIC "${MAME_ROOT}/3rdparty/zlib")
+
+add_library(mame_expat STATIC ${MAME_EXPAT_SOURCES})
+target_compile_definitions(mame_expat PRIVATE HAVE_MEMMOVE HAVE_STDINT_H HAVE_STDIO_H HAVE_STDLIB_H
+    HAVE_STRING_H STDC_HEADERS XML_CONTEXT_BYTES=1024 XML_DTD XML_GE=1 XML_NS BYTEORDER=1234
+    XML_POOR_ENTROPY)
+target_include_directories(mame_expat PUBLIC "${MAME_ROOT}/3rdparty/expat/lib")
+
+add_library(mame_zstd STATIC ${MAME_ZSTD_SOURCES})
+target_compile_definitions(mame_zstd PRIVATE XXH_NAMESPACE=ZSTD_ DEBUGLEVEL=0 ZSTD_DISABLE_ASM)
+target_include_directories(mame_zstd PUBLIC "${MAME_ROOT}/3rdparty/zstd/lib")
+
+add_library(mame_flac STATIC ${MAME_FLAC_SOURCES})
+target_compile_definitions(mame_flac PRIVATE HAVE_CONFIG_H ENABLE_64_BIT_WORDS=1 OGG_FOUND=0 FLAC__HAS_OGG=0
+    HAVE_LROUND=1 HAVE_INTTYPES_H HAVE_STDBOOL_H HAVE_STDINT_H HAVE_STDIO_H HAVE_STDLIB_H HAVE_STRING_H
+    HAVE_BSWAP16 HAVE_BSWAP32 _FILE_OFFSET_BITS=64 _LARGEFILE_SOURCE CPU_IS_BIG_ENDIAN=0 CPU_IS_LITTLE_ENDIAN=1)
+target_include_directories(mame_flac PRIVATE "${MAME_ROOT}/3rdparty/flac/src/libFLAC/include")
+target_include_directories(mame_flac PUBLIC "${MAME_ROOT}/3rdparty/flac/include")
+
+add_library(mame_utf8proc STATIC ${MAME_UTF8PROC_SOURCES})
+target_compile_definitions(mame_utf8proc PUBLIC UTF8PROC_STATIC)
+target_include_directories(mame_utf8proc PUBLIC "${MAME_ROOT}/3rdparty/utf8proc")
+
+# SoftFloat 3 is built as C++ ("ForceCPP" in MAME's project).
+add_library(mame_softfloat3 STATIC ${MAME_SOFTFLOAT3_SOURCES})
+set_source_files_properties(${MAME_SOFTFLOAT3_SOURCES} PROPERTIES LANGUAGE CXX)
+target_compile_definitions(mame_softfloat3 PRIVATE SOFTFLOAT_ROUND_ODD INLINE_LEVEL=5 SOFTFLOAT_FAST_DIV32TO16
+    SOFTFLOAT_FAST_DIV64TO32 SOFTFLOAT_FAST_INT64 LITTLEENDIAN=1)
+target_include_directories(mame_softfloat3 PRIVATE "${MAME_ROOT}/src/osd" "${MAME_ROOT}/3rdparty/softfloat3/build/MAME"
+    "${MAME_ROOT}/3rdparty/softfloat3/source" "${MAME_ROOT}/3rdparty/softfloat3/source/include"
+    "${MAME_ROOT}/3rdparty/softfloat3/source/8086" "${MAME_ROOT}/3rdparty/softfloat3/bochs_ext")
+
+add_library(mame_7z STATIC ${MAME_7Z_SOURCES})
+target_include_directories(mame_7z PUBLIC "${MAME_ROOT}/3rdparty/lzma/C")
+
+add_library(mame_jpeg STATIC ${MAME_JPEG_SOURCES})
+target_include_directories(mame_jpeg PUBLIC "${MAME_ROOT}/3rdparty/libjpeg")
+
+add_library(mame_ymfm STATIC ${MAME_YMFM_SOURCES})
+target_include_directories(mame_ymfm PUBLIC "${MAME_ROOT}/3rdparty/ymfm/src")
+
+# The OSD's platform services: MAME's files, directories, sockets and timing for the platform.
+set(OSD "${MAME_ROOT}/src/osd")
+if(WIN32)
+    set(OSD_PLATFORM "${OSD}/modules/file/windir.cpp" "${OSD}/modules/file/winfile.cpp"
+        "${OSD}/modules/file/winptty.cpp" "${OSD}/modules/file/winsocket.cpp" "${OSD}/modules/lib/osdlib_win32.cpp")
+else()
+    set(OSD_PLATFORM "${OSD}/modules/file/posixdir.cpp" "${OSD}/modules/file/posixfile.cpp"
+        "${OSD}/modules/file/posixptty.cpp" "${OSD}/modules/file/posixsocket.cpp" "${OSD}/modules/lib/osdlib_unix.cpp")
+endif()
+add_library(mame_osd STATIC "${OSD}/osdcore.cpp" "${OSD}/osdsync.cpp" "${OSD}/strconv.cpp"
+    "${OSD}/interface/audio.cpp" "${OSD}/interface/inputseq.cpp" "${OSD}/interface/nethandler.cpp" ${OSD_PLATFORM})
+target_include_directories(mame_osd PUBLIC "${OSD}" "${MAME_ROOT}/src/lib" "${MAME_ROOT}/src/lib/util" "${MAME_ROOT}/3rdparty")
+if(WIN32)
+    target_sources(mame_osd PRIVATE "${OSD}/windows/winutil.cpp" "${OSD}/windows/winutf8.cpp")
+    target_include_directories(mame_osd PUBLIC "${OSD}/windows")
+endif()
+target_compile_definitions(mame_osd PRIVATE $<$<NOT:$<BOOL:${WIN32}>>:ASIO_HAS_PTHREADS>)
+
+add_library(mame_utils STATIC ${MAME_UTILS_SOURCES})
+target_include_directories(mame_utils PUBLIC "${MAME_ROOT}/src/lib/util" "${MAME_ROOT}/src/lib")
+target_include_directories(mame_utils PUBLIC "${MAME_ROOT}/3rdparty/pugixml/src")
+target_link_libraries(mame_utils PUBLIC mame_osd mame_expat mame_zlib mame_zstd mame_flac mame_utf8proc mame_jpeg mame_7z)
+
+# The emulator core, the X68000's devices and driver, and Kairo68's host side.
+add_library(kairo68_core STATIC ${MAME_EMU_SOURCES} ${MAME_DEVICE_SOURCES}
+    "${GENERATED}/drivlist.cpp" "${GENERATED}/version.cpp" x68k_machine.cpp)
+target_include_directories(kairo68_core PUBLIC "${CMAKE_CURRENT_LIST_DIR}")
+target_include_directories(kairo68_core PRIVATE "${MAME_ROOT}/src/emu" "${MAME_ROOT}/src/devices" "${MAME_ROOT}/src/mame"
+    "${MAME_ROOT}/src/mame/shared" "${MAME_ROOT}/src/lib/netlist" "${MAME_ROOT}/3rdparty/softfloat3/source/include"
+    "${MAME_ROOT}/3rdparty/rapidjson/include" "${MAME_ROOT}/3rdparty/asio/include" "${GENERATED}" "${GENERATED}/ui" "${GENERATED}/emu" "${MAME_ROOT}/src/lib/formats")
+target_link_libraries(kairo68_core PUBLIC mame_utils mame_softfloat3 mame_ymfm)
+if(ANDROID)
+    target_link_libraries(kairo68_core PUBLIC log)
+elseif(WIN32)
+    target_link_libraries(kairo68_core PUBLIC ws2_32 mswsock shlwapi)
+endif()
+
+if(NOT ANDROID)
+    add_executable(boot_test test/boot_test.cpp)
+    target_link_libraries(boot_test PRIVATE kairo68_core)
+    if(WIN32)
+        target_link_options(boot_test PRIVATE -static)
+    endif()
+endif()
