@@ -554,8 +554,13 @@ set(MAME_FLAC_SOURCES
     "${MAME_ROOT}/3rdparty/flac/src/libFLAC/stream_encoder_intrin_sse2.c"
     "${MAME_ROOT}/3rdparty/flac/src/libFLAC/stream_encoder_intrin_ssse3.c"
     "${MAME_ROOT}/3rdparty/flac/src/libFLAC/window.c"
-    "${MAME_ROOT}/3rdparty/flac/src/share/win_utf8_io/win_utf8_io.c"
 )
+
+if(WIN32)
+    list(APPEND MAME_FLAC_SOURCES
+        "${MAME_ROOT}/3rdparty/flac/src/share/win_utf8_io/win_utf8_io.c"
+    )
+endif()
 
 set(MAME_UTF8PROC_SOURCES
     "${MAME_ROOT}/3rdparty/utf8proc/utf8proc.c"

@@ -41,6 +41,8 @@ MAME does not mark the x68000 driver as supporting save states. These changes ma
 - `rtc-save-state` (`src/emu/dirtc.h`, `dirtc.cpp`, `src/devices/machine/rp5c15.cpp`): `device_rtc_interface` counts the date and time in registers no state held, so after a load the clock ticked on from the time before it; the RP5C15 also left out its RAM.
 - `hd63450-save-state` (`src/devices/machine/hd63450.cpp`): the DMA controller leaves out its latched bus-error code and its DTACK line.
 
+- `osdlib-without-sdl` (`src/osd/modules/lib/osdlib_unix.cpp`): the POSIX OSD library reaches the clipboard through SDL, which only MAME's SDL OSD links. Kairo68 supplies its own OSD and has no SDL, so without `OSD_SDL` the file uses the clipboard stubs MAME already has for Android.
+
 MAME's x68000 SASI hard disk controller was not usable for booting:
 
 - `x68k-sasi-count` (`src/mame/sharp/x68k.cpp`, `x68k.h`): the IPL boots from SASI only when SRAM byte 0x5a counts the connected drives, which the owner sets with SWITCH.X; MAME's SRAM starts blank. The driver reports the attached drive in that byte, as it already reports the configured RAM size at 0x08.

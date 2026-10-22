@@ -12,7 +12,8 @@
 #include "osdcore.h"
 #include "osdlib.h"
 
-#ifdef SDLMAME_SDL3
+#if !defined(OSD_SDL) // Kairo68: no SDL without the SDL OSD
+#elif defined(SDLMAME_SDL3)
 #include <SDL3/SDL.h>
 #else
 #include <SDL2/SDL.h>
@@ -139,7 +140,7 @@ std::pair<std::error_condition, unsigned> osd_get_cache_line_size() noexcept
 }
 
 
-#ifdef SDLMAME_ANDROID
+#if defined(SDLMAME_ANDROID) || !defined(OSD_SDL) // Kairo68
 std::string osd_get_clipboard_text() noexcept
 {
 	return std::string();

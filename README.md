@@ -4,13 +4,13 @@
 
 ## Status
 
-Early development. There is no release yet. The emulator core is pinned in this repository, and the Android app is being built around it.
+In development; there is no release yet. The app boots X68000 floppy and SASI hard disk games, with save states, controller, touch and keyboard input.
 
 ## Games and firmware
 
-Games, operating systems, and firmware are not supplied. The X68000 needs its system ROMs (IPL and character generator), which you provide from your own machine.
+Games, operating systems, and firmware are not supplied. The X68000 needs its IPL-ROM (`iplrom.dat`) and character ROM (`cgrom.dat`), which you provide from your own machine.
 
-The pinned driver reads XDF and DIM floppy images and SASI hard disk images.
+Kairo68 reads XDF, DIM, D88, HDM and 2HD floppy images and SASI hard disk images (HDF), loose or in ZIP and 7z archives.
 
 ## Documentation
 

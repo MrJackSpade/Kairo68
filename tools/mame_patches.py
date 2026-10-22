@@ -367,7 +367,31 @@ TIMER_CALLBACK_MEMBER(x68k_hdc_image_device::req_timer_callback)''',),
      '''	X68KHDC(config, "x68k_hdc").drq_callback().set(m_hd63450, FUNC(hd63450_device::drq1_w)); // Kairo68''',),
 ]
 
-PATCHES = {'x68k-save-state': X68K_SAVE_STATE, 'x68k-sasi-count': X68K_SASI_COUNT, 'x68k-sasi-dma': X68K_SASI_DMA, 'upd765-save-state': UPD765_SAVE_STATE, 'rtc-save-state': RTC_SAVE_STATE,
+# The POSIX OSD library reaches the clipboard through SDL, which only MAME's SDL OSD links; Kairo68
+# supplies its own OSD and has no SDL. Without OSD_SDL, use the clipboard stubs MAME already has
+# for Android.
+OSDLIB_WITHOUT_SDL = [
+    ('src/osd/modules/lib/osdlib_unix.cpp',
+     '''#ifdef SDLMAME_SDL3
+#include <SDL3/SDL.h>
+#else
+#include <SDL2/SDL.h>
+#endif''',
+     '''#if !defined(OSD_SDL) // Kairo68: no SDL without the SDL OSD
+#elif defined(SDLMAME_SDL3)
+#include <SDL3/SDL.h>
+#else
+#include <SDL2/SDL.h>
+#endif''',),
+    ('src/osd/modules/lib/osdlib_unix.cpp',
+     '''#ifdef SDLMAME_ANDROID
+std::string osd_get_clipboard_text() noexcept''',
+     '''#if defined(SDLMAME_ANDROID) || !defined(OSD_SDL) // Kairo68
+std::string osd_get_clipboard_text() noexcept''',),
+]
+
+PATCHES = {'x68k-save-state': X68K_SAVE_STATE, 'x68k-sasi-count': X68K_SASI_COUNT, 'x68k-sasi-dma': X68K_SASI_DMA,
+           'osdlib-without-sdl': OSDLIB_WITHOUT_SDL, 'upd765-save-state': UPD765_SAVE_STATE, 'rtc-save-state': RTC_SAVE_STATE,
            'floppy-save-state': FLOPPY_SAVE_STATE, 'hd63450-save-state': HD63450_SAVE_STATE}
 
 
