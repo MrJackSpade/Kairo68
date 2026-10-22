@@ -912,11 +912,18 @@
     "Air Management: Ōzora ni Kakeru"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/80755806-9b7c-420f-bad4-354422c1d248.jpg",
+   "contentIds": [
+    "sha256-fd-v1:83b2ddcb92cde702d2fbf179aa28f80100b12e25648eb4bb08bb358438bf2d28",
+    "sha256-fd-v1:b63b3081939bb204b711ab1bb00a239de62b2bcdbe239f36f569356ff582be45"
+   ],
    "description": "Koei's airline management game: open routes between world cities, buy aircraft and keep the company profitable against rival airlines.",
    "developer": "Koei",
    "launchbox": "150555",
    "publisher": "Koei",
    "screenshotUrl": "https://images.launchbox-app.com/9b746eb8-8d3a-4e5a-9a4e-1b2dbead0fc1.png",
+   "sourceGroups": [
+    "x68000:Air Management (19xx)(Koei).zip"
+   ],
    "title": "Air Management: Oozora ni Kakeru",
    "year": 1992
   },
@@ -934,12 +941,20 @@
   "x68000:150575": {
    "adult": true,
    "boxArtUrl": "https://images.launchbox-app.com/7f2f7325-344d-4f4a-8081-f645d0f3d9d9.jpg",
+   "contentIds": [
+    "sha256-fd-v1:202608b69b5a1434e6bb9133dd934abfd215e3302d0e72cdd09a18bbb6cae8bf",
+    "sha256-fd-v1:6f432ed9196d0b2e0d2c44a952201a458bdf9c9cf7f03136d4d673f36d442db9",
+    "sha256-fd-v1:9a24a2e8d66d3e315f48e06623ca65be3def0b06629bed264c4cd632ff18f0fc"
+   ],
    "description": "An adventure in which a new teacher takes up a post at a girls' school.",
    "developer": "Red Zone",
    "launchbox": "150575",
    "mobygames": 46281,
    "publisher": "IDES",
    "screenshotUrl": "https://images.launchbox-app.com/6d0c3da2-e1a4-4ae2-a846-3b4a70ac17bc.png",
+   "sourceGroups": [
+    "x68000:Akiko (1993)(Ides).zip"
+   ],
    "title": "Akiko: Premium Version",
    "year": 1993
   },
@@ -1587,12 +1602,24 @@
   "x68000:156949": {
    "adult": true,
    "boxArtUrl": "https://images.launchbox-app.com/2f3eb6f1-6ec1-4a2f-b402-ad8a3d3f71d5.jpg",
+   "contentIds": [
+    "sha256-fd-v1:20c77ad656ba05b8f40599fca5c4d1012b2a24e450a8882d49991c8714c4592d",
+    "sha256-fd-v1:6969670b5c6f82ac0a10981ad283822176a1166b245042bd12325f96c607bce1",
+    "sha256-fd-v1:69bd57b07d4b2887095bde93d940e81eac9f09c5b6ca5495ea8520061b2f8cc8",
+    "sha256-fd-v1:bd9d816965dda481675a0199343c4a969d3da2bba1560d5eb5c44f039a2c2a34",
+    "sha256-fd-v1:c8c595b12a69494b639e32e22bbfef0b09b3474331872e7c90aeb176e758ca5a",
+    "sha256-fd-v1:dddc07c7289aafbb63f79d0b69a6c9f3f9e7b6b6671d43b014d9e2e79d76f255",
+    "sha256-fd-v1:ec96a64ce5b7fe28d2e4cf4ef2693565c34d258d5e26647632010f21eca65b7d"
+   ],
    "description": "An Alice Soft adventure in which a knight who failed to save his princess from a cult seeks to undo her sacrifice.",
    "developer": "Alice Soft",
    "launchbox": "156949",
    "mobygames": 18742,
    "publisher": "Alice Soft",
    "screenshotUrl": "https://images.launchbox-app.com/cc85322c-326f-47f1-b866-598699d183d3.png",
+   "sourceGroups": [
+    "x68000:Ambivalenz (1994)(Alice Soft).zip"
+   ],
    "title": "AmbivalenZ: Niritsu Haihan",
    "year": 1994
   },
@@ -3226,12 +3253,18 @@
   },
   "x68000:157518": {
    "boxArtUrl": "https://images.launchbox-app.com/68b83ce2-0490-483a-aa80-29cef1860c28.png",
+   "contentIds": [
+    "sha256-fd-v1:695e20c6d03c11d7df728455ea96780d9a8a469e5696931931844cc711ca96f9"
+   ],
    "description": "Delphine's point-and-click adventure: a window cleaner finds a time machine and travels through history to stop an alien plot.",
    "developer": "Delphine Software International",
    "launchbox": "157518",
    "mobygames": 2205,
    "publisher": "StarCraft",
    "screenshotUrl": "https://images.launchbox-app.com/a58c8edd-5a17-405e-8dd3-d2dadf1a2fb8.jpg",
+   "sourceGroups": [
+    "x68000:Future Wars (19xx)(Starcraft).zip"
+   ],
    "title": "Future Wars: Toki no Boukensha",
    "year": 1991
   },
@@ -4059,12 +4092,19 @@
   },
   "x68000:157613": {
    "boxArtUrl": "https://images.launchbox-app.com/af083384-2997-4308-801e-578243b146aa.png",
+   "contentIds": [
+    "sha256-fd-v1:4d396ab314f233f9097cf19e4b6101af4245457a5fc5838c54913adc5250d060",
+    "sha256-fd-v1:ac19fea0bb0f681c400cc718697f6aa78bafa6c00b3989b639f04dbfe8d4353c"
+   ],
    "description": "A hospital simulation: diagnose patients' abdominal complaints, order tests and treatments, and perform surgery.",
    "developer": "The Software Toolworks",
    "launchbox": "157613",
    "mobygames": 109,
    "publisher": "TAKERU",
    "screenshotUrl": "https://images.launchbox-app.com/e9f2160e-8a1f-4ce5-ab20-ed63cbfe506b.png",
+   "sourceGroups": [
+    "x68000:Life and Death (1992)(Ving - Takeru).zip"
+   ],
    "title": "Life & Death",
    "year": 1992
   },
@@ -4482,12 +4522,20 @@
     "MechWarrior"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/5dc15a5b-d42c-48f3-8d83-af043ad4ac31.jpg",
+   "contentIds": [
+    "sha256-fd-v1:435e145ae3ccf1309297961651c4ca78a88d15d7e9e232a6fd10bcfa73c77f22",
+    "sha256-fd-v1:6531e72b16cf0b11698f14508c664c5efb9bdfe7f9e4a41a14feb3599e73ee43",
+    "sha256-fd-v1:b7cacec7c1ce18515051190d97d30f91067eda30b4e5d98eebfe4d79baa436e9"
+   ],
    "description": "A BattleTech first-person mech game: Gideon Braver Vandenburg pilots BattleMechs to recover his family's stolen Chalice and avenge them.",
    "developer": "Dynamix",
    "launchbox": "157638",
    "mobygames": 105,
    "publisher": "Cross Media Soft",
    "screenshotUrl": "https://images.launchbox-app.com/4117ded2-a46b-403e-abc0-d1c56c7f1fce.png",
+   "sourceGroups": [
+    "x68000:Battletech (1992)(Crossmedia).zip"
+   ],
    "title": "Battletech: Ubawareta Seihai",
    "year": 1992
   },
@@ -4514,12 +4562,19 @@
   },
   "x68000:157640": {
    "boxArtUrl": "https://images.launchbox-app.com/95fa230f-2dfd-449b-8892-c8e885dc5be7.png",
+   "contentIds": [
+    "sha256-fd-v1:2b21977a6a5a40ffa15aa25cddbf2e3416b98a3ea3a0081d9bf56bd2cc161ef2",
+    "sha256-fd-v1:f67278f8c0459dc360cb448fa2b170b8ea7d1fad8c1a28c6eb1a7dec5da52a07"
+   ],
    "description": "An isometric sci-fi role-playing game set among three human races divided by evolution.",
    "developer": "Maxima",
    "launchbox": "157640",
    "mobygames": 44582,
    "publisher": "Maxima",
    "screenshotUrl": "https://images.launchbox-app.com/6b502949-387b-4349-a331-2c97329a44cc.png",
+   "sourceGroups": [
+    "x68000:Mercury (19xx)(Maxima).zip"
+   ],
    "title": "Mercury: The Prime Master",
    "year": 1991
   },
@@ -5343,12 +5398,18 @@
   },
   "x68000:157697": {
    "boxArtUrl": "https://images.launchbox-app.com/4feb97c6-2b2f-4eaf-866a-95b93b5754da.jpg",
+   "contentIds": [
+    "sha256-fd-v1:a64338da00506f782ea39f6979f73d98bd176bdf54436eb57e8564258e5b46b8"
+   ],
    "description": "Guide a planet through billions of years: shape its geology, atmosphere and life, nurturing species toward intelligence and civilization.",
    "developer": "Maxis Software",
    "launchbox": "157697",
    "mobygames": 1835,
    "publisher": "Imagineer",
    "screenshotUrl": "https://images.launchbox-app.com/33899265-f64e-4b15-8e20-767be3faeb2c.png",
+   "sourceGroups": [
+    "x68000:Sim Earth (19xx)(Imagineer).zip"
+   ],
    "title": "SimEarth: The Living Planet",
    "year": 1992
   },
@@ -6161,12 +6222,21 @@
   },
   "x68000:157745": {
    "boxArtUrl": "https://images.launchbox-app.com/5d2663a6-49c7-4f26-bbe4-e749638dc24b.jpg",
+   "contentIds": [
+    "sha256-fd-v1:540108c76cfe73fdd89a8742946cfd5f169af8f456fd56745f0a2c2a60b9d9bd",
+    "sha256-fd-v1:6bf539b43f8e51bf70d727ce50974264c8bc6a503838a80ec072f4608db42d49",
+    "sha256-fd-v1:95a3a5dc6b3cd0e1abb51b11f6d38dd0cd40581faaa6a66fb524431bd43f09fe",
+    "sha256-fd-v1:c74ef18c091061540d320bb5d90e7248e64e1e438d75253dc6fc90eae64bac05"
+   ],
    "description": "Micro Cabin's action role-playing game: the young warrior Latok follows his missing father's path to stop the demon Badu.",
    "developer": "Micro Cabin",
    "launchbox": "157745",
    "mobygames": 15379,
    "publisher": "Micro Cabin",
    "screenshotUrl": "https://images.launchbox-app.com/ddb25eb3-3c8d-4f3c-8fa2-1bec6aaf5d4e.png",
+   "sourceGroups": [
+    "x68000:Xak (1990)(Micro Cabin).zip"
+   ],
    "title": "Xak: The Art of Visual Stage",
    "year": 1990
   },
@@ -7410,11 +7480,19 @@
   },
   "x68000:185740": {
    "boxArtUrl": "https://images.launchbox-app.com/09a3989f-8c74-44c6-bbbd-77c5665d9a31.jpg",
+   "contentIds": [
+    "sha256-fd-v1:451e7fba20aeca61373d46dc4885506b12b4d1b48f673806bdb47a91d172ca2b",
+    "sha256-fd-v1:70047db031697547acc50fed1ec706aefc4a7103f22a06cbd6f7cb5eefef835b",
+    "sha256-fd-v1:cc633d395c87610c425e4ca46a2cb6fc207c32a1d997d9d4983793c20065a33d"
+   ],
    "description": "An adventure game by East Cube, released in 1989.",
    "developer": "East Cube",
    "launchbox": "185740",
    "publisher": "East Cube",
    "screenshotUrl": "https://images.launchbox-app.com/da1542e1-085b-4248-a205-b6e51e619612.png",
+   "sourceGroups": [
+    "x68000:Byakuya Monogatari (1989)(East Cube).zip"
+   ],
    "title": "Byakuya Monogatari: Winchester Ke no Matsuei",
    "year": 1989
   },
@@ -8959,11 +9037,17 @@
     "Entfuhrer: Yousei Yuukai Jiken"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/c91301eb-15e5-4831-bd1b-eea1f7cb9620.jpg",
+   "contentIds": [
+    "sha256-fd-v1:851bc91ac564285c61832dc5d2cb8a679a4ef2296aa92883ff7d3916b52c5d18"
+   ],
    "description": "An adventure in which a student searches his school for his missing girlfriend.",
    "developer": "Studio Angel",
    "launchbox": "187790",
    "publisher": "Zenryuutuu",
    "screenshotUrl": "https://images.launchbox-app.com/df92864f-12ce-4d76-a01a-cf85e105fe94.png",
+   "sourceGroups": [
+    "x68000:Entfuhrer (19xx)(Zenryuutsuu).zip"
+   ],
    "title": "Entführer",
    "year": 1989
   },
@@ -9479,11 +9563,18 @@
     "Ground Master: Ushinawareta Houju no Densetsu"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/e6e66e93-1af5-4765-80a7-3521ffee4453.jpg",
+   "contentIds": [
+    "sha256-fd-v1:5f10fd1990b2e4fd008bae78ac8d17170120937af0fd1843ca5a1cee0281b767",
+    "sha256-fd-v1:efa0cbe55d4bb271358fd087e82ac43dc509993192595bca11c2f27b3cdfc5b5"
+   ],
    "description": "A role-playing game about a legend of lost treasure, by Zainsoft.",
    "developer": "Zainsoft",
    "launchbox": "188064",
    "publisher": "XAIN",
    "screenshotUrl": "https://images.launchbox-app.com/ed095818-bd28-437e-b431-c1d61098218e.png",
+   "sourceGroups": [
+    "x68000:Ground Master (19xx)(Zain Soft).zip"
+   ],
    "title": "Ground Master: Ushinawareta Takara Shu no Densetsu",
    "year": 1988
   },
@@ -10023,11 +10114,22 @@
   },
   "x68000:188380": {
    "boxArtUrl": "https://images.launchbox-app.com/face8df7-2f34-4e11-ad83-cd9d9dfdefaf.jpg",
+   "contentIds": [
+    "sha256-fd-v1:147df73080ab7eb05a32306f535fd5bc0daf7fcabe1901aa3f38f2edd53d38e1",
+    "sha256-fd-v1:480d25efd11868b3bd85416a79ac46f1e71ef3fe37360ffa1389c32cd0e8c50f",
+    "sha256-fd-v1:83c234cbc8306444f6a75d925b3d2f52a72b14e06ed3cb861d1bf8d09e09c0dc",
+    "sha256-fd-v1:ac27926e60fec2ae0803c46aef7433e2070649472a0c3eac74ee492be2f5171d",
+    "sha256-fd-v1:f6fb8d354c120c80a73612a06f3880ca29352528b2b683a5a747cf42d8b4b143",
+    "sha256-fd-v1:f8cdda7da623a843aa6d4bc05e5ca4b1c32da9ee818b749b8c08c4222b9831c8"
+   ],
    "description": "A fantasy role-playing game about a legendary sword.",
    "developer": "Hertz",
    "launchbox": "188380",
    "publisher": "Hertz",
    "screenshotUrl": "https://images.launchbox-app.com/d94b23d7-13a9-4022-97fb-46db4ee5c018.png",
+   "sourceGroups": [
+    "x68000:Lenam (1989)(Hertz).zip"
+   ],
    "title": "Lenam: Sword of Legend",
    "year": 1989
   },
@@ -10690,11 +10792,18 @@
   },
   "x68000:188663": {
    "boxArtUrl": "https://images.launchbox-app.com/6867ebef-a522-42d1-960b-ab43156d71be.jpg",
+   "contentIds": [
+    "sha256-fd-v1:13228472120c293ff9f7a9ac118b5b93cd3e25a8ec1523d67fb824e14b5bd986",
+    "sha256-fd-v1:c1f0e6d23e764b49b777b154c3b11c611442d24912fa95c7407394bb67936fe4"
+   ],
    "description": "A summer adventure game by Birdy Soft.",
    "developer": "Birdy Soft",
    "launchbox": "188663",
    "publisher": "Birdy Soft",
    "screenshotUrl": "https://images.launchbox-app.com/8b20502c-3236-4767-980f-5a671eac7cbc.png",
+   "sourceGroups": [
+    "x68000:Rouge (19xx)(Birdy Soft).zip"
+   ],
    "title": "Rouge: Manatsu no Kuchibeni",
    "year": 1990
   },
@@ -11037,11 +11146,18 @@
   },
   "x68000:189025": {
    "boxArtUrl": "https://images.launchbox-app.com/5ec217ee-35b5-4aa9-ba55-d102c104d1c8.jpg",
+   "contentIds": [
+    "sha256-fd-v1:2ec526ae1817c0740a0c9ef9fc3a34f05d1a4ea3c379eee319e1ec1e040bb435",
+    "sha256-fd-v1:bf36340cb5fd84aa83da7fdc89c19c80e6d5da2f66932f47840d3295a53da3eb"
+   ],
    "description": "A tank combat action game.",
    "developer": "Yamaco",
    "launchbox": "189025",
    "publisher": "Family Soft",
    "screenshotUrl": "https://images.launchbox-app.com/48572f2c-19f4-44f5-b434-50735a184a73.png",
+   "sourceGroups": [
+    "x68000:Square Resort (1992)(Family Soft).zip"
+   ],
    "title": "Square Resort: Hyper Senshasen",
    "year": 1992
   },
@@ -11286,11 +11402,22 @@
     "Tessera - Kimi wa Yogoreta Tenshi ka Seinaru Majo ka!?"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/2ba923cd-0877-47ce-8909-b2709de0dc76.jpg",
+   "contentIds": [
+    "sha256-fd-v1:12cbe5040e4e24744e3605cb603c1ef091f3634a00cc79bb6b0ceb9d026c647b",
+    "sha256-fd-v1:230b85625dc1647a5eb40e304ab3871dbd56136a906b0aabe967c727c422c4f7",
+    "sha256-fd-v1:3e6e05bac97d8b66b1b64d634bad8ecb92658ec774732fb597ae7340b8e100d2",
+    "sha256-fd-v1:8939633e103fa6677b23d8ab85630ec40634536a8232247f23f22033d8dc6056",
+    "sha256-fd-v1:e12d2feb0b0643aa5871e3ad563851ffc3ddc68d4362edae884bfb9ac0a9b21b",
+    "sha256-fd-v1:ed69cd020a4a1d3b509b9e5209a62934f3bf69528e73e719a0f6881a1204da8f"
+   ],
    "description": "An adventure game by Technopolis Soft, released in 1992.",
    "developer": "Technopolis Soft",
    "launchbox": "189122",
    "publisher": "Technopolis Soft",
    "screenshotUrl": "https://images.launchbox-app.com/b5bb3405-1720-47ce-b31f-3a8e2fb8f2e4.png",
+   "sourceGroups": [
+    "x68000:Tesera (1992)(Technopolis).zip"
+   ],
    "title": "Tesera: Kimi wa, Yogoreta Tenshi ka Seinaru Majokka!?",
    "year": 1992
   },
@@ -17549,21 +17676,6 @@
    "title": "SX Aoumi",
    "year": 1993
   },
-  "x68000:local-14f9fb4d2c": {
-   "contentIds": [
-    "sha256-fd-v1:12cbe5040e4e24744e3605cb603c1ef091f3634a00cc79bb6b0ceb9d026c647b",
-    "sha256-fd-v1:230b85625dc1647a5eb40e304ab3871dbd56136a906b0aabe967c727c422c4f7",
-    "sha256-fd-v1:3e6e05bac97d8b66b1b64d634bad8ecb92658ec774732fb597ae7340b8e100d2",
-    "sha256-fd-v1:8939633e103fa6677b23d8ab85630ec40634536a8232247f23f22033d8dc6056",
-    "sha256-fd-v1:e12d2feb0b0643aa5871e3ad563851ffc3ddc68d4362edae884bfb9ac0a9b21b",
-    "sha256-fd-v1:ed69cd020a4a1d3b509b9e5209a62934f3bf69528e73e719a0f6881a1204da8f"
-   ],
-   "sourceGroups": [
-    "x68000:Tesera (1992)(Technopolis).zip"
-   ],
-   "title": "Tesera",
-   "year": 1992
-  },
   "x68000:local-154c139000": {
    "contentIds": [
     "sha256-fd-v1:46191d7c5e2a3be10d503422757ce73bc79572f9bb7b2045d6590f01ea073361"
@@ -18112,16 +18224,6 @@
    ],
    "title": "Elf No Shoujou CG Puzzle"
   },
-  "x68000:local-39d30c0135": {
-   "contentIds": [
-    "sha256-fd-v1:5f10fd1990b2e4fd008bae78ac8d17170120937af0fd1843ca5a1cee0281b767",
-    "sha256-fd-v1:efa0cbe55d4bb271358fd087e82ac43dc509993192595bca11c2f27b3cdfc5b5"
-   ],
-   "sourceGroups": [
-    "x68000:Ground Master (19xx)(Zain Soft).zip"
-   ],
-   "title": "Ground Master"
-  },
   "x68000:local-39ff8dc81f": {
    "contentIds": [
     "sha256-fd-v1:b410650cc53d8199c79d160510aa22177a747bcf38a0f061f7d15247960fea5f"
@@ -18231,15 +18333,6 @@
     "x68000:(Full Metal Powdersuits) - Raydefox.zip"
    ],
    "title": "(Full Metal Powdersuits) - Raydefox"
-  },
-  "x68000:local-41ff02c248": {
-   "contentIds": [
-    "sha256-fd-v1:695e20c6d03c11d7df728455ea96780d9a8a469e5696931931844cc711ca96f9"
-   ],
-   "sourceGroups": [
-    "x68000:Future Wars (19xx)(Starcraft).zip"
-   ],
-   "title": "Future Wars"
   },
   "x68000:local-42c88328d4": {
    "contentIds": [
@@ -18466,16 +18559,6 @@
    "title": "Bishoujo Senshi Sailormoon Moon Tiara Question",
    "year": 1992
   },
-  "x68000:local-52aa7ccafd": {
-   "contentIds": [
-    "sha256-fd-v1:2b21977a6a5a40ffa15aa25cddbf2e3416b98a3ea3a0081d9bf56bd2cc161ef2",
-    "sha256-fd-v1:f67278f8c0459dc360cb448fa2b170b8ea7d1fad8c1a28c6eb1a7dec5da52a07"
-   ],
-   "sourceGroups": [
-    "x68000:Mercury (19xx)(Maxima).zip"
-   ],
-   "title": "Mercury"
-  },
   "x68000:local-532cbc2b49": {
    "contentIds": [
     "sha256-fd-v1:b4d6a9d63250c6f2764c07455bb7e8c4244b097854f03ee73cd2e2c6bcba7eff"
@@ -18534,22 +18617,6 @@
    ],
    "title": "Battle Game",
    "year": 1989
-  },
-  "x68000:local-55404da8e7": {
-   "contentIds": [
-    "sha256-fd-v1:20c77ad656ba05b8f40599fca5c4d1012b2a24e450a8882d49991c8714c4592d",
-    "sha256-fd-v1:6969670b5c6f82ac0a10981ad283822176a1166b245042bd12325f96c607bce1",
-    "sha256-fd-v1:69bd57b07d4b2887095bde93d940e81eac9f09c5b6ca5495ea8520061b2f8cc8",
-    "sha256-fd-v1:bd9d816965dda481675a0199343c4a969d3da2bba1560d5eb5c44f039a2c2a34",
-    "sha256-fd-v1:c8c595b12a69494b639e32e22bbfef0b09b3474331872e7c90aeb176e758ca5a",
-    "sha256-fd-v1:dddc07c7289aafbb63f79d0b69a6c9f3f9e7b6b6671d43b014d9e2e79d76f255",
-    "sha256-fd-v1:ec96a64ce5b7fe28d2e4cf4ef2693565c34d258d5e26647632010f21eca65b7d"
-   ],
-   "sourceGroups": [
-    "x68000:Ambivalenz (1994)(Alice Soft).zip"
-   ],
-   "title": "Ambivalenz",
-   "year": 1994
   },
   "x68000:local-556cfa52e1": {
    "contentIds": [
@@ -18980,21 +19047,6 @@
    ],
    "title": "Peshi Peshi Puzzle 2"
   },
-  "x68000:local-74ccf7538c": {
-   "contentIds": [
-    "sha256-fd-v1:147df73080ab7eb05a32306f535fd5bc0daf7fcabe1901aa3f38f2edd53d38e1",
-    "sha256-fd-v1:480d25efd11868b3bd85416a79ac46f1e71ef3fe37360ffa1389c32cd0e8c50f",
-    "sha256-fd-v1:83c234cbc8306444f6a75d925b3d2f52a72b14e06ed3cb861d1bf8d09e09c0dc",
-    "sha256-fd-v1:ac27926e60fec2ae0803c46aef7433e2070649472a0c3eac74ee492be2f5171d",
-    "sha256-fd-v1:f6fb8d354c120c80a73612a06f3880ca29352528b2b683a5a747cf42d8b4b143",
-    "sha256-fd-v1:f8cdda7da623a843aa6d4bc05e5ca4b1c32da9ee818b749b8c08c4222b9831c8"
-   ],
-   "sourceGroups": [
-    "x68000:Lenam (1989)(Hertz).zip"
-   ],
-   "title": "Lenam",
-   "year": 1989
-  },
   "x68000:local-74d1d0d48f": {
    "contentIds": [
     "sha256-fd-v1:0458be96781781d3db2646291f45746166a79278e37659ca45aa83f6df69f855",
@@ -19104,16 +19156,6 @@
    "title": "Block Stocker v2.00",
    "year": 1989
   },
-  "x68000:local-7a3087d2a1": {
-   "contentIds": [
-    "sha256-fd-v1:83b2ddcb92cde702d2fbf179aa28f80100b12e25648eb4bb08bb358438bf2d28",
-    "sha256-fd-v1:b63b3081939bb204b711ab1bb00a239de62b2bcdbe239f36f569356ff582be45"
-   ],
-   "sourceGroups": [
-    "x68000:Air Management (19xx)(Koei).zip"
-   ],
-   "title": "Air Management"
-  },
   "x68000:local-7add4f4e7b": {
    "contentIds": [
     "sha256-fd-v1:5c25f72e65f12ef2480010ca0b21472b0c58259f3515f2b54389eeb58b8746b2"
@@ -19132,18 +19174,6 @@
    ],
    "title": "Boyoyon v3.31",
    "year": 1996
-  },
-  "x68000:local-7c184ac40b": {
-   "contentIds": [
-    "sha256-fd-v1:435e145ae3ccf1309297961651c4ca78a88d15d7e9e232a6fd10bcfa73c77f22",
-    "sha256-fd-v1:6531e72b16cf0b11698f14508c664c5efb9bdfe7f9e4a41a14feb3599e73ee43",
-    "sha256-fd-v1:b7cacec7c1ce18515051190d97d30f91067eda30b4e5d98eebfe4d79baa436e9"
-   ],
-   "sourceGroups": [
-    "x68000:Battletech (1992)(Crossmedia).zip"
-   ],
-   "title": "Battletech",
-   "year": 1992
   },
   "x68000:local-7d9894be8f": {
    "contentIds": [
@@ -19168,26 +19198,6 @@
    ],
    "title": "Street Uckey II",
    "year": 1991
-  },
-  "x68000:local-7fb0b87cfa": {
-   "contentIds": [
-    "sha256-fd-v1:4d396ab314f233f9097cf19e4b6101af4245457a5fc5838c54913adc5250d060",
-    "sha256-fd-v1:ac19fea0bb0f681c400cc718697f6aa78bafa6c00b3989b639f04dbfe8d4353c"
-   ],
-   "sourceGroups": [
-    "x68000:Life and Death (1992)(Ving - Takeru).zip"
-   ],
-   "title": "Life and Death",
-   "year": 1992
-  },
-  "x68000:local-8042ce49ee": {
-   "contentIds": [
-    "sha256-fd-v1:a64338da00506f782ea39f6979f73d98bd176bdf54436eb57e8564258e5b46b8"
-   ],
-   "sourceGroups": [
-    "x68000:Sim Earth (19xx)(Imagineer).zip"
-   ],
-   "title": "Sim Earth"
   },
   "x68000:local-813a269097": {
    "contentIds": [
@@ -20566,18 +20576,6 @@
    ],
    "title": "Duel Fighter I+II"
   },
-  "x68000:local-d7a4609a18": {
-   "contentIds": [
-    "sha256-fd-v1:202608b69b5a1434e6bb9133dd934abfd215e3302d0e72cdd09a18bbb6cae8bf",
-    "sha256-fd-v1:6f432ed9196d0b2e0d2c44a952201a458bdf9c9cf7f03136d4d673f36d442db9",
-    "sha256-fd-v1:9a24a2e8d66d3e315f48e06623ca65be3def0b06629bed264c4cd632ff18f0fc"
-   ],
-   "sourceGroups": [
-    "x68000:Akiko (1993)(Ides).zip"
-   ],
-   "title": "Akiko",
-   "year": 1993
-  },
   "x68000:local-d7eb70b43b": {
    "contentIds": [
     "sha256-fd-v1:0bf2336369a29b60584c1a3662036a94fc0337e5f4f0931b1397c506b1530f17"
@@ -20783,17 +20781,6 @@
    "title": "Marble Reverser I+II",
    "year": 1992
   },
-  "x68000:local-e73311c882": {
-   "contentIds": [
-    "sha256-fd-v1:2ec526ae1817c0740a0c9ef9fc3a34f05d1a4ea3c379eee319e1ec1e040bb435",
-    "sha256-fd-v1:bf36340cb5fd84aa83da7fdc89c19c80e6d5da2f66932f47840d3295a53da3eb"
-   ],
-   "sourceGroups": [
-    "x68000:Square Resort (1992)(Family Soft).zip"
-   ],
-   "title": "Square Resort",
-   "year": 1992
-  },
   "x68000:local-e7436f2655": {
    "contentIds": [
     "sha256-fd-v1:122f1d179bc0188e958506855a55abd8dbd2066455e1bfdb8b539ed3e7e5ae26"
@@ -20802,16 +20789,6 @@
     "x68000:Yuugai Chase Aa!! Namida No Shimensoka (199x)(P Shoukai Software).zip"
    ],
    "title": "Yuugai Chase Aa!! Namida No Shimensoka"
-  },
-  "x68000:local-e753bb061f": {
-   "contentIds": [
-    "sha256-fd-v1:13228472120c293ff9f7a9ac118b5b93cd3e25a8ec1523d67fb824e14b5bd986",
-    "sha256-fd-v1:c1f0e6d23e764b49b777b154c3b11c611442d24912fa95c7407394bb67936fe4"
-   ],
-   "sourceGroups": [
-    "x68000:Rouge (19xx)(Birdy Soft).zip"
-   ],
-   "title": "Rouge"
   },
   "x68000:local-e86d1e2981": {
    "contentIds": [
@@ -20865,18 +20842,6 @@
    ],
    "title": "Shin Baseball Knuckles",
    "year": 1995
-  },
-  "x68000:local-ea41eb7057": {
-   "contentIds": [
-    "sha256-fd-v1:451e7fba20aeca61373d46dc4885506b12b4d1b48f673806bdb47a91d172ca2b",
-    "sha256-fd-v1:70047db031697547acc50fed1ec706aefc4a7103f22a06cbd6f7cb5eefef835b",
-    "sha256-fd-v1:cc633d395c87610c425e4ca46a2cb6fc207c32a1d997d9d4983793c20065a33d"
-   ],
-   "sourceGroups": [
-    "x68000:Byakuya Monogatari (1989)(East Cube).zip"
-   ],
-   "title": "Byakuya Monogatari",
-   "year": 1989
   },
   "x68000:local-ea906ccc27": {
    "contentIds": [
@@ -21144,19 +21109,6 @@
    ],
    "title": "Populous Promised Land"
   },
-  "x68000:local-f73dacd204": {
-   "contentIds": [
-    "sha256-fd-v1:540108c76cfe73fdd89a8742946cfd5f169af8f456fd56745f0a2c2a60b9d9bd",
-    "sha256-fd-v1:6bf539b43f8e51bf70d727ce50974264c8bc6a503838a80ec072f4608db42d49",
-    "sha256-fd-v1:95a3a5dc6b3cd0e1abb51b11f6d38dd0cd40581faaa6a66fb524431bd43f09fe",
-    "sha256-fd-v1:c74ef18c091061540d320bb5d90e7248e64e1e438d75253dc6fc90eae64bac05"
-   ],
-   "sourceGroups": [
-    "x68000:Xak (1990)(Micro Cabin).zip"
-   ],
-   "title": "Xak",
-   "year": 1990
-  },
   "x68000:local-f7830fdeae": {
    "contentIds": [
     "sha256-fd-v1:8751960a3f27cb104446d8c4d033f0cbbc71efda000f1be84a8f0f559f8cb7a2"
@@ -21313,15 +21265,6 @@
    ],
    "title": "Luster Squash",
    "year": 1990
-  },
-  "x68000:local-fff03c3592": {
-   "contentIds": [
-    "sha256-fd-v1:851bc91ac564285c61832dc5d2cb8a679a4ef2296aa92883ff7d3916b52c5d18"
-   ],
-   "sourceGroups": [
-    "x68000:Entfuhrer (19xx)(Zenryuutsuu).zip"
-   ],
-   "title": "Entfuhrer"
   },
   "x68000:moby-117422": {
    "mobygames": 117422,
