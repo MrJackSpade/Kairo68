@@ -1,0 +1,614 @@
+{
+ "approvedArtwork": {},
+ "excluded": {
+  "x68000:134064": {
+   "reason": "MobyGames Adult genre",
+   "title": "Prostitute Maker"
+  },
+  "x68000:150116": {
+   "reason": "MobyGames Adult genre",
+   "title": "Santa-kun"
+  },
+  "x68000:150138": {
+   "reason": "MobyGames Adult genre",
+   "title": "2069 AD"
+  },
+  "x68000:150273": {
+   "reason": "MobyGames Adult genre",
+   "title": "Abunai Tengu Densetsu"
+  },
+  "x68000:150575": {
+   "reason": "MobyGames Adult genre",
+   "title": "Akiko: Premium Version"
+  },
+  "x68000:156949": {
+   "reason": "MobyGames Adult genre",
+   "title": "AmbivalenZ: Niritsu Haihan"
+  },
+  "x68000:156960": {
+   "reason": "MobyGames Adult genre",
+   "title": "Beast"
+  },
+  "x68000:157430": {
+   "reason": "MobyGames Adult genre",
+   "title": "Animahjong V3"
+  },
+  "x68000:157431": {
+   "reason": "MobyGames Adult genre",
+   "title": "Bell's Avenue"
+  },
+  "x68000:157432": {
+   "reason": "MobyGames Adult genre",
+   "title": "Bonnou Yobikou 2"
+  },
+  "x68000:157433": {
+   "reason": "MobyGames Adult genre",
+   "title": "Bonnou Yobikou 3"
+  },
+  "x68000:157434": {
+   "reason": "MobyGames Adult genre",
+   "title": "Branmarker"
+  },
+  "x68000:157436": {
+   "reason": "MobyGames Adult genre",
+   "title": "Cal II"
+  },
+  "x68000:157437": {
+   "reason": "MobyGames Adult genre",
+   "title": "Can Can Bunny"
+  },
+  "x68000:157438": {
+   "reason": "MobyGames Adult genre",
+   "title": "Can Can Bunny Extra"
+  },
+  "x68000:157441": {
+   "reason": "MobyGames Adult genre",
+   "title": "Can Can Bunny Premiere"
+  },
+  "x68000:157442": {
+   "reason": "MobyGames Adult genre",
+   "title": "Can Can Bunny Superior"
+  },
+  "x68000:157447": {
+   "reason": "MobyGames Adult genre",
+   "title": "Cat's Part-1"
+  },
+  "x68000:157449": {
+   "reason": "MobyGames Adult genre",
+   "title": "Continental"
+  },
+  "x68000:157450": {
+   "reason": "MobyGames Adult genre",
+   "title": "Cosmic Psycho"
+  },
+  "x68000:157451": {
+   "reason": "MobyGames Adult genre",
+   "title": "Crescent"
+  },
+  "x68000:157452": {
+   "reason": "MobyGames Adult genre",
+   "title": "Crescent Moon Girl"
+  },
+  "x68000:157458": {
+   "reason": "MobyGames Adult genre",
+   "title": "Dalk"
+  },
+  "x68000:157462": {
+   "reason": "MobyGames Adult genre",
+   "title": "DE・JA"
+  },
+  "x68000:157478": {
+   "reason": "MobyGames Adult genre",
+   "title": "Dōkyūsei"
+  },
+  "x68000:157480": {
+   "reason": "MobyGames Adult genre",
+   "title": "DOR"
+  },
+  "x68000:157481": {
+   "reason": "MobyGames Adult genre",
+   "title": "DOR: Part 2"
+  },
+  "x68000:157482": {
+   "reason": "MobyGames Adult genre",
+   "title": "DOR: Part 3 "
+  },
+  "x68000:157483": {
+   "reason": "MobyGames Adult genre",
+   "title": "DOR: Special Edition '93"
+  },
+  "x68000:157484": {
+   "reason": "MobyGames Adult genre",
+   "title": "DOR Special Edition: Sakigake"
+  },
+  "x68000:157486": {
+   "reason": "MobyGames Adult genre",
+   "title": "D.P.S: Dream Program System"
+  },
+  "x68000:157487": {
+   "reason": "MobyGames Adult genre",
+   "title": "Dracula Hakushaku"
+  },
+  "x68000:157489": {
+   "reason": "MobyGames Adult genre",
+   "title": "Dragon Eyes"
+  },
+  "x68000:157490": {
+   "reason": "MobyGames Adult genre",
+   "title": "Dragon Knight"
+  },
+  "x68000:157491": {
+   "reason": "MobyGames Adult genre",
+   "title": "Dragon Knight 4"
+  },
+  "x68000:157492": {
+   "reason": "MobyGames Adult genre",
+   "title": "Dragon Knight II"
+  },
+  "x68000:157496": {
+   "reason": "MobyGames Adult genre",
+   "title": "Dream Program System SG"
+  },
+  "x68000:157498": {
+   "reason": "MobyGames Adult genre",
+   "title": "Dream Program System SG set 3"
+  },
+  "x68000:157501": {
+   "reason": "MobyGames Adult genre",
+   "title": "Dr. Stop!"
+  },
+  "x68000:157507": {
+   "reason": "MobyGames Adult genre",
+   "title": "Exterlien"
+  },
+  "x68000:157516": {
+   "reason": "MobyGames Adult genre",
+   "title": "Foxy 2"
+  },
+  "x68000:157519": {
+   "reason": "MobyGames Adult genre",
+   "title": "Gakuen Bomber"
+  },
+  "x68000:157526": {
+   "reason": "MobyGames Adult genre",
+   "title": "Gize! XIX"
+  },
+  "x68000:157529": {
+   "reason": "MobyGames Adult genre",
+   "title": "Guerrière Lyewärd"
+  },
+  "x68000:157540": {
+   "reason": "MobyGames Adult genre",
+   "title": "Illumina!"
+  },
+  "x68000:157542": {
+   "reason": "MobyGames Adult genre",
+   "title": "Image"
+  },
+  "x68000:157543": {
+   "reason": "MobyGames Adult genre",
+   "title": "Image II"
+  },
+  "x68000:157561": {
+   "reason": "MobyGames Adult genre",
+   "title": "Jan Jaka Jan"
+  },
+  "x68000:157563": {
+   "reason": "MobyGames Adult genre",
+   "title": "The Joker"
+  },
+  "x68000:157564": {
+   "reason": "MobyGames Adult genre",
+   "title": "Joker II"
+  },
+  "x68000:157566": {
+   "reason": "MobyGames Adult genre",
+   "title": "Karei naru Jinsei: Mina-san no okage desu"
+  },
+  "x68000:157567": {
+   "reason": "MobyGames Adult genre",
+   "title": "Kawarazakike no Ichizoku"
+  },
+  "x68000:157571": {
+   "reason": "MobyGames Adult genre",
+   "title": "Kimi Dake ni Ai o... "
+  },
+  "x68000:157591": {
+   "reason": "MobyGames Adult genre",
+   "title": "Dragon Knight III"
+  },
+  "x68000:157592": {
+   "reason": "MobyGames Adult genre",
+   "title": "Kurutta Kajitsu"
+  },
+  "x68000:157609": {
+   "reason": "MobyGames Adult genre",
+   "title": "L Elle"
+  },
+  "x68000:157616": {
+   "reason": "MobyGames Adult genre",
+   "title": "Lipstick Adventure "
+  },
+  "x68000:157617": {
+   "reason": "MobyGames Adult genre",
+   "title": "Lipstick Adventure 2 "
+  },
+  "x68000:157618": {
+   "reason": "MobyGames Adult genre",
+   "title": "Lipstick Adventure 3"
+  },
+  "x68000:157623": {
+   "reason": "MobyGames Adult genre",
+   "title": "Magic Knight"
+  },
+  "x68000:157624": {
+   "reason": "MobyGames Adult genre",
+   "title": "Mahjong Clinic Zoukangou"
+  },
+  "x68000:157625": {
+   "reason": "MobyGames Adult genre",
+   "title": "Mahjong Yuuenchi"
+  },
+  "x68000:157628": {
+   "reason": "MobyGames Adult genre",
+   "title": "Marine Buster"
+  },
+  "x68000:157629": {
+   "reason": "MobyGames Adult genre",
+   "title": "Mai"
+  },
+  "x68000:157636": {
+   "reason": "MobyGames Adult genre",
+   "title": "Martial Age"
+  },
+  "x68000:157637": {
+   "reason": "MobyGames Adult genre",
+   "title": "Mayumi"
+  },
+  "x68000:157641": {
+   "reason": "MobyGames Adult genre",
+   "title": "Metal Eye"
+  },
+  "x68000:157644": {
+   "reason": "MobyGames Adult genre",
+   "title": "Mirage"
+  },
+  "x68000:157645": {
+   "reason": "MobyGames Adult genre",
+   "title": "Moonlight-chan Rinshan"
+  },
+  "x68000:157650": {
+   "reason": "MobyGames Adult genre",
+   "title": "Twilight Zone III: Nagakute Amai Yoru"
+  },
+  "x68000:157652": {
+   "reason": "MobyGames Adult genre",
+   "title": "Oh! Pai"
+  },
+  "x68000:157656": {
+   "reason": "MobyGames Adult genre",
+   "title": "Pias"
+  },
+  "x68000:157658": {
+   "reason": "MobyGames Adult genre",
+   "title": "Pinky Ponky Dai-1 Shū: Beautiful Dream"
+  },
+  "x68000:157659": {
+   "reason": "MobyGames Adult genre",
+   "title": "Pinky Ponky Dai-2 Shū: Twilight Games"
+  },
+  "x68000:157660": {
+   "reason": "MobyGames Adult genre",
+   "title": "Pinky Ponky Dai-3 Shū: Battle Lovers "
+  },
+  "x68000:157663": {
+   "reason": "MobyGames Adult genre",
+   "title": "Premium"
+  },
+  "x68000:157664": {
+   "reason": "MobyGames Adult genre",
+   "title": "Premium 2"
+  },
+  "x68000:157667": {
+   "reason": "MobyGames Adult genre",
+   "title": "Pro Student G"
+  },
+  "x68000:157671": {
+   "reason": "MobyGames Adult genre",
+   "title": "The Queen of Duellist Gaiden α+"
+  },
+  "x68000:157672": {
+   "reason": "MobyGames Adult genre",
+   "title": "Quintia Road"
+  },
+  "x68000:157673": {
+   "reason": "MobyGames Adult genre",
+   "title": "Rance: Hikari o Motomete"
+  },
+  "x68000:157674": {
+   "reason": "MobyGames Adult genre",
+   "title": "Rance II: Hangyaku no Shōjotachi"
+  },
+  "x68000:157676": {
+   "reason": "MobyGames Adult genre",
+   "title": "Ray Gun"
+  },
+  "x68000:157682": {
+   "reason": "MobyGames Adult genre",
+   "title": "Saori: Bishōjo-tachi no Yakata"
+  },
+  "x68000:157685": {
+   "reason": "MobyGames Adult genre",
+   "title": "Shangrlia"
+  },
+  "x68000:157686": {
+   "reason": "MobyGames Adult genre",
+   "title": "Shangrlia 2"
+  },
+  "x68000:157699": {
+   "reason": "MobyGames Adult genre",
+   "title": "Slime Master"
+  },
+  "x68000:157709": {
+   "reason": "MobyGames Adult genre",
+   "title": "Super D.P.S"
+  },
+  "x68000:157711": {
+   "reason": "MobyGames Adult genre",
+   "title": "Super Real Mahjong: PII & PIII"
+  },
+  "x68000:157712": {
+   "reason": "MobyGames Adult genre",
+   "title": "Super Real Mahjong PIV"
+  },
+  "x68000:157713": {
+   "reason": "MobyGames Adult genre",
+   "title": "Sweet Angel"
+  },
+  "x68000:157719": {
+   "reason": "MobyGames Adult genre",
+   "title": "Tenshin Ranma"
+  },
+  "x68000:157725": {
+   "reason": "MobyGames Adult genre",
+   "title": "Uchuu Kaitou Funny Bee"
+  },
+  "x68000:157727": {
+   "reason": "MobyGames Adult genre",
+   "title": "Urotsukidōji"
+  },
+  "x68000:157729": {
+   "reason": "MobyGames Adult genre",
+   "title": "Viper V6"
+  },
+  "x68000:157737": {
+   "reason": "MobyGames Adult genre",
+   "title": "Virgin Angel"
+  },
+  "x68000:157738": {
+   "reason": "MobyGames Adult genre",
+   "title": "Vision"
+  },
+  "x68000:157740": {
+   "reason": "MobyGames Adult genre",
+   "title": "Words Worth"
+  },
+  "x68000:157750": {
+   "reason": "MobyGames Adult genre",
+   "title": "Youjuu Senki: AD 2048"
+  },
+  "x68000:183466": {
+   "reason": "MobyGames Adult genre",
+   "title": "Cyberblock Metal Orange EX"
+  },
+  "x68000:184318": {
+   "reason": "MobyGames Adult genre",
+   "title": "Cal"
+  },
+  "x68000:186439": {
+   "reason": "MobyGames Adult genre",
+   "title": "Armist"
+  },
+  "x68000:186622": {
+   "reason": "MobyGames Adult genre",
+   "title": "Hoshi no Suna Monogatari"
+  },
+  "x68000:186623": {
+   "reason": "MobyGames Adult genre",
+   "title": "Hoshi no Suna Monogatari 2"
+  },
+  "x68000:186746": {
+   "reason": "MobyGames Adult genre",
+   "title": "If"
+  },
+  "x68000:186749": {
+   "reason": "MobyGames Adult genre",
+   "title": "If 2"
+  },
+  "x68000:186750": {
+   "reason": "MobyGames Adult genre",
+   "title": "If 3"
+  },
+  "x68000:186784": {
+   "reason": "MobyGames Adult genre",
+   "title": "Mahjong Gensoukyoku"
+  },
+  "x68000:187587": {
+   "reason": "MobyGames Adult genre",
+   "title": "De・Ja II"
+  },
+  "x68000:187800": {
+   "reason": "MobyGames Adult genre",
+   "title": "Break Down"
+  },
+  "x68000:187801": {
+   "reason": "MobyGames Adult genre",
+   "title": "Girls Paradise: Rakuen no Tenshitachi"
+  },
+  "x68000:187802": {
+   "reason": "MobyGames Adult genre",
+   "title": "Hacchake Ayayo-san 2: Ikenai Holiday"
+  },
+  "x68000:187803": {
+   "reason": "MobyGames Adult genre",
+   "title": "Hacchake Ayayo-san"
+  },
+  "x68000:187805": {
+   "reason": "MobyGames Adult genre",
+   "title": "Himitsu no Hanazono"
+  },
+  "x68000:187920": {
+   "reason": "MobyGames Adult genre",
+   "title": "Tenshitachi no Gogo III: Bangai-hen"
+  },
+  "x68000:188105": {
+   "reason": "MobyGames Adult genre",
+   "title": "Twilight Zone Vol. 4: Tokubetsu-hen"
+  },
+  "x68000:188517": {
+   "reason": "MobyGames Adult genre",
+   "title": "PasoComic Purple Cat Vol. 3: The Onna Kyoushi Tokushuu"
+  },
+  "x68000:188553": {
+   "reason": "MobyGames Adult genre",
+   "title": "Rance III: Leazas Kanraku"
+  },
+  "x68000:188555": {
+   "reason": "MobyGames Adult genre",
+   "title": "Review: Jashin Fukkatsu"
+  },
+  "x68000:189026": {
+   "reason": "MobyGames Adult genre",
+   "title": "Starship Rendezvous"
+  },
+  "x68000:189054": {
+   "reason": "MobyGames Adult genre",
+   "title": "Super Ultra Mutchin Puri Puri Cyborg: Maririn DX"
+  },
+  "x68000:189056": {
+   "reason": "MobyGames Adult genre",
+   "title": "Sweet Emotion"
+  },
+  "x68000:189118": {
+   "reason": "MobyGames Adult genre",
+   "title": "Tenshi-Tachi no Gogo Collection"
+  },
+  "x68000:189119": {
+   "reason": "MobyGames Adult genre",
+   "title": "Tenshi-Tachi no Gogo III: Ribbon"
+  },
+  "x68000:189120": {
+   "reason": "MobyGames Adult genre",
+   "title": "Tenshi-Tachi no Gogo IV: Yuuko"
+  },
+  "x68000:189121": {
+   "reason": "MobyGames Adult genre",
+   "title": "Tenshi-Tachi no Gogo VI: My Fair Teacher"
+  },
+  "x68000:189129": {
+   "reason": "MobyGames Adult genre",
+   "title": "Twilight"
+  },
+  "x68000:189133": {
+   "reason": "MobyGames Adult genre",
+   "title": "Vampire High School"
+  },
+  "x68000:189157": {
+   "reason": "MobyGames Adult genre",
+   "title": "Yuujin Special Collection"
+  },
+  "x68000:189189": {
+   "reason": "MobyGames Adult genre",
+   "title": "Réserve"
+  },
+  "x68000:193474": {
+   "reason": "MobyGames Adult genre",
+   "title": "Ayumi-chan Monogatari"
+  },
+  "x68000:193476": {
+   "reason": "MobyGames Adult genre",
+   "title": "Bell's Avenue 2"
+  },
+  "x68000:456071": {
+   "reason": "MobyGames Adult genre",
+   "title": "Be Rain"
+  },
+  "x68000:moby-123176": {
+   "reason": "MobyGames Adult genre",
+   "title": "Setsujū"
+  },
+  "x68000:moby-18730": {
+   "reason": "MobyGames Adult genre",
+   "title": "Tōshin Toshi"
+  },
+  "x68000:moby-258712": {
+   "reason": "MobyGames Adult genre",
+   "title": "Bell's Avenue Vol.3"
+  },
+  "x68000:moby-258938": {
+   "reason": "MobyGames Adult genre",
+   "title": "Doki Doki Amana-chan"
+  },
+  "x68000:moby-258955": {
+   "reason": "MobyGames Adult genre",
+   "title": "Doki Doki Amana-chan 2"
+  },
+  "x68000:moby-259773": {
+   "reason": "MobyGames Adult genre",
+   "title": "Long Night: Maiko-chan no Kiken na Yoru"
+  },
+  "x68000:moby-43488": {
+   "reason": "MobyGames Adult genre",
+   "title": "Viper V8"
+  },
+  "x68000:moby-43629": {
+   "reason": "MobyGames Adult genre",
+   "title": "Wrestle Angels Special: Mō Hitori no Top Eventer"
+  },
+  "x68000:moby-45838": {
+   "reason": "MobyGames Adult genre",
+   "title": "Tenshitachi no Gogo: Tenkōsei"
+  },
+  "x68000:moby-45863": {
+   "reason": "MobyGames Adult genre",
+   "title": "Alice-tachi no Gogo Vol. 1"
+  },
+  "x68000:moby-45871": {
+   "reason": "MobyGames Adult genre",
+   "title": "Alice-tachi no Gogo Vol. 2"
+  },
+  "x68000:moby-46067": {
+   "reason": "MobyGames Adult genre",
+   "title": "Mahjong Fantasia II"
+  },
+  "x68000:moby-47162": {
+   "reason": "MobyGames Adult genre",
+   "title": "Battle High School"
+  },
+  "x68000:moby-47526": {
+   "reason": "MobyGames Adult genre",
+   "title": "Dream Program System SG set 2"
+  },
+  "x68000:moby-53139": {
+   "reason": "MobyGames Adult genre",
+   "title": "Kyarukan: Super Break Down !!"
+  },
+  "x68000:moby-58120": {
+   "reason": "MobyGames Adult genre",
+   "title": "Ayayo's Life After"
+  },
+  "x68000:moby-58899": {
+   "reason": "MobyGames Adult genre",
+   "title": "Pasocomic Purple Cat Volume. 1: Bunny Girl Tokushū!!"
+  },
+  "x68000:moby-58900": {
+   "reason": "MobyGames Adult genre",
+   "title": "Pasocomic Purple Cat Volume. 2: Hospital Tokushū"
+  },
+  "x68000:moby-64520": {
+   "reason": "MobyGames Adult genre",
+   "title": "Bishōjo Shashinkan Special: The Double Vision"
+  }
+ },
+ "schemaVersion": 1
+}
