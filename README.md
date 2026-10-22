@@ -30,9 +30,9 @@ In development; there is no release yet. The app boots X68000 floppy and SASI ha
 
 ## Games and firmware
 
-Games, operating systems, and firmware are not supplied. The X68000 needs its IPL-ROM (`iplrom.dat`) and character ROM (`cgrom.dat`), which you provide from your own machine.
+Games and the X68000's BIOS are not supplied; you provide the BIOS from your own machine: the IPL (`iplrom.dat`) and the character font (`cgrom.dat`), both required. Menu › Machine lists every BIOS file, each marked Required or Optional. Pick each file, or use **Import all from a folder…** to import every file the app recognizes in a folder you choose.
 
-Kairo68 reads XDF, DIM, D88, HDM and 2HD floppy images and SASI hard disk images (HDF), loose or in ZIP and 7z archives.
+Kairo68 reads XDF, DIM, D88, HDM and 2HD floppy images and SASI hard disk images (HDF), loose or in ZIP and 7z archives. A game's disks show as one entry, and its second disk goes in drive 1 when it starts. The machine runs at full speed while it boots, until the game has loaded or you press a key.
 
 ## Documentation
 

@@ -62,6 +62,7 @@ public:
     void mouse_button(int button, bool down) override { machine_->mouse_button(button, down); }
 
     void reset() override { machine_->reset(); }
+    bool booting() override { return machine_->booting(); }
 
     int save_state(const std::string &directory) override {
         return machine_->save_state(directory + kStateFile) ? 0 : kStateFailed;

@@ -26,6 +26,8 @@
 #include "render.h"
 #include "rendersw.hxx"
 #include "screen.h"
+#include "imagedev/floppy.h"
+#include "sharp/x68k_hdc.h"
 #include "audio_effects/compressor.h"
 #include "audio_effects/eq.h"
 #include "audio_effects/filter.h"
@@ -147,6 +149,11 @@ struct X68kMachine::Impl : public osd_interface {
     std::atomic<int> mouse_dx{0}, mouse_dy{0};
     int mouse_frame_dx = 0, mouse_frame_dy = 0;
     std::array<std::atomic<bool>, 2> mouse_buttons{};
+
+    // The boot (X68kMachine::booting), read at the end of each frame on MAME's thread.
+    std::atomic<bool> booting{true};
+    bool drive_ran = false;
+    void update_booting();
 
     ErrorCapture errors;
 
@@ -408,6 +415,7 @@ void X68kMachine::Impl::update(bool skip_redraw) {
         // The end of a frame, inside the VBLANK callback.
         lock.unlock();
         if (!skip_redraw) render_frame();
+        update_booting();
         lock.lock();
         if (!exiting) {
             frame_ready = true;
@@ -437,6 +445,17 @@ void X68kMachine::Impl::run_tasks(std::unique_lock<std::mutex> &lock) {
         tasks_done += pending.size();
         changed.notify_all();
     }
+}
+
+void X68kMachine::Impl::update_booting() {
+    if (!booting.load() || !machine) return;
+    bool running = false;
+    for (floppy_image_device &drive : device_type_enumerator<floppy_image_device>(machine->root_device()))
+        if (drive.exists() && !drive.mon_r()) running = true;
+    for (x68k_hdc_image_device &disk : device_type_enumerator<x68k_hdc_image_device>(machine->root_device()))
+        if (disk.exists() && disk.busy()) booting = false;
+    if (running) drive_ran = true;
+    else if (drive_ran) booting = false;
 }
 
 void X68kMachine::Impl::render_frame() {
@@ -526,10 +545,12 @@ uint32_t X68kMachine::read_audio(int16_t *stereo, uint32_t max_frames) {
 
 void X68kMachine::key(int code, bool down) {
     if (code > 0 && code < kKeyCodes) impl_->keys[code] = down;
+    if (down) impl_->booting = false;
 }
 
 void X68kMachine::joystick(int control, bool down) {
     if (control >= 0 && control < kJoystickControls) impl_->joystick[control] = down;
+    if (down) impl_->booting = false;
 }
 
 void X68kMachine::mouse_move(int dx, int dy) {
@@ -539,14 +560,19 @@ void X68kMachine::mouse_move(int dx, int dy) {
 
 void X68kMachine::mouse_button(int button, bool down) {
     if (button == 1 || button == 2) impl_->mouse_buttons[button - 1] = down;
+    if (down) impl_->booting = false;
 }
 
 void X68kMachine::reset() {
-    impl_->between_frames<bool>([](running_machine &m) {
+    impl_->between_frames<bool>([this](running_machine &m) {
         m.schedule_soft_reset();
+        impl_->drive_ran = false;
+        impl_->booting = true;
         return true;
     });
 }
+
+bool X68kMachine::booting() const { return impl_->booting.load(); }
 
 bool X68kMachine::save_state(const std::string &file) {
     return impl_->between_frames<bool>([file](running_machine &m) {
@@ -559,6 +585,8 @@ bool X68kMachine::save_state(const std::string &file) {
 }
 
 bool X68kMachine::load_state(const std::string &file) {
+    // A saved state is past the boot.
+    impl_->booting = false;
     return impl_->between_frames<bool>([file](running_machine &m) {
         // As running_machine::handle_saveload: anonymous timers cannot be saved or restored.
         if (!m.scheduler().can_save()) return false;

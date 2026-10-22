@@ -62,6 +62,10 @@ public:
     void mouse_button(int button, bool down);
 
     void reset();
+    // True from power-on or reset until the boot has loaded: until a floppy drive that has run
+    // stops, or a hard disk has been read. A key, pad or mouse press ends it at once, so a game
+    // that keeps its drive running never plays fast.
+    bool booting() const;
     // Run on the machine's own thread at the end of the frame; false when MAME refused.
     bool save_state(const std::string &file);
     bool load_state(const std::string &file);

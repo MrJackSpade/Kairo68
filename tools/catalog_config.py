@@ -28,3 +28,7 @@ MEDIA = content_ids.Media(kind, content_ids.same_file, LIMITS.__getitem__, 1, se
 
 MOBYGAMES = "x68000"
 SCANS = {"x68000": (".downloads/scan/x68000.json", ("x68000",))}
+
+# Disk sets (shared/tools/disk_sets.py): a game boots from its hard disk or its first floppy, with its second floppy in drive 1.
+BOOT_KINDS = ["hd", "fd"]
+COMPANION = {"fd": ("fd", "floppyB", False)}

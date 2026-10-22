@@ -38,4 +38,4 @@ The shared RetroArch Slang shader runtime uses librashader under its GPL-3.0-onl
 
 ## Firmware and games
 
-Kairo68 does not include X68000 ROMs, operating systems, or games. Users supply any firmware and games they need.
+Kairo68 does not include X68000 system firmware (BIOS), operating systems, or games. Users supply any firmware and games they need.

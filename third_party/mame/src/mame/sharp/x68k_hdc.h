@@ -108,6 +108,8 @@ public:
 
 	// Kairo68: DMA request, REQ during a data phase
 	auto drq_callback() { return m_drq_cb.bind(); }
+	// Kairo68: a command in progress, which ends the boot's fast-forward
+	bool busy() const { return m_phase != sasi_phase::BUSFREE; }
 
 protected:
 	// device_t implementation

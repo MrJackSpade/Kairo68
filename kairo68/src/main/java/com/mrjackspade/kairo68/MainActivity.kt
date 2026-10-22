@@ -18,13 +18,13 @@ import java.util.concurrent.atomic.AtomicBoolean
 
 /** Kairo68: the Sharp X68000 on MAME's x68k driver, in the shared Kairo frontend. */
 class MainActivity : MachineActivity<DiskImageEntry>() {
-    override val identity = Identity("KAIRO68", "Kairo68", "X68000", "kairo68",
+    override val identity = Identity("KAIRO68", 0xffFA2833.toInt(), "Kairo68", "X68000", "kairo68",
         LibraryStrings("KAIRO68", "Kairo68"),
         "Kairo68 uses MAME's X68000 emulation. Source and provenance: github.com/MrJackSpade/Kairo68.",
-        "Choose a ROM folder to find floppy and hard disk images and the ZIP and 7z archives holding them",
-        "Folder access expired. Select the ROM folder again.",
-        MachineFirstRun.Folder("Choose a ROM folder", "Select the folder containing your X68000 games. Kairo68 " +
-            "will scan its floppy and hard disk images and the ZIP and 7z archives holding them.", "Choose ROM folder…"),
+        "Choose a games folder to find floppy and hard disk images and the ZIP and 7z archives holding them",
+        "Folder access expired. Select the games folder again.",
+        MachineFirstRun.Folder("Choose a games folder", "Select the folder containing your X68000 games. Kairo68 " +
+            "will scan its floppy and hard disk images and the ZIP and 7z archives holding them.", "Choose games folder…"),
         "SAVE STATES", "MrJackSpade/Kairo68")
     override val machine = Machine(768, 512, 4.0 / 3.0, "state.sta")
     override val bridge by lazy { NativeMachine("kairo68") }
@@ -62,15 +62,12 @@ class MainActivity : MachineActivity<DiskImageEntry>() {
     private val romDir by lazy { File(filesDir, "firmware") }
     private val firmwareDir by lazy { File(romDir, "x68000") }
     override val firmwareSets by lazy {
-        fun rom(name: String, label: String, size: Int) =
-            FirmwareSet.Part(name, label, setOf(name), true, setOf(size.toLong()))
-        listOf("X68000 ROMs" to FirmwareSet(firmwareDir, listOf(
-            rom("iplrom.dat", "IPL-ROM", 0x20000),
-            rom("cgrom.dat", "Character ROM", 0xC0000))))
+        fun rom(name: String, label: String, description: String, size: Int) =
+            FirmwareSet.Part(name, label, "$name · $description", setOf(name), true, setOf(size.toLong()))
+        listOf("X68000 BIOS" to FirmwareSet(firmwareDir, listOf(
+            rom("iplrom.dat", "IPL", "the BIOS that starts the X68000 and loads games", 0x20000),
+            rom("cgrom.dat", "Character font", "the X68000's text and kanji font", 0xC0000))))
     }
-    override val firmwareText get() = Triple("X68000 firmware",
-        "Choose the folder holding your X68000 ROM files. Kairo68 copies the files it recognizes.",
-        "The IPL-ROM (iplrom.dat) and character ROM (cgrom.dat) are needed to start games.")
 
     override fun startGame(entry: DiskImageEntry, game: CatalogGame, cancelled: AtomicBoolean,
                            progress: (String) -> Unit) {
