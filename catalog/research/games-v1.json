@@ -6228,6 +6228,10 @@
   },
   "x68000:157738": {
    "adult": true,
+   "artwork": {
+    "preview": "art/catalog/moby/66931/screenshot-29af0482f68e.webp",
+    "previewUrl": "https://raw.githubusercontent.com/MrJackSpade/Kairo68/main/catalog/artwork/art/catalog/moby/66931/screenshot-29af0482f68e.webp"
+   },
    "contentIds": [
     "sha256-fd-v1:8e9a7ab85a59468af80e15a4265b344e37eff32c8a9cf2830b634c8aa0899cde",
     "sha256-fd-v1:f9ef4ec5a3e8936d129abf1da3af3830f658416439eb135fe39278eaa8401b1c"
@@ -9674,6 +9678,7 @@
     "Ginga Eiyuu Densetsu III",
     "Legend of Galactic Heroes III"
    ],
+   "boxArtUrl": "https://images.launchbox-app.com/f5fe4aee-39d1-48d8-b267-2fe61f558e6e.jpg",
    "description": "The third strategy game based on Legend of the Galactic Heroes: command fleets in the war between the Empire and the Alliance.",
    "developer": "Bothtec",
    "launchbox": "187954",
@@ -12192,6 +12197,7 @@
    "title": "Réserve"
   },
   "x68000:189190": {
+   "boxArtUrl": "https://images.launchbox-app.com/0e580f0d-96ac-4b31-98a7-eba11260a44a.png",
    "description": "An action game from a disk included with Oh! X magazine.",
    "launchbox": "189190",
    "publisher": "Softbank",
@@ -13729,6 +13735,7 @@
    "title": "Galaxian X68K"
   },
   "x68000:190296": {
+   "boxArtUrl": "https://images.launchbox-app.com/070cb098-16b3-4fe9-bad9-71e6b6d8898d.png",
    "contentIds": [
     "sha256-fd-v1:224e12e2f0d59f6a04f89237ffd274b25929674f602d527ea6302d5dff09f0fa",
     "sha256-fd-v1:318cc83aaa3c00cc3c03cf0cf0d59b46a17f4bc4bda03744be7e7e181c77c5cf",
@@ -14096,6 +14103,7 @@
    "title": "Ikkaku Toushi Cecil"
   },
   "x68000:190525": {
+   "boxArtUrl": "https://images.launchbox-app.com/b4f67e6a-bfe7-4080-bb7d-f407ff4df716.png",
    "contentIds": [
     "sha256-fd-v1:1b0199be7c4d45087509cf6db9c080de3fce9d039cc2ac05c5bd53143f7669c0"
    ],
@@ -14197,6 +14205,7 @@
    "title": "Jotei Senki 2: Legend of Heroines"
   },
   "x68000:190543": {
+   "boxArtUrl": "https://images.launchbox-app.com/b3b7f89c-2081-4b44-9d0e-96975ffae296.png",
    "developer": "Linner System",
    "launchbox": "190543",
    "publisher": "Linner System",
@@ -21199,18 +21208,30 @@
    "year": 1990
   },
   "x68000:moby-134893": {
+   "artwork": {
+    "preview": "art/catalog/moby/134893/screenshot-a261b2260186.webp",
+    "previewUrl": "https://raw.githubusercontent.com/MrJackSpade/Kairo68/main/catalog/artwork/art/catalog/moby/134893/screenshot-a261b2260186.webp"
+   },
    "description": "The Special Version of Hydlide 3, an action role-playing game, with improved graphics, new areas and arranged music.",
    "mobygames": 134893,
    "title": "Hydlide 3: Special Version",
    "year": 1990
   },
   "x68000:moby-15149": {
+   "artwork": {
+    "preview": "art/catalog/moby/15149/screenshot-6cc59911e148.webp",
+    "previewUrl": "https://raw.githubusercontent.com/MrJackSpade/Kairo68/main/catalog/artwork/art/catalog/moby/15149/screenshot-6cc59911e148.webp"
+   },
    "description": "ArtDink's railway management simulation: lay track and run trains to grow towns and profits.",
    "mobygames": 15149,
    "title": "Railroad Empire",
    "year": 1988
   },
   "x68000:moby-15155": {
+   "artwork": {
+    "preview": "art/catalog/moby/15155/screenshot-0e0bd6400850.webp",
+    "previewUrl": "https://raw.githubusercontent.com/MrJackSpade/Kairo68/main/catalog/artwork/art/catalog/moby/15155/screenshot-0e0bd6400850.webp"
+   },
    "description": "A map editor for the A-Train railway simulation.",
    "mobygames": 15155,
    "title": "A-Train Construction Set",
@@ -21243,6 +21264,10 @@
   },
   "x68000:moby-258938": {
    "adult": true,
+   "artwork": {
+    "preview": "art/catalog/moby/258938/screenshot-0bd2d690357b.webp",
+    "previewUrl": "https://raw.githubusercontent.com/MrJackSpade/Kairo68/main/catalog/artwork/art/catalog/moby/258938/screenshot-0bd2d690357b.webp"
+   },
    "contentIds": [
     "sha256-fd-v1:4c566ea51f1bffaf9e247d90c8b9d020b49f8e22ff8444f83f2646fec9e2abf1"
    ],
@@ -21263,6 +21288,10 @@
   },
   "x68000:moby-259773": {
    "adult": true,
+   "artwork": {
+    "preview": "art/catalog/moby/259773/screenshot-cccde62d367b.webp",
+    "previewUrl": "https://raw.githubusercontent.com/MrJackSpade/Kairo68/main/catalog/artwork/art/catalog/moby/259773/screenshot-cccde62d367b.webp"
+   },
    "contentIds": [
     "sha256-fd-v1:5897f0ea16fde82459eb9eb2458c01dfd7abd1eaf51cc6cd0b3759a86959b9fa"
    ],
@@ -21303,6 +21332,10 @@
    "year": 1993
   },
   "x68000:moby-49150": {
+   "artwork": {
+    "preview": "art/catalog/moby/49150/screenshot-4175cb2f1141.webp",
+    "previewUrl": "https://raw.githubusercontent.com/MrJackSpade/Kairo68/main/catalog/artwork/art/catalog/moby/49150/screenshot-4175cb2f1141.webp"
+   },
    "description": "Hudson's falling-block puzzle game with Bomberman bombs: line up matching pieces and detonate them to send attacks to your opponent.",
    "mobygames": 49150,
    "title": "Bomberman: Panic Bomber",
@@ -21310,6 +21343,10 @@
   },
   "x68000:moby-53139": {
    "adult": true,
+   "artwork": {
+    "preview": "art/catalog/moby/53139/screenshot-a221d68c6e10.webp",
+    "previewUrl": "https://raw.githubusercontent.com/MrJackSpade/Kairo68/main/catalog/artwork/art/catalog/moby/53139/screenshot-a221d68c6e10.webp"
+   },
    "contentIds": [
     "sha256-fd-v1:e0cb0573158cd7abba2a16070aff5ffb3311f09209defd993d3722ffa12bc099"
    ],
@@ -21328,6 +21365,10 @@
    "year": 1991
   },
   "x68000:moby-58418": {
+   "artwork": {
+    "preview": "art/catalog/moby/58418/screenshot-c74e7b41aec9.webp",
+    "previewUrl": "https://raw.githubusercontent.com/MrJackSpade/Kairo68/main/catalog/artwork/art/catalog/moby/58418/screenshot-c74e7b41aec9.webp"
+   },
    "description": "Houma Hunter Lime, an animated visual novel series about a girl who hunts demons crossing over from a magical world.",
    "mobygames": 58418,
    "title": "Hōma Hunter Lime",

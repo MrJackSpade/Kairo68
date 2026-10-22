@@ -1,0 +1,50 @@
+{
+ "images": {
+  "art/catalog/moby/134893/screenshot-a261b2260186.webp": {
+   "game": "x68000:moby-134893",
+   "sha256": "fcaa43e1b47b5f340baf4d70205a437576b50ee00bb146c044af00b49b781f7a",
+   "sourceUrl": "https://cdn.mobygames.com/screenshots/16562762-hydlide-3-special-version-sharp-x68000-weapons-shop-this-special.png"
+  },
+  "art/catalog/moby/15149/screenshot-6cc59911e148.webp": {
+   "game": "x68000:moby-15149",
+   "sha256": "0c4cdd77d2de4aa8c19fceaf85f22b808224e332225bf6e94c09325907ea5594",
+   "sourceUrl": "https://cdn.mobygames.com/screenshots/16583276-railroad-empire-sharp-x68000-satellite-display-window.png"
+  },
+  "art/catalog/moby/15155/screenshot-0e0bd6400850.webp": {
+   "game": "x68000:moby-15155",
+   "sha256": "d7817f91eec3f5fe1dd0628b504abb75a32c0189bf73572c656ba9c38c98addb",
+   "sourceUrl": "https://cdn.mobygames.com/screenshots/16827150-a-train-construction-set-sharp-x68000-there-shall-be-an-island.png"
+  },
+  "art/catalog/moby/258938/screenshot-0bd2d690357b.webp": {
+   "game": "x68000:moby-258938",
+   "sha256": "694eccc46bd7c642311949f9de125e13d7fa553c728a29556cf307b22c41e480",
+   "sourceUrl": "https://cdn.mobygames.com/screenshots/33085022-doki-doki-amana-chan-sharp-x68000-third-random-enemy-jason-voorh.png"
+  },
+  "art/catalog/moby/259773/screenshot-cccde62d367b.webp": {
+   "game": "x68000:moby-259773",
+   "sha256": "df84a21ebd4f80314b4faf52cecfe66629c882f72f8854adcaeee06b57db4ea2",
+   "sourceUrl": "https://cdn.mobygames.com/screenshots/33970903-long-night-maiko-chan-no-kiken-na-yoru-sharp-x68000-color-of-car.png"
+  },
+  "art/catalog/moby/49150/screenshot-4175cb2f1141.webp": {
+   "game": "x68000:moby-49150",
+   "sha256": "9ca4df34e546f5d65e45cfaf55b713acbbf427d66fc17afab65d2d615ba70f20",
+   "sourceUrl": "https://cdn.mobygames.com/screenshots/20385417-bomberman-panic-bomber-sharp-x68000-lets-go.png"
+  },
+  "art/catalog/moby/53139/screenshot-a221d68c6e10.webp": {
+   "game": "x68000:moby-53139",
+   "sha256": "01c20c3d4dffddf3db4dc81af8e7b1dbdcc80957af184c9810f8b2043a6b9da8",
+   "sourceUrl": "https://cdn.mobygames.com/screenshots/35076835-kyarukan-super-break-down-sharp-x68000-lucky.png"
+  },
+  "art/catalog/moby/58418/screenshot-c74e7b41aec9.webp": {
+   "game": "x68000:moby-58418",
+   "sha256": "ceef93885faaa7aefcdaff25b2765f3744375e7088506ce7a2741a05d16979b5",
+   "sourceUrl": "https://cdn.mobygames.com/screenshots/16760493-homa-hunter-lime-sharp-x68000-a-new-bem-appears.png"
+  },
+  "art/catalog/moby/66931/screenshot-29af0482f68e.webp": {
+   "game": "x68000:157738",
+   "sha256": "6d9ec62f15a758fa547a06ff8e7d61c8b63b4574731210e2ca392d7820b87e0e",
+   "sourceUrl": "https://cdn.mobygames.com/screenshots/16457266-vision-sharp-x68000-instead-make-her-a-warm-drink.png"
+  }
+ },
+ "schemaVersion": 1
+}
