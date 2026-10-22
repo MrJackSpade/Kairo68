@@ -190,6 +190,7 @@ protected:
 	TILE_GET_INFO_MEMBER(get_bg0_tile_16);
 	TILE_GET_INFO_MEMBER(get_bg1_tile_16);
 	virtual void video_start() override ATTR_COLD;
+	virtual void device_post_load() override ATTR_COLD;
 	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
 	TIMER_CALLBACK_MEMBER(floppy_tc_tick);
 	TIMER_CALLBACK_MEMBER(adpcm_drq_tick);

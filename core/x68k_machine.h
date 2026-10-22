@@ -24,8 +24,10 @@ struct Config {
     int sample_rate = 48000;
 };
 
-// The joystick in port 1, in JoystickInputRouter's order: up, down, left, right, trigger A, B.
-constexpr int kJoystickControls = 6;
+// X68000 key scan codes: 0x01 (ESC) to 0x74 (OPT.2), as the keyboard sends them.
+constexpr int kKeyCodes = 0x80;
+// The pad in joystick port 1, in its bit order: up, down, left, right, A, B, Run, Select.
+constexpr int kJoystickControls = 8;
 
 class X68kMachine {
 public:
@@ -43,8 +45,8 @@ public:
     // Takes up to max_frames interleaved stereo frames produced so far.
     uint32_t read_audio(int16_t *stereo, uint32_t max_frames);
 
-    // A key by MAME's keyboard item ID (input_item_id, osd/interface/inputcode.h).
-    void key(int item, bool down);
+    // A key by X68000 scan code.
+    void key(int code, bool down);
     void joystick(int control, bool down);
     // The mouse: motion in mickeys, and button 1 (left) or 2 (right).
     void mouse_move(int dx, int dy);

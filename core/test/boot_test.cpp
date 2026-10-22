@@ -3,8 +3,8 @@
 //   boot_test <rom dir> <work dir> <floppy image> <seconds>
 //
 // Runs the floppy for <seconds> of guest time, writing <work dir>/boot.ppm of the last picture
-// and boot.wav of the sound. Then it saves a state, runs on, loads the state, and checks that the
-// frames after the load draw the same picture as those after the save. Last it starts a second
+// and boot.wav of the sound, then presses the pad's A button, Space and Return and writes pressed.ppm. Then it saves a state, runs on, loads the state, and checks that the
+// second after the load draws and plays the same as the second after the save. Last it starts a second
 // machine in the same process, as the app does for its next game.
 
 #include <cstdio>
@@ -18,6 +18,10 @@ using kairo68::Config;
 using kairo68::X68kMachine;
 
 namespace {
+
+// X68000 key scan codes.
+constexpr int kSpace = 0x35;
+constexpr int kReturn = 0x1d;
 
 int fail(const std::string &message) {
     std::fprintf(stderr, "FAIL: %s\n", message.c_str());
@@ -94,9 +98,22 @@ int main(int argc, char **argv) {
                 boot.width, boot.height, (unsigned long long) boot.audio_frames, (unsigned long long) boot.loud_frames,
                 boot.seconds, machine->frame_seconds());
     if (boot.picture.empty()) return fail("no picture");
+    std::printf("drive 0 after boot: %s\n", machine->fd_path(0).c_str());
     const double expected = boot.seconds * machine->sample_rate();
     if (boot.audio_frames < expected * 0.95 || boot.audio_frames > expected * 1.05)
         return fail("audio does not follow guest time");
+
+    Run pressed;
+    machine->joystick(4, true);
+    machine->key(kSpace, true);
+    machine->key(kReturn, true);
+    if (!run(*machine, 0.5, pressed, error)) return fail("run while pressed: " + error);
+    machine->joystick(4, false);
+    machine->key(kSpace, false);
+    machine->key(kReturn, false);
+    if (!run(*machine, 4, pressed, error)) return fail("run after press: " + error);
+    write_ppm(work + "/pressed.ppm", pressed);
+    std::printf("press: the picture %s\n", pressed.picture == boot.picture ? "did not change" : "changed");
 
     const std::string state = work + "/state.sta";
     if (!machine->save_state(state)) return fail("save state");
@@ -107,9 +124,12 @@ int main(int argc, char **argv) {
     if (!run(*machine, 1, after_load, error)) return fail("run after load: " + error);
     write_ppm(work + "/after_save.ppm", after_save);
     write_ppm(work + "/after_load.ppm", after_load);
-    std::printf("state: the second after load %s the second after save\n",
-                after_save.picture == after_load.picture ? "matches" : "differs from");
-    if (after_save.picture != after_load.picture) return fail("state round trip");
+    write_wav(work + "/after_save.wav", after_save.sound, static_cast<uint32_t>(machine->sample_rate()));
+    write_wav(work + "/after_load.wav", after_load.sound, static_cast<uint32_t>(machine->sample_rate()));
+    std::printf("state: the picture of the second after load %s, its sound %s\n",
+                after_save.picture == after_load.picture ? "matches" : "differs",
+                after_save.sound == after_load.sound ? "matches" : "differs");
+    if (after_save.picture != after_load.picture || after_save.sound != after_load.sound) return fail("state round trip");
     std::printf("drive 0: %s\n", machine->fd_path(0).c_str());
 
     machine.reset();

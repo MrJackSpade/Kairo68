@@ -16,6 +16,9 @@ include("${GENERATED}/sources.cmake")
 # The emulator runs in real time only optimized, so the core is optimized in debug builds too.
 add_compile_options(-O3 -Wno-deprecated-declarations -Wno-unused-variable -Wno-unknown-warning-option)
 add_compile_definitions(CRLF=2 LSB_FIRST NDEBUG FLAC__NO_DLL NATIVE_DRC=drcbe_c PUGIXML_HEADER_ONLY)
+# The sound manager mixes and hands sound to the OSD on the emulation thread, as in MAME's
+# emscripten build, so each frame's sound arrives with the frame.
+add_compile_definitions(SOUND_DISABLE_THREADING)
 if(WIN32)
     # MAME's Windows OSD configuration (scripts/src/osd/windows_cfg.lua), for the host test.
     add_compile_definitions(UNICODE _UNICODE WIN32_LEAN_AND_MEAN NOMINMAX _WIN32_WINNT=0x0A00)

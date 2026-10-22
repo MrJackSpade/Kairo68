@@ -946,6 +946,38 @@ void x68k_state::machine_start()
 	m_sysport.monitor = 0;
 	m_bus_error = false;
 	m_led_state = 0;
+
+	// Kairo68: the rest of the machine's state, for save states.
+	save_pointer(NAME(m_spriteram), memregion("user1")->bytes() / sizeof(m_spriteram[0]));
+	save_item(NAME(m_nvram));
+	save_item(NAME(m_sysport.sram_writeprotect));
+	save_item(NAME(m_sysport.monitor));
+	save_item(NAME(m_sysport.contrast));
+	save_item(NAME(m_sysport.keyctrl));
+	save_item(NAME(m_sysport.cputype));
+	save_item(NAME(m_fdc.led_ctrl));
+	save_item(NAME(m_fdc.led_eject));
+	save_item(NAME(m_fdc.eject));
+	save_item(NAME(m_fdc.motor));
+	save_item(NAME(m_fdc.control_drives));
+	save_item(NAME(m_fdc.select_drive));
+	save_item(NAME(m_adpcm.rate));
+	save_item(NAME(m_adpcm.pan));
+	save_item(NAME(m_adpcm.clock));
+	save_item(NAME(m_video.reg));
+	save_item(NAME(m_video.text_pri));
+	save_item(NAME(m_video.sprite_pri));
+	save_item(NAME(m_video.gfx_pri));
+	save_item(NAME(m_video.gfxlayer_pri));
+	save_item(NAME(m_video.bg_hstart));
+	save_item(NAME(m_video.bg_vstart));
+	save_item(NAME(m_ioc.irqstatus));
+	save_item(NAME(m_ioc.vector));
+	save_item(NAME(m_ppi_portc));
+	save_item(NAME(m_exp_irq2));
+	save_item(NAME(m_exp_irq4));
+	save_item(NAME(m_led_state));
+	save_item(NAME(m_bus_error));
 }
 
 void x68k_state::driver_start()

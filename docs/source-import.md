@@ -29,7 +29,13 @@ The import produced 6,294 files: the 5,928 of the first import (2026-10-21) and,
 
 After copying, nested Git metadata (`.gitignore`, `.gitattributes`, `.gitmodules`, `.github/`) was removed so that every copied file is tracked. One symbolic link in zstd's CLI tests (`tests/cli-tests/bin/unzstd`) could not be created on Windows and is absent. The pre-generated 68000 decoder sources (`src/devices/cpu/m68000/m68000-*.cpp`) are part of MAME's tree and are kept as shipped.
 
-There are no local changes to the MAME sources.
+## Local changes
+
+`tools/import_mame.py` applies Kairo68's changes to the copied sources from `tools/mame_patches.py`; each replaces text that must occur exactly once, so an import against a MAME that moved the code stops instead of patching the wrong place.
+
+- `x68k-save-state` (`src/mame/sharp/x68k.cpp`, `x68k.h`, `x68k_v.cpp`): MAME does not mark the x68000 driver as supporting save states, and the driver registers only its text and graphics VRAM and sprite registers. A loaded state kept the video controller, system port, I/O controller, ADPCM, PPI and FDC control state, SRAM, and the PCG and BG RAM from before the load, so the picture could stay black or show wrong patterns. The change registers that state and, after a load, redecodes the PCG patterns and redraws both BG layers.
+
+The core also builds MAME with `SOUND_DISABLE_THREADING`, as MAME's emscripten build does, and turns off MAME's output audio effects (high-pass filter and EQ by default) through its configuration callbacks; neither changes MAME's sources.
 
 ## Generated sources
 

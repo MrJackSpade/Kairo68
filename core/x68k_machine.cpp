@@ -6,6 +6,7 @@
 
 #include <array>
 #include <atomic>
+#include <bit>
 #include <condition_variable>
 #include <deque>
 #include <functional>
@@ -15,6 +16,7 @@
 #include <vector>
 
 #include "emu.h"
+#include "config.h"
 #include "emuopts.h"
 #include "fileio.h"
 #include "input.h"
@@ -24,6 +26,10 @@
 #include "render.h"
 #include "rendersw.hxx"
 #include "screen.h"
+#include "audio_effects/compressor.h"
+#include "audio_effects/eq.h"
+#include "audio_effects/filter.h"
+#include "audio_effects/reverb.h"
 #include "ui/uimain.h"
 #include "osdepend.h"
 #include "modules/lib/osdlib.h"
@@ -125,9 +131,17 @@ struct X68kMachine::Impl : public osd_interface {
     std::deque<int16_t> sound;
     uint32_t stream_id = 0;
 
-    // Input, read by MAME's input polling on its thread while the host waits for the frame.
-    std::array<std::atomic<bool>, ITEM_ID_ABSOLUTE_MAXIMUM> keys{};
+    // Input. Keys and the pad drive the guest's own fields (ioport_field::set_value, as MAME's
+    // Lua input does), so every X68000 key works, including those MAME gives no host key, and no
+    // host key reaches MAME's UI. The host sets the wanted states; MAME's thread applies them when
+    // it polls input. The mouse moves relatively, so it is an OSD device.
+    std::array<std::atomic<bool>, kKeyCodes> keys{};
     std::array<std::atomic<bool>, kJoystickControls> joystick{};
+    std::array<ioport_field *, kKeyCodes> key_fields{};
+    std::array<ioport_field *, kJoystickControls> pad_fields{};
+    std::array<bool, kKeyCodes> keys_applied{};
+    std::array<bool, kJoystickControls> pad_applied{};
+    bool fields_found = false;
     std::atomic<int> mouse_dx{0}, mouse_dy{0};
     int mouse_frame_dx = 0, mouse_frame_dy = 0;
     std::array<std::atomic<bool>, 2> mouse_buttons{};
@@ -139,10 +153,13 @@ struct X68kMachine::Impl : public osd_interface {
     // osd_interface
     void init(running_machine &machine) override;
     void free_target();
+    void config_load(config_type type, config_level level, util::xml::data_node const *node);
+    void config_save(config_type, util::xml::data_node *) {}
     void update(bool skip_redraw) override;
     void render_frame();
     void run_tasks(std::unique_lock<std::mutex> &lock);
     void input_update(bool relative_reset) override;
+    void find_fields();
     void check_osd_inputs() override {}
     void set_verbose(bool) override {}
     void init_debugger() override {}
@@ -239,6 +256,22 @@ void X68kMachine::Impl::run_mame() {
     changed.notify_all();
 }
 
+// The machine's sound is the core's sound: MAME's output effects, by default a 20 Hz high-pass
+// filter and an EQ, are off. They are a listener's setting rather than the machine's, and their
+// filter state is not part of a saved state.
+void X68kMachine::Impl::config_load(config_type type, config_level, util::xml::data_node const *) {
+    if (type != config_type::FINAL) return;
+    sound_manager &sound = machine->sound();
+    const std::vector<audio_effect *> chain = sound.default_effect_chain();
+    auto &filter = dynamic_cast<audio_effect_filter &>(*chain.at(audio_effect::FILTER));
+    filter.set_highpass_active(false);
+    filter.set_lowpass_active(false);
+    dynamic_cast<audio_effect_compressor &>(*chain.at(audio_effect::COMPRESSOR)).set_mode(0);
+    dynamic_cast<audio_effect_reverb &>(*chain.at(audio_effect::REVERB)).set_mode(0);
+    dynamic_cast<audio_effect_eq &>(*chain.at(audio_effect::EQ)).set_mode(0);
+    for (u32 entry = 0; entry < chain.size(); ++entry) sound.default_effect_changed(entry);
+}
+
 void X68kMachine::Impl::free_target() {
     machine->render().target_free(target);
     target = nullptr;
@@ -253,33 +286,9 @@ void X68kMachine::Impl::init(running_machine &running) {
     // Freed while the machine exits, as MAME's windows free theirs: a target outliving that frees
     // its layouts' textures through a render manager that is already gone.
     running.add_notifier(MACHINE_NOTIFY_EXIT, machine_notify_delegate(&Impl::free_target, this));
+    running.configuration().config_register("kairo68", configuration_manager::load_delegate(&Impl::config_load, this),
+        configuration_manager::save_delegate(&Impl::config_save, this));
     auto &input = running.input();
-
-    // The keyboard: every key MAME names, each read from keys[].
-    auto &keyboard = input.add_device(DEVICE_CLASS_KEYBOARD, "Kairo68 keyboard", "kairo68-keyboard", this);
-    for (int item = ITEM_ID_A; item <= ITEM_ID_CANCEL; ++item) {
-        keyboard.add_item("Key " + std::to_string(item), "", input_item_id(item),
-            [](void *device, void *id) -> s32 {
-                return static_cast<Impl *>(device)->keys[reinterpret_cast<intptr_t>(id)].load() ? 1 : 0;
-            }, reinterpret_cast<void *>(intptr_t(item)));
-    }
-
-    // The joystick: two axes from the direction controls, and two triggers.
-    auto &pad = input.add_device(DEVICE_CLASS_JOYSTICK, "Kairo68 joystick", "kairo68-joystick", this);
-    pad.add_item("X", "", ITEM_ID_XAXIS, [](void *device, void *) -> s32 {
-        auto *self = static_cast<Impl *>(device);
-        return (self->joystick[3] ? osd::input_device::ABSOLUTE_MAX : 0) - (self->joystick[2] ? osd::input_device::ABSOLUTE_MAX : 0);
-    }, nullptr);
-    pad.add_item("Y", "", ITEM_ID_YAXIS, [](void *device, void *) -> s32 {
-        auto *self = static_cast<Impl *>(device);
-        return (self->joystick[1] ? osd::input_device::ABSOLUTE_MAX : 0) - (self->joystick[0] ? osd::input_device::ABSOLUTE_MAX : 0);
-    }, nullptr);
-    for (int button = 0; button < 2; ++button) {
-        pad.add_item("Button " + std::to_string(button + 1), "", input_item_id(ITEM_ID_BUTTON1 + button),
-            [](void *device, void *index) -> s32 {
-                return static_cast<Impl *>(device)->joystick[4 + reinterpret_cast<intptr_t>(index)].load() ? 1 : 0;
-            }, reinterpret_cast<void *>(intptr_t(button)));
-    }
 
     // The mouse: motion since the last poll, and two buttons.
     auto &mouse = input.add_device(DEVICE_CLASS_MOUSE, "Kairo68 mouse", "kairo68-mouse", this);
@@ -300,6 +309,54 @@ void X68kMachine::Impl::init(running_machine &running) {
 void X68kMachine::Impl::input_update(bool) {
     mouse_frame_dx = mouse_dx.exchange(0);
     mouse_frame_dy = mouse_dy.exchange(0);
+    // The ports are complete once the machine runs.
+    if (machine->phase() != machine_phase::RUNNING) return;
+    if (!fields_found) find_fields();
+    for (int code = 0; code < kKeyCodes; ++code) {
+        const bool down = keys[code];
+        if (key_fields[code] && down != keys_applied[code]) {
+            key_fields[code]->set_value(down);
+            keys_applied[code] = down;
+        }
+    }
+    for (int control = 0; control < kJoystickControls; ++control) {
+        const bool down = joystick[control];
+        if (down != pad_applied[control]) {
+            pad_fields[control]->set_value(down);
+            pad_applied[control] = down;
+        }
+    }
+}
+
+// The keyboard's LINE0 to LINEE ports hold eight keys each, bit b of LINEn being scan code
+// n * 8 + b; the pad is joystick port 1's FM Towns pad.
+void X68kMachine::Impl::find_fields() {
+    fields_found = true;
+    for (auto &[tag, port] : machine->ioport().ports()) {
+        const auto line = tag.rfind(":LINE");
+        if (tag.starts_with(":keyboard:") && line != std::string::npos && line + 6 == tag.size()) {
+            const int row = std::stoi(tag.substr(line + 5), nullptr, 16);
+            for (ioport_field &field : port->fields())
+                if (field.type() == IPT_KEYBOARD) key_fields[row * 8 + std::countr_zero(field.mask())] = &field;
+        } else if (tag == ":joy1:townspad:PAD") {
+            for (ioport_field &field : port->fields()) {
+                switch (field.type()) {
+                case IPT_JOYSTICK_UP: pad_fields[0] = &field; break;
+                case IPT_JOYSTICK_DOWN: pad_fields[1] = &field; break;
+                case IPT_JOYSTICK_LEFT: pad_fields[2] = &field; break;
+                case IPT_JOYSTICK_RIGHT: pad_fields[3] = &field; break;
+                case IPT_BUTTON1: pad_fields[4] = &field; break;
+                case IPT_BUTTON2: pad_fields[5] = &field; break;
+                case IPT_START: pad_fields[6] = &field; break;
+                case IPT_SELECT: pad_fields[7] = &field; break;
+                default: break;
+                }
+            }
+        }
+    }
+    if (!key_fields[0x01]) throw emu_fatalerror("The X68000 keyboard's ports were not found");
+    for (ioport_field *field : pad_fields)
+        if (!field) throw emu_fatalerror("Joystick port 1's FM Towns pad was not found");
 }
 
 osd::audio_info X68kMachine::Impl::sound_get_information() {
@@ -463,8 +520,8 @@ uint32_t X68kMachine::read_audio(int16_t *stereo, uint32_t max_frames) {
     return frames;
 }
 
-void X68kMachine::key(int item, bool down) {
-    if (item >= ITEM_ID_A && item <= ITEM_ID_CANCEL) impl_->keys[item] = down;
+void X68kMachine::key(int code, bool down) {
+    if (code > 0 && code < kKeyCodes) impl_->keys[code] = down;
 }
 
 void X68kMachine::joystick(int control, bool down) {

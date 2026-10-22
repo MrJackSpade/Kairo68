@@ -652,6 +652,18 @@ void x68k_state::video_start()
 //  m_scanline_timer->adjust(attotime::zero, 0, attotime::from_hz(55.45)/568);
 }
 
+// Kairo68: the PCG and BG RAM came from a saved state, so redecode every pattern and redraw both
+// BG layers.
+void x68k_state::device_post_load()
+{
+	std::fill(std::begin(m_video.tile8_dirty), std::end(m_video.tile8_dirty), 1);
+	std::fill(std::begin(m_video.tile16_dirty), std::end(m_video.tile16_dirty), 1);
+	m_bg0_8->mark_all_dirty();
+	m_bg1_8->mark_all_dirty();
+	m_bg0_16->mark_all_dirty();
+	m_bg1_16->mark_all_dirty();
+}
+
 uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
 {
 	rectangle rect(0,0,0,0);
