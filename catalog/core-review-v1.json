@@ -17,6 +17,10 @@
    "reason": "MobyGames Adult genre",
    "title": "Abunai Tengu Densetsu"
   },
+  "x68000:150574": {
+   "reason": "Adult-content review",
+   "title": "Aki to Tsukasa no Fushigi no Kabe"
+  },
   "x68000:150575": {
    "reason": "MobyGames Adult genre",
    "title": "Akiko: Premium Version"
@@ -433,9 +437,21 @@
    "reason": "MobyGames Adult genre",
    "title": "Mahjong Gensoukyoku"
   },
+  "x68000:187145": {
+   "reason": "Adult-content review",
+   "title": "Binbin Mahjong: Peach Angel"
+  },
+  "x68000:187585": {
+   "reason": "Adult-content review",
+   "title": "Datenshi Kyouko"
+  },
   "x68000:187587": {
    "reason": "MobyGames Adult genre",
    "title": "De・Ja II"
+  },
+  "x68000:187696": {
+   "reason": "Adult-content review",
+   "title": "Dragon City X Shitei"
   },
   "x68000:187800": {
    "reason": "MobyGames Adult genre",
@@ -453,21 +469,61 @@
    "reason": "MobyGames Adult genre",
    "title": "Hacchake Ayayo-san"
   },
+  "x68000:187804": {
+   "reason": "Adult-content review",
+   "title": "Hacchake Ayayo-san 3: Watashi, Icchatta n' desu"
+  },
   "x68000:187805": {
    "reason": "MobyGames Adult genre",
    "title": "Himitsu no Hanazono"
+  },
+  "x68000:187848": {
+   "reason": "Adult-content review",
+   "title": "G.R.: Gravity Response"
   },
   "x68000:187920": {
    "reason": "MobyGames Adult genre",
    "title": "Tenshitachi no Gogo III: Bangai-hen"
   },
+  "x68000:187956": {
+   "reason": "Adult-content review",
+   "title": "Goddess' Blazon"
+  },
+  "x68000:187958": {
+   "reason": "Adult-content review",
+   "title": "Gram Cats 2"
+  },
   "x68000:188105": {
    "reason": "MobyGames Adult genre",
    "title": "Twilight Zone Vol. 4: Tokubetsu-hen"
   },
+  "x68000:188421": {
+   "reason": "Adult-content review",
+   "title": "Milk Time"
+  },
+  "x68000:188473": {
+   "reason": "Adult-content review",
+   "title": "PasoComic Purple Cat Vol. 1: Bunny Girl Tokushuu"
+  },
+  "x68000:188514": {
+   "reason": "Adult-content review",
+   "title": "PasoComic Purple Cat Vol. 2: Hospital Tokushuu"
+  },
   "x68000:188517": {
    "reason": "MobyGames Adult genre",
    "title": "PasoComic Purple Cat Vol. 3: The Onna Kyoushi Tokushuu"
+  },
+  "x68000:188518": {
+   "reason": "Adult-content review",
+   "title": "PasoComic PuruPuru Paradise: Santa Claus Tokushuu"
+  },
+  "x68000:188535": {
+   "reason": "Adult-content review",
+   "title": "Present 2"
+  },
+  "x68000:188551": {
+   "reason": "Adult-content review",
+   "title": "Puppet Show Part 1"
   },
   "x68000:188553": {
    "reason": "MobyGames Adult genre",
@@ -476,6 +532,22 @@
   "x68000:188555": {
    "reason": "MobyGames Adult genre",
    "title": "Review: Jashin Fukkatsu"
+  },
+  "x68000:188666": {
+   "reason": "Adult-content review",
+   "title": "Sailor Fuku Ikena: Itaiken Kokuhaku: Lost Virgin"
+  },
+  "x68000:188673": {
+   "reason": "Adult-content review",
+   "title": "SAP Tokushu Koudou Keisatsu File: M661-51"
+  },
+  "x68000:188885": {
+   "reason": "Adult-content review",
+   "title": "Shoujo Densetsu Part-II"
+  },
+  "x68000:188887": {
+   "reason": "Adult-content review",
+   "title": "Shoujo Densetsu"
   },
   "x68000:189026": {
    "reason": "MobyGames Adult genre",
@@ -505,6 +577,10 @@
    "reason": "MobyGames Adult genre",
    "title": "Tenshi-Tachi no Gogo VI: My Fair Teacher"
   },
+  "x68000:189128": {
+   "reason": "Adult-content review",
+   "title": "Tsuukai Gag Adventure: Narutomaki Hichou"
+  },
   "x68000:189129": {
    "reason": "MobyGames Adult genre",
    "title": "Twilight"
@@ -513,6 +589,26 @@
    "reason": "MobyGames Adult genre",
    "title": "Vampire High School"
   },
+  "x68000:189149": {
+   "reason": "Adult-content review",
+   "title": "Yaritai Houdai"
+  },
+  "x68000:189150": {
+   "reason": "Adult-content review",
+   "title": "Yaritai Houdai 2: Tourist o Nerae!!"
+  },
+  "x68000:189151": {
+   "reason": "Adult-content review",
+   "title": "Yaritai Houdai 3: As You Like Vol. 1: Europa Tour"
+  },
+  "x68000:189153": {
+   "reason": "Adult-content review",
+   "title": "Youjuu Club"
+  },
+  "x68000:189154": {
+   "reason": "Adult-content review",
+   "title": "Youjuu Club 2"
+  },
   "x68000:189157": {
    "reason": "MobyGames Adult genre",
    "title": "Yuujin Special Collection"
@@ -520,6 +616,22 @@
   "x68000:189189": {
    "reason": "MobyGames Adult genre",
    "title": "Réserve"
+  },
+  "x68000:189192": {
+   "reason": "Adult-content review",
+   "title": "Strip Fighter II: Sutonyan Dash"
+  },
+  "x68000:189209": {
+   "reason": "Adult-content review",
+   "title": "U-Jin Special Collection: Zen San Kan Goudou Hon!! Kounai Shasei 1, 2, 3"
+  },
+  "x68000:189825": {
+   "reason": "Adult-content review",
+   "title": "Chotto H Na Daihinmin"
+  },
+  "x68000:189826": {
+   "reason": "Adult-content review",
+   "title": "Chotto Local Rule Na Mine Sweeper Hun De Oshimai!!"
   },
   "x68000:193474": {
    "reason": "MobyGames Adult genre",
