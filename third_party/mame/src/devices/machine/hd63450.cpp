@@ -74,6 +74,8 @@ void hd63450_device::device_start()
 	save_item(NAME(m_halted));
 	save_item(NAME(m_drq_state));
 	save_item(NAME(m_irq_channel));
+	save_item(NAME(m_bec)); // Kairo68
+	save_item(NAME(m_dtack)); // Kairo68
 
 	m_cpu = dynamic_cast<cpu_device *>(&m_dma_space->device());
 }

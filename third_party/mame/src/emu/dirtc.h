@@ -74,6 +74,9 @@ protected:
 	virtual bool rtc_battery_backed() const { return true; }
 	virtual void rtc_clock_updated(int year, int month, int day, int day_of_week, int hour, int minute, int second) = 0;
 
+	// Kairo68: the date and time, for save states
+	virtual void interface_post_start() override;
+
 	int m_register[7];
 
 	bool m_use_utc;

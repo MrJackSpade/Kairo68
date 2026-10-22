@@ -45,6 +45,17 @@ device_rtc_interface::~device_rtc_interface()
 
 
 //-------------------------------------------------
+//  interface_post_start - Kairo68: register the
+//  date and time for save states
+//-------------------------------------------------
+
+void device_rtc_interface::interface_post_start()
+{
+	device().save_item(m_register, "rtc.m_register");
+}
+
+
+//-------------------------------------------------
 //  set_time - called to initialize the RTC to
 //  a known date/time
 //-------------------------------------------------

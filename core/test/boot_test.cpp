@@ -9,7 +9,9 @@
 
 #include <cstdio>
 #include <cstdlib>
+#include <functional>
 #include <string>
+#include <string_view>
 #include <vector>
 
 #include "x68k_machine.h"
@@ -22,6 +24,9 @@ namespace {
 // X68000 key scan codes.
 constexpr int kSpace = 0x35;
 constexpr int kReturn = 0x1d;
+
+// A run of this many seconds runs one frame.
+constexpr double kOneFrame = 1e-6;
 
 int fail(const std::string &message) {
     std::fprintf(stderr, "FAIL: %s\n", message.c_str());
@@ -53,6 +58,17 @@ bool run(X68kMachine &machine, double seconds, Run &result, std::string &error) 
     const uint8_t *pixels = machine.frame(result.width, result.height);
     if (pixels) result.picture.assign(pixels, pixels + result.width * result.height * 4);
     return true;
+}
+
+// A hash of each state entry, and their names when wanted: the machine's state, compactly.
+std::vector<size_t> state_hashes(X68kMachine &machine, std::vector<std::string> *names) {
+    std::vector<size_t> hashes;
+    for (const auto &[name, bytes] : machine.state_entries()) {
+        hashes.push_back(std::hash<std::string_view>()(
+            std::string_view(reinterpret_cast<const char *>(bytes.data()), bytes.size())));
+        if (names) names->push_back(name);
+    }
+    return hashes;
 }
 
 void write_ppm(const std::string &file, const Run &run) {
@@ -117,11 +133,32 @@ int main(int argc, char **argv) {
 
     const std::string state = work + "/state.sta";
     if (!machine->save_state(state)) return fail("save state");
+    // The second after the save and the second after the load, frame by frame. State a saved state
+    // misses shows up as saved state that drifts apart; the first frame it does names the culprit.
+    const int frames = static_cast<int>(1 / machine->frame_seconds() + 0.5);
     Run after_save, after_load, ignored;
-    if (!run(*machine, 1, after_save, error)) return fail("run after save: " + error);
+    std::vector<std::string> names;
+    std::vector<std::vector<size_t>> saved{state_hashes(*machine, &names)};
+    for (int frame = 0; frame < frames; ++frame) {
+        if (!run(*machine, kOneFrame, after_save, error)) return fail("run after save: " + error);
+        saved.push_back(state_hashes(*machine, nullptr));
+    }
     if (!run(*machine, 2, ignored, error)) return fail("run on: " + error);
     if (!machine->load_state(state)) return fail("load state");
-    if (!run(*machine, 1, after_load, error)) return fail("run after load: " + error);
+    bool drifted = false;
+    for (int frame = 0; frame <= frames; ++frame) {
+        if (frame > 0 && !run(*machine, kOneFrame, after_load, error)) return fail("run after load: " + error);
+        const std::vector<size_t> loaded = state_hashes(*machine, nullptr);
+        if (loaded == saved[frame]) continue;
+        drifted = true;
+        std::printf("state: drifts %d frames after the load:", frame);
+        for (size_t i = 0; i < loaded.size(); ++i)
+            if (loaded[i] != saved[frame][i]) std::printf("\n  %s", names[i].c_str());
+        std::printf("\n");
+        if (!run(*machine, (frames - frame) * machine->frame_seconds() - kOneFrame, after_load, error))
+            return fail("run after load: " + error);
+        break;
+    }
     write_ppm(work + "/after_save.ppm", after_save);
     write_ppm(work + "/after_load.ppm", after_load);
     write_wav(work + "/after_save.wav", after_save.sound, static_cast<uint32_t>(machine->sample_rate()));
@@ -129,7 +166,8 @@ int main(int argc, char **argv) {
     std::printf("state: the picture of the second after load %s, its sound %s\n",
                 after_save.picture == after_load.picture ? "matches" : "differs",
                 after_save.sound == after_load.sound ? "matches" : "differs");
-    if (after_save.picture != after_load.picture || after_save.sound != after_load.sound) return fail("state round trip");
+    if (drifted || after_save.picture != after_load.picture || after_save.sound != after_load.sound)
+        return fail("state round trip");
     std::printf("drive 0: %s\n", machine->fd_path(0).c_str());
 
     machine.reset();

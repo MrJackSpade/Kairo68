@@ -230,6 +230,7 @@ void rp5c15_device::device_start()
 	save_item(NAME(m_1hz));
 	save_item(NAME(m_16hz));
 	save_item(NAME(m_clkout));
+	save_item(NAME(m_ram)); // Kairo68
 }
 
 

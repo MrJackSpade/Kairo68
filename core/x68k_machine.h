@@ -8,6 +8,8 @@
 #include <cstdint>
 #include <memory>
 #include <string>
+#include <utility>
+#include <vector>
 
 namespace kairo68 {
 
@@ -16,6 +18,10 @@ struct Config {
     // The folder holding the ROM set as MAME looks for it: <rom_dir>/x68000/iplrom.dat and
     // cgrom.dat, or <rom_dir>/x68000.zip.
     std::string rom_dir;
+    // The IPL-ROM, by MAME's BIOS name for it: ipl10 is iplrom.dat (IPL-ROM 1.0).
+    std::string bios = "ipl10";
+    // Main memory in megabytes, 1 to 12.
+    int ram_mb = 4;
     // A private folder for MAME's NVRAM and configuration.
     std::string home;
     // Floppy images for drives 0 and 1; "" for an empty drive.
@@ -56,6 +62,10 @@ public:
     // Run on the machine's own thread at the end of the frame; false when MAME refused.
     bool save_state(const std::string &file);
     bool load_state(const std::string &file);
+
+    // Every entry a saved state holds, by name, as it would hold it now; for tests that check a
+    // loaded state restores the machine exactly.
+    std::vector<std::pair<std::string, std::vector<uint8_t>>> state_entries();
 
     // Inserts an image in floppy drive 0 or 1, or ejects it for ""; true when it is in.
     bool insert_fd(int drive, const std::string &path);

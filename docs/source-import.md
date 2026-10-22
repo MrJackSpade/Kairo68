@@ -33,7 +33,13 @@ After copying, nested Git metadata (`.gitignore`, `.gitattributes`, `.gitmodules
 
 `tools/import_mame.py` applies Kairo68's changes to the copied sources from `tools/mame_patches.py`; each replaces text that must occur exactly once, so an import against a MAME that moved the code stops instead of patching the wrong place.
 
-- `x68k-save-state` (`src/mame/sharp/x68k.cpp`, `x68k.h`, `x68k_v.cpp`): MAME does not mark the x68000 driver as supporting save states, and the driver registers only its text and graphics VRAM and sprite registers. A loaded state kept the video controller, system port, I/O controller, ADPCM, PPI and FDC control state, SRAM, and the PCG and BG RAM from before the load, so the picture could stay black or show wrong patterns. The change registers that state and, after a load, redecodes the PCG patterns and redraws both BG layers.
+MAME does not mark the x68000 driver as supporting save states. These changes make a loaded state restore the machine exactly; `core/test/boot_test.cpp` checks it by comparing every saved entry, frame by frame, for a second after a save and after a load.
+
+- `x68k-save-state` (`src/mame/sharp/x68k.cpp`, `x68k.h`, `x68k_v.cpp`): the driver registered only its text and graphics VRAM and sprite registers. A loaded state kept the video controller, system port, I/O controller, ADPCM, PPI and FDC control state, SRAM, and the PCG and BG RAM from before the load, so the picture could stay black or show wrong patterns. The change registers that state and, after a load, reconnects the FDC to the selected drive, redecodes the PCG patterns and redraws both BG layers.
+- `upd765-save-state` (`src/devices/machine/upd765.cpp`, `upd765.h`): the uPD765 family's live read/write state is not saved (MAME has those registrations commented out), nor is the data separator PLL inside it or the drive it reads. A read in progress at the save continued after the load from the state of before the load, lost its sector, and the X68000 saw End of Cylinder. The change saves both live states, their PLLs and drives.
+- `floppy-save-state` (`src/devices/imagedev/floppy.cpp`): the drive saves its flux cache but not where the cache's weak zone starts or whether the track has unwritten changes.
+- `rtc-save-state` (`src/emu/dirtc.h`, `dirtc.cpp`, `src/devices/machine/rp5c15.cpp`): `device_rtc_interface` counts the date and time in registers no state held, so after a load the clock ticked on from the time before it; the RP5C15 also left out its RAM.
+- `hd63450-save-state` (`src/devices/machine/hd63450.cpp`): the DMA controller leaves out its latched bus-error code and its DTACK line.
 
 The core also builds MAME with `SOUND_DISABLE_THREADING`, as MAME's emscripten build does, and turns off MAME's output audio effects (high-pass filter and EQ by default) through its configuration callbacks; neither changes MAME's sources.
 

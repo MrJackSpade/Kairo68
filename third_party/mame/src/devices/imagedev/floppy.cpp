@@ -595,6 +595,8 @@ void floppy_image_device::device_start()
 	save_item(NAME(m_cache_index));
 	save_item(NAME(m_cache_entry));
 	save_item(NAME(m_cache_weak));
+	save_item(NAME(m_cache_weak_start)); // Kairo68
+	save_item(NAME(m_track_dirty)); // Kairo68
 	save_item(NAME(m_image_dirty));
 	save_item(NAME(m_ready_counter));
 	save_item(NAME(m_phases));

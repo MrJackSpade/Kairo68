@@ -225,7 +225,9 @@ void X68kMachine::Impl::run_mame() {
         options.set_value(OPTION_CFG_DIRECTORY, config.home + "/cfg", OPTION_PRIORITY_CMDLINE);
         options.set_value(OPTION_NVRAM_DIRECTORY, config.home + "/nvram", OPTION_PRIORITY_CMDLINE);
         options.set_value(OPTION_STATE_DIRECTORY, config.home + "/sta", OPTION_PRIORITY_CMDLINE);
+        options.set_value(OPTION_BIOS, config.bios, OPTION_PRIORITY_CMDLINE);
         options.set_system_name(kSystem);
+        options.set_value(OPTION_RAMSIZE, std::to_string(config.ram_mb) + "M", OPTION_PRIORITY_CMDLINE);
         for (int drive = 0; drive < 2; ++drive)
             if (!config.fd[drive].empty())
                 // By the drive's command-line name; image_option() wants its full instance name.
@@ -561,6 +563,27 @@ bool X68kMachine::load_state(const std::string &file) {
         emu_file in(OPEN_FLAG_READ);
         if (in.open(file)) return false;
         return m.save().read_file(in) == STATERR_NONE;
+    });
+}
+
+std::vector<std::pair<std::string, std::vector<uint8_t>>> X68kMachine::state_entries() {
+    using Entries = std::vector<std::pair<std::string, std::vector<uint8_t>>>;
+    return impl_->between_frames<Entries>([](running_machine &m) {
+        // As save_manager::do_write lays them out, after the same pre-save callbacks.
+        save_manager &save = m.save();
+        save.dispatch_presave();
+        Entries entries;
+        for (int index = 0; index < save.registration_count(); ++index) {
+            void *base;
+            u32 size, count, blocks, stride;
+            const char *name = save.indexed_item(index, base, size, count, blocks, stride);
+            std::vector<uint8_t> bytes;
+            const uint8_t *data = static_cast<const uint8_t *>(base);
+            for (u32 block = 0; block < blocks; ++block, data += stride)
+                bytes.insert(bytes.end(), data, data + size * count);
+            entries.emplace_back(name, std::move(bytes));
+        }
+        return entries;
     });
 }
 

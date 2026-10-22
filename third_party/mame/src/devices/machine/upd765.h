@@ -65,6 +65,8 @@ protected:
 
 	virtual void device_start() override ATTR_COLD;
 	virtual void device_reset() override ATTR_COLD;
+	virtual void device_pre_save() override;
+	virtual void device_post_load() override;
 
 	TIMER_CALLBACK_MEMBER(update_floppy);
 
@@ -240,6 +242,7 @@ protected:
 	int main_phase;
 
 	live_info cur_live, checkpoint_live;
+	int cur_live_drive, checkpoint_live_drive; // Kairo68: the flopi[] the live states read, for save states
 	devcb_write_line intrq_cb, drq_cb, hdl_cb, idx_cb;
 	devcb_read_line ts_cb;
 	devcb_write8 us_cb;

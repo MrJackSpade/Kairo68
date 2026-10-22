@@ -310,6 +310,37 @@ void upd765_family_device::device_start()
 	save_item(NAME(selected_drive));
 	save_item(NAME(drive_busy));
 
+	// Kairo68: the live read/write states, their data separators and drives, for save states.
+	live_info *const lives[2] = { &cur_live, &checkpoint_live };
+	for(int i = 0; i != 2; i++) {
+		live_info &live = *lives[i];
+		save_item(NAME(live.tm), i);
+		save_item(NAME(live.state), i);
+		save_item(NAME(live.next_state), i);
+		save_item(NAME(live.shift_reg), i);
+		save_item(NAME(live.crc), i);
+		save_item(NAME(live.bit_counter), i);
+		save_item(NAME(live.byte_counter), i);
+		save_item(NAME(live.previous_type), i);
+		save_item(NAME(live.data_separator_phase), i);
+		save_item(NAME(live.data_bit_context), i);
+		save_item(NAME(live.data_reg), i);
+		save_item(NAME(live.idbuf), i);
+		fdc_pll_t &pll = live.pll;
+		save_item(NAME(pll.ctime), i);
+		save_item(NAME(pll.period), i);
+		save_item(NAME(pll.min_period), i);
+		save_item(NAME(pll.max_period), i);
+		save_item(NAME(pll.period_adjust_base), i);
+		save_item(NAME(pll.phase_adjust), i);
+		save_item(NAME(pll.write_start_time), i);
+		save_item(NAME(pll.write_buffer), i);
+		save_item(NAME(pll.write_position), i);
+		save_item(NAME(pll.freq_hist), i);
+	}
+	save_item(NAME(cur_live_drive));
+	save_item(NAME(checkpoint_live_drive));
+
 	for(int i=0; i != 4; i++) {
 		char name[2];
 		flopi[i].tm = timer_alloc(FUNC(upd765_family_device::update_floppy), this);
@@ -360,6 +391,19 @@ void upd765_family_device::device_start()
 
 	cur_irq = false;
 	locked = false;
+}
+
+// Kairo68: the live states point at their drive; a saved state holds its index.
+void upd765_family_device::device_pre_save()
+{
+	cur_live_drive = cur_live.fi ? cur_live.fi->id : -1;
+	checkpoint_live_drive = checkpoint_live.fi ? checkpoint_live.fi->id : -1;
+}
+
+void upd765_family_device::device_post_load()
+{
+	cur_live.fi = cur_live_drive >= 0 ? &flopi[cur_live_drive] : nullptr;
+	checkpoint_live.fi = checkpoint_live_drive >= 0 ? &flopi[checkpoint_live_drive] : nullptr;
 }
 
 void upd765_family_device::device_reset()
