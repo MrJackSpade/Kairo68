@@ -221,12 +221,18 @@
     "Chourensha 68K"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/91a2f32c-3550-46fc-9f82-c2b4cd392a2d.jpg",
+   "contentIds": [
+    "sha256-fd-v1:8905e8b639a5ea1c69fd0835c0817d3ee08d7c9bc5be67dea601f1787082d1a6"
+   ],
    "description": "A celebrated doujin vertical shooter: pick a fighter and weapon types and blast through dense enemy formations and large bosses in the style of Toaplan's arcade games.",
    "developer": "Famibe no Yosshin",
    "launchbox": "129077",
    "mobygames": 75501,
    "publisher": "Famibe no Yosshin",
    "screenshotUrl": "https://images.launchbox-app.com/daa99159-5f66-4f1a-a258-c64fd919eea7.png",
+   "sourceGroups": [
+    "x68000:Chourensha 68K v1.01 (1995)(Famibe No Yosshin).zip"
+   ],
    "title": "Cho Ren Sha 68K"
   },
   "x68000:132155": {
@@ -284,11 +290,18 @@
     "Otaku Dama"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/7854f8cf-996b-413e-b932-6010020180bd.jpg",
+   "contentIds": [
+    "sha256-fd-v1:81f94783e976f9d0666f9f071a9a463e97b6876dc982c3548bc1318298dbf9d2",
+    "sha256-fd-v1:a9f25c556b8be157a06d132a4b1c4751d3ec6b537a28619c4681688127c381e8"
+   ],
    "description": "A doujin vertical shooter in the bullet-heavy style of late-1990s arcade games.",
    "developer": "Mitsuky",
    "launchbox": "132756",
    "publisher": "Mitsuky",
    "screenshotUrl": "https://images.launchbox-app.com/fa4f0117-30fe-43cc-a0ea-8ffaef9290df.png",
+   "sourceGroups": [
+    "x68000:Otako Dama (1999)(Mitsuky).zip"
+   ],
    "title": "Otoko Dama"
   },
   "x68000:132773": {
@@ -769,12 +782,20 @@
     "2069 A.D."
    ],
    "boxArtUrl": "https://images.launchbox-app.com/b5c3d970-6cef-48de-83f7-dfc75fee05b7.jpg",
+   "contentIds": [
+    "sha256-fd-v1:b8ea575aae0d320b2bb9698d82323df2114591eb164566b663348df2472e7689",
+    "sha256-fd-v1:c3b6bf40bc6e852a5245d1f96612039940f637689ffd21e86a275a7992e6d92e",
+    "sha256-fd-v1:dbe4d25cb60fafb122bc96055a8afe135e7bb732876100e5d3e16fbe03084a67"
+   ],
    "description": "A science-fiction adventure by Home Data, played through menu commands.",
    "developer": "Home Data",
    "launchbox": "150138",
    "mobygames": 197753,
    "publisher": "Home Data",
    "screenshotUrl": "https://images.launchbox-app.com/d87cf8c2-776e-42a2-8b08-733a8b21a125.png",
+   "sourceGroups": [
+    "x68000:2096 AD (1991)(Home Data).zip"
+   ],
    "title": "2069 AD",
    "year": 1991
   },
@@ -919,6 +940,7 @@
    "description": "Koei's airline management game: open routes between world cities, buy aircraft and keep the company profitable against rival airlines.",
    "developer": "Koei",
    "launchbox": "150555",
+   "mobygames": 7139,
    "publisher": "Koei",
    "screenshotUrl": "https://images.launchbox-app.com/9b746eb8-8d3a-4e5a-9a4e-1b2dbead0fc1.png",
    "sourceGroups": [
@@ -930,11 +952,18 @@
   "x68000:150574": {
    "adult": true,
    "boxArtUrl": "https://images.launchbox-app.com/ac27b447-a27b-4f36-aefd-5499fb709092.jpg",
+   "contentIds": [
+    "sha256-fd-v1:51c5a23d77e50321570391575b8ca2d2b1172a8373767e92dd30b97d8ff51a0e",
+    "sha256-fd-v1:7be458d048084eeeb3daa63d9b9d9da731b0f00c00bb16cf737ff2a9f0d7783c"
+   ],
    "description": "An action game: strike parts of a wall to reveal the picture behind it.",
    "developer": "New System House Oh!",
    "launchbox": "150574",
    "publisher": "New System House Oh!",
    "screenshotUrl": "https://images.launchbox-app.com/b0792997-ebd6-4c1d-978d-5e333d5b2350.png",
+   "sourceGroups": [
+    "x68000:Fushigi No Kabe (1988)(System House Oh!).zip"
+   ],
    "title": "Aki to Tsukasa no Fushigi no Kabe",
    "year": 1988
   },
@@ -1115,6 +1144,7 @@
    "description": "A sliding-tile puzzle: rearrange the board's path pieces so a moving ball rolls across every tile marked with track.",
    "developer": "Konami",
    "launchbox": "151397",
+   "mobygames": 66120,
    "publisher": "SPS",
    "screenshotUrl": "https://images.launchbox-app.com/fec1d288-35fc-4806-bab0-f026974340d8.png",
    "sourceGroups": [
@@ -1124,12 +1154,18 @@
   },
   "x68000:151455": {
    "boxArtUrl": "https://images.launchbox-app.com/19697844-5250-408a-9e00-212c1d9c2899.jpg",
+   "contentIds": [
+    "sha256-fd-v1:4b9d90aebcf93e96f6602f784c7045d4f157b9423c9da3d150f49026a931f942"
+   ],
    "description": "Rotate mirrors and avoid obstacles to steer a beam of light across sixty puzzle screens, collecting cells without overheating the laser.",
    "developer": "Bullet-Proof Software",
    "launchbox": "151455",
    "mobygames": 14886,
    "publisher": "Bullet-Proof Software",
    "screenshotUrl": "https://images.launchbox-app.com/43ee7e47-9bef-4b97-91c5-18c003510ac6.png",
+   "sourceGroups": [
+    "x68000:Deflektor (1989)(BPS).zip"
+   ],
    "title": "Deflektor",
    "year": 1991
   },
@@ -1922,11 +1958,17 @@
     "Red Riding Hood Cha Cha Cha"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/e369c05e-2602-4ced-9c88-69a92548d6fc.jpg",
+   "contentIds": [
+    "sha256-fd-v1:e83d43b24340421780056ac56c05dbcbe69c30c3867b17caa8eea9bdae3b8b5e"
+   ],
    "description": "A shooter based on the Akazukin Chacha manga and anime.",
    "developer": "Sprite",
    "launchbox": "157415",
    "publisher": "Sprite",
    "screenshotUrl": "https://images.launchbox-app.com/94ef0df2-7f62-4aed-9e12-1bb4ec1823c8.png",
+   "sourceGroups": [
+    "x68000:Akazukin Cha Cha Cha v1.04 (1995)(Sprite).zip"
+   ],
    "title": "Akazukin Chachacha",
    "year": 1995
   },
@@ -2171,12 +2213,21 @@
   "x68000:157436": {
    "adult": true,
    "boxArtUrl": "https://images.launchbox-app.com/ee86240d-4b1e-4037-8e41-00f7a42283ad.jpg",
+   "contentIds": [
+    "sha256-fd-v1:2e8ab945c6cb7586c4ef6d1f5a673755bd3cacb2ad987666081d378e76d02f4a",
+    "sha256-fd-v1:82f6bc9f91adda8a830fef1be818186fbfa80ea6f12b6bbdb345b4ad9f1d0d0c",
+    "sha256-fd-v1:a9786fadbfbe839d0674cb6afc01506777fc08997a061066c05f623830649391",
+    "sha256-fd-v1:fcfec14988038df25f7feed3f933a0a0c36b51bd9b2badec9d61a0ab7496026b"
+   ],
    "description": "A fantasy adventure in which a high school student is drawn into another world.",
    "developer": "Birdy Soft",
    "launchbox": "157436",
    "mobygames": 16365,
    "publisher": "Birdy Soft",
    "screenshotUrl": "https://images.launchbox-app.com/1f8db211-7f0b-46ac-998e-e2546da9e6f6.png",
+   "sourceGroups": [
+    "x68000:Cal 2 (1991)(Birdy Soft).zip"
+   ],
    "title": "Cal II",
    "year": 1991
   },
@@ -3142,12 +3193,20 @@
     "Final Zone"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/b7e7421d-7a69-43d7-ac99-65f5575c34a7.png",
+   "contentIds": [
+    "sha256-fd-v1:be1a6b1448a748d59089e0dbaf6d5de1d21991bd7bce8e91d54e44dabd94f4ee",
+    "sha256-fd-v1:dcaa1a6f8f9aac24217364564b7ba12d0451f67f4d29b0091e51aa65958a705d",
+    "sha256-fd-v1:fd3944fd7d7fa87c0133494f0ba9d32a91e00a203576a690d4d59657b0193328"
+   ],
    "description": "An isometric mecha action game set a century in the future, when weapons of mass destruction are banned and combat walkers decide wars.",
    "developer": "Wolf Team",
    "launchbox": "157512",
    "mobygames": 31366,
    "publisher": "Wolf Team",
    "screenshotUrl": "https://images.launchbox-app.com/b8627d31-9832-447d-b227-6302d04ac9f6.png",
+   "sourceGroups": [
+    "x68000:Axis (1990) (Wolf Team).zip"
+   ],
    "title": "FZ Senki Axis",
    "year": 1990
   },
@@ -3536,12 +3595,24 @@
   },
   "x68000:157541": {
    "boxArtUrl": "https://images.launchbox-app.com/52a6bfaa-f556-4e37-9962-97a55af242db.png",
+   "contentIds": [
+    "sha256-fd-v1:176f50064e8d230b87080d1bb7b7c839ecc25ef12cebd6cea78fde31f958d88d",
+    "sha256-fd-v1:1c183247fd445c8a8cb93936d49cfd3a850db6c474890ebd24c139bc073772fa",
+    "sha256-fd-v1:2312a12ca5b5c1ffb18cee2123c6d929b45b051aeb11ba3ac9fbdf4f97472925",
+    "sha256-fd-v1:3b2b8321ff1524b62aa6cdb082c0edca3a487f2b3b0d59dc0465f0e3833fc9fa",
+    "sha256-fd-v1:84ee7ebb64b880e974e52217682e2d2890ee852839f029e3e331b3a3f98a399a",
+    "sha256-fd-v1:da32242c65e92436a80f3f247d97a89b9b4d6a290a1bdaff131640177f8400d7",
+    "sha256-fd-v1:f4e5f10d9a83e5579f7070c3a5c0224709b982d25dfcedc91742772a0069bbc1"
+   ],
    "description": "Micro Cabin's cyberpunk role-playing game set in a Hong Kong devastated by a demonic disaster.",
    "developer": "Micro Cabin",
    "launchbox": "157541",
    "mobygames": 15537,
    "publisher": "TAKERU",
    "screenshotUrl": "https://images.launchbox-app.com/edd853e1-be2f-4cac-aa6d-7ab9fdb8fc60.png",
+   "sourceGroups": [
+    "x68000:Genei Toshi (1991)(Microcabin).zip"
+   ],
    "title": "Illusion City: Gen'ei Toshi"
   },
   "x68000:157542": {
@@ -3625,12 +3696,19 @@
     "Ishidō: The Way of Stones"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/0e7e1204-6b30-499b-b2fe-603124e6c752.jpg",
+   "contentIds": [
+    "sha256-fd-v1:1117a1e6590eaf215fb053e6137df27408d8c02a31829aa2695f90b62a30d771",
+    "sha256-fd-v1:f825c4908029a543b09ba3ba0a405d1b01b535a18688360619e5510848eefa7b"
+   ],
    "description": "A solitaire tile game: place each stone next to tiles that match its color or symbol, scoring most for stones that touch four neighbors.",
    "developer": "Software Resources International",
    "launchbox": "157546",
    "mobygames": 4253,
    "publisher": "ASCII",
    "screenshotUrl": "https://images.launchbox-app.com/41953712-a790-4c2a-90e3-bee2cd4d50aa.png",
+   "sourceGroups": [
+    "x68000:Ishidou (1989)(ASCII).zip"
+   ],
    "title": "Ishidou",
    "year": 1991
   },
@@ -4010,24 +4088,45 @@
   },
   "x68000:157608": {
    "boxArtUrl": "https://images.launchbox-app.com/ae837238-1a6e-449a-a16f-74872f9c2901.jpg",
+   "contentIds": [
+    "sha256-fd-v1:37bc2521f8e855032acb5a0058ce2e212e24b112d12d1125f146a2f3cb21d540",
+    "sha256-fd-v1:56cfa780cdf133360874e5a02c7b2eb960187befe38ec11584f1990d74178814",
+    "sha256-fd-v1:6513f7f2aae9dfeabcacb203fde516898da5c1ac911fcc7cf33244ecdd52c496",
+    "sha256-fd-v1:95d7304066f90d2f800b226288d7e960833d257839b37fdcf8a5a8837cc1b4b9",
+    "sha256-fd-v1:aa8a300a631bfef0865f08ad5174b633ddce868ae1979d20c843cbf92d55534e",
+    "sha256-fd-v1:daacb031e1748246a59c0d17a01ba4a0e00f061041e958ac40c4e8505956dd10",
+    "sha256-fd-v1:f57e01b921883cd2f3a5bc479ad6b882920de453912fdd09430cfd27a32c5ac0"
+   ],
    "description": "A role-playing game set after humanity's extinction, where demon races fight for control of an Earth reborn as the Demon World.",
    "developer": "BrainGrey",
    "launchbox": "157608",
    "mobygames": 13538,
    "publisher": "BrainGrey",
    "screenshotUrl": "https://images.launchbox-app.com/445190c3-72df-48c6-8853-cbf6ee3ae663.png",
+   "sourceGroups": [
+    "x68000:Last Armageddon (1991)(Brain Grey).zip"
+   ],
    "title": "Last Armageddon",
    "year": 1989
   },
   "x68000:157609": {
    "adult": true,
    "boxArtUrl": "https://images.launchbox-app.com/eda51f53-7221-4156-8614-c915052ea507.jpg",
+   "contentIds": [
+    "sha256-fd-v1:3f1ffb385d7ca8b0fd12c7b2d1e36351f1e8fc7900aac6fdb43ea9ae333636d2",
+    "sha256-fd-v1:84eff0a1d0ca3abbb474227413498730e7ccbf4ba1c3cdd2572d0371aad84b02",
+    "sha256-fd-v1:94a680144877d580fff269bd88a798ebdb8729415e1d75e9f584536402a29c3b",
+    "sha256-fd-v1:c07945ef5d8007a99eac690eea971aa9d3aed55b2304a293f8d675b098b85e92"
+   ],
    "description": "A sci-fi adventure set after a nuclear war at the end of 1999.",
    "developer": "Elf",
    "launchbox": "157609",
    "mobygames": 47622,
    "publisher": "elf",
    "screenshotUrl": "https://images.launchbox-app.com/34efbb3f-f427-47c7-b34d-a5c76e260918.png",
+   "sourceGroups": [
+    "x68000:Elle (1991)(Elf).zip"
+   ],
    "title": "L Elle",
    "year": 1991
   },
@@ -4116,6 +4215,7 @@
    "description": "Konami's Salamander: alternate horizontal and vertical stages through a living, organic universe to stop the planet-devouring Zelos.",
    "developer": "Konami Industry",
    "launchbox": "157614",
+   "mobygames": 7297,
    "publisher": "Sharp",
    "screenshotUrl": "https://images.launchbox-app.com/8109f375-4580-45a0-b268-9280a565eb23.png",
    "sourceGroups": [
@@ -4729,12 +4829,26 @@
     "Satsujin Club DX"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/520ac93d-c862-4850-914c-c71096e2e168.png",
+   "contentIds": [
+    "sha256-fd-v1:07b5207cc222366c5e7dab4147008b259e9bb16a4a1bf34485d45f5b5cc768b5",
+    "sha256-fd-v1:369707ea626fc22335981ee9ad33bf290dc4d440904bf5e0db7302fe7a32749f",
+    "sha256-fd-v1:7aaf2f486a31bb96758b7810e8a1b49df6ca296a9e8f15a2a81ec8e6368ef0c0",
+    "sha256-fd-v1:7d46e4278166789624a9d30a78d1c09edd96ebbac6268cd4309b9788192bc216",
+    "sha256-fd-v1:82e80ac6c8ee09effe4797924011d54904eef8d0fde0acfcbd5bba914d794db8",
+    "sha256-fd-v1:8310fc62f77ab2eeb0219b50d7782fc3ed566d55353645bdc824f164f14d8377",
+    "sha256-fd-v1:cc0b8516ab259f6bc9863efa746165342ad2e0195db7c2d6ad1ba6edf1b89607",
+    "sha256-fd-v1:d92ae1961f77858c48132239617dd7f16bf6383cb1e38cd306c8020aa1435530",
+    "sha256-fd-v1:f4367549c8b10ee7d77765b07e4bc1bcb2812d2428b20c21b369b7871865db5e"
+   ],
    "description": "A detective adventure: J.B. Harold investigates the murder of a wealthy man by questioning suspects and checking alibis.",
    "developer": "Riverhill Soft",
    "launchbox": "157647",
    "mobygames": 9703,
    "publisher": "Riverhill Soft",
    "screenshotUrl": "https://images.launchbox-app.com/24dffbf7-9e81-4aa5-98e2-1217601cb89e.png",
+   "sourceGroups": [
+    "x68000:J.B. Harold.zip"
+   ],
    "title": "Murder Club DX",
    "year": 1988
   },
@@ -4895,12 +5009,19 @@
   },
   "x68000:157657": {
    "boxArtUrl": "https://images.launchbox-app.com/31ae41ee-e753-4e37-8ee3-db83d9ebae48.png",
+   "contentIds": [
+    "sha256-fd-v1:1eb4c83e6bd82a8ca2d119f52abfd838df103a2f7067e88b963c83afe260bdda",
+    "sha256-fd-v1:86e9fdfc1f8422da7702e54ac2b3d5c3727e652cd7d1877e190fb69f4947315f"
+   ],
    "description": "Lay pipe pieces from a dispenser to build a long path for the oncoming flooz before it spills out.",
    "developer": "The Assembly Line",
    "launchbox": "157657",
    "mobygames": 2112,
    "publisher": "Bullet-Proof Software",
    "screenshotUrl": "https://images.launchbox-app.com/49ae4208-2057-47e4-afdb-87aedd1d532b.png",
+   "sourceGroups": [
+    "x68000:Pipe Dream (1989)(BPS).zip"
+   ],
    "title": "Pipe Dream",
    "year": 1992
   },
@@ -6796,11 +6917,17 @@
   },
   "x68000:184351": {
    "boxArtUrl": "https://images.launchbox-app.com/d55e0a33-c84a-45b6-ad88-a370f8400488.jpg",
+   "contentIds": [
+    "sha256-fd-v1:d71fa49084603af73bd8fab1a452db75a6bb75c94044c33979aac73af1f6a546"
+   ],
    "description": "A doujin block-matching puzzle game.",
    "developer": "Shin-Kisshin",
    "launchbox": "184351",
    "publisher": "Shin-Kisshin",
    "screenshotUrl": "https://images.launchbox-app.com/0befc7c5-6db2-47dd-b8bf-1f9ff95a6385.png",
+   "sourceGroups": [
+    "x68000:Ame Game 0.90 (19xx)(Shin - Kisshin).zip"
+   ],
    "title": "Ame Game"
   },
   "x68000:184353": {
@@ -7469,12 +7596,18 @@
     "Psycho Pigs UXB"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/8571582c-5c95-442c-9d2d-ee3d0570cd5d.jpg",
+   "contentIds": [
+    "sha256-fd-v1:0bf2336369a29b60584c1a3662036a94fc0337e5f4f0931b1397c506b1530f17"
+   ],
    "description": "Jaleco's arena game: pigs throw bombs at each other, and the last pig standing wins.",
    "developer": "Jaleco",
    "launchbox": "185739",
    "mobygames": 18582,
    "publisher": "Micomsoft",
    "screenshotUrl": "https://images.launchbox-app.com/47888431-a58a-4811-bd8e-4f214832fc0d.png",
+   "sourceGroups": [
+    "x68000:Butasan (1993)(Dempa).zip"
+   ],
    "title": "Video Game Anthology Vol. 06: Butasan",
    "year": 1989
   },
@@ -7501,11 +7634,18 @@
     "Cannon Sight"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/16df1b8c-8013-4a51-9dca-1e48f6e90a64.jpg",
+   "contentIds": [
+    "sha256-fd-v1:de03c5ee318a51a556df5c5f44a8aebd620b4faf39fa97962d705fdd52100485",
+    "sha256-fd-v1:ef3bb7f48a67e374e805d7b12382bb76d440781b01f81c838b3b16dbfba79ded"
+   ],
    "description": "An action game about an armored infantry unit, released in 1992.",
    "developer": "Nippon Computer Club Renmei Kikaku",
    "launchbox": "185741",
    "publisher": "Nippon Computer Club Renmei Kikaku",
    "screenshotUrl": "https://images.launchbox-app.com/9a0028a4-bb05-4e16-9ebe-01741aba9c69.png",
+   "sourceGroups": [
+    "x68000:Soukou Hohei Butai Cannon Sight (1995)(Nihon Computer Club Renmei).zip"
+   ],
    "title": "Soukou Hohei Butai: Cannon Sight",
    "year": 1992
   },
@@ -8228,12 +8368,18 @@
   },
   "x68000:186877": {
    "boxArtUrl": "https://images.launchbox-app.com/5c432d9e-0d02-4d63-a1fb-fa43c12f4dd3.jpg",
+   "contentIds": [
+    "sha256-fd-v1:7bb202daaafa5f25fdc331b3376525d6246faea30edc76c7cde75cf025c2ef03"
+   ],
    "description": "A Populous data disk adding five new landscape types, from the Wild West to the French Revolution.",
    "developer": "Bullfrog Productions",
    "launchbox": "186877",
    "mobygames": 2730,
    "publisher": "Imagineer",
    "screenshotUrl": "https://images.launchbox-app.com/22c762c2-c045-40a9-96dc-6c09ad3260d2.jpg",
+   "sourceGroups": [
+    "x68000:Populous Promised Land (19xx)(Imagineer).zip"
+   ],
    "title": "Populous: The Promised Lands",
    "year": 1990
   },
@@ -8511,12 +8657,18 @@
   },
   "x68000:187139": {
    "boxArtUrl": "https://images.launchbox-app.com/b45c1c6b-6eb1-4b8d-ace7-8d00f408186f.jpg",
+   "contentIds": [
+    "sha256-fd-v1:5d50fcbb520671a9818807b31c2d79f27774e7b0b609a6944660f831e4f60f8f"
+   ],
    "description": "Universal's Mr. Do! and Mr. Do! vs. Unicorns: dig tunnels and collect cherries while squashing monsters, then a ladder-based sequel.",
    "developer": "Masaichirou Mishima",
    "launchbox": "187139",
    "mobygames": 59496,
    "publisher": "Dempa Shimbunsha",
    "screenshotUrl": "https://images.launchbox-app.com/e2993a32-2923-4f2c-a8de-15ec7a4943c3.png",
+   "sourceGroups": [
+    "x68000:Mr. Do! & Mr. Do! vs Unicorns (1994)(Dempa).zip"
+   ],
    "title": "Video Game Anthology Vol. 10: Mr. Do! / Mr. Do! vs. Unicorns",
    "year": 1994
   },
@@ -8557,11 +8709,19 @@
    "aliases": [
     "Binbin Mahjongg Peach Angel"
    ],
+   "contentIds": [
+    "sha256-fd-v1:0271c796bf3b0861cb4517b1f914ae0e447159458c41d321fa76a6abbe6ec654",
+    "sha256-fd-v1:40f491b0d946744fa7e40163ea7e7905ca5b5d8b68dfbae6abdc6d2745f041b8"
+   ],
    "description": "A mahjong game, released in 1990.",
    "developer": "Takeru Soft",
    "launchbox": "187145",
    "publisher": "Brother Kougyou",
    "screenshotUrl": "https://images.launchbox-app.com/2eab37b3-9a92-40a5-ab4a-58deed3afba9.png",
+   "sourceGroups": [
+    "x68000:Binbin Mahjongg Peach Angel (1994)(Takeru Soft).zip",
+    "x68000:Binbin Mahjongg Peach Angel (1994)(Takeru Soft)[a].zip"
+   ],
    "title": "Binbin Mahjong: Peach Angel",
    "year": 1990
   },
@@ -8686,6 +8846,7 @@
    ],
    "description": "A sliding-tile puzzle: arrange track pieces so a burning fuse can travel through every tile.",
    "launchbox": "187339",
+   "mobygames": 54156,
    "publisher": "Brøderbund Japan",
    "screenshotUrl": "https://images.launchbox-app.com/9838845c-be12-42e1-9d8f-395cba5f762e.jpg",
    "sourceGroups": [
@@ -8975,11 +9136,19 @@
   "x68000:187696": {
    "adult": true,
    "boxArtUrl": "https://images.launchbox-app.com/fc26670a-4909-4c08-a1e2-e2ce3aef6bc2.jpg",
+   "contentIds": [
+    "sha256-fd-v1:649a906aa44833cb3bb7e5d1f9e7d9a24c122be0938b91dbdc11a3aab785c806",
+    "sha256-fd-v1:7bd200419e8b491b03a3fea5badab9c3e729b9fb9e13778428a472b6d56af151",
+    "sha256-fd-v1:df5c30bc36a0f3ce9f8b22a23b8cef6c1f1a5aa38036e88f7ca3a2316ba08ac6"
+   ],
    "description": "A fantasy adventure in which the hero is taken to another world.",
    "developer": "X Shitei Brand",
    "launchbox": "187696",
    "publisher": "Fairy Tale",
    "screenshotUrl": "https://images.launchbox-app.com/2a2b34c5-6c2e-4b1c-9cc1-caf2060c7895.png",
+   "sourceGroups": [
+    "x68000:Dragon City (19xx)(Fairytale).zip"
+   ],
    "title": "Dragon City X Shitei",
    "year": 1991
   },
@@ -9975,6 +10144,7 @@
    "description": "A mystery adventure by Riverhill Soft about a series of murders linked to playing cards.",
    "developer": "Riverhill Soft",
    "launchbox": "188211",
+   "mobygames": 54290,
    "publisher": "Riverhill Soft",
    "screenshotUrl": "https://images.launchbox-app.com/0e80bbbd-c45c-44ed-b778-996844bb8737.png",
    "sourceGroups": [
@@ -10492,11 +10662,20 @@
     "Toudou Ryunosuke Tantei Nikki: Ougon no Rashinban: Shouyoumaru San Francisco Kouro Satsujin Jiken"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/e6e96882-ae42-41dd-8d5e-fdbd3423ee8a.jpg",
+   "contentIds": [
+    "sha256-fd-v1:3e72b4cef9e1d7a7cef89c8bbfd20c432c4e063359c9767103c04e69128daf77",
+    "sha256-fd-v1:99c5c57f66d5efdb3d1e5deb0b63e5d462fbec90989d1653a67e824f80e835f1",
+    "sha256-fd-v1:f517e9050a3e7177dd7d0dcfd34c26ff8249ba32035bd19a2d12742f64caaef7"
+   ],
    "description": "A murder mystery aboard a ship on the San Francisco route, by Riverhill Soft.",
    "developer": "Riverhill Soft",
    "launchbox": "188465",
+   "mobygames": 54291,
    "publisher": "Riverhill Soft",
    "screenshotUrl": "https://images.launchbox-app.com/74265906-dc92-4f5d-b355-2967f5069aaf.png",
+   "sourceGroups": [
+    "x68000:Ougon No Rashinban (1989)(Riverhill Soft).zip"
+   ],
    "title": "Ougon no Rashinban: Shouyou Maru San Francisco Kouro Satsujin Jiken",
    "year": 1991
   },
@@ -10690,11 +10869,17 @@
   "x68000:188551": {
    "adult": true,
    "boxArtUrl": "https://images.launchbox-app.com/3f3e7dd2-b33f-4701-adca-4cb311fa6a9d.jpg",
+   "contentIds": [
+    "sha256-fd-v1:224c333caea810efe58328d2518773fcf9ffa0942adaa3a362acb4e008482feb"
+   ],
    "description": "A game by Artist Soft, released in 1989.",
    "developer": "Artist Soft",
    "launchbox": "188551",
    "publisher": "Great",
    "screenshotUrl": "https://images.launchbox-app.com/b360b5bd-10b9-4129-960f-84c6d986fd09.png",
+   "sourceGroups": [
+    "x68000:Puppet Show (19xx)(Artist Soft).zip"
+   ],
    "title": "Puppet Show Part 1",
    "year": 1989
   },
@@ -11125,6 +11310,7 @@
    "description": "Sokoban: push crates onto their marked spots in a warehouse, never pulling, across many puzzles.",
    "developer": "Thinking Rabbit",
    "launchbox": "188978",
+   "mobygames": 71627,
    "publisher": "Thinking Rabbit",
    "screenshotUrl": "https://images.launchbox-app.com/98baaae3-f0cd-46c3-9b88-041e3f7592cb.png",
    "sourceGroups": [
@@ -11226,12 +11412,20 @@
     "Super Ultra Mucchin Puripuri Cyborg Marilyn DX"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/f619f579-f391-4faf-a7ad-932ce4a0537b.jpg",
+   "contentIds": [
+    "sha256-fd-v1:33bd80f70caac7bd093e89e5ec1e16f4847a90de80cb134f5fcb8dd1fd60e079",
+    "sha256-fd-v1:d322538079d72479d051ac8a4bebca28661ed157635af75318922756517ae49e",
+    "sha256-fd-v1:d331349ee2d0c4668db5ecb5ca558494650af684bff73195ade5510090879f4d"
+   ],
    "description": "A sci-fi adventure by JAST.",
    "developer": "JAST",
    "launchbox": "189054",
    "mobygames": 53229,
    "publisher": "Jast",
    "screenshotUrl": "https://images.launchbox-app.com/50d82ad2-9025-4beb-b377-a41bf3498226.png",
+   "sourceGroups": [
+    "x68000:Maririn DX (1994)(Jast).zip"
+   ],
    "title": "Super Ultra Mutchin Puri Puri Cyborg: Maririn DX",
    "year": 1994
   },
@@ -11492,11 +11686,20 @@
   },
   "x68000:189127": {
    "boxArtUrl": "https://images.launchbox-app.com/f5566f2e-7189-4a71-a2c1-dcdcb76665d9.jpg",
+   "contentIds": [
+    "sha256-fd-v1:2f348e905202721a64ebb63ca4c27ac81f04d789c9af7555181f1edd0dc4ed41",
+    "sha256-fd-v1:54986528bbaa15a28a494b075a08074f7c4d722a0693fae7128f2b5723675c3e",
+    "sha256-fd-v1:9fa3368e7d6a7fb5731245ba38d0614513f019fa4ae3d96944398ba829c3f270",
+    "sha256-fd-v1:c3c59a94ae8067e272540b6f7551b39643f18a4c8d658f50606160ad07622a44"
+   ],
    "description": "A role-playing game, the final Tritorn.",
    "developer": "Lee Way Corporation",
    "launchbox": "189127",
    "publisher": "Zainsoft",
    "screenshotUrl": "https://images.launchbox-app.com/0baff92c-9c20-4ae0-bd9d-21e6ec019022.png",
+   "sourceGroups": [
+    "x68000:Tricorn Final (19xx)(Xain).zip"
+   ],
    "title": "Tritorn Final",
    "year": 1989
   },
@@ -11568,11 +11771,22 @@
     "War Torn Versnag: Versnag Senran"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/bde41279-e103-42fa-a6aa-20398446f379.jpg",
+   "contentIds": [
+    "sha256-fd-v1:08316504788901c2d84dfe47bd3184e5e9c0a43c0887bdca8902e2afe29d2b90",
+    "sha256-fd-v1:0cf1a6e9745b53c66b15fd43b8dc29abf54ab19c33300d54a51544dc5b697b37",
+    "sha256-fd-v1:2fbfeccca8ae281ca6af50a193f8a448becd31c37c3ed8893e7d41d9783c7a3e",
+    "sha256-fd-v1:6b1891fa7f679b46bf493e554e710d65cc5cf66b802385b537b42fd454273c8c",
+    "sha256-fd-v1:863db7e8d113561fb639e858ae5aed5a3042cd5d289ff3bd7f25c67d445e1823",
+    "sha256-fd-v1:c92cff6e5e609542596bb04264e66063ff117547696a40b9219c33e69710089c"
+   ],
    "description": "An action role-playing game by Family Soft.",
    "developer": "Family Soft",
    "launchbox": "189135",
    "publisher": "Family Soft",
    "screenshotUrl": "https://images.launchbox-app.com/3b05385c-dfb2-465b-9bdb-89893a76f4d2.png",
+   "sourceGroups": [
+    "x68000:Versnag Senran (1993)(Family Soft).zip"
+   ],
    "title": "War Torn Versnag",
    "year": 1993
   },
@@ -11782,10 +11996,16 @@
   },
   "x68000:189159": {
    "boxArtUrl": "https://images.launchbox-app.com/77404c83-bb1a-4a86-931f-f9bb2023522c.jpg",
+   "contentIds": [
+    "sha256-fd-v1:1c0f92c9f06d76fefd6f12e27f2200d2a7641f40eb5a3601b659d22aa53e4a07"
+   ],
    "description": "The first scenario collection for Zan: Kagerou no Toki.",
    "developer": "Wolf Team",
    "launchbox": "189159",
    "publisher": "Wolf Team",
+   "sourceGroups": [
+    "x68000:Zan Kagerou No Jidai Scenario Collection Vol. 1 (19xx)(Wolf Team).zip"
+   ],
    "title": "Zan Scenario Collection Volume 1",
    "year": 1989
   },
@@ -11794,22 +12014,37 @@
     "Zan Scenario Collection Volume 2"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/5c3432a7-31e5-40ed-a974-e1a38e79a2ef.jpg",
+   "contentIds": [
+    "sha256-fd-v1:1df9684433a3a39449ecd6ceef0f46378245b56820015d7cdf603cf92df16ad4"
+   ],
    "description": "The second scenario collection for Zan: Kagerou no Toki.",
    "developer": "Wolf Team",
    "launchbox": "189160",
    "publisher": "Wolf Team",
    "screenshotUrl": "https://images.launchbox-app.com/2f3fb682-8ebb-42ec-8c0b-44b584de3dda.png",
+   "sourceGroups": [
+    "x68000:Zan Kagerou No Jidai Scenario Collection Vol. 2 (19xx)(Wolf Team).zip"
+   ],
    "title": "Zan Scenario Collection Vol. 2",
    "year": 1990
   },
   "x68000:189161": {
    "boxArtUrl": "https://images.launchbox-app.com/45a7ce8b-8beb-4158-ac4e-08ec20047b62.jpg",
+   "contentIds": [
+    "sha256-fd-v1:026a2b788fd8d942811c2daf2ea16458878d3f6058a67bc961951adf47814ad4",
+    "sha256-fd-v1:02fcca4c57a29f058c509625b7a99411d7e87820669a743bb3b5af042d1d790e",
+    "sha256-fd-v1:a4160dfb514714d3b22838b8b6a3d7742e3a321e59bb274d3a6aba612ead28c7",
+    "sha256-fd-v1:e6254f52d07d676b48df858b1c847f810c4e007229c7990a0f18b092c530c38f"
+   ],
    "description": "A side-scrolling fantasy platformer: explore levels, shoot enemies and collect power-ups.",
    "developer": "Maxima",
    "launchbox": "189161",
    "mobygames": 150040,
    "publisher": "Maxima",
    "screenshotUrl": "https://images.launchbox-app.com/d2fcb9ca-e2ab-4ff0-9c70-4f434f8a8f30.png",
+   "sourceGroups": [
+    "x68000:Zark Legend (1990)(Maxima).zip"
+   ],
    "title": "Zark Legend Special",
    "year": 1990
   },
@@ -11836,11 +12071,17 @@
     "Zoku Dungeon Master: Chaos Strikes Back"
    ],
    "boxArtUrl": "https://images.launchbox-app.com/525671a7-9c31-4e31-a689-f3fbcc66b010.jpg",
+   "contentIds": [
+    "sha256-fd-v1:b410650cc53d8199c79d160510aa22177a747bcf38a0f061f7d15247960fea5f"
+   ],
    "description": "The Dungeon Master sequel: lead four champions into the Dark Lord's new dungeon to stop his revenge.",
    "developer": "FTL Games",
    "launchbox": "189163",
    "publisher": "Victor Interactive Software",
    "screenshotUrl": "https://images.launchbox-app.com/8ca5f12a-b0f9-40ca-87c2-38282337dedd.png",
+   "sourceGroups": [
+    "x68000:Chaos Strikes Back (1990)(FTL).zip"
+   ],
    "title": "Zoku Dungeon Master: Chaos no Gyakushuu",
    "year": 1990
   },
@@ -12077,11 +12318,17 @@
    "title": "Bodhidharma"
   },
   "x68000:189293": {
+   "contentIds": [
+    "sha256-fd-v1:81c5ac1fddbb7378d7e79ab9623a3d3dcccad0def6f8804614dbc126f20e620f"
+   ],
    "description": "A doujin color-matching puzzle: line up four to clear them.",
    "developer": "Noz",
    "launchbox": "189293",
    "publisher": "Noz",
    "screenshotUrl": "https://images.launchbox-app.com/0128c6e0-1767-41f2-9bbd-8291a50ecbd0.png",
+   "sourceGroups": [
+    "x68000:Boyoyon v3.31 (1996)(Noz).zip"
+   ],
    "title": "Boyoyon"
   },
   "x68000:189294": {
@@ -12287,11 +12534,18 @@
    "aliases": [
     "Chacha Fighter V"
    ],
+   "contentIds": [
+    "sha256-fd-v1:31ddefdd1b72a3bb5d6a86d1682258119f99695979fca8723399ec37b4558ede",
+    "sha256-fd-v1:a66ff0cda91856fc7385f9839c07bd4408484559269713a835ffab4d2babdabc"
+   ],
    "description": "A doujin fighting game with an all-female cast.",
    "developer": "TMK",
    "launchbox": "189821",
    "publisher": "TMK",
    "screenshotUrl": "https://images.launchbox-app.com/bdc6f0fb-5913-4129-b1d6-acd29ad72a67.png",
+   "sourceGroups": [
+    "x68000:Chacha Fighter V v1.00 (1995)(TMK).zip"
+   ],
    "title": "Cha Cha Fighter V"
   },
   "x68000:189822": {
@@ -13069,11 +13323,17 @@
    "title": "First Mission II: Final Mission"
   },
   "x68000:190108": {
+   "contentIds": [
+    "sha256-fd-v1:ab635dfa186c43cd152714c194a5ea556c8abfc6b211dbbdf7350593782d6fa1"
+   ],
    "description": "A doujin shooter by Itasenpara with an unusual hero in place of a spaceship.",
    "developer": "Itasenpara",
    "launchbox": "190108",
    "publisher": "Itasenpara",
    "screenshotUrl": "https://images.launchbox-app.com/ff241dd3-d492-47c8-bc17-739504752797.png",
+   "sourceGroups": [
+    "x68000:Flame Wing v1.02 (1994)(Itasenpara).zip"
+   ],
    "title": "Flame Wing"
   },
   "x68000:190109": {
@@ -13360,11 +13620,17 @@
   },
   "x68000:190277": {
    "boxArtUrl": "https://images.launchbox-app.com/7f93df6a-4921-4c73-8d8a-8f030533d0dd.png",
+   "contentIds": [
+    "sha256-fd-v1:606bcfe02fc85d02ebd0a48b4837f30c5ab8e687104987bedf09fecf0d635c88"
+   ],
    "description": "A doujin action fighting game in a medieval fantasy world.",
    "developer": "Sprite",
    "launchbox": "190277",
    "publisher": "Sprite",
    "screenshotUrl": "https://images.launchbox-app.com/c61e2e09-37cd-4104-87fd-0dce88fdace7.png",
+   "sourceGroups": [
+    "x68000:Gardis Light v2.10 (1994)(Sprite).zip"
+   ],
    "title": "Gardis Light"
   },
   "x68000:190278": {
@@ -13972,11 +14238,17 @@
    "title": "Kachoufuugetsu Gaiden"
   },
   "x68000:190578": {
+   "contentIds": [
+    "sha256-fd-v1:04cfc718435638cc54968c34b0be6b8a833507e9b3288b719883415b2e0805ce"
+   ],
    "description": "Push or shoot your rivals off the platform before they do the same to you.",
    "developer": "Erenvmvrcom",
    "launchbox": "190578",
    "publisher": "Erenvmvrcom",
    "screenshotUrl": "https://images.launchbox-app.com/d9915102-7df8-423b-aa22-28a1fa84507d.png",
+   "sourceGroups": [
+    "x68000:Level Point v1.0 (199x)(Erenvmvrcom).zip"
+   ],
    "title": "Level Point"
   },
   "x68000:190579": {
@@ -14077,11 +14349,23 @@
    "aliases": [
     "Shimai Mahjongg"
    ],
+   "contentIds": [
+    "sha256-fd-v1:1a1cd7091b32e2369057ba7a73a93086b79c27c2ec6b4a44e87325a50aa6b601",
+    "sha256-fd-v1:23252056a2bc5b84a02e0b0d26b81a7ee1070c69ab6d2ba63f0ed66fb09ea580",
+    "sha256-fd-v1:2df52e48a67a7eb4b6252b7bdcfebb979e8f9933bb66ef198404b8234f7d0bc1",
+    "sha256-fd-v1:b7657115b6b849a2672749aaa94da708512697f9ee34ba41523578d07eedd902"
+   ],
    "description": "A doujin mahjong game updated several times in 1993 and 1994.",
    "developer": "Kazumi",
    "launchbox": "190588",
    "publisher": "Kazumi",
    "screenshotUrl": "https://images.launchbox-app.com/4b46ab3b-f4ce-4770-bfe6-1ac6010a0e03.png",
+   "sourceGroups": [
+    "x68000:Shimai Mahjongg v1.00 (1993)(Kazumi).zip",
+    "x68000:Shimai Mahjongg v1.10 (1993)(Kazumi).zip",
+    "x68000:Shimai Mahjongg v1.30 (1993)(Kazumi).zip",
+    "x68000:Shimai Mahjongg v1.40 (1994)(Kazumi).zip"
+   ],
    "title": "Shimai Mahjong"
   },
   "x68000:190589": {
@@ -14498,10 +14782,16 @@
   },
   "x68000:190734": {
    "boxArtUrl": "https://images.launchbox-app.com/a19b84d4-d744-4c0b-b974-80b41dacb213.jpg",
+   "contentIds": [
+    "sha256-fd-v1:5c25f72e65f12ef2480010ca0b21472b0c58259f3515f2b54389eeb58b8746b2"
+   ],
    "developer": "Studio Light Cross",
    "launchbox": "190734",
    "publisher": "Studio Light Cross",
    "screenshotUrl": "https://images.launchbox-app.com/65bf5115-4753-4600-8b4d-317b70421087.png",
+   "sourceGroups": [
+    "x68000:Lunatic Fantasy v2.0 (199x)(Studio Light Cross).zip"
+   ],
    "title": "Lunatic Fantasy"
   },
   "x68000:190735": {
@@ -15521,10 +15811,16 @@
    "aliases": [
     "Raydefox Full Metal Powerdsuits v1995.05"
    ],
+   "contentIds": [
+    "sha256-fd-v1:29fdd76fe466e236411d451098cf83e73ffee202128704264e5fb0fa5f2f9d2b"
+   ],
    "developer": "Zhin",
    "launchbox": "191517",
    "publisher": "Zhin",
    "screenshotUrl": "https://images.launchbox-app.com/27cd6126-c36d-41b3-82d2-939345cceba6.png",
+   "sourceGroups": [
+    "x68000:(Full Metal Powdersuits) - Raydefox.zip"
+   ],
    "title": "Raydefox Full Metal Powerdsuits"
   },
   "x68000:191518": {
@@ -16716,6 +17012,7 @@
     "sha256-fd-v1:b1dc1e0cbcffb175766723dce1deba62cfa37cb0a3c3b902f1bf796995249c86",
     "sha256-fd-v1:eff0ea011fcaa7a196151cbd55be6f34e097f7f3b0bf463f3a295cae318710e8"
    ],
+   "description": "An adventure about a special police unit, by Great.",
    "developer": "Great",
    "launchbox": "192339",
    "publisher": "Great",
@@ -17146,6 +17443,7 @@
   },
   "x68000:213309": {
    "boxArtUrl": "https://images.launchbox-app.com/r2_169bd63c-0c4a-4a1e-8aee-0a82a7ff6742.jpg",
+   "description": "The second Orange Iro no Biyaku game, released in 1989.",
    "developer": "System House Oh!",
    "launchbox": "213309",
    "publisher": "System House Oh!",
@@ -17414,6 +17712,7 @@
     "sha256-fd-v1:da7eb8e124169cfa83cacc6f94ab1b7889f6495d42641624fe37754894242dd1",
     "sha256-fd-v1:e5e113650c9174a9632cb4e6c0175e248ed212066cb43ab67098d59e9e872ba8"
    ],
+   "description": "Doujin versions of the first three Hydlide action role-playing games in one set.",
    "sourceGroups": [
     "x68000:Hydlide I+II+III (19xx)(Yokoshiba Soft).zip"
    ],
@@ -17423,27 +17722,19 @@
    "contentIds": [
     "sha256-fd-v1:e758d01fdb2f66a960756b9a697dd58ecb0a931e84f42bb11492c719fc754938"
    ],
+   "description": "A mahjong game by Allex.",
    "sourceGroups": [
     "x68000:Mahjongg Master (1991)(Allex)(Disk 5 of 5)(Disk E).zip"
    ],
    "title": "Mahjongg Master",
    "year": 1991
   },
-  "x68000:local-0639a1dd7b": {
-   "contentIds": [
-    "sha256-fd-v1:0271c796bf3b0861cb4517b1f914ae0e447159458c41d321fa76a6abbe6ec654"
-   ],
-   "sourceGroups": [
-    "x68000:Binbin Mahjongg Peach Angel (1994)(Takeru Soft)[a].zip"
-   ],
-   "title": "Binbin Mahjongg Peach Angel",
-   "year": 1994
-  },
   "x68000:local-0682268b67": {
    "contentIds": [
     "sha256-fd-v1:3b99db00fa2d9fb5071ce698b6e5973771894a88d83b9683dcc0f187a63d36b7",
     "sha256-fd-v1:f7b1cd8252fe20c44b8e7423df08601f20521b12c315843b9ddad63dce4f56cc"
    ],
+   "description": "The first two Yaritai Houdai adventures in one set.",
    "sourceGroups": [
     "x68000:Yaritai Houdai I+II (19xx)(Zenryuutsuu).zip"
    ],
@@ -17463,6 +17754,7 @@
    "contentIds": [
     "sha256-fd-v1:ac048fe2117849579d9af49f28b83f429344fa8210804090abe0db23129ead8f"
    ],
+   "description": "A daifugo betting card game.",
    "sourceGroups": [
     "x68000:Dai Fugou Gakuen v1.1 (1993)(Juushoku Soft).zip"
    ],
@@ -17498,27 +17790,6 @@
    ],
    "title": "DC Card",
    "year": 1990
-  },
-  "x68000:local-092eeb704e": {
-   "contentIds": [
-    "sha256-fd-v1:23252056a2bc5b84a02e0b0d26b81a7ee1070c69ab6d2ba63f0ed66fb09ea580"
-   ],
-   "sourceGroups": [
-    "x68000:Shimai Mahjongg v1.30 (1993)(Kazumi).zip"
-   ],
-   "title": "Shimai Mahjongg v1.30",
-   "year": 1993
-  },
-  "x68000:local-09386e9692": {
-   "contentIds": [
-    "sha256-fd-v1:1eb4c83e6bd82a8ca2d119f52abfd838df103a2f7067e88b963c83afe260bdda",
-    "sha256-fd-v1:86e9fdfc1f8422da7702e54ac2b3d5c3727e652cd7d1877e190fb69f4947315f"
-   ],
-   "sourceGroups": [
-    "x68000:Pipe Dream (1989)(BPS).zip"
-   ],
-   "title": "Pipe Dream",
-   "year": 1989
   },
   "x68000:local-09f8fc8dd5": {
    "contentIds": [
@@ -17571,21 +17842,12 @@
     "sha256-fd-v1:d27eba35a2e0bfcd5ea2a6a9c187720b6d4d0154085609f647290cf85e3e1d4c",
     "sha256-fd-v1:e2adacd1cb76a005fd07b8fbedea434d72522de97740106500ac01f88d37740f"
    ],
+   "description": "Both Soft de Hard na Monogatari visual novels about running a software company.",
    "sourceGroups": [
     "x68000:Soft De Hard Na Monogatari I+II (1988)(System Sacom).zip"
    ],
    "title": "Soft De Hard Na Monogatari I+II",
    "year": 1988
-  },
-  "x68000:local-0daefdb763": {
-   "contentIds": [
-    "sha256-fd-v1:e83d43b24340421780056ac56c05dbcbe69c30c3867b17caa8eea9bdae3b8b5e"
-   ],
-   "sourceGroups": [
-    "x68000:Akazukin Cha Cha Cha v1.04 (1995)(Sprite).zip"
-   ],
-   "title": "Akazukin Cha Cha Cha v1.04",
-   "year": 1995
   },
   "x68000:local-0f86f0a725": {
    "contentIds": [
@@ -17596,18 +17858,6 @@
    ],
    "title": "The Teruminachan",
    "year": 1989
-  },
-  "x68000:local-0fe7b29aaa": {
-   "contentIds": [
-    "sha256-fd-v1:33bd80f70caac7bd093e89e5ec1e16f4847a90de80cb134f5fcb8dd1fd60e079",
-    "sha256-fd-v1:d322538079d72479d051ac8a4bebca28661ed157635af75318922756517ae49e",
-    "sha256-fd-v1:d331349ee2d0c4668db5ecb5ca558494650af684bff73195ade5510090879f4d"
-   ],
-   "sourceGroups": [
-    "x68000:Maririn DX (1994)(Jast).zip"
-   ],
-   "title": "Maririn DX",
-   "year": 1994
   },
   "x68000:local-1015c790e6": {
    "contentIds": [
@@ -17659,6 +17909,7 @@
    "contentIds": [
     "sha256-fd-v1:28bd2e8e59f121b97e39a05359cd2d411a14083f0daacd80eea1a9b48cb21f4a"
    ],
+   "description": "A quiz game about the Urusei Yatsura manga.",
    "sourceGroups": [
     "x68000:Shiken Ni Deru Urusei Yatsura Part 1 (1989)(Ponta Soft).zip"
    ],
@@ -17680,6 +17931,7 @@
    "contentIds": [
     "sha256-fd-v1:46191d7c5e2a3be10d503422757ce73bc79572f9bb7b2045d6590f01ea073361"
    ],
+   "description": "An English study program.",
    "sourceGroups": [
     "x68000:Minami No Hiroshi No Eigo Kyoushitsu v2.0 (1989)(Todo2).zip"
    ],
@@ -17744,16 +17996,6 @@
    "title": "Nobunaga No Yabou +",
    "year": 1991
   },
-  "x68000:local-1b2e9e0a81": {
-   "contentIds": [
-    "sha256-fd-v1:8905e8b639a5ea1c69fd0835c0817d3ee08d7c9bc5be67dea601f1787082d1a6"
-   ],
-   "sourceGroups": [
-    "x68000:Chourensha 68K v1.01 (1995)(Famibe No Yosshin).zip"
-   ],
-   "title": "Chourensha 68K v1.01",
-   "year": 1995
-  },
   "x68000:local-1cc6add174": {
    "contentIds": [
     "sha256-fd-v1:296ce69632454d4712acabde8e375b9bbb5b307f5a532b2e8b8fef4a734abd50",
@@ -17774,6 +18016,7 @@
     "sha256-fd-v1:c9ee7c9d193dc54ddccd94c448112fdd8ed2f2522eac2cbb2e49e51ea6cf54ea",
     "sha256-fd-v1:dd8817afebf96ffb1be75edbbf0bdd56ec5773e7edac41e047f83a4754c9e1d8"
    ],
+   "description": "The seven Misty detective adventures in one set.",
    "sourceGroups": [
     "x68000:Misty 68K I-VII.zip"
    ],
@@ -17815,6 +18058,7 @@
     "sha256-fd-v1:2539baeac00c95025bdc04480fce9887ff2084579857c08774c3863851d41884",
     "sha256-fd-v1:c3402ed3578fbb79c4126e53221a39e093fd48654307cdc39ea50c08e227290c"
    ],
+   "description": "Bullfrog's Populous and Populous II in one set: god games of shaping land and guiding followers against rival deities.",
    "sourceGroups": [
     "x68000:Populous I+II (Imagineer).zip"
    ],
@@ -17848,18 +18092,6 @@
    ],
    "title": "Gekkan 5 Gou"
   },
-  "x68000:local-206ba43324": {
-   "contentIds": [
-    "sha256-fd-v1:3e72b4cef9e1d7a7cef89c8bbfd20c432c4e063359c9767103c04e69128daf77",
-    "sha256-fd-v1:99c5c57f66d5efdb3d1e5deb0b63e5d462fbec90989d1653a67e824f80e835f1",
-    "sha256-fd-v1:f517e9050a3e7177dd7d0dcfd34c26ff8249ba32035bd19a2d12742f64caaef7"
-   ],
-   "sourceGroups": [
-    "x68000:Ougon No Rashinban (1989)(Riverhill Soft).zip"
-   ],
-   "title": "Ougon No Rashinban",
-   "year": 1989
-  },
   "x68000:local-236305e3a1": {
    "contentIds": [
     "sha256-fd-v1:14d7d8387db0b302066062dd24ee41a826c1a3e8c25a17aa555a91bad610fbdd",
@@ -17877,6 +18109,7 @@
     "sha256-fd-v1:ebdbcdc7fbb2a9d72ddaf97b44cfdde8c891e08fb435533328deef742a5cde8b",
     "sha256-fd-v1:f55970fcde57d91414c17a1edad439998c8ef2d0badc7aa364afe0cbbbd4f445"
    ],
+   "description": "The Shangrlia strategy games in one set.",
    "sourceGroups": [
     "x68000:Shangrlia I+II+Special.zip"
    ],
@@ -17893,6 +18126,7 @@
     "sha256-fd-v1:ca18e62d8151e03d002a21708d6de70afa9b3d2ec9de7c2585b88d5f8b998bf4",
     "sha256-fd-v1:d1c627e5b147ee62c2a2851e903c0da4a5768dd4fd1bfa0dd24843e32b07d383"
    ],
+   "description": "Three volumes of a doujin series in one set.",
    "sourceGroups": [
     "x68000:Project D.H.N. Vol. I+II+III (1993)(D.H.N.).zip"
    ],
@@ -17939,6 +18173,7 @@
     "sha256-fd-v1:ceffcb85badc77153ecd3870c94ade5ccea3d5b8bfc0076f0950831d31845aae",
     "sha256-fd-v1:f0f8c888619d7a1141cb318c6a363719e2ddc20b9711b6b2f873758abbe7896f"
    ],
+   "description": "A role-playing game set in the Record of Lodoss War world.",
    "sourceGroups": [
     "x68000:Lodoss Tou Senki.zip"
    ],
@@ -17963,6 +18198,7 @@
     "sha256-fd-v1:ca82db2366f7cded971801901677464b6e9a936d6832cf5946f2fe18e6003bae",
     "sha256-fd-v1:eca1ec92f48090c3cbe159dc16640216a938eef40bb63d6d6d2327234a44f668"
    ],
+   "description": "The first two Present adventures in one set.",
    "sourceGroups": [
     "x68000:Present I+II (1991)(Orange House).zip"
    ],
@@ -17976,6 +18212,7 @@
     "sha256-fd-v1:7ac83c035a1dda763d96b9aeb0daa5e53870ecc0fe277236dc204556fe0f46a4",
     "sha256-fd-v1:9646f63fcb8d159ed1b5e8d910fccbc7042533c1b36bb3a9e220f177958d8170"
    ],
+   "description": "Three Lock On crosshair shooters in one set.",
    "sourceGroups": [
     "x68000:Lock On I+II+III.zip"
    ],
@@ -18024,6 +18261,7 @@
     "sha256-fd-v1:ed2e0a102a4728e661f9f4236172185b5a054bb2d7211f5b611b9ac593e1e7a8",
     "sha256-fd-v1:f3fb1039b48e0b0be8f1adf703f204fa4b982933e6708134823185e6ff6375f7"
    ],
+   "description": "The DOR series of short scenario collections in one set.",
    "sourceGroups": [
     "x68000:Dor I+II+III+Special'93+Sakigake.zip"
    ],
@@ -18057,6 +18295,7 @@
     "sha256-fd-v1:cc3c014e04459e9cf534ca31005f6353575f77bac4f5cfec462bfc580bb5fc12",
     "sha256-fd-v1:d303551256a3e4fc9f4eb7f0d2fe2ad959d8030c5878a15b4ed3ebcfd55c5528"
    ],
+   "description": "Phantasie III and IV, party role-playing games, in one set.",
    "sourceGroups": [
     "x68000:Phantasie III+IV.zip"
    ],
@@ -18085,6 +18324,7 @@
    "contentIds": [
     "sha256-fd-v1:25a108ee9f1db6c8b1b66dee47b01062da5459d8232975e27870abbb96b8a0db"
    ],
+   "description": "A doujin baseball game by DCS.",
    "sourceGroups": [
     "x68000:Baseball Knuckles '94, The (1994)(DCS).zip"
    ],
@@ -18109,6 +18349,7 @@
     "sha256-fd-v1:f1e9b66186a37d86f6d8474290263bb66f92c28be381a0e1ddc23f90e519eaff",
     "sha256-fd-v1:fb8858978ca04bedfb93679f90f8908a27de139236901afe1e802d3deb3891e3"
    ],
+   "description": "T&E Soft's 3D golf games at Augusta and Eight Lakes in one set.",
    "sourceGroups": [
     "x68000:Haruka Naru (New 3D Golf Simulation) - Augusta & Eight Lakes.zip"
    ],
@@ -18139,6 +18380,7 @@
     "sha256-fd-v1:dc3ffc09c44e940e5afa12c2c374c53abd2eba2059d617b05c4ecd28cec0ee8c",
     "sha256-fd-v1:dfb3020ae4ec29c1f5e1a432211e798f210619ff0437a10f0795288848a330bf"
    ],
+   "description": "Both Hoshi no Suna Monogatari mystery adventures in one set.",
    "sourceGroups": [
     "x68000:Hoshi No Suna Monogatari I+II.zip"
    ],
@@ -18149,6 +18391,7 @@
     "sha256-fd-v1:00fe3d1bef9cf87800b9f2bda908bc9b15fd43f05b2df820eaeff9ae91aacb91",
     "sha256-fd-v1:d4090fc2e54ed5d39710bf24e742d7ec420f8ed7d6c7a8b5eb50ea1f5caaa2f5"
    ],
+   "description": "Evil Stone and its follow-up in one set.",
    "sourceGroups": [
     "x68000:Evil Stone + Kai (1989)(Zenryuutsuu).zip"
    ],
@@ -18164,6 +18407,7 @@
     "sha256-fd-v1:c3f4e4aec73d908346f441eb190ae8d55f55cd261bf39cf44f2f2b9bede07feb",
     "sha256-fd-v1:d7c508ad0d47c841213eb9e7870468f3c1af104d8ecdbed6b4013108c61c6350"
    ],
+   "description": "Pac-Man: eat every dot in the maze while the ghosts give chase, turning the tables with power pellets.",
    "sourceGroups": [
     "x68000:Pac-Man.zip"
    ],
@@ -18200,6 +18444,7 @@
     "sha256-fd-v1:950c69a538d0c264cdbb519ac723db5d25a9a924c6b9ed37ecff4d4b8d0ba9b4",
     "sha256-fd-v1:9c1d3d8ee5532c740537a4f482a0e6b52b2d149063bd108987d1052c3599fb95"
    ],
+   "description": "The four Jotei Senki doujin fighting games in one set.",
    "sourceGroups": [
     "x68000:Jotei Senki I-IV.zip"
    ],
@@ -18209,6 +18454,7 @@
    "contentIds": [
     "sha256-fd-v1:0ee567ffd3e243f8348e45d1ab6525432957913400dc9d52ce421c10a0aed446"
    ],
+   "description": "A mahjong game by Allex.",
    "sourceGroups": [
     "x68000:Mahjongg Master (1991)(Allex)(Disk 4 of 5)(Disk D).zip"
    ],
@@ -18224,16 +18470,6 @@
    ],
    "title": "Elf No Shoujou CG Puzzle"
   },
-  "x68000:local-39ff8dc81f": {
-   "contentIds": [
-    "sha256-fd-v1:b410650cc53d8199c79d160510aa22177a747bcf38a0f061f7d15247960fea5f"
-   ],
-   "sourceGroups": [
-    "x68000:Chaos Strikes Back (1990)(FTL).zip"
-   ],
-   "title": "Chaos Strikes Back",
-   "year": 1990
-  },
   "x68000:local-3a1e9271f6": {
    "contentIds": [
     "sha256-fd-v1:6741325e14a675b561f90d32cb0e8a0db787989eca7bd542bcad2a22990a745e"
@@ -18243,19 +18479,6 @@
    ],
    "title": "Butasan Quest",
    "year": 1994
-  },
-  "x68000:local-3b01daa7e8": {
-   "contentIds": [
-    "sha256-fd-v1:3f1ffb385d7ca8b0fd12c7b2d1e36351f1e8fc7900aac6fdb43ea9ae333636d2",
-    "sha256-fd-v1:84eff0a1d0ca3abbb474227413498730e7ccbf4ba1c3cdd2572d0371aad84b02",
-    "sha256-fd-v1:94a680144877d580fff269bd88a798ebdb8729415e1d75e9f584536402a29c3b",
-    "sha256-fd-v1:c07945ef5d8007a99eac690eea971aa9d3aed55b2304a293f8d675b098b85e92"
-   ],
-   "sourceGroups": [
-    "x68000:Elle (1991)(Elf).zip"
-   ],
-   "title": "Elle",
-   "year": 1991
   },
   "x68000:local-3b372486d4": {
    "contentIds": [
@@ -18283,6 +18506,7 @@
     "sha256-fd-v1:c62e756234e5e58092ac06cb46dcaf39f4741bcea9f7010eb1f592ba17a99986",
     "sha256-fd-v1:e94977d444d08f71ae7d3c25884108815b350959a791f9237033ec1d7b379797"
    ],
+   "description": "The three Hacchake Ayayo-san visual novels in one set.",
    "sourceGroups": [
     "x68000:Hacchake Ayayosan Pro-68K +II+III (19xx)(Hard).zip"
    ],
@@ -18293,6 +18517,7 @@
     "sha256-fd-v1:651ce8f7f6d7d2a3476eb3441b8754f8f7efb035932543af757cda8c872c3ae9",
     "sha256-fd-v1:c9582df056097f9ac718c386187f467ed9ee053ada1f5128ac20d07852cc3a56"
    ],
+   "description": "Both Satellite games in one set.",
    "sourceGroups": [
     "x68000:Satellite, The I+II (1989)(Yamaco).zip"
    ],
@@ -18303,6 +18528,7 @@
    "contentIds": [
     "sha256-fd-v1:47291193031d675fe37255e787002cfe670eee9ef4a5f500d1d6045199d83049"
    ],
+   "description": "A clay pigeon shooting game.",
    "sourceGroups": [
     "x68000:Clay Shooting (1988)(X Soft).zip"
    ],
@@ -18320,19 +18546,11 @@
     "sha256-fd-v1:920222b182113c6928374aeb7ce8bf5ddd698f1e99fb4ce75d6ecc3a57db7d4e",
     "sha256-fd-v1:9a060864efd202de966238e4a75b8a9d9973accc7f2648dda197ac74eabe6a50"
    ],
+   "description": "The Bonnou Yobikou quiz games in one set.",
    "sourceGroups": [
     "x68000:Bonnou Yobikou I+II+III.zip"
    ],
    "title": "Bonnou Yobikou I+II+III"
-  },
-  "x68000:local-40f698fb1f": {
-   "contentIds": [
-    "sha256-fd-v1:29fdd76fe466e236411d451098cf83e73ffee202128704264e5fb0fa5f2f9d2b"
-   ],
-   "sourceGroups": [
-    "x68000:(Full Metal Powdersuits) - Raydefox.zip"
-   ],
-   "title": "(Full Metal Powdersuits) - Raydefox"
   },
   "x68000:local-42c88328d4": {
    "contentIds": [
@@ -18351,6 +18569,7 @@
     "sha256-fd-v1:b548a4dca2e37aaf906abc1df1b2936cdf76805acac4c7308e602301aea33e54",
     "sha256-fd-v1:d3f3d2108a79b71d6a7b3c00fcd734603e9e5e7b9875df162f92de2dce04994d"
    ],
+   "description": "Two Tokimeki Land Seru games in one set.",
    "sourceGroups": [
     "x68000:Tokimeki Land Seru I+II (1992)(Todo2).zip"
    ],
@@ -18421,22 +18640,6 @@
    "title": "Kisetsu Hazure No Yousei",
    "year": 1993
   },
-  "x68000:local-4960944448": {
-   "contentIds": [
-    "sha256-fd-v1:176f50064e8d230b87080d1bb7b7c839ecc25ef12cebd6cea78fde31f958d88d",
-    "sha256-fd-v1:1c183247fd445c8a8cb93936d49cfd3a850db6c474890ebd24c139bc073772fa",
-    "sha256-fd-v1:2312a12ca5b5c1ffb18cee2123c6d929b45b051aeb11ba3ac9fbdf4f97472925",
-    "sha256-fd-v1:3b2b8321ff1524b62aa6cdb082c0edca3a487f2b3b0d59dc0465f0e3833fc9fa",
-    "sha256-fd-v1:84ee7ebb64b880e974e52217682e2d2890ee852839f029e3e331b3a3f98a399a",
-    "sha256-fd-v1:da32242c65e92436a80f3f247d97a89b9b4d6a290a1bdaff131640177f8400d7",
-    "sha256-fd-v1:f4e5f10d9a83e5579f7070c3a5c0224709b982d25dfcedc91742772a0069bbc1"
-   ],
-   "sourceGroups": [
-    "x68000:Genei Toshi (1991)(Microcabin).zip"
-   ],
-   "title": "Genei Toshi",
-   "year": 1991
-  },
   "x68000:local-4aa56cbe38": {
    "contentIds": [
     "sha256-fd-v1:d7f13e7b18d52f92ca5b988238672f64c5375ad30d4f1cd11467398e2682b356"
@@ -18475,6 +18678,7 @@
     "sha256-fd-v1:adcb54cdde06b292924f6537901a98a79cfab2746634e03df4d5a14c99ef967c",
     "sha256-fd-v1:d64ca589e2dc73fe215d3859b19616c00193e911ba032c57670ea4ae32450c72"
    ],
+   "description": "Three Momotarou games in one set.",
    "sourceGroups": [
     "x68000:Momotarou I+II+III (1989)(Todo2).zip"
    ],
@@ -18529,16 +18733,6 @@
    ],
    "title": "AMS2"
   },
-  "x68000:local-5080bb3e83": {
-   "contentIds": [
-    "sha256-fd-v1:2df52e48a67a7eb4b6252b7bdcfebb979e8f9933bb66ef198404b8234f7d0bc1"
-   ],
-   "sourceGroups": [
-    "x68000:Shimai Mahjongg v1.40 (1994)(Kazumi).zip"
-   ],
-   "title": "Shimai Mahjongg v1.40",
-   "year": 1994
-  },
   "x68000:local-5133c07f8f": {
    "contentIds": [
     "sha256-fd-v1:97f0c3a1b2a71d97b95be04a3b013a0fdadbf4244b8e6a83eab7bcdfaf5615fe"
@@ -18578,23 +18772,6 @@
    "title": "Marmalade Bomb",
    "year": 1995
   },
-  "x68000:local-53582af059": {
-   "contentIds": [
-    "sha256-fd-v1:07b5207cc222366c5e7dab4147008b259e9bb16a4a1bf34485d45f5b5cc768b5",
-    "sha256-fd-v1:369707ea626fc22335981ee9ad33bf290dc4d440904bf5e0db7302fe7a32749f",
-    "sha256-fd-v1:7aaf2f486a31bb96758b7810e8a1b49df6ca296a9e8f15a2a81ec8e6368ef0c0",
-    "sha256-fd-v1:7d46e4278166789624a9d30a78d1c09edd96ebbac6268cd4309b9788192bc216",
-    "sha256-fd-v1:82e80ac6c8ee09effe4797924011d54904eef8d0fde0acfcbd5bba914d794db8",
-    "sha256-fd-v1:8310fc62f77ab2eeb0219b50d7782fc3ed566d55353645bdc824f164f14d8377",
-    "sha256-fd-v1:cc0b8516ab259f6bc9863efa746165342ad2e0195db7c2d6ad1ba6edf1b89607",
-    "sha256-fd-v1:d92ae1961f77858c48132239617dd7f16bf6383cb1e38cd306c8020aa1435530",
-    "sha256-fd-v1:f4367549c8b10ee7d77765b07e4bc1bcb2812d2428b20c21b369b7871865db5e"
-   ],
-   "sourceGroups": [
-    "x68000:J.B. Harold.zip"
-   ],
-   "title": "J.B. Harold"
-  },
   "x68000:local-53a21d673c": {
    "contentIds": [
     "sha256-fd-v1:0e08d7301262e8fca1b594de3ed6d9945d083563f88b53d96be5876a27973ff2",
@@ -18602,6 +18779,7 @@
     "sha256-fd-v1:ed5c5edc2a89371ce51351e6299346346f2fab06dfea343dd2084bc2fc985fc6",
     "sha256-fd-v1:f46e7c1fb95319d91fdfa9d002e62bcb10c0d1288d6cf4267b1c36622131e3b4"
    ],
+   "description": "Both Metal Unit games in one set.",
    "sourceGroups": [
     "x68000:Metal Unit I+II (1994)(T&H Project).zip"
    ],
@@ -18632,6 +18810,7 @@
     "sha256-fd-v1:7d2a5fa7819e74a4c55920a29d29feb26a2f9c5b75da1a264cb718cee14e68eb",
     "sha256-fd-v1:aca71acdf98f01fd3ca00e103e92ed1eafc4db5f74443bdd78837d120fec36e7"
    ],
+   "description": "Two Saotome Gakuen adventures in one set.",
    "sourceGroups": [
     "x68000:Saotome Gakuen Nyuugaku Annai I+II (19xx)(Zenryuutsuu).zip"
    ],
@@ -18686,16 +18865,6 @@
    ],
    "title": "X68000V4"
   },
-  "x68000:local-593b116cea": {
-   "contentIds": [
-    "sha256-fd-v1:606bcfe02fc85d02ebd0a48b4837f30c5ab8e687104987bedf09fecf0d635c88"
-   ],
-   "sourceGroups": [
-    "x68000:Gardis Light v2.10 (1994)(Sprite).zip"
-   ],
-   "title": "Gardis Light v2.10",
-   "year": 1994
-  },
   "x68000:local-5adb23bec5": {
    "sourceGroups": [
     "x68000:Dori Dor Qizu (1993)(Daikokuya Dennou).zip"
@@ -18707,6 +18876,7 @@
    "contentIds": [
     "sha256-fd-v1:79161cdcc03fa4ca4aa67f64e2266cbd95ff8bbc387a2ff79e8731054ffb8c4b"
    ],
+   "description": "Technos's Exciting Hour pro wrestling and Shusse Oozumou sumo arcade games in one set.",
    "sourceGroups": [
     "x68000:Exciting Hour Jusse Oozumou (1994)(Dempa).zip"
    ],
@@ -18719,6 +18889,7 @@
     "sha256-fd-v1:6e89d26cd8675e0b56e1cf8a0f860172edabe24fac6f9d7794f06164bad21667",
     "sha256-fd-v1:7b98219bb085ad4f63766bb251eca70437d42830d3c131906bd1ebd71ba27f0b"
    ],
+   "description": "Falcom's Sorcerian: create a party of adventurers and take on a series of short, separate quests.",
    "sourceGroups": [
     "x68000:Sorcerian.zip"
    ],
@@ -18746,6 +18917,7 @@
     "sha256-fd-v1:c4624f951a9b5fd09dd80702c3ddcf68cb2c4d26de1992fa81d04d4a559927dc",
     "sha256-fd-v1:ff90dd19a80f9ec68f46cf4c5495cb13478e497f6a1debf8adca4f0e7f3cf3b2"
    ],
+   "description": "Both Genocide mecha action games in one set.",
    "sourceGroups": [
     "x68000:Genocide I + II (1989)(Zoom).zip"
    ],
@@ -18793,20 +18965,11 @@
     "sha256-fd-v1:4772eeee759a2e545f2efcd4df3ddcf7ef681dcb5bd20a59f631afe131b4f0e0",
     "sha256-fd-v1:6f57a2f6f4db8e94be48e0519678cf829e39241fa26d8e634f50436b1d55ba57"
    ],
+   "description": "The Bodhidharma puzzle games in one set.",
    "sourceGroups": [
     "x68000:Bodhidharma + Mark II.zip"
    ],
    "title": "Bodhidharma + Mark II"
-  },
-  "x68000:local-63943acada": {
-   "contentIds": [
-    "sha256-fd-v1:40f491b0d946744fa7e40163ea7e7905ca5b5d8b68dfbae6abdc6d2745f041b8"
-   ],
-   "sourceGroups": [
-    "x68000:Binbin Mahjongg Peach Angel (1994)(Takeru Soft).zip"
-   ],
-   "title": "Binbin Mahjongg Peach Angel",
-   "year": 1994
   },
   "x68000:local-642e5c6c2c": {
    "contentIds": [
@@ -18823,6 +18986,7 @@
     "sha256-fd-v1:939644dc69dc1436177527c22623786f3d43da15f30f1193200040b45d0a230c",
     "sha256-fd-v1:e832dc50f08ce2406955015b9c38c687fa3b4fcc7606e1f357cb157871ba28f4"
    ],
+   "description": "Both illustrated Adventure Land text adventures in one set.",
    "sourceGroups": [
     "x68000:Adventure Land I+II.zip"
    ],
@@ -18873,6 +19037,7 @@
     "sha256-fd-v1:9ae9da5fd84b910dacc15c3b0664e9f9da5d8e1aa94235aaad36c8e14de47700",
     "sha256-fd-v1:ee06c2be5ddd8ffd94223be0707e3901d96b998212ac8b0b78ad867ca7cff0a9"
    ],
+   "description": "Konami's Gradius and Gradius II side-scrolling shooters in one set.",
    "sourceGroups": [
     "x68000:Gradius I+II (1987) (Konami-SPS).zip"
    ],
@@ -18887,6 +19052,7 @@
     "sha256-fd-v1:a4b34df0e8cc3d49a93285a50738707f7bef9bd54d22d6ad52c2ace7810b22a0",
     "sha256-fd-v1:f973e05fffff01125fee5a109d1ce365d736b45ba9b03da6cb0fb8f91ee87c3a"
    ],
+   "description": "Both Super Las Vegas casino games in one set.",
    "sourceGroups": [
     "x68000:Super Las Vegas I+II, The (1990)(Nippon Dexter).zip"
    ],
@@ -18956,44 +19122,12 @@
    "title": "Aikoku Pro Uso-68K",
    "year": 1990
   },
-  "x68000:local-6d9c9a9cef": {
-   "contentIds": [
-    "sha256-fd-v1:649a906aa44833cb3bb7e5d1f9e7d9a24c122be0938b91dbdc11a3aab785c806",
-    "sha256-fd-v1:7bd200419e8b491b03a3fea5badab9c3e729b9fb9e13778428a472b6d56af151",
-    "sha256-fd-v1:df5c30bc36a0f3ce9f8b22a23b8cef6c1f1a5aa38036e88f7ca3a2316ba08ac6"
-   ],
-   "sourceGroups": [
-    "x68000:Dragon City (19xx)(Fairytale).zip"
-   ],
-   "title": "Dragon City"
-  },
   "x68000:local-6dc147e910": {
+   "description": "Both Alice no Yakata fan discs in one set.",
    "sourceGroups": [
     "x68000:Alice No Yakata I + II (19xx)(Alice Soft).zip"
    ],
    "title": "Alice No Yakata I + II"
-  },
-  "x68000:local-6ff4c92ceb": {
-   "contentIds": [
-    "sha256-fd-v1:026a2b788fd8d942811c2daf2ea16458878d3f6058a67bc961951adf47814ad4",
-    "sha256-fd-v1:02fcca4c57a29f058c509625b7a99411d7e87820669a743bb3b5af042d1d790e",
-    "sha256-fd-v1:a4160dfb514714d3b22838b8b6a3d7742e3a321e59bb274d3a6aba612ead28c7",
-    "sha256-fd-v1:e6254f52d07d676b48df858b1c847f810c4e007229c7990a0f18b092c530c38f"
-   ],
-   "sourceGroups": [
-    "x68000:Zark Legend (1990)(Maxima).zip"
-   ],
-   "title": "Zark Legend",
-   "year": 1990
-  },
-  "x68000:local-705ca48d68": {
-   "contentIds": [
-    "sha256-fd-v1:1c0f92c9f06d76fefd6f12e27f2200d2a7641f40eb5a3601b659d22aa53e4a07"
-   ],
-   "sourceGroups": [
-    "x68000:Zan Kagerou No Jidai Scenario Collection Vol. 1 (19xx)(Wolf Team).zip"
-   ],
-   "title": "Zan Kagerou No Jidai Scenario Collection Vol. 1"
   },
   "x68000:local-7062f8387d": {
    "contentIds": [
@@ -19011,6 +19145,7 @@
    "contentIds": [
     "sha256-fd-v1:c311c5ff6cdad839f116ef0d7d60a28c0e25118bf03296086acbaeb0709dffb7"
    ],
+   "description": "Extra tile layouts for Shanghai.",
    "sourceGroups": [
     "x68000:Shanghai Data Shuu (1988)(System Soft).zip"
    ],
@@ -19061,6 +19196,7 @@
     "sha256-fd-v1:fb8c3c512c4e52c5e033cc90727b709a3a6cebd2608d5d0e51fce6096812c6e7",
     "sha256-fd-v1:fbfbcd1154c6f64b6d6670a098b76916d035909c103f0b6a153e233d0d3074c9"
    ],
+   "description": "The first three Ys action role-playing games in one set.",
    "sourceGroups": [
     "x68000:Y's I+II+III.zip"
    ],
@@ -19086,6 +19222,7 @@
     "sha256-fd-v1:b6fe414644ef7f7a56ce40e8db2883b4cc4e254bb53947f7a48ed1c99342fecb",
     "sha256-fd-v1:cd0c49110c5cc8d35349a1e4023d15001170e63363dc970a26e8e6f97b134e2e"
    ],
+   "description": "Ultima IV, V and VI in one set: the Avatar's role-playing adventures in Britannia.",
    "sourceGroups": [
     "x68000:Ultima IV+ V+VI.zip"
    ],
@@ -19097,6 +19234,7 @@
     "sha256-fd-v1:534d6313f0bc0c444e09212baaaf0a5b45908a82495ab7a5b78d424b010c30c6",
     "sha256-fd-v1:c17b857f7b1a88805b9b0010a171aa3649eb14773587d2f7b387a62e145c3534"
    ],
+   "description": "The three Pinky Ponky dating games in one set.",
    "sourceGroups": [
     "x68000:Pinky Ponky I+II+III.zip"
    ],
@@ -19121,6 +19259,7 @@
     "sha256-fd-v1:911e0801a637ab83b4a93d09b8043ebe6a2b1a044d678d13d85aaedf7c105271",
     "sha256-fd-v1:a4f7a837678a9822701afce5327fdd9009f466d1ab5d9d0b6c8fa475118d3209"
    ],
+   "description": "Both Joker Wild West adventures in one set.",
    "sourceGroups": [
     "x68000:Joker I+II.zip"
    ],
@@ -19156,25 +19295,6 @@
    "title": "Block Stocker v2.00",
    "year": 1989
   },
-  "x68000:local-7add4f4e7b": {
-   "contentIds": [
-    "sha256-fd-v1:5c25f72e65f12ef2480010ca0b21472b0c58259f3515f2b54389eeb58b8746b2"
-   ],
-   "sourceGroups": [
-    "x68000:Lunatic Fantasy v2.0 (199x)(Studio Light Cross).zip"
-   ],
-   "title": "Lunatic Fantasy v2.0"
-  },
-  "x68000:local-7af5e2d316": {
-   "contentIds": [
-    "sha256-fd-v1:81c5ac1fddbb7378d7e79ab9623a3d3dcccad0def6f8804614dbc126f20e620f"
-   ],
-   "sourceGroups": [
-    "x68000:Boyoyon v3.31 (1996)(Noz).zip"
-   ],
-   "title": "Boyoyon v3.31",
-   "year": 1996
-  },
   "x68000:local-7d9894be8f": {
    "contentIds": [
     "sha256-fd-v1:2127d1fe679e566d80fc6d203e838178de7c5f9a228f49d4d7e91601abba5859",
@@ -19183,6 +19303,7 @@
     "sha256-fd-v1:abd7f783cea31d76421075ef4e55405fd1c131f023aeed49216c45e8956de737",
     "sha256-fd-v1:dbbc3a20ccd8ebf467292da24b0c6576e09a77a48c86c1920160717a07dda849"
    ],
+   "description": "Koei's first and third Romance of the Three Kingdoms strategy games in one set.",
    "sourceGroups": [
     "x68000:Sangokushi I+III (1988)(Koei).zip"
    ],
@@ -19288,20 +19409,11 @@
     "sha256-fd-v1:cb33db8d3501775b207d6abd22a63c23c011e7d6b2e456799167566a37b1a90c",
     "sha256-fd-v1:e4f9328c3bc46ab982de6bca09ad69965edfc3f278f4afe4d2bd8e8bc6ff2ced"
    ],
+   "description": "Fatal Fury, Fatal Fury 2 and Fatal Fury Special in one set.",
    "sourceGroups": [
     "x68000:Garou Densetsu I+II+Special (1993)(Magical Company).zip"
    ],
    "title": "Garou Densetsu I+II+Special",
-   "year": 1993
-  },
-  "x68000:local-84a8a8e845": {
-   "contentIds": [
-    "sha256-fd-v1:1a1cd7091b32e2369057ba7a73a93086b79c27c2ec6b4a44e87325a50aa6b601"
-   ],
-   "sourceGroups": [
-    "x68000:Shimai Mahjongg v1.10 (1993)(Kazumi).zip"
-   ],
-   "title": "Shimai Mahjongg v1.10",
    "year": 1993
   },
   "x68000:local-858f8246d8": {
@@ -19331,6 +19443,7 @@
     "sha256-fd-v1:d016bbeb80ff7226d1fbb2b7fac24468b166a398bfdc2fd13e3249ed39425fb0",
     "sha256-fd-v1:e5aa300ee055f4044ccd1116608bcdc95c3168e6515173a53bd5245802560a99"
    ],
+   "description": "The 4th Unit adventure series, from the first act to the fifth, in one set.",
    "sourceGroups": [
     "x68000:The 4th Unit + Act 2-5.zip"
    ],
@@ -19343,6 +19456,7 @@
     "sha256-fd-v1:ee6c94261273b302c3d1704f150c1930aefe42d1ee23fa1201a43bc5cf4365b6",
     "sha256-fd-v1:f146eec102dcfdde40c5ce2010929655afcdf9f240482c1c9ff8c92584166721"
    ],
+   "description": "Wolf Team's Granada, a top-down mech shooter, with its updated version.",
    "sourceGroups": [
     "x68000:Granada + v2.0 (1990)(Wolf Team).zip"
    ],
@@ -19383,6 +19497,7 @@
     "sha256-fd-v1:472879d18be80341ce3311e5caf6763476a707fc5cfc97f34788425f6f330bc3",
     "sha256-fd-v1:bf5828aaf72a6c85d61e868d403f2b36cdd53b102fd2a92c8f46f7c96df2f8e8"
    ],
+   "description": "Both Kudokikata Oshiemasu adventures in one set.",
    "sourceGroups": [
     "x68000:Kudoki Mataoshiemasu I+ II Kind Gal's (1988)(Hard).zip"
    ],
@@ -19409,15 +19524,6 @@
    "title": "Roll Down 2",
    "year": 1990
   },
-  "x68000:local-8ed496e9ce": {
-   "contentIds": [
-    "sha256-fd-v1:d71fa49084603af73bd8fab1a452db75a6bb75c94044c33979aac73af1f6a546"
-   ],
-   "sourceGroups": [
-    "x68000:Ame Game 0.90 (19xx)(Shin - Kisshin).zip"
-   ],
-   "title": "Ame Game 0.90"
-  },
   "x68000:local-8fb5caed86": {
    "contentIds": [
     "sha256-fd-v1:37a5bfba905033fa57f4fd3156d668c6212e3e9c82b0253c80c4316d5fe832ee"
@@ -19432,6 +19538,7 @@
     "sha256-fd-v1:02dbac177547995f081b123bc1fdde2102474becafee56bf0bfd7942894c1445",
     "sha256-fd-v1:390200509c2fd565a0dbd1d80f4e1b73c025911be8c2714a04fdcb6eecbfea37"
    ],
+   "description": "Both Battle Unit shooters in one set.",
    "sourceGroups": [
     "x68000:Battle Unit I +II.zip"
    ],
@@ -19448,15 +19555,6 @@
    ],
    "title": "Bonnou 2 + Das"
   },
-  "x68000:local-9176af7026": {
-   "contentIds": [
-    "sha256-fd-v1:04cfc718435638cc54968c34b0be6b8a833507e9b3288b719883415b2e0805ce"
-   ],
-   "sourceGroups": [
-    "x68000:Level Point v1.0 (199x)(Erenvmvrcom).zip"
-   ],
-   "title": "Level Point v1.0"
-  },
   "x68000:local-91f81aa154": {
    "contentIds": [
     "sha256-fd-v1:029c65fde576e35e079b1e1724085bfe2391861988c990eb0b4c368b2cc1a03c",
@@ -19466,22 +19564,12 @@
     "sha256-fd-v1:b205673c1deb6c2c6f24ca9a453bde728282912dbfa7168d1bc4e9720ca51a0c",
     "sha256-fd-v1:c30d8a0332dde8acabc79fa81265e33ea312e465c8beb60eff5a6550c6e6650e"
    ],
+   "description": "The first two Bell's Avenue collections in one set.",
    "sourceGroups": [
     "x68000:Bell's Avenue I+II (1993)(Wendy's Magazine).zip"
    ],
    "title": "Bell's Avenue I+II",
    "year": 1993
-  },
-  "x68000:local-91fb6014a0": {
-   "contentIds": [
-    "sha256-fd-v1:81f94783e976f9d0666f9f071a9a463e97b6876dc982c3548bc1318298dbf9d2",
-    "sha256-fd-v1:a9f25c556b8be157a06d132a4b1c4751d3ec6b537a28619c4681688127c381e8"
-   ],
-   "sourceGroups": [
-    "x68000:Otako Dama (1999)(Mitsuky).zip"
-   ],
-   "title": "Otako Dama",
-   "year": 1999
   },
   "x68000:local-921d725181": {
    "contentIds": [
@@ -19541,6 +19629,7 @@
     "sha256-fd-v1:bb669953b965b2648a742ca80bdb5e57db92e5917d9f61428a35e1ef3a359b64",
     "sha256-fd-v1:fd83e3a7553c9b40eb5c9ba254debe6ef6462982942f6f7774adac2710f324fe"
    ],
+   "description": "Two Tatakae! Konyanko doujin fighting games in one set.",
    "sourceGroups": [
     "x68000:Tatakae! Konyanko Comike 46 + 47 (1994)(Nankoku Byouyou).zip"
    ],
@@ -19568,6 +19657,7 @@
     "sha256-fd-v1:c154b024e12a66e4f9074d69e8743cac7c79c950936c709f4dbf6182207823c7",
     "sha256-fd-v1:df76680ca3365664c9f04af79bf5e8be05a82248af690ed313de2e2e1c4bf0d5"
    ],
+   "description": "SystemSoft's Daisenryaku II and III '90 war strategy games in one set.",
    "sourceGroups": [
     "x68000:Daisenryaku II+III '90.zip"
    ],
@@ -19611,50 +19701,17 @@
    "title": "177",
    "year": 1986
   },
-  "x68000:local-9afd36b804": {
-   "contentIds": [
-    "sha256-fd-v1:2e8ab945c6cb7586c4ef6d1f5a673755bd3cacb2ad987666081d378e76d02f4a",
-    "sha256-fd-v1:82f6bc9f91adda8a830fef1be818186fbfa80ea6f12b6bbdb345b4ad9f1d0d0c",
-    "sha256-fd-v1:a9786fadbfbe839d0674cb6afc01506777fc08997a061066c05f623830649391",
-    "sha256-fd-v1:fcfec14988038df25f7feed3f933a0a0c36b51bd9b2badec9d61a0ab7496026b"
-   ],
-   "sourceGroups": [
-    "x68000:Cal 2 (1991)(Birdy Soft).zip"
-   ],
-   "title": "Cal 2",
-   "year": 1991
-  },
-  "x68000:local-9c23d5863d": {
-   "contentIds": [
-    "sha256-fd-v1:5d50fcbb520671a9818807b31c2d79f27774e7b0b609a6944660f831e4f60f8f"
-   ],
-   "sourceGroups": [
-    "x68000:Mr. Do! & Mr. Do! vs Unicorns (1994)(Dempa).zip"
-   ],
-   "title": "Mr. Do! & Mr. Do! vs Unicorns",
-   "year": 1994
-  },
   "x68000:local-9c2f4d7eee": {
    "contentIds": [
     "sha256-fd-v1:83121b9c2d08ab64452e458d03327dbdb347f42a27cbecdb888279cf019fe09a",
     "sha256-fd-v1:a553322056c9da5e6d47d5fef2023bdf3f7369e2c8cd4fa283f469a0da719aca"
    ],
+   "description": "Both Advanced Ruumik Quiz trivia games in one set.",
    "sourceGroups": [
     "x68000:Advanced Ruumik Quiz I+II (1990)(Master Piece).zip"
    ],
    "title": "Advanced Ruumik Quiz I+II",
    "year": 1990
-  },
-  "x68000:local-9ca148f89c": {
-   "contentIds": [
-    "sha256-fd-v1:1117a1e6590eaf215fb053e6137df27408d8c02a31829aa2695f90b62a30d771",
-    "sha256-fd-v1:f825c4908029a543b09ba3ba0a405d1b01b535a18688360619e5510848eefa7b"
-   ],
-   "sourceGroups": [
-    "x68000:Ishidou (1989)(ASCII).zip"
-   ],
-   "title": "Ishidou",
-   "year": 1989
   },
   "x68000:local-9d4f5d1fa6": {
    "contentIds": [
@@ -19679,6 +19736,7 @@
    "contentIds": [
     "sha256-fd-v1:16b183e30eabfec5de18071769258d78a52d6911d1b9b4f176b8c466cecf85c8"
    ],
+   "description": "Blackjack against a distracting dealer.",
    "sourceGroups": [
     "x68000:Nervous Black Jack v2.00 (1992)(T.O.F.).zip"
    ],
@@ -19695,25 +19753,11 @@
     "sha256-fd-v1:517b877fd5eaef5335c0b916133a60c0cbcd055c113175cb0eaa5ccb99543cc6",
     "sha256-fd-v1:c9f404add35950aeeb0628894dc635dcbe1603e49d2765777f8f5c9e4da47a26"
    ],
+   "description": "Both Beast adventures in one set.",
    "sourceGroups": [
     "x68000:Beast I+II (19xx)(Birdy Soft).zip"
    ],
    "title": "Beast I+II"
-  },
-  "x68000:local-a032f0ef6b": {
-   "contentIds": [
-    "sha256-fd-v1:08316504788901c2d84dfe47bd3184e5e9c0a43c0887bdca8902e2afe29d2b90",
-    "sha256-fd-v1:0cf1a6e9745b53c66b15fd43b8dc29abf54ab19c33300d54a51544dc5b697b37",
-    "sha256-fd-v1:2fbfeccca8ae281ca6af50a193f8a448becd31c37c3ed8893e7d41d9783c7a3e",
-    "sha256-fd-v1:6b1891fa7f679b46bf493e554e710d65cc5cf66b802385b537b42fd454273c8c",
-    "sha256-fd-v1:863db7e8d113561fb639e858ae5aed5a3042cd5d289ff3bd7f25c67d445e1823",
-    "sha256-fd-v1:c92cff6e5e609542596bb04264e66063ff117547696a40b9219c33e69710089c"
-   ],
-   "sourceGroups": [
-    "x68000:Versnag Senran (1993)(Family Soft).zip"
-   ],
-   "title": "Versnag Senran",
-   "year": 1993
   },
   "x68000:local-a101d0b22b": {
    "contentIds": [
@@ -19738,6 +19782,7 @@
    "contentIds": [
     "sha256-fd-v1:5bd6a38ca096d2628dd70029bd3afdcf8fdcec0112385349717929662a3e5e3d"
    ],
+   "description": "A blackjack game with animated scenes.",
    "sourceGroups": [
     "x68000:Black Jack 68K II Animation Version (19xx)(KZO).zip"
    ],
@@ -19747,6 +19792,7 @@
    "contentIds": [
     "sha256-fd-v1:feaf81e553750fd20e079525af21847e9585f529f41f57771b424d9dc2b821ee"
    ],
+   "description": "A doujin puzzle game by Studio Pickles.",
    "sourceGroups": [
     "x68000:Marble Reverser v1.0 (1992)(Studio Pickles).zip"
    ],
@@ -19769,6 +19815,7 @@
     "sha256-fd-v1:e15ce80674646d048aeeff6b5769dbd53d1c3d1903b41aa5a09a214f20aab1e8",
     "sha256-fd-v1:eaac3377b0c908177a280843d50ba20d0e6e44d54d42ef871f8a501b2afd0e50"
    ],
+   "description": "ArtDink's A-Train II and III railway and city-building simulations in one set.",
    "sourceGroups": [
     "x68000:A Ressha De Ikou II+III (1988)(Artdink).zip"
    ],
@@ -19805,17 +19852,6 @@
    ],
    "title": "Quiz De Pon"
   },
-  "x68000:local-a6783036c6": {
-   "contentIds": [
-    "sha256-fd-v1:de03c5ee318a51a556df5c5f44a8aebd620b4faf39fa97962d705fdd52100485",
-    "sha256-fd-v1:ef3bb7f48a67e374e805d7b12382bb76d440781b01f81c838b3b16dbfba79ded"
-   ],
-   "sourceGroups": [
-    "x68000:Soukou Hohei Butai Cannon Sight (1995)(Nihon Computer Club Renmei).zip"
-   ],
-   "title": "Soukou Hohei Butai Cannon Sight",
-   "year": 1995
-  },
   "x68000:local-a6f2e1335a": {
    "contentIds": [
     "sha256-fd-v1:383727ab307016ba31ed805a0e82e9ab8fad34a0ca03af8abd008d2756914d30",
@@ -19850,22 +19886,11 @@
    "title": "Mogu",
    "year": 1990
   },
-  "x68000:local-a8bcb15631": {
-   "contentIds": [
-    "sha256-fd-v1:2f348e905202721a64ebb63ca4c27ac81f04d789c9af7555181f1edd0dc4ed41",
-    "sha256-fd-v1:54986528bbaa15a28a494b075a08074f7c4d722a0693fae7128f2b5723675c3e",
-    "sha256-fd-v1:9fa3368e7d6a7fb5731245ba38d0614513f019fa4ae3d96944398ba829c3f270",
-    "sha256-fd-v1:c3c59a94ae8067e272540b6f7551b39643f18a4c8d658f50606160ad07622a44"
-   ],
-   "sourceGroups": [
-    "x68000:Tricorn Final (19xx)(Xain).zip"
-   ],
-   "title": "Tricorn Final"
-  },
   "x68000:local-a90ecc16bb": {
    "contentIds": [
     "sha256-fd-v1:02c730a6ee9f1228a5b0d939969dc4be95a65e87f027c45c91ae01d58c173f39"
    ],
+   "description": "A doujin shooter from the Full Metal Powdersuits series.",
    "sourceGroups": [
     "x68000:(Full Metal Powdersuits) -  Rayus.zip"
    ],
@@ -19888,6 +19913,7 @@
     "sha256-fd-v1:809a22541b047586a2c25e172c0ef41c214d5f896ce2f05c39a62c56b4568b01",
     "sha256-fd-v1:8e11b0a27013a4a05e3a4201ba5b4882206d2ead5bb3830eca9e04b5d86d98cb"
    ],
+   "description": "Three Demon Slayer games in one set.",
    "sourceGroups": [
     "x68000:Demon Slayer I+II+III (19xx)(T&H Project).zip"
    ],
@@ -19902,6 +19928,7 @@
     "sha256-fd-v1:8d4845f16f6127e7b8edae9fd1fb00110b0a88088f8e91577a6d5bff36f52958",
     "sha256-fd-v1:d9515dc6a76c1ef2fb7cd91a503fc8d92bc82f4273b23e0e1292755a18134885"
    ],
+   "description": "Both Ring Master role-playing games in one set.",
    "sourceGroups": [
     "x68000:Ring Master I+II (19xx)(Hobby Japan).zip"
    ],
@@ -19927,6 +19954,7 @@
     "sha256-fd-v1:b93e7eea5d15e7f3031dbec28d1bbc3fe111caeaf286dd9c76553850953b36b6",
     "sha256-fd-v1:da05063821b8ca2dac34aa5e3152761ee385eb1cedd5c26e415a080aa927548a"
    ],
+   "description": "Both Youjuu Club action games in one set.",
    "sourceGroups": [
     "x68000:Youjuu Club I+II (19xx)(DO).zip"
    ],
@@ -19993,23 +20021,12 @@
    "title": "Ultimate Magic",
    "year": 1990
   },
-  "x68000:local-b5c8d1aa09": {
-   "contentIds": [
-    "sha256-fd-v1:be1a6b1448a748d59089e0dbaf6d5de1d21991bd7bce8e91d54e44dabd94f4ee",
-    "sha256-fd-v1:dcaa1a6f8f9aac24217364564b7ba12d0451f67f4d29b0091e51aa65958a705d",
-    "sha256-fd-v1:fd3944fd7d7fa87c0133494f0ba9d32a91e00a203576a690d4d59657b0193328"
-   ],
-   "sourceGroups": [
-    "x68000:Axis (1990) (Wolf Team).zip"
-   ],
-   "title": "Axis",
-   "year": 1990
-  },
   "x68000:local-b65da56941": {
    "contentIds": [
     "sha256-fd-v1:4b3886a21df49c93f180b87392ca7c5a088194a1b3aeeda5622c3a47f0e2589d",
     "sha256-fd-v1:64cdb940ae2a5c6f4c5a7c45b5e3d9a33c70e5bfbf42464044b162f005214146"
    ],
+   "description": "Both Diamond Explorer games in one set.",
    "sourceGroups": [
     "x68000:Diamond Explorer I+ II (19xx)(Michael Company).zip"
    ],
@@ -20064,6 +20081,7 @@
     "sha256-fd-v1:d40f4d2194217feb7931699de65968a1cf656c3c730aba1ed4ed30cfb652fae7",
     "sha256-fd-v1:d47fe479ed3c9201a585be7441ac4cfab027e12d9d23c310dfb2078eb99d7038"
    ],
+   "description": "Wrestle Angels III and Wrestle Angels Special, turn-based wrestling management games, in one set.",
    "sourceGroups": [
     "x68000:Wrestle Angles III + Special (199x)(Great)(Disk 11 of 11)(Disk K).zip"
    ],
@@ -20084,6 +20102,7 @@
     "sha256-fd-v1:1b1f776787d1168d2aec38a8650d68e75906f838cd1a1dedcc57394eae3d5a77",
     "sha256-fd-v1:a35770f57668e0a1aa7c31f439073cab0ae62dae14630ea36dc88237574b747e"
    ],
+   "description": "Both First Mission doujin shooters in one set.",
    "sourceGroups": [
     "x68000:First Mission I+II.zip"
    ],
@@ -20128,16 +20147,6 @@
    ],
    "title": "37 Degrees C Kai No Bouken"
   },
-  "x68000:local-be7d6c9d75": {
-   "contentIds": [
-    "sha256-fd-v1:e0cb0573158cd7abba2a16070aff5ffb3311f09209defd993d3722ffa12bc099"
-   ],
-   "sourceGroups": [
-    "x68000:Kyarukan (1990)(Toy Pops).zip"
-   ],
-   "title": "Kyarukan",
-   "year": 1990
-  },
   "x68000:local-be92c9f49f": {
    "contentIds": [
     "sha256-fd-v1:5231f06cd623fce37d64cc980ceb4ab2b79987b6f7cc768ff82dded400099bfa"
@@ -20158,6 +20167,7 @@
     "sha256-fd-v1:aeb07b558611e948a12cbf8ef1a47d4ea0115d05da56001d6126bc02a03e5783",
     "sha256-fd-v1:d28dce3c28646fa95fa14a55b84aeaabcabff8d4cf3d9ea1f0cf3f1dd0fce2f2"
    ],
+   "description": "Both Hana Yori Dango hanafuda card games in one set.",
    "sourceGroups": [
     "x68000:Hana Yori Dango I+II (Active).zip"
    ],
@@ -20183,16 +20193,8 @@
    "title": "Daikon Oroshi Pro Uso-68K",
    "year": 1990
   },
-  "x68000:local-c111b0f064": {
-   "contentIds": [
-    "sha256-fd-v1:224c333caea810efe58328d2518773fcf9ffa0942adaa3a362acb4e008482feb"
-   ],
-   "sourceGroups": [
-    "x68000:Puppet Show (19xx)(Artist Soft).zip"
-   ],
-   "title": "Puppet Show"
-  },
   "x68000:local-c23be3b51b": {
+   "description": "Both Alice no Yakata fan discs in one set.",
    "sourceGroups": [
     "x68000:Alice No Yakata I+II (19xx)(Alice Soft).zip"
    ],
@@ -20227,16 +20229,6 @@
    ],
    "title": "Heiankyou Alien"
   },
-  "x68000:local-c3c28c6978": {
-   "contentIds": [
-    "sha256-fd-v1:b7657115b6b849a2672749aaa94da708512697f9ee34ba41523578d07eedd902"
-   ],
-   "sourceGroups": [
-    "x68000:Shimai Mahjongg v1.00 (1993)(Kazumi).zip"
-   ],
-   "title": "Shimai Mahjongg v1.00",
-   "year": 1993
-  },
   "x68000:local-c4e6718400": {
    "contentIds": [
     "sha256-fd-v1:76facada5e87a8a1fd740ccd4783f269198eb666b2a03fd33a1733b06cc6cede",
@@ -20247,6 +20239,7 @@
     "sha256-fd-v1:efa74f2dedf48a603529cf1c608f0ccc4805d68d1af67a4e128549e870b4f8af",
     "sha256-fd-v1:f442363de1bd5d0fde7b45828959a0f53307b2ab500ad872ee36917f265f4bc1"
    ],
+   "description": "The third and fourth Twilight Zone role-playing games in one set.",
    "sourceGroups": [
     "x68000:Twilight Zone III+IV.zip"
    ],
@@ -20259,6 +20252,7 @@
     "sha256-fd-v1:78c4b0a7e69a06281177cff90949e233bcfbde40f87e8c60351c5a9817885a60",
     "sha256-fd-v1:a30430274c5fa12e8f8c1b806bad989d6100df88f9cef95c491116a951d05a7c"
    ],
+   "description": "The Mon Mon memory card games in one set.",
    "sourceGroups": [
     "x68000:Mon Mon Shinkei Suijaku I+II+III+Ex (1989).zip"
    ],
@@ -20269,31 +20263,11 @@
    "contentIds": [
     "sha256-fd-v1:791bdcab787ae6dd894fd95dfe4fa69ee3d4df7d56a301fac6db06cbc7975d3f"
    ],
+   "description": "A doujin role-playing game modeled on Dragon Quest IV.",
    "sourceGroups": [
     "x68000:Dragon Quest 4 (19xx)(-)[p].zip"
    ],
    "title": "Dragon Quest 4"
-  },
-  "x68000:local-c6d275c963": {
-   "contentIds": [
-    "sha256-fd-v1:51c5a23d77e50321570391575b8ca2d2b1172a8373767e92dd30b97d8ff51a0e",
-    "sha256-fd-v1:7be458d048084eeeb3daa63d9b9d9da731b0f00c00bb16cf737ff2a9f0d7783c"
-   ],
-   "sourceGroups": [
-    "x68000:Fushigi No Kabe (1988)(System House Oh!).zip"
-   ],
-   "title": "Fushigi No Kabe",
-   "year": 1988
-  },
-  "x68000:local-c742cec2f1": {
-   "contentIds": [
-    "sha256-fd-v1:4b9d90aebcf93e96f6602f784c7045d4f157b9423c9da3d150f49026a931f942"
-   ],
-   "sourceGroups": [
-    "x68000:Deflektor (1989)(BPS).zip"
-   ],
-   "title": "Deflektor",
-   "year": 1989
   },
   "x68000:local-c760d433d3": {
    "contentIds": [
@@ -20309,6 +20283,7 @@
     "sha256-fd-v1:272d4a8a620ab19f57076ad5f529e4dfdc480a8f0fe2a3178b7de3fceae19760",
     "sha256-fd-v1:888fcc0bbf03e3735b052423bfa10c94ac372148660531f4995cff38b4e5c008"
    ],
+   "description": "Both Hiroshi action games in one set.",
    "sourceGroups": [
     "x68000:Hiroshi I + II  (19xx)(Rats).zip"
    ],
@@ -20357,6 +20332,7 @@
     "sha256-fd-v1:0fcf7b961d98c7d14673f5d79efc06fb3aaa9a57349bad3c113d6c4f418a430e",
     "sha256-fd-v1:770e93cf3a4a54dba229efaec3f9eefcd0081e9442781dac612b5a8cfed25430"
    ],
+   "description": "A comic adventure based on the Maison Ikkoku manga, concluding its story.",
    "sourceGroups": [
     "x68000:Kawai Sou Monogatari Kanketsuhen (1988)(Master Piece).zip"
    ],
@@ -20453,6 +20429,7 @@
     "sha256-fd-v1:b653c3f4c7023cef0f1bd74caeba4723aa42cbe61434c4473f813610b358fa9f",
     "sha256-fd-v1:ea34177afce81c6daa6efef035884cd2b2768ea8a8f29ab7fb779ac445ff03a1"
    ],
+   "description": "Both Sword Master games in one set.",
    "sourceGroups": [
     "x68000:Sword Master I+II.zip"
    ],
@@ -20479,6 +20456,7 @@
     "sha256-fd-v1:6a3c00dd83cb81bba26853e9f6a63ab0c0175e993493c75c4aa3349a24b58199",
     "sha256-fd-v1:7ab3ad9e10be5679c96a7e67350ffb239d428bee781efd31735d1fa62846d48f"
    ],
+   "description": "Both Premium scenario collections in one set.",
    "sourceGroups": [
     "x68000:Premium I+II (199x)(Silky's).zip"
    ],
@@ -20571,20 +20549,11 @@
     "sha256-fd-v1:f03525dcc198bda83f01521005f12391a1c62149361aedffbe56f2d3af1c75eb",
     "sha256-fd-v1:f6640d226d87ee7d6f83195eeb3ce39bdf318a627ea8957587bfa540998ff156"
    ],
+   "description": "Both Duel Fighter shooters in one set.",
    "sourceGroups": [
     "x68000:Duel Fighter I+II.zip"
    ],
    "title": "Duel Fighter I+II"
-  },
-  "x68000:local-d7eb70b43b": {
-   "contentIds": [
-    "sha256-fd-v1:0bf2336369a29b60584c1a3662036a94fc0337e5f4f0931b1397c506b1530f17"
-   ],
-   "sourceGroups": [
-    "x68000:Butasan (1993)(Dempa).zip"
-   ],
-   "title": "Butasan",
-   "year": 1993
   },
   "x68000:local-d96b381f07": {
    "contentIds": [
@@ -20600,6 +20569,7 @@
    "contentIds": [
     "sha256-fd-v1:3b47b348c08bd2996b1d32473304682d1c5c9b305a5079fcf72be9b5f5dc5e83"
    ],
+   "description": "A mahjong game by Allex.",
    "sourceGroups": [
     "x68000:Mahjongg Master (1991)(Allex)(Disk 1 of 5)(Disk A).zip"
    ],
@@ -20669,6 +20639,7 @@
     "sha256-fd-v1:73d75f82f95b37cb89d9f520936d747694e3059762afe2885a016378276e3d4e",
     "sha256-fd-v1:9847e3be5a72832c10b0d5fb70b474a2039b5c25a7d34e85a3c3656c470c7ef3"
    ],
+   "description": "Both Jangou mahjong games in one set.",
    "sourceGroups": [
     "x68000:Jangou I+II (1989)(Crossmedia)(Disk 1 of 2)(Disk A).zip"
    ],
@@ -20679,6 +20650,7 @@
    "contentIds": [
     "sha256-fd-v1:01e20d87a2bdf30b8aba54b93926716c96d4fe3d4793b041447901a216d50f1f"
    ],
+   "description": "An extra data disk for Binbin Mahjong.",
    "sourceGroups": [
     "x68000:Binbin Mahjongg Data Shuu (1994)(Takeru).zip"
    ],
@@ -20697,6 +20669,7 @@
     "sha256-fd-v1:f22f872bd725a97d3e18c9074e14292378da46de85a7c384a01b77df53ed6e50",
     "sha256-fd-v1:fa8066f78cea5b169ddf35b8b64028da94a823f6224a40085c6a8441208ba57b"
    ],
+   "description": "The three Lipstick Adventure detective adventures in one set.",
    "sourceGroups": [
     "x68000:Lipstick Adventure I+II+III (19xx)(Fairytale).zip"
    ],
@@ -20708,6 +20681,7 @@
     "sha256-fd-v1:9050dc59fcf8cb0472af94603c6af685d3dd666e97e806d2e2417a019a64b590",
     "sha256-fd-v1:cfd3d40903584ab07eead02fda61037efd9acfe11aca8be46838c41389cdc61a"
    ],
+   "description": "Three doujin board and casino games from Iron Gear's Nouten Chokudake! series.",
    "sourceGroups": [
     "x68000:Naniwa Do Konjou Series Bangaihen Nouten Chokudake! I+II+III.zip"
    ],
@@ -20725,26 +20699,17 @@
     "sha256-fd-v1:ee44c6100e849edc9159dbf5365d2f87fd26fcedf887200cdb264de3a1863950",
     "sha256-fd-v1:fb841410ccd8d4f87cd1c8d9c232efb9fd1c963434b2aec5fffa970d52c11ef7"
    ],
+   "description": "A Tenshitachi no Gogo adventure with extras.",
    "sourceGroups": [
     "x68000:Tenshitachi No Gogo +.zip"
    ],
    "title": "Tenshitachi No Gogo +"
   },
-  "x68000:local-e262d14f8f": {
-   "contentIds": [
-    "sha256-fd-v1:31ddefdd1b72a3bb5d6a86d1682258119f99695979fca8723399ec37b4558ede",
-    "sha256-fd-v1:a66ff0cda91856fc7385f9839c07bd4408484559269713a835ffab4d2babdabc"
-   ],
-   "sourceGroups": [
-    "x68000:Chacha Fighter V v1.00 (1995)(TMK).zip"
-   ],
-   "title": "Chacha Fighter V v1.00",
-   "year": 1995
-  },
   "x68000:local-e348bb7af2": {
    "contentIds": [
     "sha256-fd-v1:fd4477e68fe541d021437791d7371a26fe4112b7b484f32882c07adb1a5ef3f1"
    ],
+   "description": "A mahjong game by Allex.",
    "sourceGroups": [
     "x68000:Mahjongg Master (1991)(Allex)(Disk 3 of 5)(Disk C).zip"
    ],
@@ -20755,6 +20720,7 @@
    "contentIds": [
     "sha256-fd-v1:216e76102fa655d136617bb7ee70c473c79f876087dfad630d9806def10bb39d"
    ],
+   "description": "The card game Uno: match the top card by color or number and be the first to empty your hand.",
    "sourceGroups": [
     "x68000:Uno (19xx)(-).zip"
    ],
@@ -20775,6 +20741,7 @@
     "sha256-fd-v1:0a6e735c6713028b84640a4d13cf834ab3b7b088593d72a9ecb7a70e1b3d5f4f",
     "sha256-fd-v1:4468b0bccfdab0e9a31867204a025e7fd1b46bb0cd257b42e4878ca29e12ebf2"
    ],
+   "description": "Both Marble Reverser doujin puzzle games in one set.",
    "sourceGroups": [
     "x68000:Marble Reverser I+II (1992)(Studio Pickles).zip"
    ],
@@ -20837,21 +20804,12 @@
    "contentIds": [
     "sha256-fd-v1:bffe41346bb1ba5c4f6330e94c22974a61c81d08b8c01e41f3bf4a723937ea83"
    ],
+   "description": "A doujin baseball game, the follow-up to Baseball Knuckles.",
    "sourceGroups": [
     "x68000:Shin Baseball Knuckles (1995)(DCS).zip"
    ],
    "title": "Shin Baseball Knuckles",
    "year": 1995
-  },
-  "x68000:local-ea906ccc27": {
-   "contentIds": [
-    "sha256-fd-v1:ab635dfa186c43cd152714c194a5ea556c8abfc6b211dbbdf7350593782d6fa1"
-   ],
-   "sourceGroups": [
-    "x68000:Flame Wing v1.02 (1994)(Itasenpara).zip"
-   ],
-   "title": "Flame Wing v1.02",
-   "year": 1994
   },
   "x68000:local-eaa9904d5d": {
    "contentIds": [
@@ -20896,6 +20854,7 @@
     "sha256-fd-v1:fdffeb4625dcc996d664deb043c153a1d9ff9b251a984ba3e5ea3961b8fad845",
     "sha256-fd-v1:ff02fc4c0128d8687105ad58c375e9b2c9b50ec61e6df67643b37aec315b2008"
    ],
+   "description": "Two PasoComic Purple Cat story collections in one set.",
    "sourceGroups": [
     "x68000:Pasocomic Purple Cat I+III (1993)(Palm Tree Soft).zip"
    ],
@@ -20930,6 +20889,7 @@
     "sha256-fd-v1:e7c3b98d2fefe4c81b28ae84b721cf1c028de1ea6a1e177fa02484215cbbb643",
     "sha256-fd-v1:fdbc0feac9768fde26fd8eef80591fd2ad8b1a52588c8a01c6d366a40703a76f"
    ],
+   "description": "Elf's four Dragon Knight role-playing games in one set.",
    "sourceGroups": [
     "x68000:Dragon Knight I-IV.zip"
    ],
@@ -20968,6 +20928,7 @@
    "contentIds": [
     "sha256-fd-v1:052f3da172699a39307df34ed35797f350bd7e81123113a95b1d7614270f8355"
    ],
+   "description": "A mahjong game by Allex.",
    "sourceGroups": [
     "x68000:Mahjongg Master (1991)(Allex)(Disk 2 of 5)(Disk B).zip"
    ],
@@ -20993,6 +20954,7 @@
     "sha256-fd-v1:f4b20e4cc9ea00dab9bbc4e3ef1b310555e884d02be3261ef52aa7ffc8953d85",
     "sha256-fd-v1:fde2977c96fb26cefaaa2d4a3c1da6281be6080726dcd0e475b6350a9ff0bef6"
    ],
+   "description": "Alice Soft's first three Rance role-playing games in one set.",
    "sourceGroups": [
     "x68000:Rance I+II+III(1991)(Alice Soft).zip"
    ],
@@ -21023,6 +20985,7 @@
    "contentIds": [
     "sha256-fd-v1:90898550d7078b57187aa8d7b8e604978de72ed23dd5f088158f444db35d5ecc"
    ],
+   "description": "Koi-koi, the two-player hanafuda flower-card game.",
    "sourceGroups": [
     "x68000:Hanafuda Koi Koi (19xx)(-).zip"
    ],
@@ -21034,6 +20997,7 @@
     "sha256-fd-v1:38a4fef89fc883396460268127b7f2a84c657b146f966ec8e31472b84d573a74",
     "sha256-fd-v1:c7e2306f6f582f22477e0810876df05bed59b7b52c1f1c4afb4b02e13be123e4"
    ],
+   "description": "Three Sion action games from Oh! X magazine in one set.",
    "sourceGroups": [
     "x68000:Sion I+II+IV.zip"
    ],
@@ -21075,6 +21039,7 @@
     "sha256-fd-v1:cb687a6b1d874b184a46f9bc0c2676f717efd0aeb1afb4861f62d87bb3ce8e06",
     "sha256-fd-v1:df99fbdb9e4bcf12f2d85e03680abe3da49280d6e1b4cb83b4fbda2805e868d8"
    ],
+   "description": "Two Gedou doujin games in one set.",
    "sourceGroups": [
     "x68000:Gedou Densetsu+Retsuden.zip"
    ],
@@ -21100,15 +21065,6 @@
    "title": "Giga Fight 68K",
    "year": 1992
   },
-  "x68000:local-f68f5f59d0": {
-   "contentIds": [
-    "sha256-fd-v1:7bb202daaafa5f25fdc331b3376525d6246faea30edc76c7cde75cf025c2ef03"
-   ],
-   "sourceGroups": [
-    "x68000:Populous Promised Land (19xx)(Imagineer).zip"
-   ],
-   "title": "Populous Promised Land"
-  },
   "x68000:local-f7830fdeae": {
    "contentIds": [
     "sha256-fd-v1:8751960a3f27cb104446d8c4d033f0cbbc71efda000f1be84a8f0f559f8cb7a2"
@@ -21119,22 +21075,6 @@
    "title": "Disco Scroll",
    "year": 1989
   },
-  "x68000:local-fa9c46fc9a": {
-   "contentIds": [
-    "sha256-fd-v1:37bc2521f8e855032acb5a0058ce2e212e24b112d12d1125f146a2f3cb21d540",
-    "sha256-fd-v1:56cfa780cdf133360874e5a02c7b2eb960187befe38ec11584f1990d74178814",
-    "sha256-fd-v1:6513f7f2aae9dfeabcacb203fde516898da5c1ac911fcc7cf33244ecdd52c496",
-    "sha256-fd-v1:95d7304066f90d2f800b226288d7e960833d257839b37fdcf8a5a8837cc1b4b9",
-    "sha256-fd-v1:aa8a300a631bfef0865f08ad5174b633ddce868ae1979d20c843cbf92d55534e",
-    "sha256-fd-v1:daacb031e1748246a59c0d17a01ba4a0e00f061041e958ac40c4e8505956dd10",
-    "sha256-fd-v1:f57e01b921883cd2f3a5bc479ad6b882920de453912fdd09430cfd27a32c5ac0"
-   ],
-   "sourceGroups": [
-    "x68000:Last Armageddon (1991)(Brain Grey).zip"
-   ],
-   "title": "Last Armageddon",
-   "year": 1991
-  },
   "x68000:local-fab3432505": {
    "contentIds": [
     "sha256-fd-v1:62630c749e9ab81a8963f8cb60a80d11e1ed8998404e2ab572a54b4c34cbda74"
@@ -21143,15 +21083,6 @@
     "x68000:OTOKO100.zip"
    ],
    "title": "OTOKO100"
-  },
-  "x68000:local-fbc6638cea": {
-   "contentIds": [
-    "sha256-fd-v1:1df9684433a3a39449ecd6ceef0f46378245b56820015d7cdf603cf92df16ad4"
-   ],
-   "sourceGroups": [
-    "x68000:Zan Kagerou No Jidai Scenario Collection Vol. 2 (19xx)(Wolf Team).zip"
-   ],
-   "title": "Zan Kagerou No Jidai Scenario Collection Vol. 2"
   },
   "x68000:local-fc535f9e9a": {
    "contentIds": [
@@ -21202,24 +21133,13 @@
    "title": "Stroke.x v0.20",
    "year": 1991
   },
-  "x68000:local-fe836261e7": {
-   "contentIds": [
-    "sha256-fd-v1:b8ea575aae0d320b2bb9698d82323df2114591eb164566b663348df2472e7689",
-    "sha256-fd-v1:c3b6bf40bc6e852a5245d1f96612039940f637689ffd21e86a275a7992e6d92e",
-    "sha256-fd-v1:dbe4d25cb60fafb122bc96055a8afe135e7bb732876100e5d3e16fbe03084a67"
-   ],
-   "sourceGroups": [
-    "x68000:2096 AD (1991)(Home Data).zip"
-   ],
-   "title": "2096 AD",
-   "year": 1991
-  },
   "x68000:local-ff127c719b": {
    "contentIds": [
     "sha256-fd-v1:6c674a947f62ec6541c74572083f9dd2f98a6f42ecb3c6aafadfd87ec9068b1c",
     "sha256-fd-v1:81bfd0cb596031289f50103664a3908e5a70c81ec9d9e80e3cc0170036d9799a",
     "sha256-fd-v1:ebf1c47d04b26068b00f24df1d9405378b01c0488b7a6865b6d6ad3c26d23412"
    ],
+   "description": "Both Kateikyoushi Adventure games in one set.",
    "sourceGroups": [
     "x68000:Kateikyoushi Adventure I+II (1989)(Micro Hage Chabin).zip"
    ],
@@ -21267,47 +21187,56 @@
    "year": 1990
   },
   "x68000:moby-117422": {
+   "description": "An add-on map disk for A-Train II with new regions to build railways across, including Australia and the Silk Road.",
    "mobygames": 117422,
    "title": "A Ressha de Ikō II: Shin Map",
    "year": 1988
   },
   "x68000:moby-134858": {
+   "description": "A limited anniversary edition of A-Train II bundled with extras.",
    "mobygames": 134858,
    "title": "A Ressha de Ikō II: 5th Anniversary Special Limited Edition",
    "year": 1990
   },
   "x68000:moby-134893": {
+   "description": "The Special Version of Hydlide 3, an action role-playing game, with improved graphics, new areas and arranged music.",
    "mobygames": 134893,
    "title": "Hydlide 3: Special Version",
    "year": 1990
   },
   "x68000:moby-15149": {
+   "description": "ArtDink's railway management simulation: lay track and run trains to grow towns and profits.",
    "mobygames": 15149,
    "title": "Railroad Empire",
    "year": 1988
   },
   "x68000:moby-15155": {
+   "description": "A map editor for the A-Train railway simulation.",
    "mobygames": 15155,
    "title": "A-Train Construction Set",
    "year": 1991
   },
   "x68000:moby-159552": {
+   "description": "A modern compilation of Falcom's first two Ys action role-playing games for the X68000.",
    "mobygames": 159552,
    "title": "Ys I & II: Lost Ancient Kingdom",
    "year": 2021
   },
   "x68000:moby-197788": {
+   "description": "A modern compilation of early Falcom games for the X68000, including Asteka II and Romancia.",
    "mobygames": 197788,
    "title": "Falcom Early Collection",
    "year": 2022
   },
   "x68000:moby-207007": {
+   "description": "The first Legend of the Galactic Heroes strategy game bundled with its power-up and scenario disk.",
    "mobygames": 207007,
    "title": "Ginga Eiyū Densetsu +Set",
    "year": 1990
   },
   "x68000:moby-258712": {
    "adult": true,
+   "description": "The third Bell's Avenue: a collection of short visual novels.",
    "mobygames": 258712,
    "title": "Bell's Avenue Vol.3",
    "year": 1995
@@ -21317,6 +21246,7 @@
    "contentIds": [
     "sha256-fd-v1:4c566ea51f1bffaf9e247d90c8b9d020b49f8e22ff8444f83f2646fec9e2abf1"
    ],
+   "description": "A simple role-playing game in which Amana carries a package through the forest to her grandmother.",
    "mobygames": 258938,
    "sourceGroups": [
     "x68000:Doki Doki Amanachan (1990)(Toy Pops).zip"
@@ -21326,6 +21256,7 @@
   },
   "x68000:moby-258955": {
    "adult": true,
+   "description": "The second Doki Doki Amana-chan role-playing game, continuing Amana's story after she drove off the wolf.",
    "mobygames": 258955,
    "title": "Doki Doki Amana-chan 2",
    "year": 1991
@@ -21335,6 +21266,7 @@
    "contentIds": [
     "sha256-fd-v1:5897f0ea16fde82459eb9eb2458c01dfd7abd1eaf51cc6cd0b3759a86959b9fa"
    ],
+   "description": "A quiz game in which the hero tries to win the attention of a popular girl named Maiko.",
    "mobygames": 259773,
    "sourceGroups": [
     "x68000:Long Night Maikochan No Kiken Na Yoru (1991)(Toy Pops).zip"
@@ -21344,88 +21276,68 @@
   },
   "x68000:moby-45838": {
    "adult": true,
+   "description": "A Tenshitachi no Gogo adventure about a transfer student named Hayato.",
    "mobygames": 45838,
    "title": "Tenshitachi no Gogo: Tenkōsei",
    "year": 1995
   },
   "x68000:moby-45863": {
    "adult": true,
+   "description": "An adventure in which a journalist covers a big Expo in Japan.",
    "mobygames": 45863,
    "title": "Alice-tachi no Gogo Vol. 1",
    "year": 1989
   },
   "x68000:moby-45871": {
    "adult": true,
+   "description": "The continuation of Alice-tachi no Gogo, following the journalist at the Expo.",
    "mobygames": 45871,
    "title": "Alice-tachi no Gogo Vol. 2",
    "year": 1989
   },
   "x68000:moby-47162": {
    "adult": true,
+   "description": "A simulation set at a prestigious girls' school whose founder returns to hold a fighting tournament.",
    "mobygames": 47162,
    "title": "Battle High School",
    "year": 1993
   },
   "x68000:moby-49150": {
+   "description": "Hudson's falling-block puzzle game with Bomberman bombs: line up matching pieces and detonate them to send attacks to your opponent.",
    "mobygames": 49150,
    "title": "Bomberman: Panic Bomber",
    "year": 1995
   },
   "x68000:moby-53139": {
    "adult": true,
+   "contentIds": [
+    "sha256-fd-v1:e0cb0573158cd7abba2a16070aff5ffb3311f09209defd993d3722ffa12bc099"
+   ],
+   "description": "A tile-matching puzzle game.",
    "mobygames": 53139,
+   "sourceGroups": [
+    "x68000:Kyarukan (1990)(Toy Pops).zip"
+   ],
    "title": "Kyarukan: Super Break Down !!",
    "year": 1990
   },
-  "x68000:moby-54156": {
-   "mobygames": 54156,
-   "title": "Diablo",
-   "year": 1990
-  },
-  "x68000:moby-54290": {
-   "mobygames": 54290,
-   "title": "Tōdō Ryūnosuke Tantei Nikki: Kohakuiro no Yuigon",
-   "year": 1988
-  },
-  "x68000:moby-54291": {
-   "mobygames": 54291,
-   "title": "Tōdō Ryūnosuke Tantei Nikki: Ōgon no Rashinban",
-   "year": 1991
-  },
   "x68000:moby-57206": {
+   "description": "The sequel to Schwarzschild, a space strategy game set four years after the first, in 3964.",
    "mobygames": 57206,
    "title": "Schwarzschild II: Teikoku no Haishin",
    "year": 1991
   },
   "x68000:moby-58418": {
+   "description": "Houma Hunter Lime, an animated visual novel series about a girl who hunts demons crossing over from a magical world.",
    "mobygames": 58418,
    "title": "Hōma Hunter Lime",
    "year": 1993
   },
   "x68000:moby-64520": {
    "adult": true,
+   "description": "Two Bishoujo Shashinkan games released together, Moving School and Studio Cut.",
    "mobygames": 64520,
    "title": "Bishōjo Shashinkan Special: The Double Vision",
-   "year": 1988
-  },
-  "x68000:moby-66120": {
-   "mobygames": 66120,
-   "title": "Cue Brick",
-   "year": 1990
-  },
-  "x68000:moby-7139": {
-   "mobygames": 7139,
-   "title": "Aerobiz",
-   "year": 1992
-  },
-  "x68000:moby-71627": {
-   "mobygames": 71627,
-   "title": "Perfect Soko-ban",
-   "year": 1989
-  },
-  "x68000:moby-7297": {
-   "mobygames": 7297,
-   "title": "Life Force",
    "year": 1988
   }
  },
