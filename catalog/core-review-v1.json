@@ -1,5 +1,7 @@
 {
- "adultArtwork": {},
+ "adultArtwork": {
+  "art/catalog/x68000/456680/box-afab65e6bfda.webp": "Kindan no Paradise"
+ },
  "excluded": {
   "x68000:134064": {
    "reason": "MobyGames Adult genre",
