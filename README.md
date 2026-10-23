@@ -24,17 +24,46 @@
 
 # Kairo68
 
-**Play your own X68000 games on Android phones and handhelds.** Kairo68 is an Android emulator for the Sharp X68000, built on the [Kairo shared frontend](https://github.com/MrJackSpade/Kairo): the same game library, controller and touch controls, on-screen keyboard, and per-game settings as [Kairo98](https://github.com/MrJackSpade/Kairo98) and [KairoDos](https://github.com/MrJackSpade/KairoDos). It runs a pinned copy of [MAME](https://www.mamedev.org/)'s X68000 driver. It is an independent project, not an official MAME release.
+**Play your own X68000 games on Android phones and handhelds.** Kairo68 is an Android emulator for the Sharp X68000, built on the [Kairo shared frontend](https://github.com/MrJackSpade/Kairo): the same game library with artwork, controller and touch controls, on-screen keyboard, save states, and per-game settings as [Kairo98](https://github.com/MrJackSpade/Kairo98) and [KairoDos](https://github.com/MrJackSpade/KairoDos). It runs a pinned copy of [MAME](https://www.mamedev.org/)'s X68000 driver. It is an independent project, not an official MAME release.
 
-## Status
+## Download
 
-In development; there is no release yet. The app boots X68000 floppy and SASI hard disk games, with save states, controller, touch and keyboard input.
+<!-- kairo:download -->
+- **[GitHub Releases](https://github.com/MrJackSpade/Kairo68/releases)** (free): install the APK yourself. The larger `-with-images` APK also bundles catalog artwork.
 
-## Games and firmware
+Requires an ARM64 device running Android 8.0 or newer.
+<!-- /kairo:download -->
 
-Games and the X68000's BIOS are not supplied; you provide the BIOS from your own machine: the IPL (`iplrom.dat`) and the character font (`cgrom.dat`), both required. Menu › Machine lists every BIOS file, each marked Required or Optional. Pick each file, or use **Import all from a folder…** to import every file the app recognizes in a folder you choose.
+## Quick start
 
-Kairo68 reads XDF, DIM, D88, HDM and 2HD floppy images and SASI hard disk images (HDF), loose or in ZIP and 7z archives. A game's disks show as one entry, and its second disk goes in drive 1 when it starts. The machine runs at full speed while it boots, until the game has loaded or you press a key.
+1. Install Kairo68 from [GitHub Releases](https://github.com/MrJackSpade/Kairo68/releases).
+2. Open Kairo68 and choose the folder that holds your X68000 games. You can change it later in **Menu › Manage library**.
+3. Import the X68000 BIOS from your own machine in **Menu › Machine** (see [Firmware](#firmware)).
+4. Select a game and tap **Play**.
+
+Games and the X68000's BIOS are not supplied.
+
+## Supported formats
+
+| Type | Formats |
+| --- | --- |
+| Floppies | XDF, DIM, D88, HDM, 2HD |
+| Hard disks | SASI hard disk images (HDF) |
+| Archives | Any of the above inside ZIP or 7z archives |
+
+A game's disks show as one library entry, and its second disk goes in drive 1 when it starts. **Menu › Disks** changes disks during play.
+
+## Firmware
+
+Kairo68 needs the X68000's IPL (`iplrom.dat`) and character font (`cgrom.dat`) from your own machine. **Menu › Machine** lists every BIOS file, each marked Required or Optional. Pick each file, or use **Import all from a folder…** to import every file the app recognizes in a folder you choose.
+
+## Machine settings
+
+**Menu › Machine** sets these for all games; each game can override them in its **Game settings**.
+
+- **Memory:** the main RAM, 1 to 12 MB (4 MB by default).
+- **CPU clock:** 25 MHz (the default), 16 MHz or 10 MHz.
+- **Skip memory check** (on by default): the X68000 counts its memory before every boot. With this on, the boot runs as fast as your device can until the game starts, and "Starting…" shows until the first picture.
 
 ## Documentation
 
@@ -58,27 +87,13 @@ git clone --recurse-submodules https://github.com/MrJackSpade/Kairo68.git
 ```
 <!-- /kairo:clone -->
 
-The Android build is not set up yet.
+Build the app, and optionally install it, with the shared build script:
 
-<!-- kairo:ui-tests -->
-## UI tests
-
-Kairo68 has device tests in the style of Selenium tests, on the shared Kairo test framework: they
-name the app's elements, act on them as a player would, and assert what the player would see
-([how they work and how to run them](https://github.com/MrJackSpade/Kairo/blob/main/docs/ui-tests.md)). Run them from this
-repository with a device connected over adb (Android 10 or later) and the `LOCAL_BUILD_TOKEN` key set:
-
-```
-shared\tools\uitest.ps1 -Device <serial>                                              every test
-shared\tools\uitest.ps1 -Device <serial> -Filter 'MenuTests|ControllerTests'          by test name
-shared\tools\uitest.ps1 -Device <serial> -Class com.mrjackspade.kairo68.uitest.<Class>   one class
-shared\tools\uitest-all.ps1 -Device <serial>                                          every Kairo app
+```powershell
+shared\tools\build.ps1 -Install <adb serial>
 ```
 
-The tests are in `kairo68/src/androidTest/java/com/mrjackspade/kairo68/uitest/`. They run in a
-build of their own, `com.loxifi.kairo68.uitest`, installed beside the app without touching its data, and
-each run's logs, screenshots and summary land in `.build/uitest/<run id>/`.
-<!-- /kairo:ui-tests -->
+Host tests and UI tests: see [development](docs/development.md).
 
 ## License
 
