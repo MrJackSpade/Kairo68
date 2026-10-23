@@ -32,6 +32,10 @@ object Kairo68App : AppUnderTest() {
     override val bootGame = "Alien Syndrome"
     override val singleEntryGames = listOf("Mahjong Saikyou Musashi")
     override val searchTerm = "Alien"
+    override val arrowKeys = listOf(com.mrjackspade.kairo68.X68kKeys.UP, com.mrjackspade.kairo68.X68kKeys.DOWN,
+        com.mrjackspade.kairo68.X68kKeys.LEFT, com.mrjackspade.kairo68.X68kKeys.RIGHT)
+    override val returnKey = com.mrjackspade.kairo.frontend.JisMainBlock.RETURN
+    override val spaceKey = com.mrjackspade.kairo.frontend.JisMainBlock.SPACE
     override val bootGameFile = "games/Alien Syndrome (1992)(Dempa).zip"
     override val otherGame = "Mahjong Saikyou Musashi"
     override val defaultOption = "memory"
