@@ -156,6 +156,12 @@ struct X68kMachine::Impl : public osd_interface {
     // The boot (X68kMachine::booting), read at the end of each frame on MAME's thread.
     std::atomic<bool> booting{true};
     bool drive_ran = false;
+    // Whether the guest read a joystick port in this frame and in the one before. A game polls the
+    // joystick every frame once it runs, which ends a boot whose drive motor stays on (Kairo68#2);
+    // a startup driver that reads the ports does so within one frame, so one frame is not enough.
+    bool joystick_read = false;
+    bool joystick_read_before = false;
+    memory_passthrough_handler joystick_tap;
     void update_booting();
 
     ErrorCapture errors;
@@ -425,9 +431,17 @@ void X68kMachine::Impl::update(bool skip_redraw) {
             device_t *cpu = machine->root_device().subdevice("maincpu");
             if (!cpu) throw emu_fatalerror("The X68000's CPU was not found");
             cpu->set_unscaled_clock(u32(config.cpu_mhz) * 1000000);
+            // The PPI's ports A and B are the two joystick ports.
+            joystick_tap = cpu->memory().space(AS_PROGRAM).install_read_tap(
+                    0xe9a000, 0xe9a003, "kairo68_joystick",
+                    [this](offs_t, u16 &, u16) { joystick_read = true; });
         }
         if (!skip_redraw) render_frame();
         update_booting();
+        // A boot runs as fast as the host can, and its frames go by unseen: drawing every one
+        // (x68k_state::screen_update and the renderer) took half the device's time (Kairo68#2).
+        // MAME's fast-forward skips 11 frames in 12, with their screen updates, until the boot ends.
+        machine->video().set_fastforward(config.skip_memory_check && booting.load());
         lock.lock();
         if (!exiting) {
             frame_ready = true;
@@ -461,6 +475,9 @@ void X68kMachine::Impl::run_tasks(std::unique_lock<std::mutex> &lock) {
 
 void X68kMachine::Impl::update_booting() {
     if (!booting.load() || !machine) return;
+    if (joystick_read && joystick_read_before) booting = false;
+    joystick_read_before = joystick_read;
+    joystick_read = false;
     bool running = false;
     for (floppy_image_device &drive : device_type_enumerator<floppy_image_device>(machine->root_device()))
         if (drive.exists() && !drive.mon_r()) running = true;
@@ -579,12 +596,14 @@ void X68kMachine::reset() {
     impl_->between_frames<bool>([this](running_machine &m) {
         m.schedule_soft_reset();
         impl_->drive_ran = false;
+        impl_->joystick_read = false;
+        impl_->joystick_read_before = false;
         impl_->booting = true;
         return true;
     });
 }
 
-bool X68kMachine::booting() const { return impl_->booting.load(); }
+bool X68kMachine::booting() const { return impl_->config.skip_memory_check && impl_->booting.load(); }
 
 bool X68kMachine::save_state(const std::string &file) {
     return impl_->between_frames<bool>([file](running_machine &m) {

@@ -34,6 +34,9 @@ struct Config {
     std::string media[kDrives];
     // The audio sample rate.
     int sample_rate = 48000;
+    // Skip memory check: the IPL cannot skip its memory test, so the boot (booting()) runs as fast
+    // as the host can, with MAME drawing one frame in 12, until it ends.
+    bool skip_memory_check = true;
 };
 
 // X68000 key scan codes: 0x01 (ESC) to 0x74 (OPT.2), as the keyboard sends them.
@@ -65,9 +68,9 @@ public:
     void mouse_button(int button, bool down);
 
     void reset();
-    // True from power-on or reset until the boot has loaded: until a floppy drive that has run
-    // stops, or a hard disk has been read. A key, pad or mouse press ends it at once, so a game
-    // that keeps its drive running never plays fast.
+    // With Config::skip_memory_check, true from power-on or reset until the boot has loaded: until
+    // a floppy drive that has run stops, a hard disk has been read, or the guest polls the joystick
+    // ports. A key, pad or mouse press ends it at once. Always false without skip_memory_check.
     bool booting() const;
     // Run on the machine's own thread at the end of the frame; false when MAME refused.
     bool save_state(const std::string &file);
