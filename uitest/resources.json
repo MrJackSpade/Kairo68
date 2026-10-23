@@ -1,0 +1,10 @@
+{
+ "schemaVersion": 1,
+ "files": {
+  "bios/cgrom.dat": "C:\\Users\\Service Account\\Kairo\\Kairo68\\bios\\x68000\\cgrom.dat",
+  "bios/iplrom.dat": "C:\\Users\\Service Account\\Kairo\\Kairo68\\bios\\x68000\\iplrom.dat",
+  "games/Alien Syndrome (1992)(Dempa).zip": "\\\\192.168.1.202\\Public\\Games\\Roms\\Sharp X68000\\Alien Syndrome (1992)(Dempa).zip",
+  "games/Mahjongg Saikyou Musashi (1989)(Cosmos Computer)(Disk 1 of 2).zip": "\\\\192.168.1.202\\Public\\Games\\Roms\\Sharp X68000\\Mahjongg Saikyou Musashi (1989)(Cosmos Computer)(Disk 1 of 2).zip",
+  "games/Mahjongg Saikyou Musashi (1989)(Cosmos Computer)(Disk 2 of 2).zip": "\\\\192.168.1.202\\Public\\Games\\Roms\\Sharp X68000\\Mahjongg Saikyou Musashi (1989)(Cosmos Computer)(Disk 2 of 2).zip"
+ }
+}
