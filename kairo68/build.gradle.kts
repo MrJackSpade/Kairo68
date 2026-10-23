@@ -5,4 +5,4 @@ plugins {
 
 extra["kairoProduct"] = "kairo68"
 extra["kairoLabel"] = "Kairo68"
-apply(from = rootProject.file("shared/gradle/kairo-machine-app.gradle"))
+apply(from = rootProject.file("shared/gradle/kairo-app.gradle"))
