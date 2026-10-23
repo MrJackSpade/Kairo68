@@ -150,6 +150,9 @@ struct X68kMachine::Impl : public osd_interface {
     int mouse_frame_dx = 0, mouse_frame_dy = 0;
     std::array<std::atomic<bool>, 2> mouse_buttons{};
 
+    // The end of the first frame sets what needs the running machine: the CPU clock, and no throttle.
+    bool started = false;
+
     // The boot (X68kMachine::booting), read at the end of each frame on MAME's thread.
     std::atomic<bool> booting{true};
     bool drive_ran = false;
@@ -414,6 +417,15 @@ void X68kMachine::Impl::update(bool skip_redraw) {
     } else {
         // The end of a frame, inside the VBLANK callback.
         lock.unlock();
+        if (!started) {
+            started = true;
+            // The host paces frames. MAME's own OSDs apply its throttle option; without this the
+            // video manager holds the machine to real time, so a fast-forwarded boot cannot run faster.
+            machine->video().set_throttled(false);
+            device_t *cpu = machine->root_device().subdevice("maincpu");
+            if (!cpu) throw emu_fatalerror("The X68000's CPU was not found");
+            cpu->set_unscaled_clock(u32(config.cpu_mhz) * 1000000);
+        }
         if (!skip_redraw) render_frame();
         update_booting();
         lock.lock();

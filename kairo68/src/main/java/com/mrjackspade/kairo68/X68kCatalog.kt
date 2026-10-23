@@ -21,7 +21,10 @@ object X68kCatalog : LayeredGameCatalog.Schema {
 
     /** Main memory: MAME's X68000 takes 1 to 12 MB. */
     val memory = MachineOption("memory", "Memory", (1..12).map { ChoiceOption("$it", "$it MB") }, "4", numeric = true)
-    val options = listOf(memory)
+    /** The 68000's clock: the X68000's 10 MHz, the XVI's 16, or the X68030's 25, the fastest by default. */
+    val cpu = MachineOption("cpu", "CPU clock", listOf(25, 16, 10).map { ChoiceOption("$it", "$it MHz") }, "25", numeric = true)
+    val skipMemoryCheck = MachineOption.skipMemoryCheck()
+    val options = listOf(memory, cpu, skipMemoryCheck)
 
     override val fields: Map<String, Set<String>?> = mapOf(MachineOption.SECTION to options.map { it.id }.toSet())
     override val singleMediaRoles = setOf("floppyB")

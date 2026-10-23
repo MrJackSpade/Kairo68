@@ -21,7 +21,8 @@ constexpr int kStateFailed = 2;
 
 class X68kCore : public kairo::MachineCore {
 public:
-    explicit X68kCore(std::unique_ptr<X68kMachine> machine) : machine_(std::move(machine)) {}
+    X68kCore(std::unique_ptr<X68kMachine> machine, bool skip_memory_check)
+        : machine_(std::move(machine)), skip_memory_check_(skip_memory_check) {}
 
     bool run_frame() override { return machine_->run_frame(error_); }
     std::string error() override { return error_; }
@@ -62,7 +63,9 @@ public:
     void mouse_button(int button, bool down) override { machine_->mouse_button(button, down); }
 
     void reset() override { machine_->reset(); }
-    bool booting() override { return machine_->booting(); }
+    // The IPL cannot skip its memory test, so skipping it runs the boot as fast as the device can
+    // until the game loads (FrameMachine fast-forwards while the core boots).
+    bool booting() override { return skip_memory_check_ && machine_->booting(); }
 
     int save_state(const std::string &directory) override {
         return machine_->save_state(directory + kStateFile) ? 0 : kStateFailed;
@@ -85,6 +88,7 @@ public:
 
 private:
     std::unique_ptr<X68kMachine> machine_;
+    const bool skip_memory_check_;
     std::string error_;
     std::vector<uint8_t> blank_;
     std::array<bool, kairo68::kKeyCodes> keys_{};
@@ -100,7 +104,17 @@ std::unique_ptr<kairo::MachineCore> kairo::create_core(const kairo::Launch &laun
         if (int(launch.media.size()) > drive) config.media[drive] = launch.media[drive];
     // The setting X68kCatalog's options name; every launch passes it.
     config.ram_mb = std::stoi(launch.settings.at("memory"));
+    config.cpu_mhz = std::stoi(launch.settings.at("cpu"));
+    if (config.cpu_mhz != 10 && config.cpu_mhz != 16 && config.cpu_mhz != 25) {
+        error = "The CPU clock is " + std::to_string(config.cpu_mhz) + " MHz, not 10, 16 or 25";
+        return nullptr;
+    }
+    const std::string &skip = launch.settings.at("skipMemoryCheck");
+    if (skip != "on" && skip != "off") {
+        error = "Skip memory check is \"" + skip + "\", not on or off";
+        return nullptr;
+    }
     auto machine = X68kMachine::create(config, error);
     if (!machine) return nullptr;
-    return std::make_unique<X68kCore>(std::move(machine));
+    return std::make_unique<X68kCore>(std::move(machine), skip == "on");
 }

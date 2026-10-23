@@ -10449,7 +10449,6 @@
    "contentIds": [
     "sha256-fd-v1:317ecd57af40ca2f2e987a5831a3cbcfc9e3a91fdb3539fea65c9cae27c26506"
    ],
-   "description": "A 1988 simulation game by ArtDink.",
    "developer": "ArtDink",
    "launchbox": "184713",
    "screenshotUrl": "https://images.launchbox-app.com/1dc0e4bd-3f78-41be-b154-b1634d4d880e.png",
@@ -10468,7 +10467,6 @@
     "sha256-fd-v1:927d52e8f8585c302f75d525decff75fa1707944e27601c3a9d6f351fb5165fc",
     "sha256-fd-v1:aa9de9f22426d3b68180e15d41848ebd128a926186dd4e0dd76902743acb4c4f"
    ],
-   "description": "A baseball game by Konami.",
    "developer": "Konami",
    "diskSets": {
     "sha256-fd-v1:aa9de9f22426d3b68180e15d41848ebd128a926186dd4e0dd76902743acb4c4f": {
@@ -10862,7 +10860,6 @@
     "sha256-fd-v1:d3a4b5efac30e3b42b797ee43881bece4d08d088576bf0c6aa4209cdaccdf3ce",
     "sha256-fd-v1:e34d0d6978d37716985cc5b541fb4cb7557355a83b8962a11be6cfab295b5484"
    ],
-   "description": "An action role-playing game by T&E Soft.",
    "developer": "T&E Soft",
    "diskSets": {
     "sha256-fd-v1:e34d0d6978d37716985cc5b541fb4cb7557355a83b8962a11be6cfab295b5484": {
@@ -12423,7 +12420,6 @@
     "sha256-fd-v1:73b8d693a970c1f8e3b2e27882bc46d388721cdb2144e9432322c330c66c4c5f",
     "sha256-fd-v1:d614cc85ffa0856c816b4ee78e1841eac4fd0464912b0356ac6f170933263fd8"
    ],
-   "description": "A board game from Birdy Soft starring characters from its games.",
    "developer": "Birdy Soft",
    "diskSets": {
     "sha256-fd-v1:0aa34c348d88bfddaa99d807e063d4878a3d3e3039fed5ff70e3e0966cc32991": {
@@ -14579,7 +14575,6 @@
    "contentIds": [
     "sha256-fd-v1:6084ece3c07f3e7837020949dbd9dcb93507e9fe24bb22c9d4e888caaf92a8fe"
    ],
-   "description": "A superhero-themed pinball game by Nippon Softech.",
    "developer": "Nippon Softech",
    "launchbox": "188411",
    "publisher": "Nippon Softech",
@@ -14599,7 +14594,6 @@
     "sha256-fd-v1:bbc75fb7f44bfaaa2de87218718594fa031bcaa6baefdeb2d1d8bf8d806321c8",
     "sha256-fd-v1:e43877a03719963fa04c0d06f3103133b67c84b47a0d0f877a3c17d7551e5f9e"
    ],
-   "description": "A mahjong game by Cosmos Computer.",
    "developer": "Cosmos Computer",
    "diskSets": {
     "sha256-fd-v1:bbc75fb7f44bfaaa2de87218718594fa031bcaa6baefdeb2d1d8bf8d806321c8": {
@@ -14635,7 +14629,6 @@
     "sha256-fd-v1:0833361088ec595c17cd4e38ca5c80300a8f1d1557ca27f8f5008b09a04e46bc",
     "sha256-fd-v1:ceeec3e9cfae0f4dc6a338de57759f549aa596f9370d38424239ed39c29128ea"
    ],
-   "description": "A mahjong game by Micronet.",
    "developer": "Micronet",
    "diskSets": {
     "sha256-fd-v1:0833361088ec595c17cd4e38ca5c80300a8f1d1557ca27f8f5008b09a04e46bc": {
@@ -15080,7 +15073,6 @@
    "contentIds": [
     "sha256-fd-v1:2ed08c3205fa3f85e71c4f5f51b940069f3b8dfa992982a9167cc36f21350600"
    ],
-   "description": "A pinball game by Nippon Softech.",
    "developer": "Nippon Softech",
    "launchbox": "188522",
    "publisher": "Nippon Softech",
@@ -15425,7 +15417,7 @@
     "sha256-fd-v1:13228472120c293ff9f7a9ac118b5b93cd3e25a8ec1523d67fb824e14b5bd986",
     "sha256-fd-v1:c1f0e6d23e764b49b777b154c3b11c611442d24912fa95c7407394bb67936fe4"
    ],
-   "description": "A summer adventure game by Birdy Soft.",
+   "description": "An adventure in which a young man's late father leaves a will: he keeps his inheritance only if he looks after Eriko, the father's secret daughter, in Yokohama.",
    "developer": "Birdy Soft",
    "diskSets": {
     "sha256-fd-v1:c1f0e6d23e764b49b777b154c3b11c611442d24912fa95c7407394bb67936fe4": {
@@ -15743,7 +15735,6 @@
    "contentIds": [
     "sha256-fd-v1:9bb836ad5dd781da565d550c883be7fa8ced6f3bf1e47e7d38d1fdcf6daf9f15"
    ],
-   "description": "A casino game by New System House Oh!.",
    "developer": "New System House Oh!",
    "launchbox": "188887",
    "publisher": "New System House Oh!",
@@ -15946,7 +15937,7 @@
     "sha256-fd-v1:b94d8cbca52579d2c011770dc2ec6ce6a8c94d7fa43a11b6d9babaa9c5bef88f",
     "sha256-fd-v1:f4f421c7de4a5cff70f5c80706da0f3b137564c544a2a878e19e60406497f2d4"
    ],
-   "description": "A sci-fi action game by Scaptrust.",
+   "description": "An action game set in a spaceship hangar bay, where you collect items across four levels and face a boss at the end of each.",
    "developer": "Scaptrust",
    "diskSets": {
     "sha256-fd-v1:f4f421c7de4a5cff70f5c80706da0f3b137564c544a2a878e19e60406497f2d4": {
@@ -16002,7 +15993,6 @@
   },
   "x68000:189030": {
    "boxArtUrl": "https://images.launchbox-app.com/a4924655-046d-4cc8-838e-c7421701b508.jpg",
-   "description": "A casino gambling game by Nippon Dexter.",
    "developer": "Nippon Dexter",
    "launchbox": "189030",
    "publisher": "Nippon Dexter",
@@ -16160,7 +16150,6 @@
     "sha256-fd-v1:b052390a7ab8cf24f9760dba2041f1efdae60d7ff032ad387e2a7410545737cc",
     "sha256-fd-v1:c9a33a978fb83bfdf38389975d63916fa81e498081c4e6d82b20df593d66b301"
    ],
-   "description": "A dominoes game by Panther Software.",
    "developer": "Panther Software",
    "diskSets": {
     "sha256-fd-v1:b052390a7ab8cf24f9760dba2041f1efdae60d7ff032ad387e2a7410545737cc": {
@@ -16375,7 +16364,6 @@
   },
   "x68000:189125": {
    "boxArtUrl": "https://images.launchbox-app.com/72501d37-7af7-41e8-bc8c-f5f1482c49e4.jpg",
-   "description": "A board game by JAST.",
    "developer": "JAST",
    "launchbox": "189125",
    "publisher": "Jast",
@@ -16558,7 +16546,6 @@
     "sha256-fd-v1:863db7e8d113561fb639e858ae5aed5a3042cd5d289ff3bd7f25c67d445e1823",
     "sha256-fd-v1:c92cff6e5e609542596bb04264e66063ff117547696a40b9219c33e69710089c"
    ],
-   "description": "An action role-playing game by Family Soft.",
    "developer": "Family Soft",
    "diskSets": {
     "sha256-fd-v1:6b1891fa7f679b46bf493e554e710d65cc5cf66b802385b537b42fd454273c8c": {
@@ -17084,7 +17071,6 @@
   },
   "x68000:189190": {
    "boxArtUrl": "https://images.launchbox-app.com/0e580f0d-96ac-4b31-98a7-eba11260a44a.png",
-   "description": "An action game from a disk included with Oh! X magazine.",
    "launchbox": "189190",
    "publisher": "Softbank",
    "screenshotUrl": "https://images.launchbox-app.com/6635e039-c1be-418e-bba1-242c5490114f.png",
@@ -17092,7 +17078,6 @@
   },
   "x68000:189191": {
    "boxArtUrl": "https://images.launchbox-app.com/b5db5223-9d1c-4442-b240-8f438effbbe0.jpg",
-   "description": "A strategy game by FairyTale.",
    "developer": "FairyTale",
    "launchbox": "189191",
    "publisher": "Fairy Tale",
@@ -18598,7 +18583,6 @@
    "contentIds": [
     "sha256-fd-v1:c52c4469cdeae9221f464b0f46eec8c43d3e45cc6a52312a6fa92f4453210635"
    ],
-   "description": "A puzzle game by Shin.",
    "developer": "Shin",
    "launchbox": "190192",
    "publisher": "Shin",
@@ -23645,6 +23629,35 @@
    "screenshotUrl": "https://images.launchbox-app.com/9add2cdf-910d-49c3-9935-c04babe7895c.png",
    "title": "Gradius: Spacial"
   },
+  "x68000:local-0021ae7af8": {
+   "contentIds": [
+    "sha256-fd-v1:0b89f79a8b3264144764be45ef0e2ab423ddb312ecbe2958cadfa5fff615bd07",
+    "sha256-fd-v1:5bbda1804097c5067285634ef4ee6bb8fd23594bc6e700b74853d235911db591",
+    "sha256-fd-v1:73d75f82f95b37cb89d9f520936d747694e3059762afe2885a016378276e3d4e",
+    "sha256-fd-v1:9847e3be5a72832c10b0d5fb70b474a2039b5c25a7d34e85a3c3656c470c7ef3"
+   ],
+   "description": "Both Jangou mahjong games in one set.",
+   "diskSets": {
+    "sha256-fd-v1:73d75f82f95b37cb89d9f520936d747694e3059762afe2885a016378276e3d4e": {
+     "media": [
+      {
+       "contentId": "sha256-fd-v1:5bbda1804097c5067285634ef4ee6bb8fd23594bc6e700b74853d235911db591",
+       "role": "floppyB"
+      }
+     ],
+     "setDisks": [
+      "sha256-fd-v1:0b89f79a8b3264144764be45ef0e2ab423ddb312ecbe2958cadfa5fff615bd07",
+      "sha256-fd-v1:5bbda1804097c5067285634ef4ee6bb8fd23594bc6e700b74853d235911db591",
+      "sha256-fd-v1:9847e3be5a72832c10b0d5fb70b474a2039b5c25a7d34e85a3c3656c470c7ef3"
+     ]
+    }
+   },
+   "sourceGroups": [
+    "x68000:Jangou I+II (1989)(Crossmedia)(Disk 1 of 2)(Disk A).zip"
+   ],
+   "title": "Jangou I+II",
+   "year": 1989
+  },
   "x68000:local-00b3fad95b": {
    "contentIds": [
     "sha256-fd-v1:16ef420cdff2e209476ba98c6f54c061be91b7092ae7e10e506734b9a887ecf3",
@@ -23746,17 +23759,6 @@
     "x68000:Hydlide I+II+III (19xx)(Yokoshiba Soft).zip"
    ],
    "title": "Hydlide I+II+III"
-  },
-  "x68000:local-05e7f91c09": {
-   "contentIds": [
-    "sha256-fd-v1:e758d01fdb2f66a960756b9a697dd58ecb0a931e84f42bb11492c719fc754938"
-   ],
-   "description": "A mahjong game by Allex.",
-   "sourceGroups": [
-    "x68000:Mahjongg Master (1991)(Allex)(Disk 5 of 5)(Disk E).zip"
-   ],
-   "title": "Mahjongg Master",
-   "year": 1991
   },
   "x68000:local-0682268b67": {
    "contentIds": [
@@ -24705,7 +24707,6 @@
    "contentIds": [
     "sha256-fd-v1:25a108ee9f1db6c8b1b66dee47b01062da5459d8232975e27870abbb96b8a0db"
    ],
-   "description": "A doujin baseball game by DCS.",
    "sourceGroups": [
     "x68000:Baseball Knuckles '94, The (1994)(DCS).zip"
    ],
@@ -24932,17 +24933,6 @@
     "x68000:Jotei Senki I-IV.zip"
    ],
    "title": "Jotei Senki I-IV"
-  },
-  "x68000:local-386c9f878f": {
-   "contentIds": [
-    "sha256-fd-v1:0ee567ffd3e243f8348e45d1ab6525432957913400dc9d52ce421c10a0aed446"
-   ],
-   "description": "A mahjong game by Allex.",
-   "sourceGroups": [
-    "x68000:Mahjongg Master (1991)(Allex)(Disk 4 of 5)(Disk D).zip"
-   ],
-   "title": "Mahjongg Master",
-   "year": 1991
   },
   "x68000:local-39352ccffb": {
    "contentIds": [
@@ -26619,6 +26609,60 @@
    "title": "Bell's Avenue I+II",
    "year": 1993
   },
+  "x68000:local-921cda2405": {
+   "contentIds": [
+    "sha256-fd-v1:08660fa0b47983bebc25c44afd8cff2b688deb7e77eeb1da475287fa95072749",
+    "sha256-fd-v1:0a953a48daa3310f3554be85805d0f9d4ad240f933d7ad29f546374337177b68",
+    "sha256-fd-v1:21920a72a50deecf9cc1b1a945b804bf7e55ade4ce5f7368bb974d7038251800",
+    "sha256-fd-v1:2c1e148adb5516391eb607882f06d4a2a255f422d4ab819987e40495d91005fb",
+    "sha256-fd-v1:3c709b379b5a3da3f064c96f96a542b0ca8f715b71068c35a0557ad98891d344",
+    "sha256-fd-v1:3d759576a5032b712c387f94953e9b76bf386b06d7d03a62f76fb42e5f26a17c",
+    "sha256-fd-v1:69adac05800b0e8b47703157125b28999d9d9bba27dbd9c1e91ff92942421953",
+    "sha256-fd-v1:78e33b092200c5cccef0fefdcab78e3f204a762b6408698bbd2a0a631dad0e21",
+    "sha256-fd-v1:7e29bee907a06b6837609af607fcf23ec5ccaee4fe9ecbd2107fb51efe855e8d",
+    "sha256-fd-v1:81901a0c8cd74e67d6320c44937b083d181beed8bee4c987866528d0c7899016",
+    "sha256-fd-v1:8888890cf631b5191aceae2631eb3b01f52db9b5e05d4976f5d1e491b5291155",
+    "sha256-fd-v1:b1a1589b04526b7970f85f001bba8316916cb94817aeeece29bc65bc30ec59ce",
+    "sha256-fd-v1:bc53f6a49ea780f664449e3a5b2cc213cf81ec3aa691a923a3f73012b231936e",
+    "sha256-fd-v1:c2d78c28131de5a131fb94348f94b42c8937d4b640c95f4401c564560ebc6312",
+    "sha256-fd-v1:c8cb11e9fdc97c46fc5a5d9247e7d5cd427b191320e457f58c688f29e5fa802c",
+    "sha256-fd-v1:d40f4d2194217feb7931699de65968a1cf656c3c730aba1ed4ed30cfb652fae7",
+    "sha256-fd-v1:d47fe479ed3c9201a585be7441ac4cfab027e12d9d23c310dfb2078eb99d7038"
+   ],
+   "description": "Wrestle Angels III and Wrestle Angels Special, turn-based wrestling management games, in one set.",
+   "diskSets": {
+    "sha256-fd-v1:21920a72a50deecf9cc1b1a945b804bf7e55ade4ce5f7368bb974d7038251800": {
+     "media": [
+      {
+       "contentId": "sha256-fd-v1:78e33b092200c5cccef0fefdcab78e3f204a762b6408698bbd2a0a631dad0e21",
+       "role": "floppyB"
+      }
+     ],
+     "setDisks": [
+      "sha256-fd-v1:08660fa0b47983bebc25c44afd8cff2b688deb7e77eeb1da475287fa95072749",
+      "sha256-fd-v1:0a953a48daa3310f3554be85805d0f9d4ad240f933d7ad29f546374337177b68",
+      "sha256-fd-v1:2c1e148adb5516391eb607882f06d4a2a255f422d4ab819987e40495d91005fb",
+      "sha256-fd-v1:3c709b379b5a3da3f064c96f96a542b0ca8f715b71068c35a0557ad98891d344",
+      "sha256-fd-v1:3d759576a5032b712c387f94953e9b76bf386b06d7d03a62f76fb42e5f26a17c",
+      "sha256-fd-v1:69adac05800b0e8b47703157125b28999d9d9bba27dbd9c1e91ff92942421953",
+      "sha256-fd-v1:78e33b092200c5cccef0fefdcab78e3f204a762b6408698bbd2a0a631dad0e21",
+      "sha256-fd-v1:7e29bee907a06b6837609af607fcf23ec5ccaee4fe9ecbd2107fb51efe855e8d",
+      "sha256-fd-v1:81901a0c8cd74e67d6320c44937b083d181beed8bee4c987866528d0c7899016",
+      "sha256-fd-v1:8888890cf631b5191aceae2631eb3b01f52db9b5e05d4976f5d1e491b5291155",
+      "sha256-fd-v1:b1a1589b04526b7970f85f001bba8316916cb94817aeeece29bc65bc30ec59ce",
+      "sha256-fd-v1:bc53f6a49ea780f664449e3a5b2cc213cf81ec3aa691a923a3f73012b231936e",
+      "sha256-fd-v1:c2d78c28131de5a131fb94348f94b42c8937d4b640c95f4401c564560ebc6312",
+      "sha256-fd-v1:c8cb11e9fdc97c46fc5a5d9247e7d5cd427b191320e457f58c688f29e5fa802c",
+      "sha256-fd-v1:d40f4d2194217feb7931699de65968a1cf656c3c730aba1ed4ed30cfb652fae7",
+      "sha256-fd-v1:d47fe479ed3c9201a585be7441ac4cfab027e12d9d23c310dfb2078eb99d7038"
+     ]
+    }
+   },
+   "sourceGroups": [
+    "x68000:Wrestle Angles III + Special (199x)(Great)(Disk 11 of 11)(Disk K).zip"
+   ],
+   "title": "Wrestle Angles III + Special"
+  },
   "x68000:local-921d725181": {
    "contentIds": [
     "sha256-fd-v1:f25bf4fc584067d60b46df7e389b16740e6cc914e608b11b452a3fb1871780b4"
@@ -26914,7 +26958,6 @@
    "contentIds": [
     "sha256-fd-v1:feaf81e553750fd20e079525af21847e9585f529f41f57771b424d9dc2b821ee"
    ],
-   "description": "A doujin puzzle game by Studio Pickles.",
    "sourceGroups": [
     "x68000:Marble Reverser v1.0 (1992)(Studio Pickles).zip"
    ],
@@ -27353,60 +27396,6 @@
    ],
    "title": "Majo Halldra No Yabou",
    "year": 1993
-  },
-  "x68000:local-b898c5f6aa": {
-   "contentIds": [
-    "sha256-fd-v1:08660fa0b47983bebc25c44afd8cff2b688deb7e77eeb1da475287fa95072749",
-    "sha256-fd-v1:0a953a48daa3310f3554be85805d0f9d4ad240f933d7ad29f546374337177b68",
-    "sha256-fd-v1:21920a72a50deecf9cc1b1a945b804bf7e55ade4ce5f7368bb974d7038251800",
-    "sha256-fd-v1:2c1e148adb5516391eb607882f06d4a2a255f422d4ab819987e40495d91005fb",
-    "sha256-fd-v1:3c709b379b5a3da3f064c96f96a542b0ca8f715b71068c35a0557ad98891d344",
-    "sha256-fd-v1:3d759576a5032b712c387f94953e9b76bf386b06d7d03a62f76fb42e5f26a17c",
-    "sha256-fd-v1:69adac05800b0e8b47703157125b28999d9d9bba27dbd9c1e91ff92942421953",
-    "sha256-fd-v1:78e33b092200c5cccef0fefdcab78e3f204a762b6408698bbd2a0a631dad0e21",
-    "sha256-fd-v1:7e29bee907a06b6837609af607fcf23ec5ccaee4fe9ecbd2107fb51efe855e8d",
-    "sha256-fd-v1:81901a0c8cd74e67d6320c44937b083d181beed8bee4c987866528d0c7899016",
-    "sha256-fd-v1:8888890cf631b5191aceae2631eb3b01f52db9b5e05d4976f5d1e491b5291155",
-    "sha256-fd-v1:b1a1589b04526b7970f85f001bba8316916cb94817aeeece29bc65bc30ec59ce",
-    "sha256-fd-v1:bc53f6a49ea780f664449e3a5b2cc213cf81ec3aa691a923a3f73012b231936e",
-    "sha256-fd-v1:c2d78c28131de5a131fb94348f94b42c8937d4b640c95f4401c564560ebc6312",
-    "sha256-fd-v1:c8cb11e9fdc97c46fc5a5d9247e7d5cd427b191320e457f58c688f29e5fa802c",
-    "sha256-fd-v1:d40f4d2194217feb7931699de65968a1cf656c3c730aba1ed4ed30cfb652fae7",
-    "sha256-fd-v1:d47fe479ed3c9201a585be7441ac4cfab027e12d9d23c310dfb2078eb99d7038"
-   ],
-   "description": "Wrestle Angels III and Wrestle Angels Special, turn-based wrestling management games, in one set.",
-   "diskSets": {
-    "sha256-fd-v1:21920a72a50deecf9cc1b1a945b804bf7e55ade4ce5f7368bb974d7038251800": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:78e33b092200c5cccef0fefdcab78e3f204a762b6408698bbd2a0a631dad0e21",
-       "role": "floppyB"
-      }
-     ],
-     "setDisks": [
-      "sha256-fd-v1:08660fa0b47983bebc25c44afd8cff2b688deb7e77eeb1da475287fa95072749",
-      "sha256-fd-v1:0a953a48daa3310f3554be85805d0f9d4ad240f933d7ad29f546374337177b68",
-      "sha256-fd-v1:2c1e148adb5516391eb607882f06d4a2a255f422d4ab819987e40495d91005fb",
-      "sha256-fd-v1:3c709b379b5a3da3f064c96f96a542b0ca8f715b71068c35a0557ad98891d344",
-      "sha256-fd-v1:3d759576a5032b712c387f94953e9b76bf386b06d7d03a62f76fb42e5f26a17c",
-      "sha256-fd-v1:69adac05800b0e8b47703157125b28999d9d9bba27dbd9c1e91ff92942421953",
-      "sha256-fd-v1:78e33b092200c5cccef0fefdcab78e3f204a762b6408698bbd2a0a631dad0e21",
-      "sha256-fd-v1:7e29bee907a06b6837609af607fcf23ec5ccaee4fe9ecbd2107fb51efe855e8d",
-      "sha256-fd-v1:81901a0c8cd74e67d6320c44937b083d181beed8bee4c987866528d0c7899016",
-      "sha256-fd-v1:8888890cf631b5191aceae2631eb3b01f52db9b5e05d4976f5d1e491b5291155",
-      "sha256-fd-v1:b1a1589b04526b7970f85f001bba8316916cb94817aeeece29bc65bc30ec59ce",
-      "sha256-fd-v1:bc53f6a49ea780f664449e3a5b2cc213cf81ec3aa691a923a3f73012b231936e",
-      "sha256-fd-v1:c2d78c28131de5a131fb94348f94b42c8937d4b640c95f4401c564560ebc6312",
-      "sha256-fd-v1:c8cb11e9fdc97c46fc5a5d9247e7d5cd427b191320e457f58c688f29e5fa802c",
-      "sha256-fd-v1:d40f4d2194217feb7931699de65968a1cf656c3c730aba1ed4ed30cfb652fae7",
-      "sha256-fd-v1:d47fe479ed3c9201a585be7441ac4cfab027e12d9d23c310dfb2078eb99d7038"
-     ]
-    }
-   },
-   "sourceGroups": [
-    "x68000:Wrestle Angles III + Special (199x)(Great)(Disk 11 of 11)(Disk K).zip"
-   ],
-   "title": "Wrestle Angles III + Special"
   },
   "x68000:local-b8df659d3e": {
    "contentIds": [
@@ -27955,6 +27944,40 @@
    ],
    "title": "Sword Master I+II"
   },
+  "x68000:local-cfdf662a82": {
+   "contentIds": [
+    "sha256-fd-v1:052f3da172699a39307df34ed35797f350bd7e81123113a95b1d7614270f8355",
+    "sha256-fd-v1:0ee567ffd3e243f8348e45d1ab6525432957913400dc9d52ce421c10a0aed446",
+    "sha256-fd-v1:3b47b348c08bd2996b1d32473304682d1c5c9b305a5079fcf72be9b5f5dc5e83",
+    "sha256-fd-v1:e758d01fdb2f66a960756b9a697dd58ecb0a931e84f42bb11492c719fc754938",
+    "sha256-fd-v1:fd4477e68fe541d021437791d7371a26fe4112b7b484f32882c07adb1a5ef3f1"
+   ],
+   "diskSets": {
+    "sha256-fd-v1:3b47b348c08bd2996b1d32473304682d1c5c9b305a5079fcf72be9b5f5dc5e83": {
+     "media": [
+      {
+       "contentId": "sha256-fd-v1:052f3da172699a39307df34ed35797f350bd7e81123113a95b1d7614270f8355",
+       "role": "floppyB"
+      }
+     ],
+     "setDisks": [
+      "sha256-fd-v1:052f3da172699a39307df34ed35797f350bd7e81123113a95b1d7614270f8355",
+      "sha256-fd-v1:0ee567ffd3e243f8348e45d1ab6525432957913400dc9d52ce421c10a0aed446",
+      "sha256-fd-v1:e758d01fdb2f66a960756b9a697dd58ecb0a931e84f42bb11492c719fc754938",
+      "sha256-fd-v1:fd4477e68fe541d021437791d7371a26fe4112b7b484f32882c07adb1a5ef3f1"
+     ]
+    }
+   },
+   "sourceGroups": [
+    "x68000:Mahjongg Master (1991)(Allex)(Disk 1 of 5)(Disk A).zip",
+    "x68000:Mahjongg Master (1991)(Allex)(Disk 2 of 5)(Disk B).zip",
+    "x68000:Mahjongg Master (1991)(Allex)(Disk 3 of 5)(Disk C).zip",
+    "x68000:Mahjongg Master (1991)(Allex)(Disk 4 of 5)(Disk D).zip",
+    "x68000:Mahjongg Master (1991)(Allex)(Disk 5 of 5)(Disk E).zip"
+   ],
+   "title": "Mahjongg Master",
+   "year": 1991
+  },
   "x68000:local-d0585debaf": {
    "contentIds": [
     "sha256-fd-v1:d86e482b8e3162412cf30e04494ed01ad562083d2246bfe40aca8cfd71ba455f"
@@ -28120,17 +28143,6 @@
    "title": "Quiz Fighter Hyakumanjin No Quiz Yarou",
    "year": 1992
   },
-  "x68000:local-da2e52dddc": {
-   "contentIds": [
-    "sha256-fd-v1:3b47b348c08bd2996b1d32473304682d1c5c9b305a5079fcf72be9b5f5dc5e83"
-   ],
-   "description": "A mahjong game by Allex.",
-   "sourceGroups": [
-    "x68000:Mahjongg Master (1991)(Allex)(Disk 1 of 5)(Disk A).zip"
-   ],
-   "title": "Mahjongg Master",
-   "year": 1991
-  },
   "x68000:local-db695b3d34": {
    "contentIds": [
     "sha256-fd-v1:ec9b11a85ffadd3a2fa89dad25d4e6bc4e8059288d93e55f5c5ba99cdfe84832"
@@ -28186,35 +28198,6 @@
     "x68000:Captain Color (19xx)(-).zip"
    ],
    "title": "Captain Color"
-  },
-  "x68000:local-e092c2b03b": {
-   "contentIds": [
-    "sha256-fd-v1:0b89f79a8b3264144764be45ef0e2ab423ddb312ecbe2958cadfa5fff615bd07",
-    "sha256-fd-v1:5bbda1804097c5067285634ef4ee6bb8fd23594bc6e700b74853d235911db591",
-    "sha256-fd-v1:73d75f82f95b37cb89d9f520936d747694e3059762afe2885a016378276e3d4e",
-    "sha256-fd-v1:9847e3be5a72832c10b0d5fb70b474a2039b5c25a7d34e85a3c3656c470c7ef3"
-   ],
-   "description": "Both Jangou mahjong games in one set.",
-   "diskSets": {
-    "sha256-fd-v1:73d75f82f95b37cb89d9f520936d747694e3059762afe2885a016378276e3d4e": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:5bbda1804097c5067285634ef4ee6bb8fd23594bc6e700b74853d235911db591",
-       "role": "floppyB"
-      }
-     ],
-     "setDisks": [
-      "sha256-fd-v1:0b89f79a8b3264144764be45ef0e2ab423ddb312ecbe2958cadfa5fff615bd07",
-      "sha256-fd-v1:5bbda1804097c5067285634ef4ee6bb8fd23594bc6e700b74853d235911db591",
-      "sha256-fd-v1:9847e3be5a72832c10b0d5fb70b474a2039b5c25a7d34e85a3c3656c470c7ef3"
-     ]
-    }
-   },
-   "sourceGroups": [
-    "x68000:Jangou I+II (1989)(Crossmedia)(Disk 1 of 2)(Disk A).zip"
-   ],
-   "title": "Jangou I+II",
-   "year": 1989
   },
   "x68000:local-e0c55b6912": {
    "contentIds": [
@@ -28328,17 +28311,6 @@
     "x68000:Tenshitachi No Gogo +.zip"
    ],
    "title": "Tenshitachi No Gogo +"
-  },
-  "x68000:local-e348bb7af2": {
-   "contentIds": [
-    "sha256-fd-v1:fd4477e68fe541d021437791d7371a26fe4112b7b484f32882c07adb1a5ef3f1"
-   ],
-   "description": "A mahjong game by Allex.",
-   "sourceGroups": [
-    "x68000:Mahjongg Master (1991)(Allex)(Disk 3 of 5)(Disk C).zip"
-   ],
-   "title": "Mahjongg Master",
-   "year": 1991
   },
   "x68000:local-e5f25464a9": {
    "contentIds": [
@@ -28658,17 +28630,6 @@
     "x68000:Amamori Pro Uso-68K (1991)(Hazama Kuroo).zip"
    ],
    "title": "Amamori Pro Uso-68K",
-   "year": 1991
-  },
-  "x68000:local-ee5fe8f94b": {
-   "contentIds": [
-    "sha256-fd-v1:052f3da172699a39307df34ed35797f350bd7e81123113a95b1d7614270f8355"
-   ],
-   "description": "A mahjong game by Allex.",
-   "sourceGroups": [
-    "x68000:Mahjongg Master (1991)(Allex)(Disk 2 of 5)(Disk B).zip"
-   ],
-   "title": "Mahjongg Master",
    "year": 1991
   },
   "x68000:local-ee6f06b0e5": {

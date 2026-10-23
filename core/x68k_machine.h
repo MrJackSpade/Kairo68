@@ -25,6 +25,9 @@ struct Config {
     std::string bios = "ipl10";
     // Main memory in megabytes, 1 to 12.
     int ram_mb = 4;
+    // The 68000's clock in MHz: 10 (X68000), 16 (XVI) or 25 (X68030). The machine is always the
+    // X68000, whose SASI hard disk and drivers every game knows; only its CPU runs faster.
+    int cpu_mhz = 10;
     // A private folder for MAME's NVRAM and configuration.
     std::string home;
     // The image in each Drive (floppy images, a SASI hard disk image); "" for an empty drive.
