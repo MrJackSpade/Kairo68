@@ -2995,6 +2995,7 @@
      ],
      "setDisks": [
       "sha256-fd-v1:13a6819aa625e23930690ec84464a924c88f83e5fa5087eab23b6c25afbfa84e",
+      "sha256-fd-v1:1f51e38cafe05a703899874a2568971e13da6ffeacb14dc2edabb8f72fbcba03",
       "sha256-fd-v1:7cc48ba37e492b1dece25bdc8313becf8656e17ef192d90d919c67ca87dd0a9c",
       "sha256-fd-v1:fa71e7e395f2a39e9a607da7afb65d09c140bc92aa2c2202960d317f65707a76"
      ]
@@ -5765,6 +5766,13 @@
    ],
    "description": "Atari's puzzle game: catch colored tiles rolling down a conveyor and drop them into a bin to form lines of three.",
    "developer": "Atari Games",
+   "diskSets": {
+    "sha256-fd-v1:8a5dc5362a8d261108fa8fee0f197b05b30b36c64cbd50b4fee66c5e66a13f2e": {
+     "setDisks": [
+      "sha256-fd-v1:809495209108dfb0944dfa827b37f74b93fcb4c484bac2652f26e20788e32823"
+     ]
+    }
+   },
    "launchbox": "157574",
    "mobygames": 4642,
    "publisher": "Hudson Soft",
@@ -18607,6 +18615,13 @@
    ],
    "description": "Connect four pieces in a row before your opponent does.",
    "developer": "Magical Knights' Connection",
+   "diskSets": {
+    "sha256-fd-v1:8b9a7b83f66ffe68cc061c88f3e3385cbc27ff06ec598dc56bfa607ee5a98cdf": {
+     "setDisks": [
+      "sha256-fd-v1:3a1520adfa39edb4dffb60b5eec207bb343daf05b6b041e2195002aa10e4ea31"
+     ]
+    }
+   },
    "launchbox": "190195",
    "publisher": "Magical Knights' Connection",
    "screenshotUrl": "https://images.launchbox-app.com/b96c8c34-9edc-4bf5-a321-8a87cd296b3b.png",
@@ -18831,6 +18846,11 @@
    "description": "A doujin platform puzzle game starring a little monkey girl who destroys blocks by spitting on them.",
    "developer": "Sprite",
    "diskSets": {
+    "sha256-fd-v1:014224a1ad7d4a139b5df51865e4fe508513ec29f8e8810e25b5e65a70012537": {
+     "setDisks": [
+      "sha256-fd-v1:51fa77015178bbc58dc6a3a46873d17d551f51af638a356344035cefa4d7aaa8"
+     ]
+    },
     "sha256-fd-v1:51fa77015178bbc58dc6a3a46873d17d551f51af638a356344035cefa4d7aaa8": {
      "media": [
       {
@@ -19669,6 +19689,13 @@
     "sha256-fd-v1:fa40b2f0abc7d3ee2cb2f0aef06330a985df7a77c8ff5784ff7b1e822acf6516"
    ],
    "developer": "Yamaco",
+   "diskSets": {
+    "sha256-fd-v1:fa40b2f0abc7d3ee2cb2f0aef06330a985df7a77c8ff5784ff7b1e822acf6516": {
+     "setDisks": [
+      "sha256-fd-v1:2cb12d92b1a36950d699ff2e5058b2fb855f0156d27843c4a29e1c23c69034d9"
+     ]
+    }
+   },
    "launchbox": "190587",
    "publisher": "Yamaco",
    "screenshotUrl": "https://images.launchbox-app.com/c3be5e9d-e973-439f-83e1-729107086c1c.png",
@@ -19690,6 +19717,15 @@
    ],
    "description": "A doujin mahjong game updated several times in 1993 and 1994.",
    "developer": "Kazumi",
+   "diskSets": {
+    "sha256-fd-v1:b7657115b6b849a2672749aaa94da708512697f9ee34ba41523578d07eedd902": {
+     "setDisks": [
+      "sha256-fd-v1:1a1cd7091b32e2369057ba7a73a93086b79c27c2ec6b4a44e87325a50aa6b601",
+      "sha256-fd-v1:23252056a2bc5b84a02e0b0d26b81a7ee1070c69ab6d2ba63f0ed66fb09ea580",
+      "sha256-fd-v1:2df52e48a67a7eb4b6252b7bdcfebb979e8f9933bb66ef198404b8234f7d0bc1"
+     ]
+    }
+   },
    "launchbox": "190588",
    "publisher": "Kazumi",
    "screenshotUrl": "https://images.launchbox-app.com/4b46ab3b-f4ce-4770-bfe6-1ac6010a0e03.png",
@@ -21498,6 +21534,13 @@
     "sha256-fd-v1:65f183b0881e5fcba37fb60db511e25a37a9b37be5cbd4b6ebd66f8a5e4c4f20"
    ],
    "developer": "Nishi Yoshitaka",
+   "diskSets": {
+    "sha256-fd-v1:65f183b0881e5fcba37fb60db511e25a37a9b37be5cbd4b6ebd66f8a5e4c4f20": {
+     "setDisks": [
+      "sha256-fd-v1:3504f1cceb1f16a3cfaaa9fa8e6a27dfa8590ce82813d7930f2af42aa859c1a8"
+     ]
+    }
+   },
    "launchbox": "191521",
    "publisher": "Nishi Yoshitaka",
    "screenshotUrl": "https://images.launchbox-app.com/d9ffd12c-0a4a-4f47-bcc0-460d8ea99270.png",
@@ -22013,6 +22056,13 @@
     "sha256-fd-v1:e744cc3a84a38ea5881c833328d762a31665e21d0b8da142e96834621e4046a3"
    ],
    "developer": "Miro",
+   "diskSets": {
+    "sha256-fd-v1:e744cc3a84a38ea5881c833328d762a31665e21d0b8da142e96834621e4046a3": {
+     "setDisks": [
+      "sha256-fd-v1:e17762bf216152026e23c340927b99025ba1d41a052885e8e9f8adc545bac37e"
+     ]
+    }
+   },
    "launchbox": "192091",
    "publisher": "Miro",
    "screenshotUrl": "https://images.launchbox-app.com/12198eb6-7744-43de-9abe-ea60ea3da01b.png",
@@ -22470,6 +22520,13 @@
    ],
    "description": "A reproduction of Namco's 1980 arcade game Tank Battalion.",
    "developer": "L. Sound",
+   "diskSets": {
+    "sha256-fd-v1:881b6c94ed6fec97aa287279ecaad92381e61c79b05b61aef35d85976d8f90cc": {
+     "setDisks": [
+      "sha256-fd-v1:0f1640b7d37881a0841d8da2bbe6b505cf923128db4df5a5521b211731658e92"
+     ]
+    }
+   },
    "launchbox": "192187",
    "publisher": "L. Sound",
    "screenshotUrl": "https://images.launchbox-app.com/f3270702-9881-4cb8-bfd7-9d4860f0bcea.png",
@@ -22672,6 +22729,13 @@
    ],
    "description": "A four-player racing game.",
    "developer": "TNB Saisakusho",
+   "diskSets": {
+    "sha256-fd-v1:fb0ad8c53a2ec5d6e8586bf8a2a80b4870c2fd1a33d70bf37def12644301170c": {
+     "setDisks": [
+      "sha256-fd-v1:79106aa953b104230105068d000080bfa95303ef744b7edd196fdcf4f5255548"
+     ]
+    }
+   },
    "launchbox": "192304",
    "publisher": "TNB Saisakusho",
    "screenshotUrl": "https://images.launchbox-app.com/d918369e-3c59-4c5f-82b6-76a60725febe.png",
@@ -24541,6 +24605,7 @@
       "sha256-fd-v1:4ad72d1d13218750ec454280201b05a2acb75d9f633dbd09a18b5949fab19ff8",
       "sha256-fd-v1:4b5f65c3c5b38bae8bf9f9bcf99ea028571ee2cb08bd0f24e78d06e86ff2000f",
       "sha256-fd-v1:4f065744055ff7d50e56e56202c863e20322b4b9087c266c977de07dd5a7bf5b",
+      "sha256-fd-v1:52b5a4ad1c1853428ba7ba5a348447e3d1a543c24f321237ec8909d3467910dd",
       "sha256-fd-v1:6394284d2ac22faa9082f639a3c6960a8399c3d87919308f75267d50d47cd1b1",
       "sha256-fd-v1:6bce71680dbbd830cd3cd6cb41ab50edd81feffe736aeda93d3796160ca661c0",
       "sha256-fd-v1:6cea15a5202cf309da8cd8b9bae02443fc8876ebbc21206ae80fcc8d8349e981",
