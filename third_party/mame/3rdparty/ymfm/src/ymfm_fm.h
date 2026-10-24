@@ -395,6 +395,10 @@ public:
 	// return the current clock prescale
 	uint32_t clock_prescale() const { return m_clock_prescale; }
 
+	// Kairo68: count clocks generated elsewhere (clock() counts them in m_total_clocks, which
+	// engine_mode_write uses to start timer B), for a chip whose synthesis runs on another copy.
+	void advance_total_clocks(uint32_t clocks) { m_total_clocks += clocks; }
+
 	// set prescale factor (2/3/6)
 	void set_clock_prescale(uint32_t prescale) { m_clock_prescale = prescale; }
 

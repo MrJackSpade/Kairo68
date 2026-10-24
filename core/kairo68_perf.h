@@ -45,6 +45,10 @@ struct Counters {
     // Guest accesses by region, with Config::count_accesses.
     uint64_t reads[kRegions] = {};
     uint64_t writes[kRegions] = {};
+    // Host time in ymfm's synthesis, and the part inside the sound manager's update at the end of
+    // a frame (Kairo68#22).
+    uint64_t fm_ns = 0;
+    uint64_t fm_tail_ns = 0;
     // The 68000's skipped loop runs (Config::idle_skip), and the cycles they would have taken.
     uint64_t idle_skips = 0;
     uint64_t idle_cycles = 0;
@@ -65,6 +69,12 @@ inline Counters &counters() {
     return instance;
 }
 
+// Whether the sound manager's update is running (KAIRO68_PERF_SOUND_UPDATE_SCOPE).
+inline bool &in_sound_update() {
+    static bool inside = false;
+    return inside;
+}
+
 inline uint64_t now_ns() {
     return uint64_t(std::chrono::duration_cast<std::chrono::nanoseconds>(
         std::chrono::steady_clock::now().time_since_epoch()).count());
@@ -83,16 +93,45 @@ private:
     uint64_t start_;
 };
 
+// Marks the sound manager's update while it runs.
+class SoundUpdateScope {
+public:
+    SoundUpdateScope() { in_sound_update() = true; }
+    ~SoundUpdateScope() { in_sound_update() = false; }
+    SoundUpdateScope(const SoundUpdateScope &) = delete;
+    SoundUpdateScope &operator=(const SoundUpdateScope &) = delete;
+};
+
+// Adds synthesis time to fm_ns, and to fm_tail_ns inside the sound manager's update.
+class FmScope {
+public:
+    FmScope() : start_(now_ns()) {}
+    ~FmScope() {
+        const uint64_t ns = now_ns() - start_;
+        counters().fm_ns += ns;
+        if (in_sound_update()) counters().fm_tail_ns += ns;
+    }
+    FmScope(const FmScope &) = delete;
+    FmScope &operator=(const FmScope &) = delete;
+
+private:
+    uint64_t start_;
+};
+
 } // namespace kairo68::perf
 
 #define KAIRO68_PERF_COUNT(field, amount) (kairo68::perf::counters().field += (amount))
 #define KAIRO68_PERF_TIME(field) kairo68::perf::Scope kairo68_perf_scope_##field(kairo68::perf::counters().field)
 #define KAIRO68_PERF_PC(pc) (kairo68::perf::count_pcs() ? void(++kairo68::perf::counters().pcs[(pc)]) : void())
+#define KAIRO68_PERF_SOUND_UPDATE_SCOPE() kairo68::perf::SoundUpdateScope kairo68_perf_sound_update_scope
+#define KAIRO68_PERF_FM_SCOPE() kairo68::perf::FmScope kairo68_perf_fm_scope
 
 #else
 
 #define KAIRO68_PERF_COUNT(field, amount) ((void)0)
 #define KAIRO68_PERF_TIME(field) ((void)0)
 #define KAIRO68_PERF_PC(pc) ((void)0)
+#define KAIRO68_PERF_SOUND_UPDATE_SCOPE() ((void)0)
+#define KAIRO68_PERF_FM_SCOPE() ((void)0)
 
 #endif

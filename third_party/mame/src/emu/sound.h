@@ -234,6 +234,13 @@ public:
 	// number of samples to handle
 	s32 samples() const { return m_samples_to_update; }
 
+	// Kairo68: a stream whose callback leaves its samples to be written later sets the function
+	// that writes them (put_at); every stream reading from it calls it first (Kairo68#22).
+	void set_deferred_finish(std::function<void()> finish) { m_deferred_finish = std::move(finish); }
+	void finish_deferred() { if(m_deferred_finish) m_deferred_finish(); }
+	// Kairo68: writes a sample of an earlier update, by its absolute index, before it is read.
+	void put_at(s32 output, u64 index, sample_t sample) { *m_output_buffer.ptrw(output, s32(s64(index) - s64(m_output_buffer.write_sample()))) = sample; }
+
 	// write a sample to the buffer
 	void put(s32 output, s32 index, sample_t sample) { *m_output_buffer.ptrw(output, index) = sample; }
 
@@ -326,6 +333,7 @@ private:
 	std::vector<route_bw> m_bw_routes;
 	std::vector<route_fw> m_fw_routes;
 	std::vector<sound_stream *> m_dependant_streams;
+	std::function<void()> m_deferred_finish; // Kairo68: set_deferred_finish
 
 	// buffers
 	std::vector<std::vector<sample_t>> m_input_buffer;

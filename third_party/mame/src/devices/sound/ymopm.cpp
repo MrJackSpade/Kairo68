@@ -59,7 +59,7 @@ void ym2151_device::reset_w(int state)
 		m_stream->update();
 		m_reset_state = state;
 		if (state != 0)
-			m_chip.reset();
+			reset_chip(); // Kairo68: the synthesis worker's chip too
 	}
 }
 

@@ -668,6 +668,10 @@ u32 sound_stream::get_history_for_bw_route(const sound_stream *source, u32 chann
 
 void sound_stream::do_update()
 {
+	// Kairo68: samples a source left to be written later are written before they are read here
+	for(const auto &r : m_bw_routes)
+		r.m_source->finish_deferred();
+
 	// Mix in all the inputs (if any)
 	if(m_input_count) {
 		for(auto &b : m_input_buffer)
@@ -702,6 +706,8 @@ void sound_stream::do_update()
 void sound_stream::sync(attotime now)
 {
 	m_sync_time = now;
+	// Kairo68: samples left to be written later are in the buffer before it moves on
+	finish_deferred();
 	m_output_buffer.sync();
 }
 
@@ -2674,6 +2680,7 @@ void sound_manager::update(s32)
 {
 	auto profile = g_profiler.start(PROFILER_SOUND);
 	KAIRO68_PERF_TIME(sound_ns);
+	KAIRO68_PERF_SOUND_UPDATE_SCOPE();
 
 	mapping_update();
 	streams_update();

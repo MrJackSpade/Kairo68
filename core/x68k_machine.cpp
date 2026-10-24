@@ -28,6 +28,7 @@
 #include "screen.h"
 #include "cpu/m68000/m68000.h"
 #include "imagedev/floppy.h"
+#include "sound/ymopm.h"
 #include "sharp/x68k_hdc.h"
 #include "audio_effects/compressor.h"
 #include "audio_effects/eq.h"
@@ -443,6 +444,11 @@ void X68kMachine::Impl::update(bool skip_redraw) {
             // Only the CPU changes main RAM while it runs; everything else may have a side effect.
             if (config.idle_skip)
                 downcast<m68000_device &>(*cpu).enable_idle_skip(offs_t(config.ram_mb) * 0x100000);
+            if (config.synthesis_worker) {
+                device_t *fm = machine->root_device().subdevice("ym2151");
+                if (!fm) throw emu_fatalerror("The X68000's YM2151 was not found");
+                downcast<ym2151_device &>(*fm).enable_synthesis_worker();
+            }
             // The PPI's ports A and B are the two joystick ports.
             joystick_tap = cpu->memory().space(AS_PROGRAM).install_read_tap(
                     0xe9a000, 0xe9a003, "kairo68_joystick",
@@ -702,7 +708,8 @@ std::vector<std::pair<std::string, uint64_t>> X68kMachine::take_perf() {
              {"screen_lines", c.screen_lines}, {"screen_ns", c.screen_ns}, {"sound_ns", c.sound_ns},
              {"render_ns", c.render_ns}, {"screen_under_ns", c.screen_under_ns}, {"screen_gfx_ns", c.screen_gfx_ns},
              {"screen_pcg_ns", c.screen_pcg_ns}, {"screen_mix_ns", c.screen_mix_ns},
-             {"idle_skips", c.idle_skips}, {"idle_cycles", c.idle_cycles}};
+             {"idle_skips", c.idle_skips}, {"idle_cycles", c.idle_cycles},
+             {"fm_ns", c.fm_ns}, {"fm_tail_ns", c.fm_tail_ns}};
     static const char *const kRegionNames[kRegions] = {"ram", "gvram", "tvram", "io", "sprite", "other"};
     if (impl_->config.count_accesses)
         for (int region = 0; region < kRegions; ++region) {

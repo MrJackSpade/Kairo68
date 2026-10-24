@@ -281,6 +281,9 @@ public:
 	// generate one sample of sound
 	void generate(output_data *output, uint32_t numsamples = 1);
 
+	// Kairo68: the clocks generate() would count for numsamples, without generating.
+	void advance_generated(uint32_t numsamples) { m_fm.advance_total_clocks(numsamples); }
+
 protected:
 	// variants
 	enum opm_variant

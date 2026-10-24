@@ -21,7 +21,9 @@ param(
     [int]$Warmup = 300,
     [int]$Frames = 1200,
     # More game_profile options for every run, such as --boot-frames for a game whose boot never ends.
-    [string[]]$Extra = @()
+    [string[]]$Extra = @(),
+    # More options for one build by its name, such as --no-idle-skip to compare a setting in one build.
+    [hashtable]$Options = @{}
 )
 $ErrorActionPreference = 'Stop'
 $remote = '/data/local/tmp/k68'
@@ -43,7 +45,7 @@ foreach ($name in $names) {
 $rates = @{}
 foreach ($round in 1..$Rounds) {
     foreach ($name in $names) {
-        $text = Adb shell "cd $remote && rm -rf work/run && mkdir -p work/run && LD_LIBRARY_PATH=$remote/ablib-$name ./ab-$name bios work/run game.dim $Clock 4 $Frames - --warmup $Warmup $($Extra -join ' ')"
+        $text = Adb shell "cd $remote && rm -rf work/run && mkdir -p work/run && LD_LIBRARY_PATH=$remote/ablib-$name ./ab-$name bios work/run game.dim $Clock 4 $Frames - --warmup $Warmup $($Extra -join ' ') $($Options[$name])"
         $line = ($text | Select-String '^host ').Line
         $rate = [double]([regex]::Match($line, '([0-9.]+) frames/s').Groups[1].Value)
         $rates[$name] += @($rate)

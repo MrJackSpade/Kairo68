@@ -41,6 +41,9 @@ struct Config {
     // The 68000 skips the passes of a busy-wait loop on main RAM, which the guest cannot tell from
     // running them (Kairo68#12). Off only to compare against.
     bool idle_skip = true;
+    // The YM2151 synthesizes on a worker thread, in parallel with the emulation, with the same
+    // samples (Kairo68#22). Off only to compare against.
+    bool synthesis_worker = true;
     // A measurement build (KAIRO68_PERF) also counts the guest's accesses by address range. The
     // taps that count them slow every access, so stage times measured with them are not real.
     bool count_accesses = false;
