@@ -97,7 +97,10 @@ private:
 std::unique_ptr<kairo::MachineCore> kairo::create_core(const kairo::Launch &launch, std::string &error) {
     kairo68::Config config;
     // MAME's thread does the emulation; FrameMachine's worker only waits for its frames.
-    config.on_emulation_thread = [] { kairo::raise_emulation_priority("MAME"); };
+    config.on_emulation_thread = [] {
+        kairo::name_thread("kairo68-mame");
+        kairo::raise_emulation_priority("MAME");
+    };
     config.rom_dir = launch.firmware;
     config.home = launch.home;
     for (int drive = 0; drive < kairo68::kDrives; ++drive)

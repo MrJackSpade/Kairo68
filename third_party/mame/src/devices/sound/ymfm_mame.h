@@ -227,7 +227,7 @@ public:
 						else
 							synthesize(command);
 					return results;
-				});
+				}, "kairo-synth");
 		m_stream->set_deferred_finish([this] { finish_synthesis(); });
 	}
 
