@@ -25,7 +25,6 @@
 #include "main.h"
 #include "drivenum.h"
 #include "render.h"
-#include "rendersw.hxx"
 #include "screen.h"
 #include "imagedev/floppy.h"
 #include "sharp/x68k_hdc.h"
@@ -231,6 +230,7 @@ struct X68kMachine::Impl : public osd_interface {
 X68kMachine::X68kMachine(std::unique_ptr<Impl> impl) : impl_(std::move(impl)) {}
 
 void X68kMachine::Impl::run_mame() {
+    if (config.on_emulation_thread) config.on_emulation_thread();
     osd_output::push(&errors);
     int result = EMU_ERR_NONE;
     try {
@@ -306,8 +306,9 @@ void X68kMachine::Impl::free_target() {
 
 void X68kMachine::Impl::init(running_machine &running) {
     machine = &running;
-    // Only the screen, at its native pixels: no views with artwork (the driver's floppy lamps), and
-    // the screen stretched to the target, so its minimum size is the visible area.
+    // A target showing only the screen (no views with artwork, such as the driver's floppy lamps),
+    // at its native pixels. Nothing draws it: MAME updates a screen only while a target shows it,
+    // and render_frame copies the screen's own bitmap.
     target = running.render().target_alloc(nullptr, RENDER_CREATE_NO_ART);
     target->set_keepaspect(false);
     // Freed while the machine exits, as MAME's windows free theirs: a target outliving that frees
@@ -518,27 +519,52 @@ void X68kMachine::Impl::update_booting() {
     else if (drive_ran) booting = false;
 }
 
+// The finished picture straight from the screen's bitmap (Kairo68#20). The target shows only the
+// screen, at its native size, as one unblended quad at full brightness, so MAME's renderer only
+// copied the visible area; one pass now copies it and sets alpha. The target stays allocated:
+// MAME updates a screen only while a target shows it.
 void X68kMachine::Impl::render_frame() {
     KAIRO68_PERF_TIME(render_ns);
-    if (target) {
-        s32 w = 0, h = 0;
-        target->compute_minimum_size(w, h);
-        if (w > 0 && h > 0) {
-            target->set_bounds(w, h);
-            pixels.assign(size_t(w) * h, 0);
-            render_primitive_list &primitives = target->get_primitives();
-            primitives.acquire_lock();
-            software_renderer<uint32_t, 0, 0, 0, 0, 8, 16>::draw_primitives(primitives, pixels.data(), w, h, w);
-            primitives.release_lock();
-            for (auto &pixel : pixels) pixel |= 0xff000000u;
-            width = uint32_t(w);
-            height = uint32_t(h);
+    screen_device *screen = screen_device_enumerator(machine->root_device()).first();
+    if (!screen) throw emu_fatalerror("The X68000's screen was not found");
+    frame_period = screen->frame_period().as_double();
+    screen_bitmap &finished = screen->curbitmap();
+    if (!finished.valid()) return;
+    if (finished.format() != BITMAP_FORMAT_RGB32) throw emu_fatalerror("The X68000's screen is not RGB32");
+    const bitmap_rgb32 &bitmap = finished.as_rgb32();
+    const rectangle &visible = screen->visible_area();
+    const uint32_t w = uint32_t(visible.width()), h = uint32_t(visible.height());
+    pixels.resize(size_t(w) * h);
+    uint32_t *out = pixels.data();
+    // The quad's colour, as screen_device::update_quads sets it: the screen's colour darkened by its
+    // brightness, which the driver sets from the monitor contrast for fades. MAME's renderer
+    // scales each channel by trunc(256 * c / 255) and shifts it down by 8 (rendersw.hxx,
+    // draw_quad_rgb32); the integer form gives the same factor for every c, since 256c/255 is a
+    // whole number only at 0 and 255.
+    const rgb_t quad = screen->color() - rgb_t(0, 0xff - screen->brightness(), 0xff - screen->brightness(),
+                                               0xff - screen->brightness());
+    const uint32_t sr = uint32_t(quad.r()) * 256 / 255, sg = uint32_t(quad.g()) * 256 / 255,
+                   sb = uint32_t(quad.b()) * 256 / 255;
+    const bool full = quad.r() == 0xff && quad.g() == 0xff && quad.b() == 0xff;
+    // MAME's 0xRRGGBB to the RGBA bytes frame() returns: red in the low byte, opaque.
+    for (int32_t y = visible.top(); y <= visible.bottom(); ++y) {
+        const uint32_t *row = &bitmap.pix(y, visible.left());
+        if (full) {
+            for (uint32_t x = 0; x < w; ++x) {
+                const uint32_t rgb = row[x];
+                *out++ = 0xff000000u | ((rgb & 0xff) << 16) | (rgb & 0xff00) | ((rgb >> 16) & 0xff);
+            }
+        } else {
+            for (uint32_t x = 0; x < w; ++x) {
+                const uint32_t rgb = row[x];
+                const uint32_t r = (((rgb >> 16) & 0xff) * sr) >> 8, g = (((rgb >> 8) & 0xff) * sg) >> 8,
+                               b = ((rgb & 0xff) * sb) >> 8;
+                *out++ = 0xff000000u | (b << 16) | (g << 8) | r;
+            }
         }
     }
-    if (machine) {
-        if (screen_device *screen = screen_device_enumerator(machine->root_device()).first())
-            frame_period = screen->frame_period().as_double();
-    }
+    width = w;
+    height = h;
 }
 
 std::unique_ptr<X68kMachine> X68kMachine::create(const Config &config, std::string &error) {

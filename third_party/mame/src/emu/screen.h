@@ -382,6 +382,8 @@ public:
 	void reset_origin(int beamy = 0, int beamx = 0);
 	void set_visible_area(int min_x, int max_x, int min_y, int max_y);
 	void set_brightness(u8 brightness) { m_brightness = brightness; }
+	u8 brightness() const { return m_brightness; }   // Kairo68
+	rgb_t color() const { return m_color; }           // Kairo68
 
 	// beam positioning and state
 	int vpos() const;

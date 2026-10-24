@@ -6,6 +6,7 @@
 #pragma once
 
 #include <cstdint>
+#include <functional>
 #include <memory>
 #include <string>
 #include <utility>
@@ -43,6 +44,9 @@ struct Config {
     // The real-time clock's start, as YYYYMMDDhhmmss; "" for the host's time. A fixed start makes
     // two runs of a game identical, for checking that a change keeps the guest's behavior.
     std::string rtc;
+    // Called first on the thread MAME runs on, which does all the emulation: the host's place to
+    // give it the priority it gives its own emulation thread (Kairo68#26).
+    std::function<void()> on_emulation_thread;
 };
 
 // X68000 key scan codes: 0x01 (ESC) to 0x74 (OPT.2), as the keyboard sends them.

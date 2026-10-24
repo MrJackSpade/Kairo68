@@ -872,13 +872,27 @@ void x68k_crtc_device::crtc_w(offs_t offset, u16 data, u16 mem_mask)
 """,),
 ]
 
+# The screen's render colour and brightness, read back (Kairo68#20). Kairo68 copies the finished
+# picture from the screen's bitmap instead of rendering it, and applies the colour MAME's renderer
+# would: the X68000 driver sets the brightness from the monitor contrast for its fades.
+SCREEN_COLOR_GETTERS = [
+    ('src/emu/screen.h',
+     """	void set_brightness(u8 brightness) { m_brightness = brightness; }
+""",
+     """	void set_brightness(u8 brightness) { m_brightness = brightness; }
+	u8 brightness() const { return m_brightness; }   // Kairo68
+	rgb_t color() const { return m_color; }           // Kairo68
+""",),
+]
+
 PATCHES = {'x68k-save-state': X68K_SAVE_STATE, 'x68k-sasi-count': X68K_SASI_COUNT, 'x68k-sasi-dma': X68K_SASI_DMA,
            'osdlib-without-sdl': OSDLIB_WITHOUT_SDL, 'upd765-save-state': UPD765_SAVE_STATE, 'rtc-save-state': RTC_SAVE_STATE,
            'floppy-save-state': FLOPPY_SAVE_STATE, 'hd63450-save-state': HD63450_SAVE_STATE,
            'perf-counters': PERF_COUNTERS,
            'mfp-timer-elapse': MFP_TIMER_ELAPSE,
            'dma-drq-poll': DMA_DRQ_POLL,
-           'x68k-deferred-partial': X68K_DEFERRED_PARTIAL}
+           'x68k-deferred-partial': X68K_DEFERRED_PARTIAL,
+           'screen-color-getters': SCREEN_COLOR_GETTERS}
 
 
 def apply(root):

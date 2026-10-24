@@ -15,6 +15,7 @@
 //   --warmup <n>      run n frames after the boot before measuring (script frames count from the boot)
 //   --rtc <time>      start the real-time clock at YYYYMMDDhhmmss (default 19930101000000), so
 //                     runs repeat exactly; "host" for the host's time
+//   --nice <n>        run the emulation thread at this priority (the app uses -16; root on Android)
 //   --accesses        count accesses by address range (slows every access; stage times are not real)
 //   --shots <n>       write the picture every n frames as <work dir>/frame-<frame>.ppm
 //   --csv <file>      write each frame's host time and counters
@@ -32,6 +33,13 @@
 #include <map>
 #include <string>
 #include <vector>
+#ifndef _WIN32
+#include <atomic>
+#include <cerrno>
+#include <cstring>
+#include <sys/resource.h>
+#include <unistd.h>
+#endif
 
 #include "x68k_machine.h"
 
@@ -89,6 +97,25 @@ void write_ppm(const std::string &file, const uint8_t *pixels, uint32_t width, u
     std::fclose(out);
 }
 
+#ifndef _WIN32
+// The emulation thread, for its scheduler statistics.
+std::atomic<long> emulation_tid{0};
+#endif
+
+// The calling thread's priority; fails the run when the system refuses it.
+void set_priority(int nice) {
+#ifdef _WIN32
+    std::fprintf(stderr, "FAIL: --nice is for Android and Linux\n");
+    std::exit(1);
+#else
+    emulation_tid = long(gettid());
+    if (setpriority(PRIO_PROCESS, 0, nice) != 0) {
+        std::fprintf(stderr, "FAIL: setpriority(%d): %s\n", nice, std::strerror(errno));
+        std::exit(1);
+    }
+#endif
+}
+
 double percentile(std::vector<double> values, double fraction) {
     if (values.empty()) return 0;
     std::sort(values.begin(), values.end());
@@ -100,7 +127,7 @@ double percentile(std::vector<double> values, double fraction) {
 int main(int argc, char **argv) {
     if (argc < 8)
         return fail("usage: game_profile <rom dir> <work dir> <image> <cpu MHz> <memory MB> <frames> <script> "
-                    "[--boot-frames <n>] [--warmup <n>] [--rtc <time>] [--accesses] [--shots <n>] [--csv <file>] [--hashes <file>] [--sound <file>]");
+                    "[--nice <n>] [--boot-frames <n>] [--warmup <n>] [--rtc <time>] [--accesses] [--shots <n>] [--csv <file>] [--hashes <file>] [--sound <file>]");
     const std::string work = argv[2];
     Config config;
     config.rom_dir = argv[1];
@@ -125,6 +152,10 @@ int main(int argc, char **argv) {
         else if (option == "--rtc" && i + 1 < argc) { config.rtc = argv[++i]; if (config.rtc == "host") config.rtc.clear(); }
         else if (option == "--warmup" && i + 1 < argc) warmup = std::strtol(argv[++i], nullptr, 10);
         else if (option == "--boot-frames" && i + 1 < argc) fixed_boot = std::strtol(argv[++i], nullptr, 10);
+        else if (option == "--nice" && i + 1 < argc) {
+            const int nice = std::atoi(argv[++i]);
+            config.on_emulation_thread = [nice] { set_priority(nice); };
+        }
         else if (option == "--shots" && i + 1 < argc) shots = std::strtol(argv[++i], nullptr, 10);
         else if (option == "--csv" && i + 1 < argc) csv_file = argv[++i];
         else if (option == "--hashes" && i + 1 < argc) hash_file = argv[++i];
@@ -244,6 +275,20 @@ int main(int argc, char **argv) {
                 host, guest, double(frames) / host, guest_rate, 100.0 * guest / host);
     std::printf("frame ms: mean %.3f, median %.3f, p95 %.3f, max %.3f\n", 1000.0 * host / double(frames),
                 percentile(frame_ms, 0.5), percentile(frame_ms, 0.95), *std::max_element(frame_ms.begin(), frame_ms.end()));
+#ifndef _WIN32
+    // /proc's schedstat: time on a CPU, then time runnable but waiting for one (Kairo68#26).
+    if (const long tid = emulation_tid.load()) {
+        const std::string path = "/proc/self/task/" + std::to_string(tid) + "/schedstat";
+        FILE *stat = std::fopen(path.c_str(), "r");
+        if (!stat) return fail("cannot read " + path);
+        unsigned long long running = 0, waiting = 0;
+        const int got = std::fscanf(stat, "%llu %llu", &running, &waiting);
+        std::fclose(stat);
+        if (got != 2) return fail("cannot parse " + path);
+        std::printf("emulation thread since its start: %.3f s on a CPU, %.3f s waiting for one (%.1f%%)\n",
+                    double(running) / 1e9, double(waiting) / 1e9, 100.0 * double(waiting) / double(running + waiting));
+    }
+#endif
     if (!totals.empty()) {
         std::printf("per frame:\n");
         std::vector<std::pair<std::string, uint64_t>> timers;
