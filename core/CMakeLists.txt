@@ -27,6 +27,29 @@ option(KAIRO68_PERF "Count guest work and stage times per frame" OFF)
 if(KAIRO68_PERF)
     add_compile_definitions(KAIRO68_PERF)
 endif()
+# The device build of the core uses a profile of the device playing games (Kairo68#6,
+# core/pgo/README.md). The profile describes this exact code as the device compiles it, so a
+# measurement build (KAIRO68_PERF), a training build (KAIRO68_PGO_GENERATE) or another compiler
+# turns it off with -DKAIRO_PGO=OFF.
+if(ANDROID)
+    set(KAIRO68_PGO_DEFAULT ON)
+else()
+    set(KAIRO68_PGO_DEFAULT OFF)
+endif()
+option(KAIRO_PGO "Build the core with its recorded profile (core/pgo)" ${KAIRO68_PGO_DEFAULT})
+option(KAIRO68_PGO_GENERATE "Build the core to record a profile (tools/perf/pgo-train.ps1)" OFF)
+if(KAIRO_PGO)
+    if(KAIRO68_PERF OR KAIRO68_PGO_GENERATE)
+        message(FATAL_ERROR "The recorded profile is for the ordinary core: add -DKAIRO_PGO=OFF to a KAIRO68_PERF or KAIRO68_PGO_GENERATE build")
+    endif()
+    include("${CMAKE_CURRENT_LIST_DIR}/../shared/cmake/KairoPgo.cmake")
+    kairo_use_profile("${CMAKE_CURRENT_LIST_DIR}/pgo/arm64.proftext" "${CMAKE_CURRENT_LIST_DIR}/pgo/profile.json"
+        "${CMAKE_CURRENT_LIST_DIR}/..")
+endif()
+if(KAIRO68_PGO_GENERATE)
+    add_compile_options(-fprofile-generate)
+    add_link_options(-fprofile-generate)
+endif()
 # The measurement tool (test/game_profile.cpp) for the device too, as a standalone executable.
 option(KAIRO68_TOOLS "Build the measurement tool on Android" OFF)
 if(WIN32)

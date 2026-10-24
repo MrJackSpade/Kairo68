@@ -9,7 +9,11 @@ Configures and builds <Out>\android-<Name> with the NDK (KAIRO68_TOOLS=ON, relea
 extra CMake arguments, and writes the stripped executable to <Out>\game_profile-<Name>.stripped.
 
 .EXAMPLE
-tools\perf\build-variant.ps1 -Name o2 -Out D:\kairo68-perf -CMakeArgs '-DKAIRO68_OPTIMIZE=-O2'
+tools\perf\build-variant.ps1 -Name o2 -Out D:\kairo68-perf -CMakeArgs '-DKAIRO68_OPTIMIZE=-O2','-DKAIRO_PGO=OFF'
+
+The device build uses the core's recorded profile (core/pgo) unless -DKAIRO_PGO=OFF; a measurement
+(-DKAIRO68_PERF=ON) or training build needs it off, and so does a change to the core's code until
+the profile is trained again (tools\perf\pgo-train.ps1).
 #>
 param(
     [Parameter(Mandatory)][string]$Name,
