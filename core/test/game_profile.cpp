@@ -124,7 +124,12 @@ double percentile(std::vector<double> values, double fraction) {
 
 } // namespace
 
+#ifdef GAME_PROFILE_LIBRARY
+// In the shared library (KAIRO68_TOOL_SHARED), started by tool_core.cpp's main.
+__attribute__((visibility("default"))) int kairo68_game_profile_main(int argc, char **argv) {
+#else
 int main(int argc, char **argv) {
+#endif
     if (argc < 8)
         return fail("usage: game_profile <rom dir> <work dir> <image> <cpu MHz> <memory MB> <frames> <script> "
                     "[--nice <n>] [--boot-frames <n>] [--warmup <n>] [--rtc <time>] [--accesses] [--shots <n>] [--csv <file>] [--hashes <file>] [--sound <file>]");

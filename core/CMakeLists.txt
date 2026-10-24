@@ -14,7 +14,9 @@ set(GENERATED "${CMAKE_CURRENT_LIST_DIR}/generated")
 include("${GENERATED}/sources.cmake")
 
 # The emulator runs in real time only optimized, so the core is optimized in debug builds too.
-add_compile_options(-O3 -Wno-deprecated-declarations -Wno-unused-variable -Wno-unknown-warning-option)
+# The level is a setting so measurements can compare others (Kairo68#9).
+set(KAIRO68_OPTIMIZE "-O3" CACHE STRING "The core's optimization level")
+add_compile_options(${KAIRO68_OPTIMIZE} -Wno-deprecated-declarations -Wno-unused-variable -Wno-unknown-warning-option)
 add_compile_definitions(CRLF=2 LSB_FIRST NDEBUG FLAC__NO_DLL NATIVE_DRC=drcbe_c PUGIXML_HEADER_ONLY)
 # The sound manager mixes and hands sound to the OSD on the emulation thread, as in MAME's
 # emscripten build, so each frame's sound arrives with the frame.
@@ -116,10 +118,24 @@ elseif(WIN32)
     target_link_libraries(kairo68_core PUBLIC ws2_32 mswsock shlwapi)
 endif()
 
+# The measurement tool can hold the core in a shared library, as the app does, so calls inside the
+# core bind as in libkairo68.so (Kairo68#8); build it with ANDROID_STL=c++_shared.
+option(KAIRO68_TOOL_SHARED "Link the measurement tool's core as a shared library" OFF)
+
 if(NOT ANDROID OR KAIRO68_TOOLS)
-    add_executable(game_profile test/game_profile.cpp)
-    target_link_libraries(game_profile PRIVATE kairo68_core)
-    if(WIN32 OR ANDROID)
+    if(KAIRO68_TOOL_SHARED)
+        # The tool and the core it uses in one library, as the app's library holds its code and the
+        # core; the executable only starts it.
+        add_library(kairo68_tool_core SHARED test/game_profile.cpp)
+        target_compile_definitions(kairo68_tool_core PRIVATE GAME_PROFILE_LIBRARY)
+        target_link_libraries(kairo68_tool_core PRIVATE kairo68_core)
+        add_executable(game_profile test/tool_core.cpp)
+        target_link_libraries(game_profile PRIVATE kairo68_tool_core)
+    else()
+        add_executable(game_profile test/game_profile.cpp)
+        target_link_libraries(game_profile PRIVATE kairo68_core)
+    endif()
+    if(WIN32 OR (ANDROID AND NOT KAIRO68_TOOL_SHARED))
         target_link_options(game_profile PRIVATE -static-libstdc++)
     endif()
     if(WIN32)

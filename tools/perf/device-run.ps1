@@ -24,7 +24,9 @@ param(
     [int[]]$Clocks = @(10, 16, 25),
     [int]$Repeats = 3,
     [int]$Warmup = 300,
-    [int]$Frames = 1200
+    [int]$Frames = 1200,
+    # Shared libraries the builds need (build-variant.ps1's libs-<Name>), pushed beside them.
+    [string]$Libs
 )
 $ErrorActionPreference = 'Stop'
 $remote = '/data/local/tmp/k68'
@@ -39,13 +41,15 @@ Adb push $Game "$remote/game.dim" | Out-Null
 Adb push $Plain "$remote/game_profile-plain" | Out-Null
 Adb push $Perf "$remote/game_profile-perf" | Out-Null
 Adb shell "chmod 755 $remote/game_profile-plain $remote/game_profile-perf" | Out-Null
+Adb shell "rm -rf $remote/lib; mkdir -p $remote/lib" | Out-Null
+if ($Libs) { foreach ($lib in Get-ChildItem $Libs -Filter '*.so') { Adb push $lib.FullName "$remote/lib/" | Out-Null } }
 
 foreach ($clock in $Clocks) {
     $runs = @(1..$Repeats | ForEach-Object { [pscustomobject]@{ Build = 'plain'; N = $_ } }) +
         @([pscustomobject]@{ Build = 'perf'; N = 1 })
     foreach ($run in $runs) {
         $build = $run.Build; $n = $run.N
-        $text = Adb shell "cd $remote && rm -rf work/run && mkdir -p work/run && ./game_profile-$build bios work/run game.dim $clock 4 $Frames - --warmup $Warmup"
+        $text = Adb shell "cd $remote && rm -rf work/run && mkdir -p work/run && LD_LIBRARY_PATH=$remote/lib ./game_profile-$build bios work/run game.dim $clock 4 $Frames - --warmup $Warmup"
         $file = Join-Path $Out "$clock-$build-$n.txt"
         $text | Set-Content -Encoding utf8 $file
         $summary = ($text | Select-String '^host ').Line
