@@ -50,6 +50,10 @@ public:
 	void enable_mmu(bool disable_spaces = true);
 	void set_current_mmu(mmu *m);
 
+	// Kairo68: skip the passes of a loop that only reads memory below free_end, which nothing but
+	// this CPU changes while it runs (Kairo68#12). The guest sees no difference.
+	void enable_idle_skip(offs_t free_end);
+
 	// cpu space map with autovectors
 	void default_autovectors_map(address_map &map) ATTR_COLD;
 
@@ -157,8 +161,27 @@ protected:
 	// Fixed specifics
 	memory_access<24, 1, 0, ENDIANNESS_BIG>::specific m_r_program, m_r_opcodes, m_r_uprogram, m_r_uopcodes, m_cpu_space;
 
+	// Kairo68: the data accesses, counting those that may have a side effect for the idle-loop
+	// skip (enable_idle_skip): every write, and every read at or above free_end.
+	struct counted_program {
+		memory_access<24, 1, 0, ENDIANNESS_BIG>::specific inner;
+		u32 side_effects = 0;
+		offs_t free_end = 0;
+		counted_program &operator=(const memory_access<24, 1, 0, ENDIANNESS_BIG>::specific &s) { inner = s; return *this; }
+		u16 read_interruptible(offs_t address, u16 mask = 0xffff) {
+			if(address >= free_end)
+				side_effects++;
+			return inner.read_interruptible(address, mask);
+		}
+		void write_interruptible(offs_t address, u16 data, u16 mask = 0xffff) {
+			side_effects++;
+			inner.write_interruptible(address, data, mask);
+		}
+	};
+
 	// Dynamic specifics, depending on supervisor state
-	memory_access<24, 1, 0, ENDIANNESS_BIG>::specific m_program, m_opcodes;
+	counted_program m_program;
+	memory_access<24, 1, 0, ENDIANNESS_BIG>::specific m_opcodes;
 
 	// MMU, if one present, plus the default one
 	mmu_disabled m_mmu_disabled;
@@ -194,6 +217,20 @@ protected:
 	u32 m_next_state;
 	u32 m_post_run;
 	int m_post_run_cycles;
+
+	// Kairo68: the idle-loop skip (enable_idle_skip, idle_check).
+	static constexpr int IDLE_STATE_WORDS = 56;
+	bool m_idle_enabled = false;
+	u32 m_idle_run = 0;            // execute_run's calls: a pass only repeats within one
+	u32 m_idle_last_pc = 0;        // the previous instruction's address
+	u32 m_idle_pc = 0xffffffff;    // the last pass's start, and its execute_run call
+	u32 m_idle_pass_run = 0;
+	u32 m_idle_side_effects = 0;   // m_program.side_effects at its start
+	int m_idle_icount = 0;         // and the cycles left
+	bool m_idle_have_state = false; // m_idle_state holds the processor state at its start
+	u32 m_idle_state[IDLE_STATE_WORDS];
+	void idle_capture(u32 *state) const;
+	void idle_check();
 
 	// Typed constructor
 	m68000_device(const machine_config &mconfig, device_type type, const char *tag, device_t *owner, u32 clock);

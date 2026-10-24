@@ -16,7 +16,9 @@
 //   --rtc <time>      start the real-time clock at YYYYMMDDhhmmss (default 19930101000000), so
 //                     runs repeat exactly; "host" for the host's time
 //   --nice <n>        run the emulation thread at this priority (the app uses -16; root on Android)
+//   --no-idle-skip    run every pass of the guest's busy-wait loops (Config::idle_skip)
 //   --accesses        count accesses by address range (slows every access; stage times are not real)
+//   --pcs <n>         count instructions by address and list the <n> busiest with their code (slower still)
 //   --shots <n>       write the picture every n frames as <work dir>/frame-<frame>.ppm
 //   --csv <file>      write each frame's host time and counters
 //   --sound <file>    write the measured frames' sound, 16-bit stereo at the machine's rate
@@ -132,7 +134,7 @@ int main(int argc, char **argv) {
 #endif
     if (argc < 8)
         return fail("usage: game_profile <rom dir> <work dir> <image> <cpu MHz> <memory MB> <frames> <script> "
-                    "[--nice <n>] [--boot-frames <n>] [--warmup <n>] [--rtc <time>] [--accesses] [--shots <n>] [--csv <file>] [--hashes <file>] [--sound <file>]");
+                    "[--nice <n>] [--boot-frames <n>] [--warmup <n>] [--rtc <time>] [--no-idle-skip] [--accesses] [--pcs <n>] [--shots <n>] [--csv <file>] [--hashes <file>] [--sound <file>]");
     const std::string work = argv[2];
     Config config;
     config.rom_dir = argv[1];
@@ -147,6 +149,7 @@ int main(int argc, char **argv) {
     if (!parse_script(argv[7], events, error)) return fail(error);
     long shots = 0;
     long warmup = 0;
+    long top_pcs = 0;
     long fixed_boot = -1;
     std::string csv_file;
     std::string hash_file;
@@ -154,6 +157,8 @@ int main(int argc, char **argv) {
     for (int i = 8; i < argc; ++i) {
         const std::string option = argv[i];
         if (option == "--accesses") config.count_accesses = true;
+        else if (option == "--no-idle-skip") config.idle_skip = false;
+        else if (option == "--pcs" && i + 1 < argc) { config.count_pcs = true; top_pcs = std::strtol(argv[++i], nullptr, 10); }
         else if (option == "--rtc" && i + 1 < argc) { config.rtc = argv[++i]; if (config.rtc == "host") config.rtc.clear(); }
         else if (option == "--warmup" && i + 1 < argc) warmup = std::strtol(argv[++i], nullptr, 10);
         else if (option == "--boot-frames" && i + 1 < argc) fixed_boot = std::strtol(argv[++i], nullptr, 10);
@@ -298,6 +303,7 @@ int main(int argc, char **argv) {
         std::printf("per frame:\n");
         std::vector<std::pair<std::string, uint64_t>> timers;
         for (const auto &[name, value] : totals) {
+            if (name.rfind("pc.", 0) == 0) continue;
             if (name.rfind("timer.", 0) == 0) {
                 if (name.size() > 3 && name.compare(name.size() - 3, 3, ".ns") == 0) timers.emplace_back(name, value);
                 continue;
@@ -313,6 +319,22 @@ int main(int argc, char **argv) {
             const std::string base = name.substr(6, name.size() - 9);
             std::printf("  %-52s %8.1f fires %9.3f ms\n", base.c_str(),
                         double(totals["timer." + base + ".fires"]) / double(frames), double(ns) / double(frames) / 1e6);
+        }
+    }
+    if (top_pcs > 0) {
+        // The addresses the guest spent most instructions at, with the code there.
+        std::vector<std::pair<uint32_t, uint64_t>> pcs;
+        for (const auto &[name, count] : totals)
+            if (name.rfind("pc.", 0) == 0) pcs.emplace_back(uint32_t(std::stoul(name.substr(3), nullptr, 16)), count);
+        std::sort(pcs.begin(), pcs.end(), [](const auto &a, const auto &b) { return a.second > b.second; });
+        if (pcs.size() > size_t(top_pcs)) pcs.resize(size_t(top_pcs));
+        const double instructions = double(totals["instructions"]);
+        std::printf("instructions by address (of %.0f a frame):\n", instructions / double(frames));
+        for (const auto &[pc, count] : pcs) {
+            std::printf("  %06x %10.1f a frame %5.2f%%  ", unsigned(pc), double(count) / double(frames),
+                        100.0 * double(count) / instructions);
+            for (const uint16_t word : machine->read_words(pc, 4)) std::printf(" %04x", word);
+            std::printf("\n");
         }
     }
     return 0;

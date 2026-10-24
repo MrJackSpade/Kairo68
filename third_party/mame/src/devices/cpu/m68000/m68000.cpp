@@ -147,6 +147,7 @@ u16 m68000_device::get_fc() const noexcept
 
 void m68000_device::execute_run()
 {
+	m_idle_run++;
 	m_icount -= m_count_before_instruction_step;
 	if(m_icount < 0) {
 		m_count_before_instruction_step = -m_icount;
@@ -163,6 +164,12 @@ void m68000_device::execute_run()
 				m_ipc = m_pc - 2;
 				m_irdi = m_ird;
 				KAIRO68_PERF_COUNT(instructions, 1);
+				KAIRO68_PERF_PC(m_ipc);
+				if(m_idle_enabled) {
+					if(m_ipc < m_idle_last_pc)
+						idle_check();
+					m_idle_last_pc = m_ipc;
+				}
 
 				if(debugger_enabled())
 					debugger_instruction_hook(m_ipc);
@@ -180,6 +187,66 @@ void m68000_device::execute_run()
 		m_count_before_instruction_step = -m_icount;
 		m_icount = 0;
 	}
+}
+
+void m68000_device::enable_idle_skip(offs_t free_end)
+{
+	// Host callbacks and an MMU act outside m_program, where no side effect would be counted.
+	if(m_mmu || !m_tas_write_callback.isnull() || !m_cmpild_instr_callback.isnull() || !m_rte_instr_callback.isnull())
+		throw emu_fatalerror("%s: the idle-loop skip cannot see this CPU's callbacks or MMU", tag());
+	m_program.free_end = free_end;
+	m_idle_enabled = true;
+}
+
+// Everything a pass of a loop starts with: the registers, the prefetch and bus latches, the
+// pending interrupt and the instruction's state.
+void m68000_device::idle_capture(u32 *state) const
+{
+	const u32 words[] = {
+		m_ipc, m_pc, m_au, m_at, m_aob, m_dt, m_int_vector, m_sp,
+		u32(m_bcount), u32(m_count_before_instruction_step), u32(m_t), m_movems,
+		m_isr, m_sr, m_new_sr, m_dbin, m_dbout, m_edb, m_irc, m_ir, m_ird, m_ftu, m_aluo, m_alue, m_alub,
+		m_movemr, m_irdi, m_base_ssw, m_ssw, m_dcr,
+		m_virq_state, m_nmi_pending, m_int_level, m_int_next_state, m_next_state, m_post_run,
+		u32(m_post_run_cycles), m_inst_state, m_inst_substate };
+	static_assert(std::size(words) + std::size(decltype(m_da){}) == IDLE_STATE_WORDS);
+	std::copy(std::begin(m_da), std::end(m_da), state);
+	std::copy(std::begin(words), std::end(words), state + std::size(m_da));
+}
+
+// Kairo68: the idle-loop skip (Kairo68#12). Called when an instruction starts below the previous
+// one, as every pass of a loop does. Nothing outside this CPU runs during execute_run, so when a
+// pass starts at the same address as the last one in the same call, with no access since that
+// may have a side effect (m_program) and the whole processor state the same, every following pass
+// is the same as well. The cycles of the whole passes that fit in the slice are then used up at
+// once and the rest runs normally, so at the end of the slice the CPU is at the same instruction,
+// with the same cycles, as if it had run them.
+void m68000_device::idle_check()
+{
+	if(m_ipc != m_idle_pc || m_idle_pass_run != m_idle_run || m_program.side_effects != m_idle_side_effects) {
+		m_idle_pc = m_ipc;
+		m_idle_pass_run = m_idle_run;
+		m_idle_side_effects = m_program.side_effects;
+		m_idle_icount = m_icount;
+		m_idle_have_state = false;
+		return;
+	}
+	u32 state[IDLE_STATE_WORDS];
+	idle_capture(state);
+	if(!m_idle_have_state || memcmp(state, m_idle_state, sizeof(state)) || debugger_enabled()) {
+		memcpy(m_idle_state, state, sizeof(state));
+		m_idle_have_state = true;
+		m_idle_icount = m_icount;
+		return;
+	}
+	const int period = m_idle_icount - m_icount;
+	if(period > 0 && m_icount > period) {
+		const int passes = (m_icount - 1) / period;
+		m_icount -= passes * period;
+		KAIRO68_PERF_COUNT(idle_skips, 1);
+		KAIRO68_PERF_COUNT(idle_cycles, u64(passes) * u64(period));
+	}
+	m_idle_icount = m_icount;
 }
 
 device_memory_interface::space_config_vector m68000_device::memory_logical_space_config() const

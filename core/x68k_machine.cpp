@@ -26,6 +26,7 @@
 #include "drivenum.h"
 #include "render.h"
 #include "screen.h"
+#include "cpu/m68000/m68000.h"
 #include "imagedev/floppy.h"
 #include "sharp/x68k_hdc.h"
 #include "audio_effects/compressor.h"
@@ -439,12 +440,16 @@ void X68kMachine::Impl::update(bool skip_redraw) {
             device_t *cpu = machine->root_device().subdevice("maincpu");
             if (!cpu) throw emu_fatalerror("The X68000's CPU was not found");
             cpu->set_unscaled_clock(u32(config.cpu_mhz) * 1000000);
+            // Only the CPU changes main RAM while it runs; everything else may have a side effect.
+            if (config.idle_skip)
+                downcast<m68000_device &>(*cpu).enable_idle_skip(offs_t(config.ram_mb) * 0x100000);
             // The PPI's ports A and B are the two joystick ports.
             joystick_tap = cpu->memory().space(AS_PROGRAM).install_read_tap(
                     0xe9a000, 0xe9a003, "kairo68_joystick",
                     [this](offs_t, u16 &, u16) { joystick_read = true; });
 #ifdef KAIRO68_PERF
             if (config.count_accesses) count_accesses(cpu->memory().space(AS_PROGRAM));
+            kairo68::perf::count_pcs() = config.count_pcs;
 #endif
         }
         if (!skip_redraw) render_frame();
@@ -696,7 +701,8 @@ std::vector<std::pair<std::string, uint64_t>> X68kMachine::take_perf() {
              {"timer_fires", c.timer_fires}, {"timer_ns", c.timer_ns}, {"screen_updates", c.screen_updates},
              {"screen_lines", c.screen_lines}, {"screen_ns", c.screen_ns}, {"sound_ns", c.sound_ns},
              {"render_ns", c.render_ns}, {"screen_under_ns", c.screen_under_ns}, {"screen_gfx_ns", c.screen_gfx_ns},
-             {"screen_pcg_ns", c.screen_pcg_ns}, {"screen_mix_ns", c.screen_mix_ns}};
+             {"screen_pcg_ns", c.screen_pcg_ns}, {"screen_mix_ns", c.screen_mix_ns},
+             {"idle_skips", c.idle_skips}, {"idle_cycles", c.idle_cycles}};
     static const char *const kRegionNames[kRegions] = {"ram", "gvram", "tvram", "io", "sprite", "other"};
     if (impl_->config.count_accesses)
         for (int region = 0; region < kRegions; ++region) {
@@ -707,9 +713,26 @@ std::vector<std::pair<std::string, uint64_t>> X68kMachine::take_perf() {
         taken.emplace_back(std::string("timer.") + name + ".fires", timer.first);
         taken.emplace_back(std::string("timer.") + name + ".ns", timer.second);
     }
+    for (const auto &[pc, count] : c.pcs) {
+        char name[16];
+        std::snprintf(name, sizeof name, "pc.%06x", unsigned(pc));
+        taken.emplace_back(name, count);
+    }
     c = Counters();
 #endif
     return taken;
+}
+
+std::vector<uint16_t> X68kMachine::read_words(uint32_t address, size_t count) {
+    return impl_->between_frames<std::vector<uint16_t>>([address, count](running_machine &m) {
+        device_t *cpu = m.root_device().subdevice("maincpu");
+        if (!cpu) throw emu_fatalerror("The X68000's CPU was not found");
+        address_space &space = cpu->memory().space(AS_PROGRAM);
+        auto quiet = m.disable_side_effects();
+        std::vector<uint16_t> words;
+        for (size_t i = 0; i < count; ++i) words.push_back(space.read_word((address + 2 * i) & 0xfffffe));
+        return words;
+    });
 }
 
 std::vector<std::pair<std::string, std::vector<uint8_t>>> X68kMachine::state_entries() {

@@ -45,7 +45,19 @@ struct Counters {
     // Guest accesses by region, with Config::count_accesses.
     uint64_t reads[kRegions] = {};
     uint64_t writes[kRegions] = {};
+    // The 68000's skipped loop runs (Config::idle_skip), and the cycles they would have taken.
+    uint64_t idle_skips = 0;
+    uint64_t idle_cycles = 0;
+    // Instructions by their address, with Config::count_pcs.
+    std::unordered_map<uint32_t, uint64_t> pcs;
 };
+
+// Whether instructions are counted by address (Config::count_pcs); kept apart from the counters,
+// which take_perf clears every frame.
+inline bool &count_pcs() {
+    static bool enabled = false;
+    return enabled;
+}
 
 // MAME's thread's counters.
 inline Counters &counters() {
@@ -75,10 +87,12 @@ private:
 
 #define KAIRO68_PERF_COUNT(field, amount) (kairo68::perf::counters().field += (amount))
 #define KAIRO68_PERF_TIME(field) kairo68::perf::Scope kairo68_perf_scope_##field(kairo68::perf::counters().field)
+#define KAIRO68_PERF_PC(pc) (kairo68::perf::count_pcs() ? void(++kairo68::perf::counters().pcs[(pc)]) : void())
 
 #else
 
 #define KAIRO68_PERF_COUNT(field, amount) ((void)0)
 #define KAIRO68_PERF_TIME(field) ((void)0)
+#define KAIRO68_PERF_PC(pc) ((void)0)
 
 #endif
