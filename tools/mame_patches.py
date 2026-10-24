@@ -1172,6 +1172,50 @@ M68000_DIRECT_MEMORY = [
      'void m68000_device::enable_direct_memory()\n{\n\t// Every access goes to the program space here; other spaces or an MMU would need their own pages.\n\tif(m_mmu || m_s_opcodes != m_s_program || m_s_uprogram != m_s_program || m_s_uopcodes != m_s_program)\n\t\tthrow emu_fatalerror("%s: direct memory needs one program space and no MMU", tag());\n\tm_direct = std::make_unique<direct_pages>();\n\tm_direct->space = m_s_program;\n\tm_direct->forget();\n\tm_direct->subscription = m_s_program->add_change_notifier([this](read_or_write) { m_direct->forget(); });\n\tm_program.direct = m_direct.get();\n\tm_program.read_pages = m_direct->base[0].data();\n\tm_program.write_pages = m_direct->base[1].data();\n\tm_opcodes.direct = m_direct.get();\n\tm_opcodes.pages = m_direct->base[0].data();\n}\n\nu16 *const m68000_device::direct_pages::no_pages[direct_pages::PAGES] = {};\n\n// A page is direct when each of its words is at the host address after the one before.\nu16 *m68000_device::direct_pages::word(bool write, offs_t address)\n{\n\tu32 const page = direct_page(address);\n\tif(state[write][page] == UNKNOWN) {\n\t\toffs_t const first = page << PAGE_BITS;\n\t\tauto const pointer = [this, write](offs_t a) { return static_cast<u8 *>(write ? space->get_write_ptr(a) : space->get_read_ptr(a)); };\n\t\tu8 *const start = pointer(first);\n\t\tbool direct = start != nullptr;\n\t\tfor(offs_t offset = 2; direct && offset <= PAGE_MASK; offset += 2)\n\t\t\tdirect = pointer(first + offset) == start + offset;\n\t\tstate[write][page] = direct ? DIRECT : OTHER;\n\t\tbase[write][page] = direct ? reinterpret_cast<u16 *>(start) : nullptr;\n\t}\n\treturn base[write][page] ? base[write][page] + direct_word(address) : nullptr;\n}\n\n// Out of line: an access to a page not known to be direct.\nu16 m68000_device::counted_program::read_other(offs_t address, u16 mask)\n{\n\tif(direct)\n\t\tif(u16 const *w = direct->word(false, address))\n\t\t\treturn *w;\n\treturn inner.read_interruptible(address, mask);\n}\n\nvoid m68000_device::counted_program::write_other(offs_t address, u16 data, u16 mask)\n{\n\tif(direct)\n\t\tif(u16 *w = direct->word(true, address)) {\n\t\t\t*w = (*w & ~mask) | (data & mask);\n\t\t\treturn;\n\t\t}\n\tinner.write_interruptible(address, data, mask);\n}\n\nu16 m68000_device::direct_opcodes::read_other(offs_t address, u16 mask)\n{\n\tif(direct)\n\t\tif(u16 const *w = direct->word(false, address))\n\t\t\treturn *w;\n\treturn inner.read_interruptible(address, mask);\n}\n\n// Everything a pass of a loop starts with: the registers, the prefetch and bus latches, the\n',),
 ]
 
+# The MFP's timer B clocks the keyboard USART: about 1,360 firings a frame, half of the 68000's
+# timeslices (Kairo68#11). While the USART is idle (line marking, nothing to send, no interrupt),
+# its clock edges only advance its internal counters, so timer B fires every 256 elapses and the
+# edges between are replayed through the same callbacks before anything can see or change the
+# MFP: a register access, a change on the serial input, a save. Every frame stays the same.
+MFP_USART_CLOCK_REPLAY = [
+    ('src/devices/machine/mc68901.h',
+     '\tauto out_tbo_cb() { return m_out_tbo_cb.bind(); }\n',
+     "\tauto out_tbo_cb() { return m_out_tbo_cb.bind(); }\n\t// Kairo68: timer B's output is this MFP's own USART clock and drives nothing else (it is bound to\n\t// tc_w and rc_w only), so while the USART is idle its clock edges can be replayed later\n\t// (usart_idle, Kairo68#11).\n\tvoid set_timer_b_usart_clock() { m_usart_clock = true; }\n",),
+    ('src/devices/machine/mc68901.h',
+     '\tvirtual void device_pre_save() override ATTR_COLD;\n',
+     '\tvirtual void device_pre_save() override ATTR_COLD;\n\tvirtual void device_post_load() override ATTR_COLD;\n',),
+    ('src/devices/machine/mc68901.h',
+     '\tvoid start_timer_delay(int index);\n\tvoid schedule_timer_elapse(int index);\n',
+     "\tvoid start_timer_delay(int index);\n\tvoid schedule_timer_elapse(int index);\n\t// Kairo68: the USART's clock edges replayed (set_timer_b_usart_clock).\n\tstatic constexpr int USART_HORIZON = 256; // elapses between timer B's firings while idle\n\tbool m_usart_clock = false;\n\tbool m_usart_deferred = false;\n\tattotime m_usart_next;                    // the next elapse not yet replayed\n\tbool usart_idle() const;\n\tvoid usart_catch_up();\n\tvoid usart_defer_or_run();\n\tvoid usart_resume();\n",),
+    ('src/devices/machine/mc68901.cpp',
+     '// Kairo68: the count where the main counter is 1 elapses; a counter of 0 counts 256.\nvoid mc68901_device::schedule_timer_elapse(int index)\n',
+     "// Kairo68: whether timer B's elapses change nothing outside the USART's own counters: the\n// receiver's line marks with nothing in progress, the transmitter sends nothing and its output\n// already holds the level tx_clock would set, and no interrupt or loopback is involved. Every\n// rx_clock and tx_clock call then only advances m_rclk, m_si_scan, m_tclk and the like.\nbool mc68901_device::usart_idle() const\n{\n\tif ((m_ucr & UCR_START_STOP_1_2) == UCR_START_STOP_0_0)\n\t\treturn false;\n\tif ((m_tsr & TSR_OUTPUT_MASK) == TSR_OUTPUT_LOOP)\n\t\treturn false;\n\tif (!m_si || !m_last_si || (m_rsr & (RSR_CHAR_IN_PROGRESS | RSR_BREAK)))\n\t\treturn false;\n\tif (m_tbits != 0)\n\t\treturn false;\n\tif (m_tsr & TSR_XMIT_ENABLE)\n\t\treturn (m_tsr & TSR_BUFFER_EMPTY) && !(m_tsr & TSR_BREAK) && m_so;\n\treturn m_so == ((m_tsr & TSR_OUTPUT_MASK) != TSR_OUTPUT_LOW);\n}\n\n// Replays the elapses due by now, each as timer_count would have run it: the output toggles\n// (clocking the USART through tc_w and rc_w), the counter reloads and counts from that elapse.\nvoid mc68901_device::usart_catch_up()\n{\n\tif (!m_usart_deferred)\n\t\treturn;\n\tconst attotime now = machine().time();\n\twhile (m_usart_next <= now)\n\t{\n\t\tm_to[TIMER_B] = !m_to[TIMER_B];\n\t\tm_out_tbo_cb(m_to[TIMER_B]);\n\t\tm_tmc[TIMER_B] = m_tdr[TIMER_B];\n\t\tm_tick_base[TIMER_B] = m_usart_next;\n\t\tm_usart_next += timer_tick(TIMER_B) * (m_tdr[TIMER_B] ? m_tdr[TIMER_B] : 256);\n\t}\n}\n\n// After an elapse: while the USART stays idle, timer B fires only every USART_HORIZON elapses and\n// the ones between are replayed when due; otherwise it fires at every elapse as before.\nvoid mc68901_device::usart_defer_or_run()\n{\n\tconst bool eligible = m_usart_clock && timer_delay_prescale(TIMER_B) && !(m_ier & INT_MASK_TIMER[TIMER_B]) && usart_idle();\n\tif (!eligible)\n\t{\n\t\tusart_resume();\n\t\treturn;\n\t}\n\tif (!m_usart_deferred)\n\t{\n\t\tm_usart_deferred = true;\n\t\tm_usart_next = m_timer[TIMER_B]->expire();\n\t}\n\tconst attotime period = timer_tick(TIMER_B) * (m_tdr[TIMER_B] ? m_tdr[TIMER_B] : 256);\n\tm_timer[TIMER_B]->adjust(m_usart_next + period * (USART_HORIZON - 1) - machine().time(), TIMER_B);\n}\n\n// Fires timer B at its next elapse again, as if it had never been deferred.\nvoid mc68901_device::usart_resume()\n{\n\tif (!m_usart_deferred)\n\t\treturn;\n\tusart_catch_up();\n\tm_usart_deferred = false;\n\tm_timer[TIMER_B]->adjust(m_usart_next - machine().time(), TIMER_B);\n}\n\n// Kairo68: the count where the main counter is 1 elapses; a counter of 0 counts 256.\nvoid mc68901_device::schedule_timer_elapse(int index)\n",),
+    ('src/devices/machine/mc68901.cpp',
+     'void mc68901_device::device_pre_save()\n{\n',
+     'void mc68901_device::device_pre_save()\n{\n\t// Kairo68: a saved state holds timer B as it runs without the replay\n\tusart_resume();\n',),
+    ('src/devices/machine/mc68901.cpp',
+     'TIMER_CALLBACK_MEMBER(mc68901_device::timer_count)\n{\n',
+     '// Kairo68: a loaded state runs timer B at every elapse until the next one defers it again.\nvoid mc68901_device::device_post_load()\n{\n\tm_usart_deferred = false;\n}\n\nTIMER_CALLBACK_MEMBER(mc68901_device::timer_count)\n{\n\t// Kairo68: a deferred timer B fires at its horizon, which is an elapse: replay up to it\n\tif (param == TIMER_B && m_usart_deferred)\n\t{\n\t\tusart_catch_up();\n\t\tusart_defer_or_run();\n\t\treturn;\n\t}\n\n',),
+    ('src/devices/machine/mc68901.cpp',
+     '\tif (delay)\n\t\tstart_timer_delay(param);\n}\n',
+     '\tif (delay)\n\t\tstart_timer_delay(param);\n\n\t// Kairo68: see whether timer B can defer its next elapses\n\tif (param == TIMER_B && m_usart_clock)\n\t\tusart_defer_or_run();\n}\n',),
+    ('src/devices/machine/mc68901.cpp',
+     'u8 mc68901_device::read(offs_t offset)\n{\n\tswitch (offset)\n',
+     'u8 mc68901_device::read(offs_t offset)\n{\n\tusart_catch_up(); // Kairo68: the USART and timer B as they are now\n\tswitch (offset)\n',),
+    ('src/devices/machine/mc68901.cpp',
+     'void mc68901_device::write(offs_t offset, u8 data)\n{\n\tswitch (offset)\n',
+     "void mc68901_device::write(offs_t offset, u8 data)\n{\n\tusart_resume(); // Kairo68: a write may end the USART's idle state or reprogram timer B\n\tswitch (offset)\n",),
+    ('src/devices/machine/mc68901.cpp',
+     'void mc68901_device::si_w(int state)\n{\n\tm_si = state;\n}\n',
+     'void mc68901_device::si_w(int state)\n{\n\t// Kairo68: the clocks before the change saw the old level\n\tif (state != m_si)\n\t\tusart_resume();\n\tm_si = state;\n}\n',),
+    ('src/devices/machine/mc68901.cpp',
+     'void mc68901_device::device_reset()\n{\n',
+     'void mc68901_device::device_reset()\n{\n\tm_usart_deferred = false; // Kairo68: the reset reprograms timer B\n',),
+    ('src/mame/sharp/x68k.cpp',
+     '\tm_mfpdev->out_tbo_cb().set(m_mfpdev, FUNC(mc68901_device::tc_w));\n\tm_mfpdev->out_tbo_cb().append(m_mfpdev, FUNC(mc68901_device::rc_w));\n',
+     "\tm_mfpdev->out_tbo_cb().set(m_mfpdev, FUNC(mc68901_device::tc_w));\n\tm_mfpdev->out_tbo_cb().append(m_mfpdev, FUNC(mc68901_device::rc_w));\n\tm_mfpdev->set_timer_b_usart_clock(); // Kairo68: timer B clocks the keyboard's USART and nothing else\n",),
+]
+
 PATCHES = {'x68k-save-state': X68K_SAVE_STATE, 'x68k-sasi-count': X68K_SASI_COUNT, 'x68k-sasi-dma': X68K_SASI_DMA,
            'osdlib-without-sdl': OSDLIB_WITHOUT_SDL, 'upd765-save-state': UPD765_SAVE_STATE, 'rtc-save-state': RTC_SAVE_STATE,
            'floppy-save-state': FLOPPY_SAVE_STATE, 'hd63450-save-state': HD63450_SAVE_STATE,
@@ -1187,7 +1231,8 @@ PATCHES = {'x68k-save-state': X68K_SAVE_STATE, 'x68k-sasi-count': X68K_SASI_COUN
            'perf-fm-stage': PERF_FM_STAGE,
            'ymfm-synthesis-worker': YMFM_SYNTHESIS_WORKER,
            'resampler-inline-reader': RESAMPLER_INLINE_READER,
-           'm68000-direct-memory': M68000_DIRECT_MEMORY}
+           'm68000-direct-memory': M68000_DIRECT_MEMORY,
+           'mfp-usart-clock-replay': MFP_USART_CLOCK_REPLAY}
 
 
 def apply(root):

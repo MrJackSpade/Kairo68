@@ -59,6 +59,10 @@ public:
 	auto out_gpio_cb() { return m_out_gpio_cb.bind(); }
 	auto out_tao_cb() { return m_out_tao_cb.bind(); }
 	auto out_tbo_cb() { return m_out_tbo_cb.bind(); }
+	// Kairo68: timer B's output is this MFP's own USART clock and drives nothing else (it is bound to
+	// tc_w and rc_w only), so while the USART is idle its clock edges can be replayed later
+	// (usart_idle, Kairo68#11).
+	void set_timer_b_usart_clock() { m_usart_clock = true; }
 	auto out_tco_cb() { return m_out_tco_cb.bind(); }
 	auto out_tdo_cb() { return m_out_tdo_cb.bind(); }
 	auto out_so_cb() { return m_out_so_cb.bind(); }
@@ -92,6 +96,7 @@ protected:
 	virtual void device_start() override ATTR_COLD;
 	virtual void device_reset() override ATTR_COLD;
 	virtual void device_pre_save() override ATTR_COLD;
+	virtual void device_post_load() override ATTR_COLD;
 
 	void check_interrupts();
 	void take_interrupt(u16 mask);
@@ -106,6 +111,15 @@ protected:
 	void sync_timer_count(int index);
 	void start_timer_delay(int index);
 	void schedule_timer_elapse(int index);
+	// Kairo68: the USART's clock edges replayed (set_timer_b_usart_clock).
+	static constexpr int USART_HORIZON = 256; // elapses between timer B's firings while idle
+	bool m_usart_clock = false;
+	bool m_usart_deferred = false;
+	attotime m_usart_next;                    // the next elapse not yet replayed
+	bool usart_idle() const;
+	void usart_catch_up();
+	void usart_defer_or_run();
+	void usart_resume();
 	void timer_input(int index, int value);
 	void gpio_input(int bit, int state);
 	void gpio_output();

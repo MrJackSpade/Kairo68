@@ -1070,6 +1070,7 @@ void x68k_state::x68000_base(machine_config &config)
 	m_mfpdev->out_irq_cb().set_inputline(m_maincpu, INPUT_LINE_IRQ6);
 	m_mfpdev->out_tbo_cb().set(m_mfpdev, FUNC(mc68901_device::tc_w));
 	m_mfpdev->out_tbo_cb().append(m_mfpdev, FUNC(mc68901_device::rc_w));
+	m_mfpdev->set_timer_b_usart_clock(); // Kairo68: timer B clocks the keyboard's USART and nothing else
 	m_mfpdev->out_so_cb().set("keyboard", FUNC(rs232_port_device::write_txd));
 
 	rs232_port_device &keyboard(RS232_PORT(config, "keyboard", keyboard_devices, "x68k"));

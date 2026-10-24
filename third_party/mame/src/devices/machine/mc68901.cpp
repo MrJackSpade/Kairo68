@@ -272,6 +272,71 @@ void mc68901_device::start_timer_delay(int index)
 	schedule_timer_elapse(index);
 }
 
+// Kairo68: whether timer B's elapses change nothing outside the USART's own counters: the
+// receiver's line marks with nothing in progress, the transmitter sends nothing and its output
+// already holds the level tx_clock would set, and no interrupt or loopback is involved. Every
+// rx_clock and tx_clock call then only advances m_rclk, m_si_scan, m_tclk and the like.
+bool mc68901_device::usart_idle() const
+{
+	if ((m_ucr & UCR_START_STOP_1_2) == UCR_START_STOP_0_0)
+		return false;
+	if ((m_tsr & TSR_OUTPUT_MASK) == TSR_OUTPUT_LOOP)
+		return false;
+	if (!m_si || !m_last_si || (m_rsr & (RSR_CHAR_IN_PROGRESS | RSR_BREAK)))
+		return false;
+	if (m_tbits != 0)
+		return false;
+	if (m_tsr & TSR_XMIT_ENABLE)
+		return (m_tsr & TSR_BUFFER_EMPTY) && !(m_tsr & TSR_BREAK) && m_so;
+	return m_so == ((m_tsr & TSR_OUTPUT_MASK) != TSR_OUTPUT_LOW);
+}
+
+// Replays the elapses due by now, each as timer_count would have run it: the output toggles
+// (clocking the USART through tc_w and rc_w), the counter reloads and counts from that elapse.
+void mc68901_device::usart_catch_up()
+{
+	if (!m_usart_deferred)
+		return;
+	const attotime now = machine().time();
+	while (m_usart_next <= now)
+	{
+		m_to[TIMER_B] = !m_to[TIMER_B];
+		m_out_tbo_cb(m_to[TIMER_B]);
+		m_tmc[TIMER_B] = m_tdr[TIMER_B];
+		m_tick_base[TIMER_B] = m_usart_next;
+		m_usart_next += timer_tick(TIMER_B) * (m_tdr[TIMER_B] ? m_tdr[TIMER_B] : 256);
+	}
+}
+
+// After an elapse: while the USART stays idle, timer B fires only every USART_HORIZON elapses and
+// the ones between are replayed when due; otherwise it fires at every elapse as before.
+void mc68901_device::usart_defer_or_run()
+{
+	const bool eligible = m_usart_clock && timer_delay_prescale(TIMER_B) && !(m_ier & INT_MASK_TIMER[TIMER_B]) && usart_idle();
+	if (!eligible)
+	{
+		usart_resume();
+		return;
+	}
+	if (!m_usart_deferred)
+	{
+		m_usart_deferred = true;
+		m_usart_next = m_timer[TIMER_B]->expire();
+	}
+	const attotime period = timer_tick(TIMER_B) * (m_tdr[TIMER_B] ? m_tdr[TIMER_B] : 256);
+	m_timer[TIMER_B]->adjust(m_usart_next + period * (USART_HORIZON - 1) - machine().time(), TIMER_B);
+}
+
+// Fires timer B at its next elapse again, as if it had never been deferred.
+void mc68901_device::usart_resume()
+{
+	if (!m_usart_deferred)
+		return;
+	usart_catch_up();
+	m_usart_deferred = false;
+	m_timer[TIMER_B]->adjust(m_usart_next - machine().time(), TIMER_B);
+}
+
 // Kairo68: the count where the main counter is 1 elapses; a counter of 0 counts 256.
 void mc68901_device::schedule_timer_elapse(int index)
 {
@@ -281,12 +346,28 @@ void mc68901_device::schedule_timer_elapse(int index)
 
 void mc68901_device::device_pre_save()
 {
+	// Kairo68: a saved state holds timer B as it runs without the replay
+	usart_resume();
 	for (int index = TIMER_A; index <= TIMER_D; index++)
 		sync_timer_count(index);
 }
 
+// Kairo68: a loaded state runs timer B at every elapse until the next one defers it again.
+void mc68901_device::device_post_load()
+{
+	m_usart_deferred = false;
+}
+
 TIMER_CALLBACK_MEMBER(mc68901_device::timer_count)
 {
+	// Kairo68: a deferred timer B fires at its horizon, which is an elapse: replay up to it
+	if (param == TIMER_B && m_usart_deferred)
+	{
+		usart_catch_up();
+		usart_defer_or_run();
+		return;
+	}
+
 	// Kairo68: in delay mode this is the elapsing count.
 	const bool delay = timer_delay_prescale(param) != 0 && !m_timer[param]->enabled();
 	if (delay)
@@ -322,6 +403,10 @@ TIMER_CALLBACK_MEMBER(mc68901_device::timer_count)
 
 	if (delay)
 		start_timer_delay(param);
+
+	// Kairo68: see whether timer B can defer its next elapses
+	if (param == TIMER_B && m_usart_clock)
+		usart_defer_or_run();
 }
 
 
@@ -512,6 +597,7 @@ void mc68901_device::device_start()
 
 void mc68901_device::device_reset()
 {
+	m_usart_deferred = false; // Kairo68: the reset reprograms timer B
 	m_rsr = 0;
 	m_tsr = TSR_BUFFER_EMPTY;
 	m_underrun = false;
@@ -556,6 +642,7 @@ void mc68901_device::device_reset()
 
 u8 mc68901_device::read(offs_t offset)
 {
+	usart_catch_up(); // Kairo68: the USART and timer B as they are now
 	switch (offset)
 	{
 	case REGISTER_GPIP:  return (m_gpio_input & ~m_ddr) | (m_gpip & m_ddr);
@@ -630,6 +717,7 @@ u8 mc68901_device::read(offs_t offset)
 
 void mc68901_device::write(offs_t offset, u8 data)
 {
+	usart_resume(); // Kairo68: a write may end the USART's idle state or reprogram timer B
 	switch (offset)
 	{
 	case REGISTER_GPIP:
@@ -1143,6 +1231,9 @@ void mc68901_device::tbi_w(int state)
 
 void mc68901_device::si_w(int state)
 {
+	// Kairo68: the clocks before the change saw the old level
+	if (state != m_si)
+		usart_resume();
 	m_si = state;
 }
 
