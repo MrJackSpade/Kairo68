@@ -444,6 +444,11 @@ void X68kMachine::Impl::update(bool skip_redraw) {
             // Only the CPU changes main RAM while it runs; everything else may have a side effect.
             if (config.idle_skip)
                 downcast<m68000_device &>(*cpu).enable_idle_skip(offs_t(config.ram_mb) * 0x100000);
+            if (config.direct_memory) {
+                // The access counters tap main RAM, which direct accesses would go past.
+                if (config.count_accesses) throw emu_fatalerror("count_accesses needs direct_memory off");
+                downcast<m68000_device &>(*cpu).enable_direct_memory();
+            }
             if (config.synthesis_worker) {
                 device_t *fm = machine->root_device().subdevice("ym2151");
                 if (!fm) throw emu_fatalerror("The X68000's YM2151 was not found");

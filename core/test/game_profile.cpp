@@ -18,6 +18,7 @@
 //   --nice <n>        run the emulation thread at this priority (the app uses -16; root on Android)
 //   --no-idle-skip    run every pass of the guest's busy-wait loops (Config::idle_skip)
 //   --no-synth-worker synthesize the YM2151 on the emulation thread (Config::synthesis_worker)
+//   --no-direct-memory reach main RAM and ROM through MAME's dispatch (Config::direct_memory)
 //   --accesses        count accesses by address range (slows every access; stage times are not real)
 //   --pcs <n>         count instructions by address and list the <n> busiest with their code (slower still)
 //   --shots <n>       write the picture every n frames as <work dir>/frame-<frame>.ppm
@@ -135,7 +136,7 @@ int main(int argc, char **argv) {
 #endif
     if (argc < 8)
         return fail("usage: game_profile <rom dir> <work dir> <image> <cpu MHz> <memory MB> <frames> <script> "
-                    "[--nice <n>] [--boot-frames <n>] [--warmup <n>] [--rtc <time>] [--no-idle-skip] [--no-synth-worker] [--accesses] [--pcs <n>] [--shots <n>] [--csv <file>] [--hashes <file>] [--sound <file>]");
+                    "[--nice <n>] [--boot-frames <n>] [--warmup <n>] [--rtc <time>] [--no-idle-skip] [--no-synth-worker] [--no-direct-memory] [--accesses] [--pcs <n>] [--shots <n>] [--csv <file>] [--hashes <file>] [--sound <file>]");
     const std::string work = argv[2];
     Config config;
     config.rom_dir = argv[1];
@@ -157,9 +158,10 @@ int main(int argc, char **argv) {
     std::string sound_file;
     for (int i = 8; i < argc; ++i) {
         const std::string option = argv[i];
-        if (option == "--accesses") config.count_accesses = true;
+        if (option == "--accesses") { config.count_accesses = true; config.direct_memory = false; }
         else if (option == "--no-idle-skip") config.idle_skip = false;
         else if (option == "--no-synth-worker") config.synthesis_worker = false;
+        else if (option == "--no-direct-memory") config.direct_memory = false;
         else if (option == "--pcs" && i + 1 < argc) { config.count_pcs = true; top_pcs = std::strtol(argv[++i], nullptr, 10); }
         else if (option == "--rtc" && i + 1 < argc) { config.rtc = argv[++i]; if (config.rtc == "host") config.rtc.clear(); }
         else if (option == "--warmup" && i + 1 < argc) warmup = std::strtol(argv[++i], nullptr, 10);

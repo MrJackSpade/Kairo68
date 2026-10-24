@@ -198,6 +198,68 @@ void m68000_device::enable_idle_skip(offs_t free_end)
 	m_idle_enabled = true;
 }
 
+void m68000_device::enable_direct_memory()
+{
+	// Every access goes to the program space here; other spaces or an MMU would need their own pages.
+	if(m_mmu || m_s_opcodes != m_s_program || m_s_uprogram != m_s_program || m_s_uopcodes != m_s_program)
+		throw emu_fatalerror("%s: direct memory needs one program space and no MMU", tag());
+	m_direct = std::make_unique<direct_pages>();
+	m_direct->space = m_s_program;
+	m_direct->forget();
+	m_direct->subscription = m_s_program->add_change_notifier([this](read_or_write) { m_direct->forget(); });
+	m_program.direct = m_direct.get();
+	m_program.read_pages = m_direct->base[0].data();
+	m_program.write_pages = m_direct->base[1].data();
+	m_opcodes.direct = m_direct.get();
+	m_opcodes.pages = m_direct->base[0].data();
+}
+
+u16 *const m68000_device::direct_pages::no_pages[direct_pages::PAGES] = {};
+
+// A page is direct when each of its words is at the host address after the one before.
+u16 *m68000_device::direct_pages::word(bool write, offs_t address)
+{
+	u32 const page = direct_page(address);
+	if(state[write][page] == UNKNOWN) {
+		offs_t const first = page << PAGE_BITS;
+		auto const pointer = [this, write](offs_t a) { return static_cast<u8 *>(write ? space->get_write_ptr(a) : space->get_read_ptr(a)); };
+		u8 *const start = pointer(first);
+		bool direct = start != nullptr;
+		for(offs_t offset = 2; direct && offset <= PAGE_MASK; offset += 2)
+			direct = pointer(first + offset) == start + offset;
+		state[write][page] = direct ? DIRECT : OTHER;
+		base[write][page] = direct ? reinterpret_cast<u16 *>(start) : nullptr;
+	}
+	return base[write][page] ? base[write][page] + direct_word(address) : nullptr;
+}
+
+// Out of line: an access to a page not known to be direct.
+u16 m68000_device::counted_program::read_other(offs_t address, u16 mask)
+{
+	if(direct)
+		if(u16 const *w = direct->word(false, address))
+			return *w;
+	return inner.read_interruptible(address, mask);
+}
+
+void m68000_device::counted_program::write_other(offs_t address, u16 data, u16 mask)
+{
+	if(direct)
+		if(u16 *w = direct->word(true, address)) {
+			*w = (*w & ~mask) | (data & mask);
+			return;
+		}
+	inner.write_interruptible(address, data, mask);
+}
+
+u16 m68000_device::direct_opcodes::read_other(offs_t address, u16 mask)
+{
+	if(direct)
+		if(u16 const *w = direct->word(false, address))
+			return *w;
+	return inner.read_interruptible(address, mask);
+}
+
 // Everything a pass of a loop starts with: the registers, the prefetch and bus latches, the
 // pending interrupt and the instruction's state.
 void m68000_device::idle_capture(u32 *state) const

@@ -433,11 +433,15 @@ void audio_resampler_lofi::apply(const emu::detail::output_buffer_flat<sample_t>
 
 	const sample_t *s = src.ptrs(srcc, ssample - src.sync_sample());
 
-	std::function<sample_t()> reader;
-	if(m_source_divide == 1)
-		reader = [s]() mutable -> sample_t { return *s++; };
-	else
-		reader = [s, count = m_source_divide]() mutable -> sample_t { sample_t sm = 0; for(u32 i=0; i != count; i++) { sm += *s++; } return sm / count; };
+	// Kairo68: the same reads and sums as before, inlined; through a std::function every source
+	// sample was an indirect call on the emulation thread (Kairo68#23).
+	auto reader = [&s, count = m_source_divide]() -> sample_t {
+		if(count == 1)
+			return *s++;
+		sample_t sm = 0;
+		for(u32 i=0; i != count; i++) { sm += *s++; }
+		return sm / count;
+	};
 
 	phase <<= 12;
 
@@ -535,11 +539,15 @@ void audio_resampler_lofi::apply_copy(const emu::detail::output_buffer_flat<samp
 
 	const sample_t *s = src.ptrs(srcc, ssample - src.sync_sample());
 
-	std::function<sample_t()> reader;
-	if(m_source_divide == 1)
-		reader = [s]() mutable -> sample_t { return *s++; };
-	else
-		reader = [s, count = m_source_divide]() mutable -> sample_t { sample_t sm = 0; for(u32 i=0; i != count; i++) { sm += *s++; } return sm / count; };
+	// Kairo68: the same reads and sums as before, inlined; through a std::function every source
+	// sample was an indirect call on the emulation thread (Kairo68#23).
+	auto reader = [&s, count = m_source_divide]() -> sample_t {
+		if(count == 1)
+			return *s++;
+		sample_t sm = 0;
+		for(u32 i=0; i != count; i++) { sm += *s++; }
+		return sm / count;
+	};
 
 	phase <<= 12;
 
@@ -586,11 +594,15 @@ void audio_resampler_lofi::apply_add(const emu::detail::output_buffer_flat<sampl
 
 	const sample_t *s = src.ptrs(srcc, ssample - src.sync_sample());
 
-	std::function<sample_t()> reader;
-	if(m_source_divide == 1)
-		reader = [s]() mutable -> sample_t { return *s++; };
-	else
-		reader = [s, count = m_source_divide]() mutable -> sample_t { sample_t sm = 0; for(u32 i=0; i != count; i++) { sm += *s++; } return sm / count; };
+	// Kairo68: the same reads and sums as before, inlined; through a std::function every source
+	// sample was an indirect call on the emulation thread (Kairo68#23).
+	auto reader = [&s, count = m_source_divide]() -> sample_t {
+		if(count == 1)
+			return *s++;
+		sample_t sm = 0;
+		for(u32 i=0; i != count; i++) { sm += *s++; }
+		return sm / count;
+	};
 
 	phase <<= 12;
 

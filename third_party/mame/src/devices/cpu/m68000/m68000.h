@@ -54,6 +54,10 @@ public:
 	// this CPU changes while it runs (Kairo68#12). The guest sees no difference.
 	void enable_idle_skip(offs_t free_end);
 
+	// Kairo68: read and write plain memory through host pointers (direct_pages). Nothing may tap
+	// that memory: a tap's accesses would be skipped.
+	void enable_direct_memory();
+
 	// cpu space map with autovectors
 	void default_autovectors_map(address_map &map) ATTR_COLD;
 
@@ -161,27 +165,78 @@ protected:
 	// Fixed specifics
 	memory_access<24, 1, 0, ENDIANNESS_BIG>::specific m_r_program, m_r_opcodes, m_r_uprogram, m_r_uopcodes, m_cpu_space;
 
+	// Kairo68: plain memory read and written through host pointers instead of the address space's
+	// dispatch (enable_direct_memory, Kairo68#13, #14). A 4 KB page is direct when every word of it
+	// is the same plain memory, in order, exactly as the space's memory handler reads and writes it;
+	// anything else (devices, unmapped space, ROM for writes) goes through the space as before.
+	// Pages are looked at when first used and forgotten whenever the address map changes.
+	// Only a table load and a test are inline in the instruction handlers: inlining more into
+	// thousands of them cost more than the dispatch it saved.
+	struct direct_pages {
+		static constexpr int PAGE_BITS = 12;
+		static constexpr u32 PAGES = 1 << (24 - PAGE_BITS);
+		static constexpr offs_t PAGE_MASK = (1 << PAGE_BITS) - 1;
+		enum : u8 { UNKNOWN, DIRECT, OTHER };
+		address_space *space = nullptr;
+		std::array<u16 *, PAGES> base[2] = {};  // a direct page's first host word, else null
+		std::array<u8, PAGES> state[2];
+		util::notifier_subscription subscription;
+		void forget() { base[0].fill(nullptr); base[1].fill(nullptr); state[0].fill(UNKNOWN); state[1].fill(UNKNOWN); }
+		// The host word at address, looking at its page when it is first used; null when not direct.
+		u16 *word(bool write, offs_t address);
+		static u16 *const no_pages[PAGES]; // the table without enable_direct_memory: nothing is direct
+	};
+	static u32 direct_page(offs_t address) { return (address >> direct_pages::PAGE_BITS) & (direct_pages::PAGES - 1); }
+	static u32 direct_word(offs_t address) { return (address & direct_pages::PAGE_MASK) >> 1; }
+
 	// Kairo68: the data accesses, counting those that may have a side effect for the idle-loop
 	// skip (enable_idle_skip): every write, and every read at or above free_end.
 	struct counted_program {
 		memory_access<24, 1, 0, ENDIANNESS_BIG>::specific inner;
 		u32 side_effects = 0;
 		offs_t free_end = 0;
+		direct_pages *direct = nullptr;
+		u16 *const *read_pages = direct_pages::no_pages;
+		u16 *const *write_pages = direct_pages::no_pages;
 		counted_program &operator=(const memory_access<24, 1, 0, ENDIANNESS_BIG>::specific &s) { inner = s; return *this; }
 		u16 read_interruptible(offs_t address, u16 mask = 0xffff) {
 			if(address >= free_end)
 				side_effects++;
-			return inner.read_interruptible(address, mask);
+			if(u16 const *page = read_pages[direct_page(address)])
+				return page[direct_word(address)];
+			return read_other(address, mask);
 		}
 		void write_interruptible(offs_t address, u16 data, u16 mask = 0xffff) {
 			side_effects++;
-			inner.write_interruptible(address, data, mask);
+			if(u16 *page = write_pages[direct_page(address)]) {
+				u16 &w = page[direct_word(address)];
+				w = (w & ~mask) | (data & mask);
+				return;
+			}
+			write_other(address, data, mask);
 		}
+		u16 read_other(offs_t address, u16 mask);
+		void write_other(offs_t address, u16 data, u16 mask);
+	};
+
+	// Kairo68: the opcode fetches, through direct pages too (enable_direct_memory)
+	struct direct_opcodes {
+		memory_access<24, 1, 0, ENDIANNESS_BIG>::specific inner;
+		direct_pages *direct = nullptr;
+		u16 *const *pages = direct_pages::no_pages;
+		direct_opcodes &operator=(const memory_access<24, 1, 0, ENDIANNESS_BIG>::specific &s) { inner = s; return *this; }
+		u16 read_interruptible(offs_t address, u16 mask = 0xffff) {
+			if(u16 const *page = pages[direct_page(address)])
+				return page[direct_word(address)];
+			return read_other(address, mask);
+		}
+		u16 read_other(offs_t address, u16 mask);
 	};
 
 	// Dynamic specifics, depending on supervisor state
 	counted_program m_program;
-	memory_access<24, 1, 0, ENDIANNESS_BIG>::specific m_opcodes;
+	direct_opcodes m_opcodes;
+	std::unique_ptr<direct_pages> m_direct; // Kairo68: enable_direct_memory
 
 	// MMU, if one present, plus the default one
 	mmu_disabled m_mmu_disabled;
