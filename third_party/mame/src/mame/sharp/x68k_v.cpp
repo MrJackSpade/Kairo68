@@ -841,23 +841,69 @@ uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, 
 	bool blend = (((m_video.reg[2] & 0x1900) == 0x1900) && (m_video.gfx_pri != 2));
 	// Kairo68: colour 0 of the text layer shows at priority level 2 (get_text_pixel).
 	const bool text_zero_shows = ((m_video.reg[1] & 0x0c00) == 0x0800);
+	// Kairo68: what the mix reads for every pixel, taken once: nothing it reads changes while it runs.
+	const bool special = ((m_video.reg[2] & 0x1800) == 0x1000);
+	const pen_t *const pcgpens = m_pcgpalette->pens();
+	const pen_t *const gfxpens = m_gfxpalette->pens();
+	// get_gfx_pixel, decided once: 65,536 colours, 16-bit colours (gfx16bcol), or the palette.
+	const int gfxmode = ((m_video.reg[0] & 0x03) == 3) ? 2 : (gfx16bcol ? 1 : 0);
+	const bool gfxzero = (m_video.gfx_pri == 2);
+	const int gfxdivisor = m_crtc->gfx_double_scan() ? 2 : 1;
+	// get_gfx_pixel<false>.
+	auto gfx_plain = [&](uint16_t raw) -> rgb_t
+	{
+		if(gfxmode == 2)
+			return (raw || gfxzero) ? GGGGGRRRRRBBBBBI(raw) : rgb_t(0);
+		if(gfxmode == 1)
+			return (raw || gfxzero) ? pal555(raw, 6, 11, 1) : rgb_t(0);
+		const pen_t pen = gfxpens[raw & 0xff];
+		return ((pen & 0xffffff) || gfxzero) ? rgb_t(pen) : rgb_t(0);
+	};
+	// get_gfx_pixel<true>.
+	auto gfx_blend = [&](uint16_t raw, rgb_t blendpix) -> rgb_t
+	{
+		if(gfxmode == 2)
+			return (raw || gfxzero) ? GGGGGRRRRRBBBBBI(raw) : rgb_t(0);
+		if(gfxmode == 1)
+		{
+			if(!(raw || gfxzero))
+				return rgb_t(0);
+			if(raw & 1)
+				return ((blendpix >> 1) & 0xff7f7f7f) + ((pal555(raw, 6, 11, 1) >> 2) & 0x3f3f3f);
+			return pal555(raw, 6, 11, 1);
+		}
+		uint16_t colour = raw & 0xff;
+		const bool half = colour & 1;
+		if(half)
+			colour &= 0xfe;
+		const pen_t pen = gfxpens[colour];
+		if(!((pen & 0xffffff) || gfxzero))
+			return rgb_t(0);
+		if(half)
+			return ((blendpix >> 1) & 0xff7f7f7f) + ((pen >> 2) & 0x3f3f3f);
+		return rgb_t(pen);
+	};
 	for(scanline=rect.min_y;scanline<=rect.max_y;scanline++)
 	{
 		if(textprio != -1)
 			decode_text_line(scanline);
+		uint32_t *const dest = &bitmap.pix(scanline, 0);
+		const uint16_t *const pcgrow = &m_pcgbitmap.pix(scanline / divisor, 0);
+		const uint16_t *const specialrow = &m_special.pix(scanline / divisor, 0);
+		const uint16_t *const gfxrow = &m_gfxbitmap.pix(scanline / gfxdivisor, 0);
 		for(pixel=m_crtc->hbegin();pixel<=m_crtc->hend();pixel++)
 		{
-			if((m_video.reg[2] & 0x1800) == 0x1000) // special priority
+			if(special) // special priority
 			{
-				uint16_t colour = m_special.pix(scanline / divisor, pixel) & 0xff;
+				uint16_t colour = specialrow[pixel] & 0xff;
 				// XXX: this might check the pen color not the palette index
 				if(colour & ~1)
 				{
-					bitmap.pix(scanline, pixel) = m_gfxpalette->pen(colour & ~1);
+					dest[pixel] = gfxpens[colour & ~1];
 					continue;
 				}
 			}
-			rgb_t outpix = bitmap.pix(scanline, pixel), pix = 0;
+			rgb_t outpix = dest[pixel], pix = 0;
 			bool pcgpix = false, gfxpix = false;
 			for(priority = 0; priority < 3; priority++)
 			{
@@ -868,16 +914,16 @@ uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, 
 						const uint16_t colour = m_text_line[pixel];
 						if(colour || text_zero_shows)
 						{
-							pix = m_pcgpalette->pen(colour);
+							pix = pcgpens[colour];
 							pcgpix = true;
 						}
 					}
 					else if((priority == pcgprio) && !pcgpix)
 					{
-						uint16_t colour = m_pcgbitmap.pix(scanline / divisor, pixel) & 0xff;
+						uint16_t colour = pcgrow[pixel] & 0xff;
 						if(colour)
 						{
-							pix = m_pcgpalette->pen(colour);
+							pix = pcgpens[colour];
 							pcgpix = true;
 						}
 						else if(outpix && (pcgprio > textprio) && (textprio != -1))
@@ -889,7 +935,7 @@ uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, 
 					{
 						if(!(pix & 0xffffff))
 							pix = outpix;
-						rgb_t blendpix = get_gfx_pixel<true>(scanline, pixel, gfx16bcol, pix);
+						rgb_t blendpix = gfx_blend(gfxrow[pixel], pix);
 						outpix = blendpix & 0xffffff ? blendpix : pix;
 						break;
 					}
@@ -901,23 +947,23 @@ uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, 
 						const uint16_t colour = m_text_line[pixel];
 						if(colour || text_zero_shows)
 						{
-							pix = m_pcgpalette->pen(colour);
+							pix = pcgpens[colour];
 							pcgpix = true;
 						}
 					}
 					else if((priority == pcgprio) && !pcgpix)
 					{
-						uint16_t colour = m_pcgbitmap.pix(scanline / divisor, pixel) & 0xff;
+						uint16_t colour = pcgrow[pixel] & 0xff;
 						if(colour)
 						{
-							pix = m_pcgpalette->pen(colour);
+							pix = pcgpens[colour];
 							pcgpix = true;
 						}
 						else if(outpix && (pcgprio > textprio) && (textprio != -1))
 							pix = outpix;
 					}
 					else if(priority == gfxprio)
-						pix = get_gfx_pixel<false>(scanline, pixel, gfx16bcol, 0);
+						pix = gfx_plain(gfxrow[pixel]);
 					if(pix & 0xffffff)
 					{
 						outpix = pix;
@@ -925,7 +971,7 @@ uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, 
 					}
 				}
 			}
-			bitmap.pix(scanline, pixel) = outpix;
+			dest[pixel] = outpix;
 		}
 	}
 	KAIRO68_SCREEN_LAP(screen_mix_ns);
