@@ -5,4 +5,5 @@ plugins {
 
 extra["kairoProduct"] = "kairo68"
 extra["kairoLabel"] = "Kairo68"
+extra["kairoCatalogRules"] = "com.mrjackspade.kairo68.X68kCatalog"
 apply(from = rootProject.file("shared/gradle/kairo-app.gradle"))
