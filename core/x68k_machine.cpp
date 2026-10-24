@@ -3,6 +3,7 @@
 // its sound, and the player's input across to the host thread.
 
 #include "x68k_machine.h"
+#include "kairo68_perf.h"
 
 #include <array>
 #include <atomic>
@@ -163,6 +164,11 @@ struct X68kMachine::Impl : public osd_interface {
     bool joystick_read_before = false;
     memory_passthrough_handler joystick_tap;
     void update_booting();
+#ifdef KAIRO68_PERF
+    // Config::count_accesses: one read and one write tap per counted address range.
+    std::vector<memory_passthrough_handler> access_taps;
+    void count_accesses(address_space &space);
+#endif
 
     ErrorCapture errors;
 
@@ -244,6 +250,7 @@ void X68kMachine::Impl::run_mame() {
         options.set_value(OPTION_NVRAM_DIRECTORY, config.home + "/nvram", OPTION_PRIORITY_CMDLINE);
         options.set_value(OPTION_STATE_DIRECTORY, config.home + "/sta", OPTION_PRIORITY_CMDLINE);
         options.set_value(OPTION_BIOS, config.bios, OPTION_PRIORITY_CMDLINE);
+        if (!config.rtc.empty()) options.set_value(OPTION_RTC_TIME, config.rtc, OPTION_PRIORITY_CMDLINE);
         options.set_system_name(kSystem);
         options.set_value(OPTION_RAMSIZE, std::to_string(config.ram_mb) + "M", OPTION_PRIORITY_CMDLINE);
         for (int drive = 0; drive < kDrives; ++drive)
@@ -435,6 +442,9 @@ void X68kMachine::Impl::update(bool skip_redraw) {
             joystick_tap = cpu->memory().space(AS_PROGRAM).install_read_tap(
                     0xe9a000, 0xe9a003, "kairo68_joystick",
                     [this](offs_t, u16 &, u16) { joystick_read = true; });
+#ifdef KAIRO68_PERF
+            if (config.count_accesses) count_accesses(cpu->memory().space(AS_PROGRAM));
+#endif
         }
         if (!skip_redraw) render_frame();
         update_booting();
@@ -473,6 +483,27 @@ void X68kMachine::Impl::run_tasks(std::unique_lock<std::mutex> &lock) {
     }
 }
 
+#ifdef KAIRO68_PERF
+void X68kMachine::Impl::count_accesses(address_space &space) {
+    using namespace kairo68::perf;
+    const offs_t ram_end = offs_t(config.ram_mb) * 0x100000 - 1;
+    const std::pair<offs_t, offs_t> ranges[] = {
+        {0x000000, ram_end}, {0xc00000, 0xdfffff}, {0xe00000, 0xe7ffff}, {0xe80000, 0xeaffff}, {0xeb0000, 0xebffff}};
+    const Region regions[] = {kRam, kGraphicsVram, kTextVram, kIo, kSpriteRam};
+    for (int i = 0; i < 5; ++i) {
+        const Region region = regions[i];
+        access_taps.push_back(space.install_readwrite_tap(ranges[i].first, ranges[i].second, "kairo68_count",
+            [region](offs_t, u16 &, u16) { ++counters().reads[region]; },
+            [region](offs_t, u16 &, u16) { ++counters().writes[region]; }));
+    }
+    // Everything else: the unused space after RAM, and the user I/O, SRAM, CG-ROM and IPL-ROM.
+    for (const auto &[start, end] : {std::pair<offs_t, offs_t>{ram_end + 1, 0xbfffff}, {0xec0000, 0xffffff}})
+        access_taps.push_back(space.install_readwrite_tap(start, end, "kairo68_count",
+            [](offs_t, u16 &, u16) { ++counters().reads[kOther]; },
+            [](offs_t, u16 &, u16) { ++counters().writes[kOther]; }));
+}
+#endif
+
 void X68kMachine::Impl::update_booting() {
     if (!booting.load() || !machine) return;
     if (joystick_read && joystick_read_before) booting = false;
@@ -488,6 +519,7 @@ void X68kMachine::Impl::update_booting() {
 }
 
 void X68kMachine::Impl::render_frame() {
+    KAIRO68_PERF_TIME(render_ns);
     if (target) {
         s32 w = 0, h = 0;
         target->compute_minimum_size(w, h);
@@ -625,6 +657,32 @@ bool X68kMachine::load_state(const std::string &file) {
         if (in.open(file)) return false;
         return m.save().read_file(in) == STATERR_NONE;
     });
+}
+
+std::vector<std::pair<std::string, uint64_t>> X68kMachine::take_perf() {
+    std::vector<std::pair<std::string, uint64_t>> taken;
+#ifdef KAIRO68_PERF
+    using namespace kairo68::perf;
+    // MAME's thread wrote them before the frame handshake and waits for the next frame.
+    std::lock_guard<std::mutex> lock(impl_->mutex);
+    Counters &c = counters();
+    taken = {{"instructions", c.instructions}, {"slices", c.slices}, {"cpu_ns", c.cpu_ns},
+             {"timer_fires", c.timer_fires}, {"timer_ns", c.timer_ns}, {"screen_updates", c.screen_updates},
+             {"screen_lines", c.screen_lines}, {"screen_ns", c.screen_ns}, {"sound_ns", c.sound_ns},
+             {"render_ns", c.render_ns}};
+    static const char *const kRegionNames[kRegions] = {"ram", "gvram", "tvram", "io", "sprite", "other"};
+    if (impl_->config.count_accesses)
+        for (int region = 0; region < kRegions; ++region) {
+            taken.emplace_back(std::string("reads.") + kRegionNames[region], c.reads[region]);
+            taken.emplace_back(std::string("writes.") + kRegionNames[region], c.writes[region]);
+        }
+    for (const auto &[name, timer] : c.timers) {
+        taken.emplace_back(std::string("timer.") + name + ".fires", timer.first);
+        taken.emplace_back(std::string("timer.") + name + ".ns", timer.second);
+    }
+    c = Counters();
+#endif
+    return taken;
 }
 
 std::vector<std::pair<std::string, std::vector<uint8_t>>> X68kMachine::state_entries() {

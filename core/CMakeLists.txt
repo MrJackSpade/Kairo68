@@ -19,6 +19,14 @@ add_compile_definitions(CRLF=2 LSB_FIRST NDEBUG FLAC__NO_DLL NATIVE_DRC=drcbe_c 
 # The sound manager mixes and hands sound to the OSD on the emulation thread, as in MAME's
 # emscripten build, so each frame's sound arrives with the frame.
 add_compile_definitions(SOUND_DISABLE_THREADING)
+# A measurement build (Kairo68#28, kairo68_perf.h) counts what the guest did in each frame and
+# where the emulation thread's time went. The counters cost time themselves: never in a release.
+option(KAIRO68_PERF "Count guest work and stage times per frame" OFF)
+if(KAIRO68_PERF)
+    add_compile_definitions(KAIRO68_PERF)
+endif()
+# The measurement tool (test/game_profile.cpp) for the device too, as a standalone executable.
+option(KAIRO68_TOOLS "Build the measurement tool on Android" OFF)
 if(WIN32)
     # MAME's Windows OSD configuration (scripts/src/osd/windows_cfg.lua), for the host test.
     add_compile_definitions(UNICODE _UNICODE WIN32_LEAN_AND_MEAN NOMINMAX _WIN32_WINNT=0x0A00)
@@ -106,6 +114,17 @@ if(ANDROID)
     target_link_libraries(kairo68_core PUBLIC log)
 elseif(WIN32)
     target_link_libraries(kairo68_core PUBLIC ws2_32 mswsock shlwapi)
+endif()
+
+if(NOT ANDROID OR KAIRO68_TOOLS)
+    add_executable(game_profile test/game_profile.cpp)
+    target_link_libraries(game_profile PRIVATE kairo68_core)
+    if(WIN32 OR ANDROID)
+        target_link_options(game_profile PRIVATE -static-libstdc++)
+    endif()
+    if(WIN32)
+        target_link_options(game_profile PRIVATE -static)
+    endif()
 endif()
 
 if(NOT ANDROID)

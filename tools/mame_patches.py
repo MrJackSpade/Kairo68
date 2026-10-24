@@ -390,9 +390,495 @@ std::string osd_get_clipboard_text() noexcept''',
 std::string osd_get_clipboard_text() noexcept''',),
 ]
 
+# Measurement counters (Kairo68#28, core/kairo68_perf.h): the 68000's instructions, the
+# scheduler's CPU runs and timer callbacks, x68k_state::screen_update's calls and lines, and the
+# sound manager's update, with their host time. Empty unless the build defines KAIRO68_PERF.
+PERF_COUNTERS = [
+    ('src/emu/schedule.cpp',
+     """#include "emu.h"
+#include "debugger.h"
+""",
+     """#include "emu.h"
+#include "debugger.h"
+#include "kairo68_perf.h"
+""",),
+    ('src/emu/schedule.cpp',
+     """						m_executing_device = exec;
+						*exec->m_icountptr = exec->m_cycles_running;
+						if (!call_debugger)
+							exec->run();""",
+     """						m_executing_device = exec;
+						*exec->m_icountptr = exec->m_cycles_running;
+						KAIRO68_PERF_COUNT(slices, 1);
+						KAIRO68_PERF_TIME(cpu_ns);
+						if (!call_debugger)
+							exec->run();""",),
+    ('src/emu/schedule.cpp',
+     """				LOG("execute_timers: timer callback %s\\n", timer.m_callback.name());
+				timer.m_callback(timer.m_param);""",
+     """				LOG("execute_timers: timer callback %s\\n", timer.m_callback.name());
+#ifdef KAIRO68_PERF
+				const uint64_t kairo68_start = kairo68::perf::now_ns();
+#endif
+				timer.m_callback(timer.m_param);
+#ifdef KAIRO68_PERF
+				const uint64_t kairo68_ns = kairo68::perf::now_ns() - kairo68_start;
+				auto &kairo68_counters = kairo68::perf::counters();
+				++kairo68_counters.timer_fires;
+				kairo68_counters.timer_ns += kairo68_ns;
+				auto &kairo68_timer = kairo68_counters.timers[timer.m_callback.name()];
+				++kairo68_timer.first;
+				kairo68_timer.second += kairo68_ns;
+#endif""",),
+    ('src/devices/cpu/m68000/m68000.cpp',
+     """#include "emu.h"
+#include "m68000.h"
+""",
+     """#include "emu.h"
+#include "m68000.h"
+#include "kairo68_perf.h"
+""",),
+    ('src/devices/cpu/m68000/m68000.cpp',
+     """				m_ipc = m_pc - 2;
+				m_irdi = m_ird;
+
+				if(debugger_enabled())
+					debugger_instruction_hook(m_ipc);""",
+     """				m_ipc = m_pc - 2;
+				m_irdi = m_ird;
+				KAIRO68_PERF_COUNT(instructions, 1);
+
+				if(debugger_enabled())
+					debugger_instruction_hook(m_ipc);""",),
+    ('src/emu/sound.cpp',
+     """#include "emu.h"
+""",
+     """#include "emu.h"
+#include "kairo68_perf.h"
+""",),
+    ('src/emu/sound.cpp',
+     """void sound_manager::update(s32)
+{
+	auto profile = g_profiler.start(PROFILER_SOUND);
+""",
+     """void sound_manager::update(s32)
+{
+	auto profile = g_profiler.start(PROFILER_SOUND);
+	KAIRO68_PERF_TIME(sound_ns);
+""",),
+    ('src/mame/sharp/x68k_v.cpp',
+     """#include "emu.h"
+#include "x68k.h"
+""",
+     """#include "emu.h"
+#include "x68k.h"
+#include "kairo68_perf.h"
+""",),
+    ('src/mame/sharp/x68k_v.cpp',
+     """uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+{
+""",
+     """uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+{
+	KAIRO68_PERF_COUNT(screen_updates, 1);
+	KAIRO68_PERF_COUNT(screen_lines, cliprect.height());
+	KAIRO68_PERF_TIME(screen_ns);
+""",),
+]
+
+# The MC68901's timers in delay mode (Kairo68#11). MAME fires a scheduler timer at every
+# prescaled count and decrements the main counter, so each count ends the 68000's timeslice: a game
+# running timer C at 200 kHz cuts every frame into thousands of slices. In delay mode the timer now
+# fires only at the count where the counter elapses; a read of the data register, a control
+# register write or a save computes the counter from the time since the last processed count. The
+# counts, the elapse times and every value the guest reads stay the same. Event count and pulse
+# width modes keep counting each event.
+MFP_TIMER_ELAPSE = [
+    ('src/devices/machine/mc68901.h',
+     """	virtual void device_start() override ATTR_COLD;
+	virtual void device_reset() override ATTR_COLD;
+""",
+     """	virtual void device_start() override ATTR_COLD;
+	virtual void device_reset() override ATTR_COLD;
+	virtual void device_pre_save() override ATTR_COLD;
+""",),
+    ('src/devices/machine/mc68901.h',
+     """	TIMER_CALLBACK_MEMBER(timer_count);
+""",
+     """	TIMER_CALLBACK_MEMBER(timer_count);
+	// Kairo68: delay mode fires only where the count elapses (mame_patches.py MFP_TIMER_ELAPSE).
+	int timer_delay_prescale(int index) const;
+	attotime timer_tick(int index) const;
+	void sync_timer_count(int index);
+	void start_timer_delay(int index);
+	void schedule_timer_elapse(int index);
+""",),
+    ('src/devices/machine/mc68901.h',
+     """	u8 m_tmc[4];                    // timer main counters
+""",
+     """	u8 m_tmc[4];                    // timer main counters
+	attotime m_tick_base[4];        // Kairo68: the delay-mode count m_tmc was last brought up to
+""",),
+    ('src/devices/machine/mc68901.cpp',
+     """	save_item(NAME(m_tmc));
+""",
+     """	save_item(NAME(m_tmc));
+	save_item(NAME(m_tick_base));
+""",),
+    ('src/devices/machine/mc68901.cpp',
+     """TIMER_CALLBACK_MEMBER(mc68901_device::timer_count)
+{
+	if (m_tmc[param] == 0x01)
+	{""",
+     """// Kairo68: the prescaler of a timer in delay mode, or 0 in any other mode.
+int mc68901_device::timer_delay_prescale(int index) const
+{
+	int mode;
+	switch (index)
+	{
+	case TIMER_A:   mode = m_tacr & 0x0f;           break;
+	case TIMER_B:   mode = m_tbcr & 0x0f;           break;
+	case TIMER_C:   mode = (m_tcdcr >> 4) & 0x07;   break;
+	default:        mode = m_tcdcr & 0x07;          break;
+	}
+	return (mode >= TCR_TIMER_DELAY_4 && mode <= TCR_TIMER_DELAY_200) ? PRESCALER[mode] : 0;
+}
+
+// Kairo68: the time between a delay-mode timer's counts.
+attotime mc68901_device::timer_tick(int index) const
+{
+	return attotime::from_hz(m_timer_clock / timer_delay_prescale(index));
+}
+
+// Kairo68: counts down a running delay-mode timer by the counts since m_tick_base. The elapsing
+// count is the timer's own callback, so fewer counts than that have passed.
+void mc68901_device::sync_timer_count(int index)
+{
+	if (!timer_delay_prescale(index) || !m_timer[index]->enabled())
+		return;
+	const attotime tick = timer_tick(index);
+	const attoseconds_t elapsed = (machine().time() - m_tick_base[index]).as_attoseconds();
+	const u32 counts = u32(elapsed / tick.as_attoseconds());
+	if (counts == 0)
+		return;
+	m_tmc[index] -= u8(counts);
+	m_tick_base[index] += tick * counts;
+}
+
+// Kairo68: a delay-mode timer counts from now, its first count one tick away.
+void mc68901_device::start_timer_delay(int index)
+{
+	m_tick_base[index] = machine().time();
+	schedule_timer_elapse(index);
+}
+
+// Kairo68: the count where the main counter is 1 elapses; a counter of 0 counts 256.
+void mc68901_device::schedule_timer_elapse(int index)
+{
+	const u32 counts = m_tmc[index] ? m_tmc[index] : 256;
+	m_timer[index]->adjust(timer_tick(index) * counts, index);
+}
+
+void mc68901_device::device_pre_save()
+{
+	for (int index = TIMER_A; index <= TIMER_D; index++)
+		sync_timer_count(index);
+}
+
+TIMER_CALLBACK_MEMBER(mc68901_device::timer_count)
+{
+	// Kairo68: in delay mode this is the elapsing count.
+	const bool delay = timer_delay_prescale(param) != 0 && !m_timer[param]->enabled();
+	if (delay)
+		m_tmc[param] = 0x01;
+
+	if (m_tmc[param] == 0x01)
+	{""",),
+    ('src/devices/machine/mc68901.cpp',
+     """		/* load main counter */
+		m_tmc[param] = m_tdr[param];
+	}
+	else
+	{
+		/* count down */
+		m_tmc[param]--;
+	}
+}""",
+     """		/* load main counter */
+		m_tmc[param] = m_tdr[param];
+	}
+	else
+	{
+		/* count down */
+		m_tmc[param]--;
+	}
+
+	if (delay)
+		start_timer_delay(param);
+}""",),
+    ('src/devices/machine/mc68901.cpp',
+     """	case REGISTER_TADR:  return m_tmc[TIMER_A];
+	case REGISTER_TBDR:  return m_tmc[TIMER_B];
+	case REGISTER_TCDR:  return m_tmc[TIMER_C];
+	case REGISTER_TDDR:  return m_tmc[TIMER_D];
+""",
+     """	case REGISTER_TADR:  sync_timer_count(TIMER_A); return m_tmc[TIMER_A];
+	case REGISTER_TBDR:  sync_timer_count(TIMER_B); return m_tmc[TIMER_B];
+	case REGISTER_TCDR:  sync_timer_count(TIMER_C); return m_tmc[TIMER_C];
+	case REGISTER_TDDR:  sync_timer_count(TIMER_D); return m_tmc[TIMER_D];
+""",),
+    ('src/devices/machine/mc68901.cpp',
+     """	case REGISTER_TACR:
+		m_tacr = data & 0x1f;
+""",
+     """	case REGISTER_TACR:
+		sync_timer_count(TIMER_A);
+		m_tacr = data & 0x1f;
+""",),
+    ('src/devices/machine/mc68901.cpp',
+     """				LOG("MC68901 Timer A Delay Mode : %u Prescale\\n", divisor);
+				m_timer[TIMER_A]->adjust(attotime::from_hz(m_timer_clock / divisor), TIMER_A, attotime::from_hz(m_timer_clock / divisor));""",
+     """				LOG("MC68901 Timer A Delay Mode : %u Prescale\\n", divisor);
+				start_timer_delay(TIMER_A);""",),
+    ('src/devices/machine/mc68901.cpp',
+     """	case REGISTER_TBCR:
+		m_tbcr = data & 0x1f;
+""",
+     """	case REGISTER_TBCR:
+		sync_timer_count(TIMER_B);
+		m_tbcr = data & 0x1f;
+""",),
+    ('src/devices/machine/mc68901.cpp',
+     """				LOG("MC68901 Timer B Delay Mode : %u Prescale\\n", divisor);
+				m_timer[TIMER_B]->adjust(attotime::from_hz(m_timer_clock / divisor), TIMER_B, attotime::from_hz(m_timer_clock / divisor));""",
+     """				LOG("MC68901 Timer B Delay Mode : %u Prescale\\n", divisor);
+				start_timer_delay(TIMER_B);""",),
+    ('src/devices/machine/mc68901.cpp',
+     """	case REGISTER_TCDCR:
+		m_tcdcr = data & 0x77;
+""",
+     """	case REGISTER_TCDCR:
+		sync_timer_count(TIMER_C);
+		sync_timer_count(TIMER_D);
+		m_tcdcr = data & 0x77;
+""",),
+    ('src/devices/machine/mc68901.cpp',
+     """				LOG("MC68901 Timer D Delay Mode : %u Prescale\\n", divisor);
+				m_timer[TIMER_D]->adjust(attotime::from_hz(m_timer_clock / divisor), TIMER_D, attotime::from_hz(m_timer_clock / divisor));""",
+     """				LOG("MC68901 Timer D Delay Mode : %u Prescale\\n", divisor);
+				start_timer_delay(TIMER_D);""",),
+    ('src/devices/machine/mc68901.cpp',
+     """				LOG("MC68901 Timer C Delay Mode : %u Prescale\\n", divisor);
+				m_timer[TIMER_C]->adjust(attotime::from_hz(m_timer_clock / divisor), TIMER_C, attotime::from_hz(m_timer_clock / divisor));""",
+     """				LOG("MC68901 Timer C Delay Mode : %u Prescale\\n", divisor);
+				start_timer_delay(TIMER_C);""",),
+]
+
+# The HD63450's external-request channels (Kairo68#11). A transfer started in burst mode, or a
+# cycle-steal request, runs the channel's timer at its bus clock, and in external-request mode each
+# firing with DRQ low does nothing: the X68000's floppy channel polls every 2 microseconds while it
+# waits for the controller, so every 2 microseconds ends the 68000's timeslice. A rising DRQ
+# already transfers and restarts the timer (drq_w) and a falling one stops it, so the timer now
+# stops at the first firing that finds DRQ low instead of polling. Every transfer happens at the
+# same time as before.
+DMA_DRQ_POLL = [
+    ('src/devices/machine/hd63450.cpp',
+     """TIMER_CALLBACK_MEMBER(hd63450_device::dma_transfer_timer)
+{
+	if (((m_reg[param].ocr & 3) == 2) && !m_drq_state[param])
+		return;
+	single_transfer(param);
+}""",
+     """TIMER_CALLBACK_MEMBER(hd63450_device::dma_transfer_timer)
+{
+	if (((m_reg[param].ocr & 3) == 2) && !m_drq_state[param])
+	{
+		// Kairo68: DRQ's rising edge transfers and restarts the timer (drq_w).
+		m_timer[param]->adjust(attotime::never);
+		return;
+	}
+	single_transfer(param);
+}""",),
+]
+
+# The X68000's picture drawn when it changes (Kairo68#18). The CRTC's hsync timer drew every
+# visible line as the beam passed it (screen().update_partial(scan - 1)): about 460 calls to
+# x68k_state::screen_update per frame, each repeating its setup for one line. Now the hsync only
+# records the line the beam has passed, and the lines waiting are drawn before anything they show
+# changes: video, text and graphics RAM, the CRTC and video controller registers, the palettes,
+# sprites and BG, the system port (contrast), and the CRTC's raster copy. The end of the frame draws
+# the rest, as before. Every line is drawn from the same state as at its own hsync, so the picture
+# is the same.
+X68K_DEFERRED_PARTIAL = [
+    ('src/mame/sharp/x68k_crtc.h',
+     """	void tvram_w(offs_t offset, u16 data, u16 mem_mask = ~0);
+	u16 tvram_r(offs_t offset);
+""",
+     """	void tvram_w(offs_t offset, u16 data, u16 mem_mask = ~0);
+	u16 tvram_r(offs_t offset);
+
+	// Kairo68: draws the lines the beam has passed and are not drawn yet; call before anything the
+	// picture shows changes (mame_patches.py X68K_DEFERRED_PARTIAL).
+	void flush_partial();
+""",),
+    ('src/mame/sharp/x68k_crtc.h',
+     """	emu_timer *m_scanline_timer;
+""",
+     """	emu_timer *m_scanline_timer;
+	int m_partial_line = -1;    // Kairo68: the last line the beam passed that is not drawn yet
+""",),
+    ('src/mame/sharp/x68k_crtc.cpp',
+     """	save_item(NAME(m_oddscanline));
+}""",
+     """	save_item(NAME(m_oddscanline));
+	save_item(NAME(m_partial_line));
+}""",),
+    ('src/mame/sharp/x68k_crtc.cpp',
+     """	if (m_operation & 8)
+		text_copy((m_reg[22] & 0xff00) >> 8, (m_reg[22] & 0x00ff), (m_reg[21] & 0xf));
+
+	int scan = screen().vpos();
+	if (hstate == 1)
+	{
+		hsync_time = screen().time_until_pos(scan, m_hend);
+		m_scanline_timer->adjust(hsync_time);
+		if ((scan != 0) && (scan < m_vend))
+			screen().update_partial(scan - 1);
+	}""",
+     """	if (m_operation & 8)
+	{
+		flush_partial();
+		text_copy((m_reg[22] & 0xff00) >> 8, (m_reg[22] & 0x00ff), (m_reg[21] & 0xf));
+	}
+
+	int scan = screen().vpos();
+	if (hstate == 1)
+	{
+		hsync_time = screen().time_until_pos(scan, m_hend);
+		m_scanline_timer->adjust(hsync_time);
+		if ((scan != 0) && (scan < m_vend))
+			m_partial_line = scan - 1;
+	}""",),
+    ('src/mame/sharp/x68k_crtc.cpp',
+     """void x68k_crtc_device::crtc_w(offs_t offset, u16 data, u16 mem_mask)
+{
+""",
+     """void x68k_crtc_device::flush_partial()
+{
+	if (m_partial_line >= 0)
+	{
+		const int line = m_partial_line;
+		m_partial_line = -1;
+		// The line is the frame's while the beam is below it. Once the beam starts the next frame,
+		// the frame that ended has drawn every line, and the next frame's are not due yet.
+		if (screen().vpos() > line)
+			screen().update_partial(line);
+	}
+}
+
+void x68k_crtc_device::crtc_w(offs_t offset, u16 data, u16 mem_mask)
+{
+	flush_partial();
+""",),
+    ('src/mame/sharp/x68k_crtc.cpp',
+     """void x68k_crtc_device::gvram_w(offs_t offset, u16 data, u16 mem_mask)
+{
+""",
+     """void x68k_crtc_device::gvram_w(offs_t offset, u16 data, u16 mem_mask)
+{
+	flush_partial();
+""",),
+    ('src/mame/sharp/x68k_crtc.cpp',
+     """void x68k_crtc_device::tvram_w(offs_t offset, u16 data, u16 mem_mask)
+{
+""",
+     """void x68k_crtc_device::tvram_w(offs_t offset, u16 data, u16 mem_mask)
+{
+	flush_partial();
+""",),
+    ('src/mame/sharp/x68k_crtc.cpp',
+     """		m_rint_callback(0);
+		screen().update_partial(scan - 1);""",
+     """		m_rint_callback(0);
+		flush_partial();
+		screen().update_partial(scan - 1);""",),
+    ('src/mame/sharp/x68k.cpp',
+     """void x68k_state::sysport_w(offs_t offset, uint16_t data, uint16_t mem_mask)
+{
+""",
+     """void x68k_state::sysport_w(offs_t offset, uint16_t data, uint16_t mem_mask)
+{
+	m_crtc->flush_partial();
+""",),
+    ('src/mame/sharp/x68k.cpp',
+     """void x68k_state::vid_w(offs_t offset, uint16_t data, uint16_t mem_mask)
+{
+""",
+     """void x68k_state::vid_w(offs_t offset, uint16_t data, uint16_t mem_mask)
+{
+	m_crtc->flush_partial();
+""",),
+    ('src/mame/sharp/x68k.cpp',
+     """void x68k_state::x68k_map(address_map &map)
+{
+	x68k_base_map(map);
+	map(0xe82000, 0xe821ff).rw(m_gfxpalette, FUNC(palette_device::read16), FUNC(palette_device::write16)).share("gfxpalette");
+	map(0xe82200, 0xe823ff).rw(m_pcgpalette, FUNC(palette_device::read16), FUNC(palette_device::write16)).share("pcgpalette");""",
+     """void x68k_state::x68k_map(address_map &map)
+{
+	x68k_base_map(map);
+	// Kairo68: lines waiting to be drawn show the colours before the write.
+	map(0xe82000, 0xe821ff).r(m_gfxpalette, FUNC(palette_device::read16)).lw16(NAME([this] (offs_t offset, u16 data, u16 mem_mask) {
+		m_crtc->flush_partial(); m_gfxpalette->write16(offset, data, mem_mask); })).share("gfxpalette");
+	map(0xe82200, 0xe823ff).r(m_pcgpalette, FUNC(palette_device::read16)).lw16(NAME([this] (offs_t offset, u16 data, u16 mem_mask) {
+		m_crtc->flush_partial(); m_pcgpalette->write16(offset, data, mem_mask); })).share("pcgpalette");""",),
+    ('src/mame/sharp/x68k.cpp',
+     """void x68ksupr_state::x68kxvi_map(address_map &map)
+{
+	x68k_base_map(map);
+	map(0xe82000, 0xe821ff).rw(m_gfxpalette, FUNC(palette_device::read16), FUNC(palette_device::write16)).share("gfxpalette");
+	map(0xe82200, 0xe823ff).rw(m_pcgpalette, FUNC(palette_device::read16), FUNC(palette_device::write16)).share("pcgpalette");""",
+     """void x68ksupr_state::x68kxvi_map(address_map &map)
+{
+	x68k_base_map(map);
+	// Kairo68: lines waiting to be drawn show the colours before the write.
+	map(0xe82000, 0xe821ff).r(m_gfxpalette, FUNC(palette_device::read16)).lw16(NAME([this] (offs_t offset, u16 data, u16 mem_mask) {
+		m_crtc->flush_partial(); m_gfxpalette->write16(offset, data, mem_mask); })).share("gfxpalette");
+	map(0xe82200, 0xe823ff).r(m_pcgpalette, FUNC(palette_device::read16)).lw16(NAME([this] (offs_t offset, u16 data, u16 mem_mask) {
+		m_crtc->flush_partial(); m_pcgpalette->write16(offset, data, mem_mask); })).share("pcgpalette");""",),
+    ('src/mame/sharp/x68k.cpp',
+     """	map(0xe82000, 0xe821ff).rw(m_gfxpalette, FUNC(palette_device::read32), FUNC(palette_device::write32)).share("gfxpalette");
+	map(0xe82200, 0xe823ff).rw(m_pcgpalette, FUNC(palette_device::read32), FUNC(palette_device::write32)).share("pcgpalette");""",
+     """	// Kairo68: lines waiting to be drawn show the colours before the write.
+	map(0xe82000, 0xe821ff).r(m_gfxpalette, FUNC(palette_device::read32)).lw32(NAME([this] (offs_t offset, u32 data, u32 mem_mask) {
+		m_crtc->flush_partial(); m_gfxpalette->write32(offset, data, mem_mask); })).share("gfxpalette");
+	map(0xe82200, 0xe823ff).r(m_pcgpalette, FUNC(palette_device::read32)).lw32(NAME([this] (offs_t offset, u32 data, u32 mem_mask) {
+		m_crtc->flush_partial(); m_pcgpalette->write32(offset, data, mem_mask); })).share("pcgpalette");""",),
+    ('src/mame/sharp/x68k_v.cpp',
+     """void x68k_state::spritereg_w(offs_t offset, uint16_t data, uint16_t mem_mask)
+{
+""",
+     """void x68k_state::spritereg_w(offs_t offset, uint16_t data, uint16_t mem_mask)
+{
+	m_crtc->flush_partial();
+""",),
+    ('src/mame/sharp/x68k_v.cpp',
+     """void x68k_state::spriteram_w(offs_t offset, uint16_t data, uint16_t mem_mask)
+{
+""",
+     """void x68k_state::spriteram_w(offs_t offset, uint16_t data, uint16_t mem_mask)
+{
+	m_crtc->flush_partial();
+""",),
+]
+
 PATCHES = {'x68k-save-state': X68K_SAVE_STATE, 'x68k-sasi-count': X68K_SASI_COUNT, 'x68k-sasi-dma': X68K_SASI_DMA,
            'osdlib-without-sdl': OSDLIB_WITHOUT_SDL, 'upd765-save-state': UPD765_SAVE_STATE, 'rtc-save-state': RTC_SAVE_STATE,
-           'floppy-save-state': FLOPPY_SAVE_STATE, 'hd63450-save-state': HD63450_SAVE_STATE}
+           'floppy-save-state': FLOPPY_SAVE_STATE, 'hd63450-save-state': HD63450_SAVE_STATE,
+           'perf-counters': PERF_COUNTERS,
+           'mfp-timer-elapse': MFP_TIMER_ELAPSE,
+           'dma-drq-poll': DMA_DRQ_POLL,
+           'x68k-deferred-partial': X68K_DEFERRED_PARTIAL}
 
 
 def apply(root):

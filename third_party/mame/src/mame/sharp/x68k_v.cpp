@@ -35,6 +35,7 @@
 
 #include "emu.h"
 #include "x68k.h"
+#include "kairo68_perf.h"
 
 #include "input.h" // for sprite debug keys
 
@@ -117,6 +118,7 @@ void x68k_state::gvram_write(offs_t offset, uint16_t data, uint16_t mem_mask)
 
 void x68k_state::spritereg_w(offs_t offset, uint16_t data, uint16_t mem_mask)
 {
+	m_crtc->flush_partial();
 	COMBINE_DATA(&m_spritereg[offset]);
 	switch(offset)
 	{
@@ -157,6 +159,7 @@ uint16_t x68k_state::spritereg_r(offs_t offset)
 
 void x68k_state::spriteram_w(offs_t offset, uint16_t data, uint16_t mem_mask)
 {
+	m_crtc->flush_partial();
 	COMBINE_DATA(m_spriteram+offset);
 	m_video.tile8_dirty[offset / 16] = 1;
 	m_video.tile16_dirty[offset / 64] = 1;
@@ -667,6 +670,9 @@ void x68k_state::device_post_load()
 
 uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
 {
+	KAIRO68_PERF_COUNT(screen_updates, 1);
+	KAIRO68_PERF_COUNT(screen_lines, cliprect.height());
+	KAIRO68_PERF_TIME(screen_ns);
 	rectangle rect(0,0,0,0);
 	int priority;
 	int x;

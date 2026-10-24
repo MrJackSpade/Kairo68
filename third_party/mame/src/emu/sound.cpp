@@ -9,6 +9,7 @@
 ***************************************************************************/
 
 #include "emu.h"
+#include "kairo68_perf.h"
 
 #include "audio_effects/aeffect.h"
 #include "resampler.h"
@@ -2672,6 +2673,7 @@ u64 sound_manager::rate_and_time_to_index(attotime time, u32 sample_rate) const
 void sound_manager::update(s32)
 {
 	auto profile = g_profiler.start(PROFILER_SOUND);
+	KAIRO68_PERF_TIME(sound_ns);
 
 	mapping_update();
 	streams_update();

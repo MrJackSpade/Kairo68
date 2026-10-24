@@ -329,7 +329,11 @@ void hd63450_device::set_timer(int channel, const attotime &tm)
 TIMER_CALLBACK_MEMBER(hd63450_device::dma_transfer_timer)
 {
 	if (((m_reg[param].ocr & 3) == 2) && !m_drq_state[param])
+	{
+		// Kairo68: DRQ's rising edge transfers and restarts the timer (drq_w).
+		m_timer[param]->adjust(attotime::never);
 		return;
+	}
 	single_transfer(param);
 }
 

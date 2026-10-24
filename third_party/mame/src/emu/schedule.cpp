@@ -10,6 +10,7 @@
 
 #include "emu.h"
 #include "debugger.h"
+#include "kairo68_perf.h"
 
 //**************************************************************************
 //  DEBUGGING
@@ -453,6 +454,8 @@ void device_scheduler::timeslice()
 						exec->m_cycles_stolen = 0;
 						m_executing_device = exec;
 						*exec->m_icountptr = exec->m_cycles_running;
+						KAIRO68_PERF_COUNT(slices, 1);
+						KAIRO68_PERF_TIME(cpu_ns);
 						if (!call_debugger)
 							exec->run();
 						else
@@ -956,7 +959,19 @@ inline void device_scheduler::execute_timers()
 			if (!timer.m_callback.isnull())
 			{
 				LOG("execute_timers: timer callback %s\n", timer.m_callback.name());
+#ifdef KAIRO68_PERF
+				const uint64_t kairo68_start = kairo68::perf::now_ns();
+#endif
 				timer.m_callback(timer.m_param);
+#ifdef KAIRO68_PERF
+				const uint64_t kairo68_ns = kairo68::perf::now_ns() - kairo68_start;
+				auto &kairo68_counters = kairo68::perf::counters();
+				++kairo68_counters.timer_fires;
+				kairo68_counters.timer_ns += kairo68_ns;
+				auto &kairo68_timer = kairo68_counters.timers[timer.m_callback.name()];
+				++kairo68_timer.first;
+				kairo68_timer.second += kairo68_ns;
+#endif
 			}
 		}
 

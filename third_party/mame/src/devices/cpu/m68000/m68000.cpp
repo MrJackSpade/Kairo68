@@ -3,6 +3,7 @@
 
 #include "emu.h"
 #include "m68000.h"
+#include "kairo68_perf.h"
 #include "m68kdasm.h"
 
 DEFINE_DEVICE_TYPE(M68000,      m68000_device,      "m68000",       "Motorola MC68000")
@@ -161,6 +162,7 @@ void m68000_device::execute_run()
 			if(m_inst_state >= S_first_instruction) {
 				m_ipc = m_pc - 2;
 				m_irdi = m_ird;
+				KAIRO68_PERF_COUNT(instructions, 1);
 
 				if(debugger_enabled())
 					debugger_instruction_hook(m_ipc);

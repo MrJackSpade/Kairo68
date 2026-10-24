@@ -37,6 +37,12 @@ struct Config {
     // Skip memory check: the IPL cannot skip its memory test, so the boot (booting()) runs as fast
     // as the host can, with MAME drawing one frame in 12, until it ends.
     bool skip_memory_check = true;
+    // A measurement build (KAIRO68_PERF) also counts the guest's accesses by address range. The
+    // taps that count them slow every access, so stage times measured with them are not real.
+    bool count_accesses = false;
+    // The real-time clock's start, as YYYYMMDDhhmmss; "" for the host's time. A fixed start makes
+    // two runs of a game identical, for checking that a change keeps the guest's behavior.
+    std::string rtc;
 };
 
 // X68000 key scan codes: 0x01 (ESC) to 0x74 (OPT.2), as the keyboard sends them.
@@ -75,6 +81,10 @@ public:
     // Run on the machine's own thread at the end of the frame; false when MAME refused.
     bool save_state(const std::string &file);
     bool load_state(const std::string &file);
+
+    // A measurement build's counters (core/kairo68_perf.h) since the last call, by name, then
+    // cleared; empty in any other build. Between frames only.
+    std::vector<std::pair<std::string, uint64_t>> take_perf();
 
     // Every entry a saved state holds, by name, as it would hold it now; for tests that check a
     // loaded state restores the machine exactly.

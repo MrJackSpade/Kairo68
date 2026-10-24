@@ -91,6 +91,7 @@ protected:
 	// device-level overrides
 	virtual void device_start() override ATTR_COLD;
 	virtual void device_reset() override ATTR_COLD;
+	virtual void device_pre_save() override ATTR_COLD;
 
 	void check_interrupts();
 	void take_interrupt(u16 mask);
@@ -99,6 +100,12 @@ protected:
 	void rx_buffer_full();
 	void rx_error();
 	TIMER_CALLBACK_MEMBER(timer_count);
+	// Kairo68: delay mode fires only where the count elapses (mame_patches.py MFP_TIMER_ELAPSE).
+	int timer_delay_prescale(int index) const;
+	attotime timer_tick(int index) const;
+	void sync_timer_count(int index);
+	void start_timer_delay(int index);
+	void schedule_timer_elapse(int index);
 	void timer_input(int index, int value);
 	void gpio_input(int bit, int state);
 	void gpio_output();
@@ -248,6 +255,7 @@ private:
 
 	// counter timer state
 	u8 m_tmc[4];                    // timer main counters
+	attotime m_tick_base[4];        // Kairo68: the delay-mode count m_tmc was last brought up to
 	int m_ti[4];                    // timer in latch
 	int m_to[4];                    // timer out latch
 

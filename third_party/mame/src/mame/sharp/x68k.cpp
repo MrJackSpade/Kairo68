@@ -439,6 +439,7 @@ uint8_t x68k_state::ioc_r(offs_t offset)
 */
 void x68k_state::sysport_w(offs_t offset, uint16_t data, uint16_t mem_mask)
 {
+	m_crtc->flush_partial();
 	switch(offset)
 	{
 	case 0x00:
@@ -513,6 +514,7 @@ uint16_t x68k_state::sram_r(offs_t offset)
 
 void x68k_state::vid_w(offs_t offset, uint16_t data, uint16_t mem_mask)
 {
+	m_crtc->flush_partial();
 	if(offset < 0x80)
 		COMBINE_DATA(m_video.reg);
 	else if(offset < 0x100)
@@ -816,8 +818,11 @@ void x68k_state::x68k_base_map(address_map &map)
 void x68k_state::x68k_map(address_map &map)
 {
 	x68k_base_map(map);
-	map(0xe82000, 0xe821ff).rw(m_gfxpalette, FUNC(palette_device::read16), FUNC(palette_device::write16)).share("gfxpalette");
-	map(0xe82200, 0xe823ff).rw(m_pcgpalette, FUNC(palette_device::read16), FUNC(palette_device::write16)).share("pcgpalette");
+	// Kairo68: lines waiting to be drawn show the colours before the write.
+	map(0xe82000, 0xe821ff).r(m_gfxpalette, FUNC(palette_device::read16)).lw16(NAME([this] (offs_t offset, u16 data, u16 mem_mask) {
+		m_crtc->flush_partial(); m_gfxpalette->write16(offset, data, mem_mask); })).share("gfxpalette");
+	map(0xe82200, 0xe823ff).r(m_pcgpalette, FUNC(palette_device::read16)).lw16(NAME([this] (offs_t offset, u16 data, u16 mem_mask) {
+		m_crtc->flush_partial(); m_pcgpalette->write16(offset, data, mem_mask); })).share("pcgpalette");
 	map(0xe92001, 0xe92001).rw(m_okim6258, FUNC(okim6258_device::status_r), FUNC(okim6258_device::ctrl_w));
 	map(0xe92003, 0xe92003).rw(m_okim6258, FUNC(okim6258_device::status_r), FUNC(okim6258_device::data_w));
 	map(0xe96000, 0xe9601f).rw("x68k_hdc", FUNC(x68k_hdc_image_device::hdc_r), FUNC(x68k_hdc_image_device::hdc_w));
@@ -829,8 +834,11 @@ void x68k_state::x68k_map(address_map &map)
 void x68ksupr_state::x68kxvi_map(address_map &map)
 {
 	x68k_base_map(map);
-	map(0xe82000, 0xe821ff).rw(m_gfxpalette, FUNC(palette_device::read16), FUNC(palette_device::write16)).share("gfxpalette");
-	map(0xe82200, 0xe823ff).rw(m_pcgpalette, FUNC(palette_device::read16), FUNC(palette_device::write16)).share("pcgpalette");
+	// Kairo68: lines waiting to be drawn show the colours before the write.
+	map(0xe82000, 0xe821ff).r(m_gfxpalette, FUNC(palette_device::read16)).lw16(NAME([this] (offs_t offset, u16 data, u16 mem_mask) {
+		m_crtc->flush_partial(); m_gfxpalette->write16(offset, data, mem_mask); })).share("gfxpalette");
+	map(0xe82200, 0xe823ff).r(m_pcgpalette, FUNC(palette_device::read16)).lw16(NAME([this] (offs_t offset, u16 data, u16 mem_mask) {
+		m_crtc->flush_partial(); m_pcgpalette->write16(offset, data, mem_mask); })).share("pcgpalette");
 	map(0xe92001, 0xe92001).rw(m_okim6258, FUNC(okim6258_device::status_r), FUNC(okim6258_device::ctrl_w));
 	map(0xe92003, 0xe92003).rw(m_okim6258, FUNC(okim6258_device::status_r), FUNC(okim6258_device::data_w));
 	map(0xe96020, 0xe9603f).m(m_scsictrl, FUNC(mb89352_device::map)).umask16(0x00ff);
@@ -843,8 +851,11 @@ void x68030_state::x68030_map(address_map &map)
 {
 	map.global_mask(0x00ffffff);  // Still only has 24-bit address space
 	x68k_base_map(map);
-	map(0xe82000, 0xe821ff).rw(m_gfxpalette, FUNC(palette_device::read32), FUNC(palette_device::write32)).share("gfxpalette");
-	map(0xe82200, 0xe823ff).rw(m_pcgpalette, FUNC(palette_device::read32), FUNC(palette_device::write32)).share("pcgpalette");
+	// Kairo68: lines waiting to be drawn show the colours before the write.
+	map(0xe82000, 0xe821ff).r(m_gfxpalette, FUNC(palette_device::read32)).lw32(NAME([this] (offs_t offset, u32 data, u32 mem_mask) {
+		m_crtc->flush_partial(); m_gfxpalette->write32(offset, data, mem_mask); })).share("gfxpalette");
+	map(0xe82200, 0xe823ff).r(m_pcgpalette, FUNC(palette_device::read32)).lw32(NAME([this] (offs_t offset, u32 data, u32 mem_mask) {
+		m_crtc->flush_partial(); m_pcgpalette->write32(offset, data, mem_mask); })).share("pcgpalette");
 //  map(0xe8c000, 0xe8dfff).rw(FUNC(x68k_state::x68k_printer_r), FUNC(x68k_state::x68k_printer_w));
 	map(0xe92000, 0xe92003).r(m_okim6258, FUNC(okim6258_device::status_r)).umask32(0x00ff00ff).w(FUNC(x68030_state::adpcm_w)).umask32(0x00ff00ff);
 

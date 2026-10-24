@@ -230,8 +230,68 @@ inline void mc68901_device::rx_error()
 	}
 }
 
+// Kairo68: the prescaler of a timer in delay mode, or 0 in any other mode.
+int mc68901_device::timer_delay_prescale(int index) const
+{
+	int mode;
+	switch (index)
+	{
+	case TIMER_A:   mode = m_tacr & 0x0f;           break;
+	case TIMER_B:   mode = m_tbcr & 0x0f;           break;
+	case TIMER_C:   mode = (m_tcdcr >> 4) & 0x07;   break;
+	default:        mode = m_tcdcr & 0x07;          break;
+	}
+	return (mode >= TCR_TIMER_DELAY_4 && mode <= TCR_TIMER_DELAY_200) ? PRESCALER[mode] : 0;
+}
+
+// Kairo68: the time between a delay-mode timer's counts.
+attotime mc68901_device::timer_tick(int index) const
+{
+	return attotime::from_hz(m_timer_clock / timer_delay_prescale(index));
+}
+
+// Kairo68: counts down a running delay-mode timer by the counts since m_tick_base. The elapsing
+// count is the timer's own callback, so fewer counts than that have passed.
+void mc68901_device::sync_timer_count(int index)
+{
+	if (!timer_delay_prescale(index) || !m_timer[index]->enabled())
+		return;
+	const attotime tick = timer_tick(index);
+	const attoseconds_t elapsed = (machine().time() - m_tick_base[index]).as_attoseconds();
+	const u32 counts = u32(elapsed / tick.as_attoseconds());
+	if (counts == 0)
+		return;
+	m_tmc[index] -= u8(counts);
+	m_tick_base[index] += tick * counts;
+}
+
+// Kairo68: a delay-mode timer counts from now, its first count one tick away.
+void mc68901_device::start_timer_delay(int index)
+{
+	m_tick_base[index] = machine().time();
+	schedule_timer_elapse(index);
+}
+
+// Kairo68: the count where the main counter is 1 elapses; a counter of 0 counts 256.
+void mc68901_device::schedule_timer_elapse(int index)
+{
+	const u32 counts = m_tmc[index] ? m_tmc[index] : 256;
+	m_timer[index]->adjust(timer_tick(index) * counts, index);
+}
+
+void mc68901_device::device_pre_save()
+{
+	for (int index = TIMER_A; index <= TIMER_D; index++)
+		sync_timer_count(index);
+}
+
 TIMER_CALLBACK_MEMBER(mc68901_device::timer_count)
 {
+	// Kairo68: in delay mode this is the elapsing count.
+	const bool delay = timer_delay_prescale(param) != 0 && !m_timer[param]->enabled();
+	if (delay)
+		m_tmc[param] = 0x01;
+
 	if (m_tmc[param] == 0x01)
 	{
 		/* toggle timer output signal */
@@ -259,6 +319,9 @@ TIMER_CALLBACK_MEMBER(mc68901_device::timer_count)
 		/* count down */
 		m_tmc[param]--;
 	}
+
+	if (delay)
+		start_timer_delay(param);
 }
 
 
@@ -412,6 +475,7 @@ void mc68901_device::device_start()
 	save_item(NAME(m_tcdcr));
 	save_item(NAME(m_tdr));
 	save_item(NAME(m_tmc));
+	save_item(NAME(m_tick_base));
 	save_item(NAME(m_to));
 	save_item(NAME(m_ti));
 	save_item(NAME(m_scr));
@@ -512,10 +576,10 @@ u8 mc68901_device::read(offs_t offset)
 	case REGISTER_TACR:  return m_tacr;
 	case REGISTER_TBCR:  return m_tbcr;
 	case REGISTER_TCDCR: return m_tcdcr;
-	case REGISTER_TADR:  return m_tmc[TIMER_A];
-	case REGISTER_TBDR:  return m_tmc[TIMER_B];
-	case REGISTER_TCDR:  return m_tmc[TIMER_C];
-	case REGISTER_TDDR:  return m_tmc[TIMER_D];
+	case REGISTER_TADR:  sync_timer_count(TIMER_A); return m_tmc[TIMER_A];
+	case REGISTER_TBDR:  sync_timer_count(TIMER_B); return m_tmc[TIMER_B];
+	case REGISTER_TCDR:  sync_timer_count(TIMER_C); return m_tmc[TIMER_C];
+	case REGISTER_TDDR:  sync_timer_count(TIMER_D); return m_tmc[TIMER_D];
 
 	case REGISTER_SCR:   return m_scr;
 	case REGISTER_UCR:   return m_ucr;
@@ -653,6 +717,7 @@ void mc68901_device::write(offs_t offset, u8 data)
 		break;
 
 	case REGISTER_TACR:
+		sync_timer_count(TIMER_A);
 		m_tacr = data & 0x1f;
 
 		switch (m_tacr & 0x0f)
@@ -672,7 +737,7 @@ void mc68901_device::write(offs_t offset, u8 data)
 			{
 				int divisor = PRESCALER[m_tacr & 0x07];
 				LOG("MC68901 Timer A Delay Mode : %u Prescale\n", divisor);
-				m_timer[TIMER_A]->adjust(attotime::from_hz(m_timer_clock / divisor), TIMER_A, attotime::from_hz(m_timer_clock / divisor));
+				start_timer_delay(TIMER_A);
 			}
 			break;
 
@@ -704,6 +769,7 @@ void mc68901_device::write(offs_t offset, u8 data)
 		break;
 
 	case REGISTER_TBCR:
+		sync_timer_count(TIMER_B);
 		m_tbcr = data & 0x1f;
 
 		switch (m_tbcr & 0x0f)
@@ -723,7 +789,7 @@ void mc68901_device::write(offs_t offset, u8 data)
 			{
 				int divisor = PRESCALER[m_tbcr & 0x07];
 				LOG("MC68901 Timer B Delay Mode : %u Prescale\n", divisor);
-				m_timer[TIMER_B]->adjust(attotime::from_hz(m_timer_clock / divisor), TIMER_B, attotime::from_hz(m_timer_clock / divisor));
+				start_timer_delay(TIMER_B);
 			}
 			break;
 
@@ -755,6 +821,8 @@ void mc68901_device::write(offs_t offset, u8 data)
 		break;
 
 	case REGISTER_TCDCR:
+		sync_timer_count(TIMER_C);
+		sync_timer_count(TIMER_D);
 		m_tcdcr = data & 0x77;
 
 		switch (m_tcdcr & 0x07)
@@ -774,7 +842,7 @@ void mc68901_device::write(offs_t offset, u8 data)
 			{
 				int divisor = PRESCALER[m_tcdcr & 0x07];
 				LOG("MC68901 Timer D Delay Mode : %u Prescale\n", divisor);
-				m_timer[TIMER_D]->adjust(attotime::from_hz(m_timer_clock / divisor), TIMER_D, attotime::from_hz(m_timer_clock / divisor));
+				start_timer_delay(TIMER_D);
 			}
 			break;
 		}
@@ -796,7 +864,7 @@ void mc68901_device::write(offs_t offset, u8 data)
 			{
 				int divisor = PRESCALER[(m_tcdcr >> 4) & 0x07];
 				LOG("MC68901 Timer C Delay Mode : %u Prescale\n", divisor);
-				m_timer[TIMER_C]->adjust(attotime::from_hz(m_timer_clock / divisor), TIMER_C, attotime::from_hz(m_timer_clock / divisor));
+				start_timer_delay(TIMER_C);
 			}
 			break;
 		}

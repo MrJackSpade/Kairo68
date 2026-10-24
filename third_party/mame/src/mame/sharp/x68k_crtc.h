@@ -32,6 +32,10 @@ public:
 	void tvram_w(offs_t offset, u16 data, u16 mem_mask = ~0);
 	u16 tvram_r(offs_t offset);
 
+	// Kairo68: draws the lines the beam has passed and are not drawn yet; call before anything the
+	// picture shows changes (mame_patches.py X68K_DEFERRED_PARTIAL).
+	void flush_partial();
+
 	// getters
 	u16 xscr_text() const { return m_reg[10]; }
 	u16 yscr_text() const { return m_reg[11]; }
@@ -108,6 +112,7 @@ private:
 	bool m_oddscanline;
 
 	emu_timer *m_scanline_timer;
+	int m_partial_line = -1;    // Kairo68: the last line the beam passed that is not drawn yet
 	emu_timer *m_raster_irq_timer;
 	emu_timer *m_vblank_irq_timer;
 	emu_timer *m_raster_end_timer;

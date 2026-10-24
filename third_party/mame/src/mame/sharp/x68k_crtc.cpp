@@ -82,6 +82,7 @@ void x68k_crtc_device::device_start()
 	save_item(NAME(m_visible_width));
 	save_item(NAME(m_interlace));
 	save_item(NAME(m_oddscanline));
+	save_item(NAME(m_partial_line));
 }
 
 void x68k_crtc_device::device_reset()
@@ -216,7 +217,10 @@ TIMER_CALLBACK_MEMBER(x68k_crtc_device::hsync)
 	m_hsync_callback(!m_hblank);
 
 	if (m_operation & 8)
+	{
+		flush_partial();
 		text_copy((m_reg[22] & 0xff00) >> 8, (m_reg[22] & 0x00ff), (m_reg[21] & 0xf));
+	}
 
 	int scan = screen().vpos();
 	if (hstate == 1)
@@ -224,7 +228,7 @@ TIMER_CALLBACK_MEMBER(x68k_crtc_device::hsync)
 		hsync_time = screen().time_until_pos(scan, m_hend);
 		m_scanline_timer->adjust(hsync_time);
 		if ((scan != 0) && (scan < m_vend))
-			screen().update_partial(scan - 1);
+			m_partial_line = scan - 1;
 	}
 	if (hstate == 0)
 	{
@@ -251,6 +255,7 @@ TIMER_CALLBACK_MEMBER(x68k_crtc_device::raster_irq)
 	if (scan <= m_vtotal)
 	{
 		m_rint_callback(0);
+		flush_partial();
 		screen().update_partial(scan - 1);
 		irq_time = screen().time_until_pos(scan, m_hbegin);
 		// end of HBlank period clears GPIP6 also?
@@ -337,8 +342,22 @@ TIMER_CALLBACK_MEMBER(x68k_crtc_device::vblank_irq)
  *    Operation Port bits are cleared automatically when the requested
  *    operation is completed.
  */
+void x68k_crtc_device::flush_partial()
+{
+	if (m_partial_line >= 0)
+	{
+		const int line = m_partial_line;
+		m_partial_line = -1;
+		// The line is the frame's while the beam is below it. Once the beam starts the next frame,
+		// the frame that ended has drawn every line, and the next frame's are not due yet.
+		if (screen().vpos() > line)
+			screen().update_partial(line);
+	}
+}
+
 void x68k_crtc_device::crtc_w(offs_t offset, u16 data, u16 mem_mask)
 {
+	flush_partial();
 	if (offset < 0x24)
 		COMBINE_DATA(&m_reg[offset]);
 	switch (offset)
@@ -500,6 +519,7 @@ u16 x68k_crtc_device::crtc_r(offs_t offset)
 
 void x68k_crtc_device::gvram_w(offs_t offset, u16 data, u16 mem_mask)
 {
+	flush_partial();
 //  int xloc,yloc,pageoffset;
 	/*
 	   G-VRAM usage is determined by colour depth and "real" screen size.
@@ -566,6 +586,7 @@ void x68k_crtc_device::gvram_w(offs_t offset, u16 data, u16 mem_mask)
 
 void x68k_crtc_device::tvram_w(offs_t offset, u16 data, u16 mem_mask)
 {
+	flush_partial();
 	u16 text_mask = ~(m_reg[23]) & mem_mask;
 
 	if (!(m_reg[21] & 0x0200)) // text access mask enable
