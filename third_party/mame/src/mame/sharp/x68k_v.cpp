@@ -308,18 +308,27 @@ bool x68k_state::draw_gfx_scanline( bitmap_ind16 &bitmap, rectangle cliprect, ui
 			if(m_video.reg[2] & (1 << priority))
 			{
 				int page = m_video.gfxlayer_pri[priority];
+				// Kairo68: the rows each pixel reads and writes, taken once a line; each pixel takes the
+				// same steps on the same values as before (Kairo68#18).
+				const bool special = ((m_video.reg[2] & 0x1800) == 0x1000);
+				uint16_t *const dest = &bitmap.pix(scanline, 0);
+				uint16_t *const spec = &m_special.pix(scanline, 0);
+				const int first = m_crtc->hbegin(), last = m_crtc->hend();
 				// adjust for scroll registers
 				switch(m_video.reg[0] & 0x03)
 				{
 				case 0x00: // 16 colours
+				{
 					xscr = m_crtc->xscr_gfx(page) & 0x1ff;
 					yscr = m_crtc->yscr_gfx(page) & 0x1ff;
 					lineoffset = (((scanline - m_crtc->vbegin() / divisor) + yscr) & 0x1ff) * 512;
 					loc = xscr & 0x1ff;
 					shift = 4;
-					for(pixel=m_crtc->hbegin();pixel<=m_crtc->hend();pixel++)
+					const uint16_t *const row = &m_gvram[lineoffset];
+					const int plane = page*shift;
+					for(pixel=first;pixel<=last;pixel++)
 					{
-						colour = ((m_gvram[lineoffset + loc] >> page*shift) & 0x000f);
+						colour = ((row[loc] >> plane) & 0x000f);
 						if(ret && (colour & 1))
 						{
 							blend = true;
@@ -331,28 +340,29 @@ bool x68k_state::draw_gfx_scanline( bitmap_ind16 &bitmap, rectangle cliprect, ui
 						{
 							if(ret)
 							{
-								if(blend && bitmap.pix(scanline, pixel))
-									bitmap.pix(scanline, pixel) = ((bitmap.pix(scanline, pixel) >> 1) & 0x7bde) + ((pal[colour] >> 1) & 0x7bde) + 1;
+								if(blend && dest[pixel])
+									dest[pixel] = ((dest[pixel] >> 1) & 0x7bde) + ((pal[colour] >> 1) & 0x7bde) + 1;
 								else
-									bitmap.pix(scanline, pixel) = (pal[colour] & 0xfffe) + blend;
+									dest[pixel] = (pal[colour] & 0xfffe) + blend;
 							}
-							else if(((m_video.reg[2] & 0x1800) == 0x1000) && (colour & 1))
-								m_special.pix(scanline, pixel) = colour;
+							else if(special && (colour & 1))
+								spec[pixel] = colour;
 							else
 							{
-								m_special.pix(scanline, pixel) = 0;
-								bitmap.pix(scanline, pixel) = colour;
+								spec[pixel] = 0;
+								dest[pixel] = colour;
 							}
 						}
-						else if(((m_video.reg[2] & 0x1800) == 0x1000) && m_special.pix(scanline, pixel))
+						else if(special && spec[pixel])
 						{
-							bitmap.pix(scanline, pixel) = m_special.pix(scanline, pixel);
-							m_special.pix(scanline, pixel) = 0;
+							dest[pixel] = spec[pixel];
+							spec[pixel] = 0;
 						}
 						loc++;
 						loc &= 0x1ff;
 					}
 					break;
+				}
 				case 0x01: // 256 colours
 					if(page == 0 || page == 2)
 					{
@@ -369,10 +379,13 @@ bool x68k_state::draw_gfx_scanline( bitmap_ind16 &bitmap, rectangle cliprect, ui
 						lineoffset1 = (((scanline - m_crtc->vbegin() / divisor) + yscr1) & 0x1ff) * 512;
 						loc1 = xscr1 & 0x1ff;
 						shift = 4;
-						for(pixel=m_crtc->hbegin();pixel<=m_crtc->hend();pixel++)
+						const uint16_t *const row0 = &m_gvram[lineoffset0];
+						const uint16_t *const row1 = &m_gvram[lineoffset1];
+						const int plane = page*shift;
+						for(pixel=first;pixel<=last;pixel++)
 						{
-							colour = ((m_gvram[lineoffset0 + loc0] >> page*shift) & 0x000f);
-							colour |= ((m_gvram[lineoffset1 + loc1] >> page*shift) & 0x00f0);
+							colour = ((row0[loc0] >> plane) & 0x000f);
+							colour |= ((row1[loc1] >> plane) & 0x00f0);
 							if(ret && (colour & 1))
 							{
 								blend = true;
@@ -384,23 +397,23 @@ bool x68k_state::draw_gfx_scanline( bitmap_ind16 &bitmap, rectangle cliprect, ui
 							{
 								if(ret)
 								{
-									if(blend && bitmap.pix(scanline, pixel))
-										bitmap.pix(scanline, pixel) = ((bitmap.pix(scanline, pixel) >> 1) & 0x7bde) + ((pal[colour] >> 1) & 0x7bde) + 1;
+									if(blend && dest[pixel])
+										dest[pixel] = ((dest[pixel] >> 1) & 0x7bde) + ((pal[colour] >> 1) & 0x7bde) + 1;
 									else
-										bitmap.pix(scanline, pixel) = (pal[colour] & 0xfffe) + blend;
+										dest[pixel] = (pal[colour] & 0xfffe) + blend;
 								}
-								else if(((m_video.reg[2] & 0x1800) == 0x1000) && (colour & 1))
-									m_special.pix(scanline, pixel) = colour;
+								else if(special && (colour & 1))
+									spec[pixel] = colour;
 								else
 								{
-									bitmap.pix(scanline, pixel) = colour;
-									m_special.pix(scanline, pixel) = 0;
+									dest[pixel] = colour;
+									spec[pixel] = 0;
 								}
 							}
-							else if(((m_video.reg[2] & 0x1800) == 0x1000) && m_special.pix(scanline, pixel))
+							else if(special && spec[pixel])
 							{
-								bitmap.pix(scanline, pixel) = m_special.pix(scanline, pixel);
-								m_special.pix(scanline, pixel) = 0;
+								dest[pixel] = spec[pixel];
+								spec[pixel] = 0;
 							}
 							loc0++;
 							loc0 &= 0x1ff;
@@ -410,20 +423,23 @@ bool x68k_state::draw_gfx_scanline( bitmap_ind16 &bitmap, rectangle cliprect, ui
 					}
 					break;
 				case 0x03: // 65536 colours
+				{
 					xscr = m_crtc->xscr_gfx(0) & 0x1ff;
 					yscr = m_crtc->yscr_gfx(0) & 0x1ff;
 					lineoffset = (((scanline - m_crtc->vbegin() / divisor) + yscr) & 0x1ff) * 512;
 					loc = xscr & 0x1ff;
-					for(pixel=m_crtc->hbegin();pixel<=m_crtc->hend();pixel++)
+					const uint16_t *const row = &m_gvram[lineoffset];
+					for(pixel=first;pixel<=last;pixel++)
 					{
-						colour = m_gvram[lineoffset + loc];
+						colour = row[loc];
 						if(colour || (priority == 3))
-							bitmap.pix(scanline, pixel) = colour;
+							dest[pixel] = colour;
 						loc++;
 						loc &= 0x1ff;
 					}
 					ret = false;
 					break;
+				}
 				}
 			}
 		}

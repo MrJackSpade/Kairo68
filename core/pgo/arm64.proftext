@@ -843,13 +843,13 @@
 # Counter Values:
 0
 10
-19430
-16050
+19490
+16110
 0
-45
-442
+157
+384
 0
-424
+511
 0
 0
 0
@@ -4314,7 +4314,7 @@ _ZN12core_options5entryD2Ev:5
 0
 0
 0
-43
+55
 0
 0
 0
@@ -4343,7 +4343,7 @@ _ZN12core_options5entryD2Ev:5
 0
 0
 0
-292
+267
 0
 0
 0
@@ -4352,21 +4352,21 @@ _ZN12core_options5entryD2Ev:5
 0
 0
 0
-317
+314
 0
 0
 0
 0
 0
 0
-292
+267
 0
 0
 0
 0
 0
 0
-292
+267
 60
 0
 0
@@ -4377,7 +4377,7 @@ _ZN12core_options5entryD2Ev:5
 0
 0
 30
-83
+85
 0
 0
 0
@@ -4480,7 +4480,7 @@ _ZN12core_options5entryD2Ev:5
 0
 60
 0
-289
+263
 0
 0
 0
@@ -4532,13 +4532,14 @@ _ZN12core_options5entryD2Ev:5
 0
 1
 1:60
-1
-9:30
-1
-1:292
 2
-9:312
-16:5
+9:29
+16:1
+1
+1:267
+2
+9:310
+16:4
 0
 0
 0
@@ -8287,7 +8288,7 @@ _ZN10x68k_state16decode_text_lineEi
 
 _ZN10x68k_state17draw_gfx_scanlineER12bitmap_ind169rectangleh
 # Func Hash:
-72396333845992960
+72396334922375589
 # Num Counters:
 37
 # Counter Values:
@@ -60020,11 +60021,9 @@ _ZN13sound_manager18after_devices_initEv
 0
 0
 0
-7
+9
 0
-22
-0
-0
+20
 0
 0
 0
@@ -60037,7 +60036,9 @@ _ZN13sound_manager18after_devices_initEv
 0
 0
 0
-23
+0
+0
+25
 20
 0
 0
@@ -61000,7 +61001,7 @@ _ZN13video_manager15recompute_speedERK8attotime
 0
 0
 0
-223
+189
 0
 0
 0
@@ -85359,9 +85360,9 @@ _ZN4ymfm14fm_engine_baseINS_13opm_registersEE12update_timerEjji
 # Num Counters:
 4
 # Counter Values:
-283161
+283160
 58828
-65463
+65464
 43710
 # Num Value Kinds:
 1
@@ -85382,7 +85383,7 @@ _ZN4ymfm14fm_engine_baseINS_13opm_registersEE17engine_mode_writeEh
 # Num Counters:
 1
 # Counter Values:
-131301
+131299
 # Num Value Kinds:
 1
 # ValueKind = IPVK_IndirectCallTarget:
@@ -85429,8 +85430,8 @@ _ZN4ymfm14fm_engine_baseINS_13opm_registersEE23engine_check_interruptsEv
 # Num Counters:
 2
 # Counter Values:
-203238
-143499
+203245
+143501
 # Num Value Kinds:
 1
 # ValueKind = IPVK_IndirectCallTarget:
@@ -85489,13 +85490,13 @@ _ZN4ymfm14fm_engine_baseINS_13opm_registersEE5writeEth
 # Num Counters:
 7
 # Counter Values:
-463888
-463880
-1008361
-131296
-115951
+463892
+463892
+1008355
+131294
+115953
 16
-1008229
+1008227
 # Num Value Kinds:
 1
 # ValueKind = IPVK_IndirectCallTarget:
@@ -85690,7 +85691,7 @@ _ZN4ymfm6ym215110write_dataEh
 # Num Counters:
 2
 # Counter Values:
-1138694
+1138735
 676
 # Num Value Kinds:
 1
@@ -85745,8 +85746,8 @@ _ZN4ymfm6ym21515writeEjh
 # Num Counters:
 2
 # Counter Values:
-1139311
-1139117
+1139301
+1139049
 
 _ZN4ymfm6ym21518generateEPNS_11ymfm_outputILi2EEEj
 # Func Hash:
@@ -85777,7 +85778,7 @@ _ZN5kairo13OrderedWorkerINSt6__ndk16vectorIN16ymfm_device_baseIN4ymfm6ym2151EE17
 # Num Counters:
 3
 # Counter Values:
-212335
+212417
 0
 0
 
@@ -85787,7 +85788,7 @@ _ZN5kairo13OrderedWorkerINSt6__ndk16vectorIN16ymfm_device_baseIN4ymfm6ym2151EE17
 # Num Counters:
 4
 # Counter Values:
-70655
+70661
 0
 0
 0
@@ -85798,7 +85799,7 @@ _ZN5kairo13OrderedWorkerINSt6__ndk16vectorIN16ymfm_device_baseIN4ymfm6ym2151EE17
 # Num Counters:
 4
 # Counter Values:
-15
+9
 0
 0
 0
@@ -85809,8 +85810,8 @@ _ZN5kairo13OrderedWorkerINSt6__ndk16vectorIN16ymfm_device_baseIN4ymfm6ym2151EE17
 # Num Counters:
 24
 # Counter Values:
-137211
-66535
+136560
+65884
 1983415
 70681
 5
@@ -85832,7 +85833,7 @@ _ZN5kairo13OrderedWorkerINSt6__ndk16vectorIN16ymfm_device_baseIN4ymfm6ym2151EE17
 0
 0
 0
-70970
+70978
 # Num Value Kinds:
 1
 # ValueKind = IPVK_IndirectCallTarget:
@@ -85848,16 +85849,16 @@ _ZN5kairo13OrderedWorkerINSt6__ndk16vectorIN16ymfm_device_baseIN4ymfm6ym2151EE17
 # Num Counters:
 10
 # Counter Values:
-28579
-89072
-70655
-18417
-18417
+31220
+89160
+70661
+18499
+18499
 52572
 0
 0
 0
-46996
+49719
 
 _ZN5kairo13OrderedWorkerINSt6__ndk16vectorIN16ymfm_device_baseIN4ymfm6ym2151EE17synthesis_commandENS1_9allocatorIS7_EEEENS2_INS6_16synthesis_resultENS8_ISB_EEEELm16ELb0EE6submitIZNS6_20send_synthesis_batchEvEUlOSD_E_EEvSA_OT_
 # Func Hash:
@@ -85865,11 +85866,11 @@ _ZN5kairo13OrderedWorkerINSt6__ndk16vectorIN16ymfm_device_baseIN4ymfm6ym2151EE17
 # Num Counters:
 13
 # Counter Values:
-15
+9
 0
 0
 70676
-15
+9
 0
 70676
 0
@@ -96365,9 +96366,9 @@ _ZNSt6__ndk112__hash_tableIN14output_manager9item_implENS1_9item_hashENS1_10item
 205
 75
 0
-8
+9
 75
-62
+61
 20
 15
 0
@@ -96419,11 +96420,11 @@ _ZNSt6__ndk112__hash_tableIN14output_manager9item_implENS1_9item_hashENS1_10item
 # Counter Values:
 85
 10
-43
+47
 85
-38
+42
 0
-38
+42
 
 _ZNSt6__ndk112__hash_tableIN14output_manager9item_implENS1_9item_hashENS1_10item_equalENS_9allocatorIS2_EEE28__node_insert_unique_prepareB8ne190000EmRS2_
 # Func Hash:
@@ -96432,16 +96433,16 @@ _ZNSt6__ndk112__hash_tableIN14output_manager9item_implENS1_9item_hashENS1_10item
 17
 # Counter Values:
 0
-31
+34
 0
-117
-77
+124
+83
 0
-102
+109
 15
 0
 95
-102
+109
 0
 20
 80
@@ -96462,16 +96463,16 @@ _ZNSt6__ndk112__hash_tableIN14output_manager9item_implENS1_9item_hashENS1_10item
 # Num Counters:
 14
 # Counter Values:
-113
+116
 120
-503
-257
+548
+297
 120
-368
+413
 15
 120
 395
-368
+413
 120
 380
 10
@@ -99880,22 +99881,22 @@ _ZNSt6__ndk127__tree_balance_after_insertB8ne190000IPNS_16__tree_node_baseIPvEEE
 # Num Counters:
 20
 # Counter Values:
-82
-292
-92
-97
-20
-11
+80
+294
+94
+100
 21
-6
-51
-28
-77
-6
+11
+20
+5
+53
+30
+79
+5
 0
 0
 17
-31
+27
 465
 15
 73
@@ -101180,14 +101181,14 @@ _ZNSt6__ndk16__treeINS_12__value_typeIP12sound_streamiEENS_19__map_value_compare
 # Num Counters:
 8
 # Counter Values:
-20
+21
 52
-47
+40
+52
+52
 45
 45
-45
-45
-16
+12
 
 _ZNSt6__ndk16__treeINS_12__value_typeIP12sound_streamiEENS_19__map_value_compareIS3_S4_NS_4lessIS3_EELb1EEENS_9allocatorIS4_EEE25__emplace_unique_key_argsIS3_JRKNS_21piecewise_construct_tENS_5tupleIJRKS3_EEENSG_IJEEEEEENS_4pairINS_15__tree_iteratorIS4_PNS_11__tree_nodeIS4_PvEElEEbEERKT_DpOT0_
 # Func Hash:
@@ -101196,10 +101197,10 @@ _ZNSt6__ndk16__treeINS_12__value_typeIP12sound_streamiEENS_19__map_value_compare
 8
 # Counter Values:
 0
-42
-19
-48
-23
+31
+17
+39
+14
 25
 0
 0
@@ -101979,7 +101980,7 @@ _ZNSt6__ndk16vectorIN16ymfm_device_baseIN4ymfm6ym2151EE16synthesis_resultENS_9al
 43811660
 738119
 738119
-212078
+212093
 70676
 
 _ZNSt6__ndk16vectorIN16ymfm_device_baseIN4ymfm6ym2151EE16synthesis_resultENS_9allocatorIS5_EEE21__push_back_slow_pathIS5_EEPS5_OT_
@@ -107112,7 +107113,7 @@ main
 0
 0
 0
-36
+40
 0
 0
 0
