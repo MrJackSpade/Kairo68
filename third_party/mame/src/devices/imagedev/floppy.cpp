@@ -1136,16 +1136,25 @@ void floppy_image_device::cache_fill(const attotime &when)
 	attotime base;
 	uint32_t position = find_position(base, when);
 
-	auto const it = std::upper_bound(
-			buf.begin(), buf.end(), position,
-			[] (uint32_t a, uint32_t b) { return a < (b & floppy_image::TIME_MASK); });
-
+	// Kairo68: a read moves forward one flux cell at a time, so the cell after the cached one is
+	// usually the one wanted. It is the cell the search below finds exactly when its position is at
+	// most position and the next cell's is above it (Kairo68#5); otherwise search.
 	int index;
-	if(buf.begin() == it) {
-		base -= m_rev_time;
-		index = buf.size() - 1;
+	uint32_t const next = m_cache_index + 1;
+	if(next < cells && (buf[next] & floppy_image::TIME_MASK) <= position &&
+			(next + 1 == cells || position < (buf[next + 1] & floppy_image::TIME_MASK))) {
+		index = int(next);
 	} else {
-		index = int(it - buf.begin()) - 1;
+		auto const it = std::upper_bound(
+				buf.begin(), buf.end(), position,
+				[] (uint32_t a, uint32_t b) { return a < (b & floppy_image::TIME_MASK); });
+
+		if(buf.begin() == it) {
+			base -= m_rev_time;
+			index = buf.size() - 1;
+		} else {
+			index = int(it - buf.begin()) - 1;
+		}
 	}
 
 	for(;;) {
