@@ -212,6 +212,39 @@ bool x68k_state::get_text_pixel(int line, int pixel, uint16_t *pix)
 	return false;
 }
 
+// Kairo68: get_text_pixel for a whole line, into m_text_line[pixel].
+void x68k_state::decode_text_line(int line)
+{
+	if (m_crtc->hend() >= std::size(m_text_line))
+		throw emu_fatalerror("Kairo68: the text layer is %d pixels wide", m_crtc->hend() + 1);
+	int divisor = 1;
+	if(m_crtc->gfx_double_scan())
+		divisor = 2;
+	const int yscr = (m_crtc->yscr_text() & 0x3ff);
+	const uint32_t row = ((((line - m_crtc->vbegin()) / divisor) + yscr) & 0x3ff) * 64;
+	const int xorigin = (m_crtc->xscr_text() & 0x3ff) - m_crtc->hbegin();
+	// Sixteen pixels share each plane word: read the four once per word. xscr is never negative,
+	// so xscr / 16 is xscr >> 4.
+	int word = -1;
+	uint16_t plane0 = 0, plane1 = 0, plane2 = 0, plane3 = 0;
+	for (int pixel = m_crtc->hbegin(); pixel <= m_crtc->hend(); pixel++)
+	{
+		const int xscr = xorigin + pixel;
+		if ((xscr >> 4) != word)
+		{
+			word = xscr >> 4;
+			const uint32_t loc = (row + (word & 0x7f)) & 0xffff;
+			plane0 = m_tvram[loc];
+			plane1 = m_tvram[loc+0x10000];
+			plane2 = m_tvram[loc+0x20000];
+			plane3 = m_tvram[loc+0x30000];
+		}
+		const int bit = 15 - (xscr & 0x0f);
+		m_text_line[pixel] = ((plane0 >> bit) & 0x01) | (((plane1 >> bit) & 0x01) << 1)
+							| (((plane2 >> bit) & 0x01) << 2) | (((plane3 >> bit) & 0x01) << 3);
+	}
+}
+
 bool x68k_state::draw_gfx_scanline( bitmap_ind16 &bitmap, rectangle cliprect, uint8_t priority)
 {
 	int pixel;
@@ -673,6 +706,17 @@ uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, 
 	KAIRO68_PERF_COUNT(screen_updates, 1);
 	KAIRO68_PERF_COUNT(screen_lines, cliprect.height());
 	KAIRO68_PERF_TIME(screen_ns);
+#ifdef KAIRO68_PERF
+	uint64_t kairo68_stage = kairo68::perf::now_ns();
+	auto kairo68_lap = [&kairo68_stage](uint64_t &into) {
+		const uint64_t now = kairo68::perf::now_ns();
+		into += now - kairo68_stage;
+		kairo68_stage = now;
+	};
+#define KAIRO68_SCREEN_LAP(field) kairo68_lap(kairo68::perf::counters().field)
+#else
+#define KAIRO68_SCREEN_LAP(field) ((void)0)
+#endif
 	rectangle rect(0,0,0,0);
 	int priority;
 	int x;
@@ -743,11 +787,13 @@ uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, 
 	}
 	else
 		bitmap.fill(m_pcgpalette->pen(0), rect);
+	KAIRO68_SCREEN_LAP(screen_under_ns);
 
 	bool gfx16bcol = false; // if the gfx layer was blended so gfxbitmap is 16bit color
 	int divisor = 1;
 	// Graphics screen(s)
 	gfx16bcol = draw_gfx(bitmap,rect);
+	KAIRO68_SCREEN_LAP(screen_gfx_ns);
 
 	// Sprite / BG Tiles
 	if(/*(m_spritereg[0x404] & 0x0200) &&*/ (m_video.reg[2] & 0x0040))
@@ -770,6 +816,7 @@ uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, 
 		draw_sprites(m_pcgbitmap, screen, pcgrect);
 	}
 
+	KAIRO68_SCREEN_LAP(screen_pcg_ns);
 	int gfxprio = -1, textprio = -1, pcgprio = -1, currprio = 0;
 
 	for(int priority = 0; priority < 3; priority++)
@@ -792,8 +839,12 @@ uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, 
 	}
 
 	bool blend = (((m_video.reg[2] & 0x1900) == 0x1900) && (m_video.gfx_pri != 2));
+	// Kairo68: colour 0 of the text layer shows at priority level 2 (get_text_pixel).
+	const bool text_zero_shows = ((m_video.reg[1] & 0x0c00) == 0x0800);
 	for(scanline=rect.min_y;scanline<=rect.max_y;scanline++)
 	{
+		if(textprio != -1)
+			decode_text_line(scanline);
 		for(pixel=m_crtc->hbegin();pixel<=m_crtc->hend();pixel++)
 		{
 			if((m_video.reg[2] & 0x1800) == 0x1000) // special priority
@@ -814,8 +865,8 @@ uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, 
 				{
 					if((priority == textprio) && !pcgpix)
 					{
-						uint16_t colour;
-						if(get_text_pixel(scanline, pixel, &colour))
+						const uint16_t colour = m_text_line[pixel];
+						if(colour || text_zero_shows)
 						{
 							pix = m_pcgpalette->pen(colour);
 							pcgpix = true;
@@ -847,8 +898,8 @@ uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, 
 				{
 					if((priority == textprio) && !pcgpix)
 					{
-						uint16_t colour;
-						if(get_text_pixel(scanline, pixel, &colour))
+						const uint16_t colour = m_text_line[pixel];
+						if(colour || text_zero_shows)
 						{
 							pix = m_pcgpalette->pen(colour);
 							pcgpix = true;
@@ -877,6 +928,8 @@ uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, 
 			bitmap.pix(scanline, pixel) = outpix;
 		}
 	}
+	KAIRO68_SCREEN_LAP(screen_mix_ns);
+#undef KAIRO68_SCREEN_LAP
 
 #ifdef MAME_DEBUG
 	if(machine().input().code_pressed(KEYCODE_9))

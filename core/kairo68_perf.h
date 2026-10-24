@@ -31,6 +31,11 @@ struct Counters {
     uint64_t screen_ns = 0;
     uint64_t sound_ns = 0;
     uint64_t render_ns = 0;
+    // screen_update's stages: the layer under BG, the graphics pages, BG and sprites, the mix.
+    uint64_t screen_under_ns = 0;
+    uint64_t screen_gfx_ns = 0;
+    uint64_t screen_pcg_ns = 0;
+    uint64_t screen_mix_ns = 0;
     // Timer callbacks, and screen_update's calls and the lines they drew.
     uint64_t timer_fires = 0;
     uint64_t screen_updates = 0;

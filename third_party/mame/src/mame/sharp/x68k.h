@@ -256,6 +256,9 @@ protected:
 
 	inline void plot_pixel(bitmap_rgb32 &bitmap, int x, int y, uint32_t color);
 	bool get_text_pixel(int line, int pixel, uint16_t *pix);
+	// Kairo68: the text layer's colour at each pixel of one line, as get_text_pixel computes it.
+	void decode_text_line(int line);
+	uint8_t m_text_line[2048];
 	bool draw_gfx_scanline(bitmap_ind16 &bitmap, rectangle cliprect, uint8_t priority);
 	bool draw_gfx(bitmap_rgb32 &bitmap,rectangle cliprect);
 	void draw_sprites(bitmap_ind16 &bitmap, screen_device &screen, rectangle cliprect);

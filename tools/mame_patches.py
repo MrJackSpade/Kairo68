@@ -885,6 +885,151 @@ SCREEN_COLOR_GETTERS = [
 """,),
 ]
 
+# Measurement counters for x68k_state::screen_update's stages (Kairo68#18): the layer under BG, the
+# graphics pages, BG and sprites, and the per-pixel mix with the text layer. Empty unless the
+# build defines KAIRO68_PERF.
+PERF_SCREEN_STAGES = [
+    ('src/mame/sharp/x68k_v.cpp',
+     """	KAIRO68_PERF_TIME(screen_ns);
+""",
+     """	KAIRO68_PERF_TIME(screen_ns);
+#ifdef KAIRO68_PERF
+	uint64_t kairo68_stage = kairo68::perf::now_ns();
+	auto kairo68_lap = [&kairo68_stage](uint64_t &into) {
+		const uint64_t now = kairo68::perf::now_ns();
+		into += now - kairo68_stage;
+		kairo68_stage = now;
+	};
+#define KAIRO68_SCREEN_LAP(field) kairo68_lap(kairo68::perf::counters().field)
+#else
+#define KAIRO68_SCREEN_LAP(field) ((void)0)
+#endif
+""",),
+    ('src/mame/sharp/x68k_v.cpp',
+     """	else
+		bitmap.fill(m_pcgpalette->pen(0), rect);
+""",
+     """	else
+		bitmap.fill(m_pcgpalette->pen(0), rect);
+	KAIRO68_SCREEN_LAP(screen_under_ns);
+""",),
+    ('src/mame/sharp/x68k_v.cpp',
+     """	gfx16bcol = draw_gfx(bitmap,rect);
+""",
+     """	gfx16bcol = draw_gfx(bitmap,rect);
+	KAIRO68_SCREEN_LAP(screen_gfx_ns);
+""",),
+    ('src/mame/sharp/x68k_v.cpp',
+     """	int gfxprio = -1, textprio = -1, pcgprio = -1, currprio = 0;
+""",
+     """	KAIRO68_SCREEN_LAP(screen_pcg_ns);
+	int gfxprio = -1, textprio = -1, pcgprio = -1, currprio = 0;
+""",),
+    ('src/mame/sharp/x68k_v.cpp',
+     """			bitmap.pix(scanline, pixel) = outpix;
+		}
+	}
+""",
+     """			bitmap.pix(scanline, pixel) = outpix;
+		}
+	}
+	KAIRO68_SCREEN_LAP(screen_mix_ns);
+#undef KAIRO68_SCREEN_LAP
+""",),
+]
+
+# The text layer decoded once per line (Kairo68#18). screen_update's mix looked up the text layer
+# pixel by pixel through get_text_pixel, which reread the scroll registers and recomputed the line's
+# address for every pixel. Each line's text colours are now decoded once, with get_text_pixel's
+# expressions, into a buffer the mix reads; whether colour 0 shows is decided once per update.
+X68K_TEXT_LINE = [
+    ('src/mame/sharp/x68k.h',
+     """	bool get_text_pixel(int line, int pixel, uint16_t *pix);
+""",
+     """	bool get_text_pixel(int line, int pixel, uint16_t *pix);
+	// Kairo68: the text layer's colour at each pixel of one line, as get_text_pixel computes it.
+	void decode_text_line(int line);
+	uint8_t m_text_line[2048];
+""",),
+    ('src/mame/sharp/x68k_v.cpp',
+     """bool x68k_state::draw_gfx_scanline( bitmap_ind16 &bitmap, rectangle cliprect, uint8_t priority)
+{""",
+     """// Kairo68: get_text_pixel for a whole line, into m_text_line[pixel].
+void x68k_state::decode_text_line(int line)
+{
+	if (m_crtc->hend() >= std::size(m_text_line))
+		throw emu_fatalerror("Kairo68: the text layer is %d pixels wide", m_crtc->hend() + 1);
+	int divisor = 1;
+	if(m_crtc->gfx_double_scan())
+		divisor = 2;
+	const int yscr = (m_crtc->yscr_text() & 0x3ff);
+	const uint32_t row = ((((line - m_crtc->vbegin()) / divisor) + yscr) & 0x3ff) * 64;
+	const int xorigin = (m_crtc->xscr_text() & 0x3ff) - m_crtc->hbegin();
+	// Sixteen pixels share each plane word: read the four once per word. xscr is never negative,
+	// so xscr / 16 is xscr >> 4.
+	int word = -1;
+	uint16_t plane0 = 0, plane1 = 0, plane2 = 0, plane3 = 0;
+	for (int pixel = m_crtc->hbegin(); pixel <= m_crtc->hend(); pixel++)
+	{
+		const int xscr = xorigin + pixel;
+		if ((xscr >> 4) != word)
+		{
+			word = xscr >> 4;
+			const uint32_t loc = (row + (word & 0x7f)) & 0xffff;
+			plane0 = m_tvram[loc];
+			plane1 = m_tvram[loc+0x10000];
+			plane2 = m_tvram[loc+0x20000];
+			plane3 = m_tvram[loc+0x30000];
+		}
+		const int bit = 15 - (xscr & 0x0f);
+		m_text_line[pixel] = ((plane0 >> bit) & 0x01) | (((plane1 >> bit) & 0x01) << 1)
+							| (((plane2 >> bit) & 0x01) << 2) | (((plane3 >> bit) & 0x01) << 3);
+	}
+}
+
+bool x68k_state::draw_gfx_scanline( bitmap_ind16 &bitmap, rectangle cliprect, uint8_t priority)
+{""",),
+    ('src/mame/sharp/x68k_v.cpp',
+     """	bool blend = (((m_video.reg[2] & 0x1900) == 0x1900) && (m_video.gfx_pri != 2));
+	for(scanline=rect.min_y;scanline<=rect.max_y;scanline++)
+	{
+		for(pixel=m_crtc->hbegin();pixel<=m_crtc->hend();pixel++)""",
+     """	bool blend = (((m_video.reg[2] & 0x1900) == 0x1900) && (m_video.gfx_pri != 2));
+	// Kairo68: colour 0 of the text layer shows at priority level 2 (get_text_pixel).
+	const bool text_zero_shows = ((m_video.reg[1] & 0x0c00) == 0x0800);
+	for(scanline=rect.min_y;scanline<=rect.max_y;scanline++)
+	{
+		if(textprio != -1)
+			decode_text_line(scanline);
+		for(pixel=m_crtc->hbegin();pixel<=m_crtc->hend();pixel++)""",),
+    ('src/mame/sharp/x68k_v.cpp',
+     """				if(blend)
+				{
+					if((priority == textprio) && !pcgpix)
+					{
+						uint16_t colour;
+						if(get_text_pixel(scanline, pixel, &colour))""",
+     """				if(blend)
+				{
+					if((priority == textprio) && !pcgpix)
+					{
+						const uint16_t colour = m_text_line[pixel];
+						if(colour || text_zero_shows)""",),
+    ('src/mame/sharp/x68k_v.cpp',
+     """				else
+				{
+					if((priority == textprio) && !pcgpix)
+					{
+						uint16_t colour;
+						if(get_text_pixel(scanline, pixel, &colour))""",
+     """				else
+				{
+					if((priority == textprio) && !pcgpix)
+					{
+						const uint16_t colour = m_text_line[pixel];
+						if(colour || text_zero_shows)""",),
+]
+
 PATCHES = {'x68k-save-state': X68K_SAVE_STATE, 'x68k-sasi-count': X68K_SASI_COUNT, 'x68k-sasi-dma': X68K_SASI_DMA,
            'osdlib-without-sdl': OSDLIB_WITHOUT_SDL, 'upd765-save-state': UPD765_SAVE_STATE, 'rtc-save-state': RTC_SAVE_STATE,
            'floppy-save-state': FLOPPY_SAVE_STATE, 'hd63450-save-state': HD63450_SAVE_STATE,
@@ -892,7 +1037,9 @@ PATCHES = {'x68k-save-state': X68K_SAVE_STATE, 'x68k-sasi-count': X68K_SASI_COUN
            'mfp-timer-elapse': MFP_TIMER_ELAPSE,
            'dma-drq-poll': DMA_DRQ_POLL,
            'x68k-deferred-partial': X68K_DEFERRED_PARTIAL,
-           'screen-color-getters': SCREEN_COLOR_GETTERS}
+           'screen-color-getters': SCREEN_COLOR_GETTERS,
+           'perf-screen-stages': PERF_SCREEN_STAGES,
+           'x68k-text-line': X68K_TEXT_LINE}
 
 
 def apply(root):

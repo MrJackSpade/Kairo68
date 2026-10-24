@@ -695,7 +695,8 @@ std::vector<std::pair<std::string, uint64_t>> X68kMachine::take_perf() {
     taken = {{"instructions", c.instructions}, {"slices", c.slices}, {"cpu_ns", c.cpu_ns},
              {"timer_fires", c.timer_fires}, {"timer_ns", c.timer_ns}, {"screen_updates", c.screen_updates},
              {"screen_lines", c.screen_lines}, {"screen_ns", c.screen_ns}, {"sound_ns", c.sound_ns},
-             {"render_ns", c.render_ns}};
+             {"render_ns", c.render_ns}, {"screen_under_ns", c.screen_under_ns}, {"screen_gfx_ns", c.screen_gfx_ns},
+             {"screen_pcg_ns", c.screen_pcg_ns}, {"screen_mix_ns", c.screen_mix_ns}};
     static const char *const kRegionNames[kRegions] = {"ram", "gvram", "tvram", "io", "sprite", "other"};
     if (impl_->config.count_accesses)
         for (int region = 0; region < kRegions; ++region) {
