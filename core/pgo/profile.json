@@ -3,36 +3,41 @@
   "compilerVersion": "19.0.1",
   "ndkProvenance": "28.2.13676358",
   "abi": "arm64-v8a",
-  "sourceRevision": "57fe1acea7f00f88b400eb56f13f42f9b3af913e",
-  "portableTextSha256": "584be1ac22accab7123bd13238a174897a7a70ca9b8e2ab9de4fe3587e8f3652",
-  "functionRecords": 4494,
-  "pathOccurrencesRewritten": 646,
+  "sourceRevision": "ff94cc428c30d0010f2cb29ae72b27bc604e0eb9",
+  "portableTextSha256": "62c87bb78c208fd906386986fcb7972d6df8ef5b90545d8d69b1603ba6ac7297",
+  "functionRecords": 4606,
+  "pathOccurrencesRewritten": 667,
   "normalization": "The checkout root in function names is @KAIRO_SOURCE@/ (shared/cmake/KairoPgo.cmake puts the actual root back before indexing). LF newlines, one final newline.",
-  "training": "tools/perf/pgo-train.ps1: alien-25 at 25 MHz, alien-10 at 10 MHz, dracula at 25 MHz, afterburner at 25 MHz, arkanoid at 25 MHz, 1800 frames after each boot; A-Jax, Aquales and R+R held out",
+  "training": "tools/perf/pgo-train.ps1: alien-25 at 25 MHz, alien-10 at 10 MHz, dracula at 25 MHz, afterburner at 25 MHz, arkanoid at 25 MHz, firstblow at 25 MHz, 1800 frames after each boot; A-Jax, Aquales and R+R held out",
   "inputs": [
     {
       "name": "afterburner",
-      "rawProfileSha256": "757583404c8bc000ab13a937c19d35699668310175a7d637ce426e867b807902",
+      "rawProfileSha256": "da48d9c72ece8796764fd3d1d6595a887a0fff1ccdb96b6cfa2a7bdd2b553fdc",
       "weight": 1
     },
     {
       "name": "alien-10",
-      "rawProfileSha256": "16b0c52882695fae74828f3ae2828d297028b7223294098743821b8622db7dbb",
+      "rawProfileSha256": "cdc92d8b57a37861dbbb97efa89227bcc32da637bb5aab3a622fedb355dd146a",
       "weight": 1
     },
     {
       "name": "alien-25",
-      "rawProfileSha256": "80b5f4734eaa78164c5201bab051341953aec5e2ca5694ab865ab8033e367a2b",
+      "rawProfileSha256": "46fc39a69e128a0380d7b20f59868c493e2a62ca9dd98976b2b9e224cb8fdcbf",
       "weight": 1
     },
     {
       "name": "arkanoid",
-      "rawProfileSha256": "8ab2aa43222f08cb6fa3df30d5e142e31083829e8daba4a162aeb8bcba7a4b59",
+      "rawProfileSha256": "28711b2f3dbdf776d4695763452a2eb8d6582ddfd11b0dad45ed7621e5340167",
       "weight": 1
     },
     {
       "name": "dracula",
-      "rawProfileSha256": "60b86c6bee0af1101041ad87c90ee644c1abbf067d4aaf4ad5a3f3aa14b50e3f",
+      "rawProfileSha256": "8fa8c979bf9815b260038694181df9a21d713e0b63b73bc8daa7ccd665d90bee",
+      "weight": 1
+    },
+    {
+      "name": "firstblow",
+      "rawProfileSha256": "4df55286292662746012b91a5f158f806a348a7cd509acf0333981a62633e0c8",
       "weight": 1
     }
   ]
