@@ -843,13 +843,13 @@
 # Counter Values:
 0
 12
-23346
-19290
+23376
+19320
 0
-91
-844
+31
+451
 0
-783
+349
 0
 0
 0
@@ -4314,7 +4314,7 @@ _ZN12core_options5entryD2Ev:6
 0
 0
 0
-54
+52
 0
 0
 0
@@ -4343,7 +4343,7 @@ _ZN12core_options5entryD2Ev:6
 0
 0
 0
-310
+304
 0
 0
 0
@@ -4352,21 +4352,21 @@ _ZN12core_options5entryD2Ev:6
 0
 0
 0
-403
+371
 0
 0
 0
 0
 0
 0
-310
+304
 0
 0
 0
 0
 0
 0
-310
+304
 72
 0
 0
@@ -4480,7 +4480,7 @@ _ZN12core_options5entryD2Ev:6
 0
 72
 0
-304
+302
 0
 0
 0
@@ -4532,13 +4532,14 @@ _ZN12core_options5entryD2Ev:6
 0
 1
 1:72
-1
-9:36
-1
-1:310
 2
-9:397
-16:6
+9:35
+16:1
+1
+1:304
+2
+9:366
+16:5
 0
 0
 0
@@ -6070,7 +6071,7 @@ _ZN4util15basic_vectorbufIcNSt6__ndk111char_traitsIcEENS1_9allocatorIcEEE7seekof
 # Counter Values:
 6
 
-@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILi0ELi1ELi2ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_ii
+@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILi0ELi1ELi2ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_S6_ii
 # Func Hash:
 729545760055006436
 # Num Counters:
@@ -6101,7 +6102,7 @@ _ZN4util15basic_vectorbufIcNSt6__ndk111char_traitsIcEENS1_9allocatorIcEEE7seekof
 54084525
 0
 
-@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILi0ELin1ELi1ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_ii
+@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILi0ELin1ELi1ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_S6_ii
 # Func Hash:
 135896435888671033
 # Num Counters:
@@ -6128,7 +6129,7 @@ _ZN4util15basic_vectorbufIcNSt6__ndk111char_traitsIcEENS1_9allocatorIcEEE7seekof
 13540896
 0
 
-@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILi0ELin1ELin1ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_ii
+@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILi0ELin1ELin1ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_S6_ii
 # Func Hash:
 854638110741550460
 # Num Counters:
@@ -6146,7 +6147,7 @@ _ZN4util15basic_vectorbufIcNSt6__ndk111char_traitsIcEENS1_9allocatorIcEEE7seekof
 237510208
 116533874
 
-@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILi1ELi0ELi2ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_ii
+@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILi1ELi0ELi2ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_S6_ii
 # Func Hash:
 246972741066268648
 # Num Counters:
@@ -6176,7 +6177,7 @@ _ZN4util15basic_vectorbufIcNSt6__ndk111char_traitsIcEENS1_9allocatorIcEEE7seekof
 253951095
 0
 
-@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILin1ELi0ELi1ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_ii
+@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILin1ELi0ELi1ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_S6_ii
 # Func Hash:
 969186096638511417
 # Num Counters:
@@ -6202,7 +6203,7 @@ _ZN4util15basic_vectorbufIcNSt6__ndk111char_traitsIcEENS1_9allocatorIcEEE7seekof
 0
 0
 
-@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILin1ELin1ELi0ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_ii
+@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILin1ELin1ELi0ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_S6_ii
 # Func Hash:
 495568735757626169
 # Num Counters:
@@ -6225,7 +6226,7 @@ _ZN4util15basic_vectorbufIcNSt6__ndk111char_traitsIcEENS1_9allocatorIcEEE7seekof
 66048
 0
 
-@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILin1ELin1ELin1ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_ii
+@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILin1ELin1ELin1ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_S6_ii
 # Func Hash:
 974670607286598035
 # Num Counters:
@@ -8315,11 +8316,10 @@ _ZN22address_space_specificILi1ELi1ELi0ELNSt6__ndk16endianE64206EE19install_ram_
 
 _ZN10x68k_state13screen_updateER13screen_deviceR12bitmap_rgb32RK9rectangle
 # Func Hash:
-970532721845247901
+417610605002401885
 # Num Counters:
-90
+92
 # Counter Values:
-937240064
 1008
 0
 83722240
@@ -8331,8 +8331,8 @@ _ZN10x68k_state13screen_updateER13screen_deviceR12bitmap_rgb32RK9rectangle
 327040
 327040
 327040
-695585
 3661094
+695585
 4171
 166269
 67702
@@ -8344,12 +8344,11 @@ _ZN10x68k_state13screen_updateER13screen_deviceR12bitmap_rgb32RK9rectangle
 459200
 458827
 329162
-317490
-317501
 321204
 1806
 325235
 175186
+322450
 174178
 35672
 139514
@@ -8361,7 +8360,6 @@ _ZN10x68k_state13screen_updateER13screen_deviceR12bitmap_rgb32RK9rectangle
 175186
 175186
 0
-160688
 21174
 174178
 147575
@@ -8384,7 +8382,13 @@ _ZN10x68k_state13screen_updateER13screen_deviceR12bitmap_rgb32RK9rectangle
 0
 0
 0
-159680
+0
+0
+0
+0
+317490
+317501
+321204
 319399
 0
 143269
@@ -8408,7 +8412,6 @@ _ZN10x68k_state13screen_updateER13screen_deviceR12bitmap_rgb32RK9rectangle
 41264
 151854
 175536
-922004
 # Num Value Kinds:
 1
 # ValueKind = IPVK_IndirectCallTarget:
@@ -8416,13 +8419,13 @@ _ZN10x68k_state13screen_updateER13screen_deviceR12bitmap_rgb32RK9rectangle
 # NumValueSites:
 1
 7
-@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILi0ELi1ELi2ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_ii:1658840
-@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILin1ELi0ELi1ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_ii:1496576
-@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILi1ELi0ELi2ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_ii:1042910
-@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILin1ELin1ELin1ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_ii:196227
-@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILi0ELin1ELin1ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_ii:173663
-@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILi0ELin1ELi1ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_ii:59904
-@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILin1ELin1ELi0ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_ii:258
+@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILi0ELi1ELi2ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_S6_ii:1658840
+@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILin1ELi0ELi1ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_S6_ii:1496576
+@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILi1ELi0ELi2ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_S6_ii:1042910
+@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILin1ELin1ELin1ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_S6_ii:196227
+@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILi0ELin1ELin1ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_S6_ii:173663
+@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILi0ELin1ELi1ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_S6_ii:59904
+@KAIRO_SOURCE@/third_party/mame/src/mame/sharp/x68k_v.cpp;_ZN12_GLOBAL__N_113x68k_mix_lineILin1ELin1ELi0ELb0EEEvRKNS_8x68k_mixEPjPKtS6_S6_S6_ii:258
 
 _ZN10x68k_state13set_bus_errorEjbt
 # Func Hash:
@@ -75329,7 +75332,7 @@ _ZN13screen_device22realloc_screen_bitmapsEv
 # Num Counters:
 5
 # Counter Values:
-2202
+2566
 370
 370
 0
@@ -75344,7 +75347,7 @@ _ZN13screen_device22register_screen_bitmapER8bitmap_t
 0
 0
 24
-12
+18
 0
 0
 
@@ -76290,11 +76293,9 @@ _ZN13sound_manager18after_devices_initEv
 0
 0
 0
-8
+14
 0
-26
-0
-0
+22
 0
 0
 0
@@ -76307,7 +76308,9 @@ _ZN13sound_manager18after_devices_initEv
 0
 0
 0
-28
+0
+0
+32
 24
 0
 0
@@ -77270,7 +77273,7 @@ _ZN13video_manager15recompute_speedERK8attotime
 0
 0
 0
-208
+222
 0
 0
 0
@@ -81809,18 +81812,6 @@ _ZN15bitmap_specificIhE4fillEhRK9rectangle
 569817088
 2225848
 175186
-0
-
-_ZN15bitmap_specificIjE4fillEjRK9rectangle
-# Func Hash:
-334492583197507429
-# Num Counters:
-5
-# Counter Values:
-166352
-330228736
-967284
-166352
 0
 
 _ZN15bitmap_specificItE4fillEtRK9rectangle
@@ -101672,9 +101663,9 @@ _ZN4ymfm14fm_engine_baseINS_13opm_registersEE12update_timerEjji
 # Num Counters:
 4
 # Counter Values:
-404330
-119405
-65467
+404318
+119401
+65464
 104307
 # Num Value Kinds:
 1
@@ -101695,7 +101686,7 @@ _ZN4ymfm14fm_engine_baseINS_13opm_registersEE17engine_mode_writeEh
 # Num Counters:
 1
 # Counter Values:
-191878
+191872
 # Num Value Kinds:
 1
 # ValueKind = IPVK_IndirectCallTarget:
@@ -101742,7 +101733,7 @@ _ZN4ymfm14fm_engine_baseINS_13opm_registersEE23engine_check_interruptsEv
 # Num Counters:
 2
 # Counter Values:
-324420
+324410
 264647
 # Num Value Kinds:
 1
@@ -101804,11 +101795,11 @@ _ZN4ymfm14fm_engine_baseINS_13opm_registersEE5writeEth
 # Counter Values:
 483048
 483048
-1138721
-191874
-120753
+1138133
+191871
+120752
 172
-1138875
+1138695
 # Num Value Kinds:
 1
 # ValueKind = IPVK_IndirectCallTarget:
@@ -102003,7 +101994,7 @@ _ZN4ymfm6ym215110write_dataEh
 # Num Counters:
 2
 # Counter Values:
-1330463
+1329954
 770
 # Num Value Kinds:
 1
@@ -102058,8 +102049,8 @@ _ZN4ymfm6ym21515writeEjh
 # Num Counters:
 2
 # Counter Values:
-1330404
-1330283
+1330477
+1330302
 
 _ZN4ymfm6ym21518generateEPNS_11ymfm_outputILi2EEEj
 # Func Hash:
@@ -102090,7 +102081,7 @@ _ZN5kairo13OrderedWorkerINSt6__ndk16vectorIN16ymfm_device_baseIN4ymfm6ym2151EE17
 # Num Counters:
 3
 # Counter Values:
-254450
+254437
 0
 0
 
@@ -102100,7 +102091,7 @@ _ZN5kairo13OrderedWorkerINSt6__ndk16vectorIN16ymfm_device_baseIN4ymfm6ym2151EE17
 # Num Counters:
 4
 # Counter Values:
-84931
+84937
 0
 0
 0
@@ -102111,7 +102102,7 @@ _ZN5kairo13OrderedWorkerINSt6__ndk16vectorIN16ymfm_device_baseIN4ymfm6ym2151EE17
 # Num Counters:
 4
 # Counter Values:
-15
+9
 0
 0
 0
@@ -102122,8 +102113,8 @@ _ZN5kairo13OrderedWorkerINSt6__ndk16vectorIN16ymfm_device_baseIN4ymfm6ym2151EE17
 # Num Counters:
 24
 # Counter Values:
-168773
-83820
+168898
+83945
 2364093
 84959
 6
@@ -102145,7 +102136,7 @@ _ZN5kairo13OrderedWorkerINSt6__ndk16vectorIN16ymfm_device_baseIN4ymfm6ym2151EE17
 0
 0
 0
-85327
+85318
 # Num Value Kinds:
 1
 # ValueKind = IPVK_IndirectCallTarget:
@@ -102161,16 +102152,16 @@ _ZN5kairo13OrderedWorkerINSt6__ndk16vectorIN16ymfm_device_baseIN4ymfm6ym2151EE17
 # Num Counters:
 10
 # Counter Values:
-38364
-106725
-84931
-21794
-21794
+37298
+106718
+84937
+21781
+21781
 62757
 0
 0
 0
-60158
+59079
 
 _ZN5kairo13OrderedWorkerINSt6__ndk16vectorIN16ymfm_device_baseIN4ymfm6ym2151EE17synthesis_commandENS1_9allocatorIS7_EEEENS2_INS6_16synthesis_resultENS8_ISB_EEEELm16ELb0EE6submitIZNS6_20send_synthesis_batchEvEUlOSD_E_EEvSA_OT_
 # Func Hash:
@@ -102178,11 +102169,11 @@ _ZN5kairo13OrderedWorkerINSt6__ndk16vectorIN16ymfm_device_baseIN4ymfm6ym2151EE17
 # Num Counters:
 13
 # Counter Values:
-15
+9
 0
 0
 84953
-15
+9
 0
 84953
 0
@@ -103057,9 +103048,9 @@ _ZN8bitmap_t5resetEv
 # Num Counters:
 3
 # Counter Values:
-1182
+1284
 0
-84
+90
 
 _ZN8bitmap_t6resizeEiiii
 # Func Hash:
@@ -103067,7 +103058,7 @@ _ZN8bitmap_t6resizeEiiii
 # Num Counters:
 7
 # Counter Values:
-2202
+2566
 0
 0
 0
@@ -103081,10 +103072,10 @@ _ZN8bitmap_t8allocateEiiii
 # Num Counters:
 4
 # Counter Values:
-618
-84
+672
+90
 0
-84
+90
 
 _ZN8bitmap_tC2E13bitmap_formathiiii
 # Func Hash:
@@ -103092,7 +103083,7 @@ _ZN8bitmap_tC2E13bitmap_formathiiii
 # Num Counters:
 1
 # Counter Values:
-534
+582
 
 _ZN8bitmap_tD2Ev
 # Func Hash:
@@ -103100,7 +103091,7 @@ _ZN8bitmap_tD2Ev
 # Num Counters:
 2
 # Counter Values:
-534
+582
 0
 
 _ZN8delegateIF12render_colorvE18delegate_late_bindEaSEOS3_
@@ -112726,9 +112717,9 @@ _ZNSt6__ndk112__hash_tableIN14output_manager9item_implENS1_9item_hashENS1_10item
 246
 90
 0
-8
+10
 90
-70
+74
 24
 18
 0
@@ -112780,11 +112771,11 @@ _ZNSt6__ndk112__hash_tableIN14output_manager9item_implENS1_9item_hashENS1_10item
 # Counter Values:
 102
 12
-59
+61
 102
-53
+55
 0
-53
+55
 
 _ZNSt6__ndk112__hash_tableIN14output_manager9item_implENS1_9item_hashENS1_10item_equalENS_9allocatorIS2_EEE28__node_insert_unique_prepareB8ne190000EmRS2_
 # Func Hash:
@@ -112793,16 +112784,16 @@ _ZNSt6__ndk112__hash_tableIN14output_manager9item_implENS1_9item_hashENS1_10item
 17
 # Counter Values:
 0
-45
+48
 0
-135
-92
+115
+79
 0
-117
+97
 18
 0
 114
-117
+97
 0
 24
 96
@@ -112823,16 +112814,16 @@ _ZNSt6__ndk112__hash_tableIN14output_manager9item_implENS1_9item_hashENS1_10item
 # Num Counters:
 14
 # Counter Values:
-129
+136
 144
-685
-376
+623
+323
 144
-523
+461
 18
 144
 474
-523
+461
 144
 456
 12
@@ -116241,24 +116232,24 @@ _ZNSt6__ndk127__tree_balance_after_insertB8ne190000IPNS_16__tree_node_baseIPvEEE
 # Num Counters:
 20
 # Counter Values:
-94
+95
 350
 110
 118
-25
-14
-23
-6
-61
-37
-93
-6
-0
-0
 24
+17
+22
+6
+62
+35
+94
+6
+0
+0
+23
 33
 558
-17
+16
 87
 0
 
@@ -117541,14 +117532,14 @@ _ZNSt6__ndk16__treeINS_12__value_typeIP12sound_streamiEENS_19__map_value_compare
 # Num Counters:
 8
 # Counter Values:
-27
+25
 64
-51
-61
-61
+47
+65
+65
 54
 54
-14
+15
 
 _ZNSt6__ndk16__treeINS_12__value_typeIP12sound_streamiEENS_19__map_value_compareIS3_S4_NS_4lessIS3_EELb1EEENS_9allocatorIS4_EEE25__emplace_unique_key_argsIS3_JRKNS_21piecewise_construct_tENS_5tupleIJRKS3_EEENSG_IJEEEEEENS_4pairINS_15__tree_iteratorIS4_PNS_11__tree_nodeIS4_PvEElEEbEERKT_DpOT0_
 # Func Hash:
@@ -117557,10 +117548,10 @@ _ZNSt6__ndk16__treeINS_12__value_typeIP12sound_streamiEENS_19__map_value_compare
 8
 # Counter Values:
 0
-30
-13
-47
-17
+43
+23
+50
+20
 30
 0
 0
@@ -118340,7 +118331,7 @@ _ZNSt6__ndk16vectorIN16ymfm_device_baseIN4ymfm6ym2151EE16synthesis_resultENS_9al
 52299746
 867010
 867010
-254929
+254925
 84953
 
 _ZNSt6__ndk16vectorIN16ymfm_device_baseIN4ymfm6ym2151EE16synthesis_resultENS_9allocatorIS5_EEE21__push_back_slow_pathIS5_EEPS5_OT_
@@ -120378,8 +120369,8 @@ _ZNSt6__ndk16vectorINS_10unique_ptrIN13screen_device16auto_bitmap_itemENS_14defa
 # Num Counters:
 4
 # Counter Values:
-36
-36
+42
+42
 48
 6
 
@@ -123499,7 +123490,7 @@ main
 0
 0
 0
-35
+47
 0
 0
 0
