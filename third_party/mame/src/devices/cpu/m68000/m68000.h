@@ -345,7 +345,16 @@ protected:
 	static void set_8xh(u16 &r, u16 v) { r = (v & 0xff00) | (v >> 8); }
 
 	inline int map_sp(int r) { return r == 15 ? m_sp : r; }
-	void set_ftu_const();
+	// Kairo68: inline, as the instruction handlers call it once an instruction (Kairo68#29).
+	inline void set_ftu_const() {
+		switch(m_ird >> 12) {
+		case 0x4: m_ftu = 0x80; break;
+		case 0x5: case 0xe: m_ftu = (m_ird >> 9) & 7; if(!m_ftu) m_ftu = 8; break;
+		case 0x6: case 0x7: m_ftu = s8(m_ird); break;
+		case 0x8: case 0xc: m_ftu = 0xf; break;
+		default: m_ftu = 0; break;
+		}
+	}
 
 	inline void alu_add(u16 a, u16 b) {
 		u32 r = b + a;

@@ -111,6 +111,55 @@ void x68k_crtc_device::device_reset()
 	m_vdisp_callback(1);
 	m_rint_callback(1);
 	m_hsync_callback(1);
+	forget_scroll();
+}
+
+// Kairo68: a saved state holds no recorded scroll registers: the lines that use them are drawn
+// first. A loaded state starts with none.
+void x68k_crtc_device::device_pre_save()
+{
+	if (m_scroll_last >= 0)
+		flush_partial();
+}
+
+void x68k_crtc_device::device_post_load()
+{
+	forget_scroll();
+}
+
+void x68k_crtc_device::forget_scroll()
+{
+	m_scroll_last = -1;
+	m_drawn_through = -1;
+}
+
+// Kairo68: a write to a scroll register would draw the lines the beam has passed (flush_partial)
+// before it changes them. Instead, record the registers for those lines and leave them waiting:
+// they are drawn with what they would have been drawn with now, by the next flush_partial or at
+// the end of the frame. Each such write then costs a copy instead of a screen_update call.
+// Every other write that changes the picture still calls flush_partial, which draws the waiting
+// lines and forgets the records, so the records are always the newest state of those lines.
+void x68k_crtc_device::record_scroll()
+{
+	if (m_partial_line < 0)
+		return;
+	const int line = m_partial_line;
+	if (screen().vpos() <= line)
+	{
+		// As flush_partial: the frame that ended drew the line.
+		m_partial_line = -1;
+		forget_scroll();
+		return;
+	}
+	if (line >= int(std::size(m_line_scroll)))
+		throw emu_fatalerror("Kairo68: scroll registers recorded for line %d", line);
+	int from = m_scroll_last >= 0 ? m_scroll_last + 1 : m_drawn_through + 1;
+	if (m_scroll_last < 0)
+		m_scroll_first = from;
+	for (; from <= line; from++)
+		std::copy_n(&m_reg[10], 10, m_line_scroll[from]);
+	if (line > m_scroll_last)
+		m_scroll_last = line;
 }
 
 void x68k_crtc_device::text_copy(unsigned src, unsigned dest, u8 planes)
@@ -225,6 +274,9 @@ TIMER_CALLBACK_MEMBER(x68k_crtc_device::hsync)
 	int scan = screen().vpos();
 	if (hstate == 1)
 	{
+		// Kairo68: a new frame; the records were for the frame that ended, which drew their lines.
+		if (scan == 0)
+			forget_scroll();
 		hsync_time = screen().time_until_pos(scan, m_hend);
 		m_scanline_timer->adjust(hsync_time);
 		if ((scan != 0) && (scan < m_vend))
@@ -351,13 +403,23 @@ void x68k_crtc_device::flush_partial()
 		// The line is the frame's while the beam is below it. Once the beam starts the next frame,
 		// the frame that ended has drawn every line, and the next frame's are not due yet.
 		if (screen().vpos() > line)
+		{
 			screen().update_partial(line);
+			m_drawn_through = line;
+		}
+		// Kairo68: the records were for lines up to this one, now drawn (or drawn by the frame
+		// that ended).
+		m_scroll_last = -1;
 	}
 }
 
 void x68k_crtc_device::crtc_w(offs_t offset, u16 data, u16 mem_mask)
 {
-	flush_partial();
+	// Kairo68: R10 to R19 only move the layers.
+	if (offset >= 10 && offset <= 19 && m_scroll_can_wait && m_scroll_can_wait())
+		record_scroll();
+	else
+		flush_partial();
 	if (offset < 0x24)
 		COMBINE_DATA(&m_reg[offset]);
 	switch (offset)

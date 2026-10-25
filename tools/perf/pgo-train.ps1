@@ -40,6 +40,7 @@ $runs = @(
     [pscustomobject]@{ Name = 'dracula'; Image = Join-Path $Games 'Akumajou Dracula (1993)(Konami)\Akumajou Dracula (1993)(Konami)(Disk 1 of 2).dim'; Clock = 25; Options = @('--boot-frames', '2400') }
     [pscustomobject]@{ Name = 'afterburner'; Image = Join-Path $Games 'Afterburner II (1989)(Dempa)\Afterburner II (1989)(Dempa)(Disk 1 of 2).dim'; Clock = 25; Options = @('--boot-frames', '2400') }
     [pscustomobject]@{ Name = 'arkanoid'; Image = Join-Path $Games 'Arkanoid Revenge of Doh (1987)(Sharp - SPS)\Arkanoid Revenge of Doh (1987)(Sharp - SPS).dim'; Clock = 25; Options = @('--boot-frames', '2400') }
+    [pscustomobject]@{ Name = 'firstblow'; Image = Join-Path $Games 'First Blow (199x)(Project G)\First Blow (199x)(Project G).dim'; Clock = 25; Options = @('--warmup', '0') }
 )
 
 $raw = Join-Path $Out 'raw'

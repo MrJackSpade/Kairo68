@@ -35,9 +35,21 @@ public:
 	// Kairo68: draws the lines the beam has passed and are not drawn yet; call before anything the
 	// picture shows changes (mame_patches.py X68K_DEFERRED_PARTIAL).
 	void flush_partial();
+	// Kairo68: the scroll registers (R10 to R19) a line is drawn with: those in effect when the beam
+	// passed it, recorded by a scroll register write that leaves the line waiting, or the current
+	// ones (mame_patches.py X68K_LINE_SCROLL).
+	bool has_scroll_records(int first, int last) const { return m_scroll_last >= 0 && first <= m_scroll_last && last >= m_scroll_first; }
+	// Kairo68: the driver's test of whether lines can wait for drawing with their scroll registers
+	// recorded; without one, every write draws them first.
+	void set_scroll_can_wait(std::function<bool ()> test) { m_scroll_can_wait = std::move(test); }
+	const u16 *scroll_regs(int line) const { return (line >= m_scroll_first && line <= m_scroll_last) ? m_line_scroll[line] : &m_reg[10]; }
 
 	// getters
 	u16 xscr_text() const { return m_reg[10]; }
+	u16 xscr_text(int line) const { return scroll_regs(line)[0]; }
+	u16 yscr_text(int line) const { return scroll_regs(line)[1]; }
+	u16 xscr_gfx(int line, int page) const { return scroll_regs(line)[2 + page * 2]; }
+	u16 yscr_gfx(int line, int page) const { return scroll_regs(line)[3 + page * 2]; }
 	u16 yscr_text() const { return m_reg[11]; }
 	u16 xscr_gfx(int page) const { return m_reg[12 + page * 2]; }
 	u16 yscr_gfx(int page) const { return m_reg[13 + page * 2]; }
@@ -61,6 +73,8 @@ protected:
 	// device_t implementation
 	virtual void device_start() override ATTR_COLD;
 	virtual void device_reset() override ATTR_COLD;
+	virtual void device_pre_save() override ATTR_COLD;
+	virtual void device_post_load() override ATTR_COLD;
 
 private:
 	// internal helpers
@@ -68,6 +82,8 @@ private:
 	TIMER_CALLBACK_MEMBER(operation_end);
 	void refresh_mode();
 	TIMER_CALLBACK_MEMBER(hsync);
+	void record_scroll();
+	void forget_scroll();
 	TIMER_CALLBACK_MEMBER(raster_end);
 	TIMER_CALLBACK_MEMBER(raster_irq);
 	TIMER_CALLBACK_MEMBER(vblank_irq);
@@ -113,6 +129,13 @@ private:
 
 	emu_timer *m_scanline_timer;
 	int m_partial_line = -1;    // Kairo68: the last line the beam passed that is not drawn yet
+	// Kairo68: the scroll registers recorded for lines m_scroll_first to m_scroll_last (none when
+	// m_scroll_last < 0), and the last line flush_partial drew this frame.
+	u16 m_line_scroll[1024][10];
+	int m_scroll_first = 0;
+	int m_scroll_last = -1;
+	int m_drawn_through = -1;
+	std::function<bool ()> m_scroll_can_wait;
 	emu_timer *m_raster_irq_timer;
 	emu_timer *m_vblank_irq_timer;
 	emu_timer *m_raster_end_timer;

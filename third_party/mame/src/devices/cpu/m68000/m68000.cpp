@@ -626,17 +626,6 @@ void m68000_device::init_decode_table()
 	}
 }
 
-void m68000_device::set_ftu_const()
-{
-	switch(m_ird >> 12) {
-	case 0x4: m_ftu = 0x80; break;
-	case 0x5: case 0xe: m_ftu = (m_ird >> 9) & 7; if(!m_ftu) m_ftu = 8; break;
-	case 0x6: case 0x7: m_ftu = s8(m_ird); break;
-	case 0x8: case 0xc: m_ftu = 0xf; break;
-	default: m_ftu = 0; break;
-	}
-}
-
 void m68000_device::start_interrupt_vector_lookup()
 {
 	// flag for berr -> spurious

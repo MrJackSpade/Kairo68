@@ -259,8 +259,8 @@ protected:
 	// Kairo68: the text layer's colour at each pixel of one line, as get_text_pixel computes it.
 	void decode_text_line(int line);
 	uint8_t m_text_line[2048];
-	bool draw_gfx_scanline(bitmap_ind16 &bitmap, rectangle cliprect, uint8_t priority);
-	bool draw_gfx(bitmap_rgb32 &bitmap,rectangle cliprect);
+	bool draw_gfx_scanline(bitmap_ind16 &bitmap, rectangle cliprect, uint8_t priority, int scroll_line);
+	bool draw_gfx(bitmap_rgb32 &bitmap,rectangle cliprect, int scroll_line = -1);
 	void draw_sprites(bitmap_ind16 &bitmap, screen_device &screen, rectangle cliprect);
 	void draw_bg(bitmap_ind16 &bitmap, screen_device &screen, int layer, bool opaque, rectangle rect);
 	template <bool Blend> rgb_t get_gfx_pixel(int scanline, int pixel, bool gfxblend, rgb_t blendpix);

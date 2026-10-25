@@ -10,6 +10,7 @@
 // Return); pad codes are the pad bits (4 is A, 6 is Run). "-" alone is no input.
 //
 // Options:
+//   --disk2 <image>   put a second disk image in drive 1 (a game's other disk)
 //   --boot-frames <n> run exactly n frames as the boot instead of until the boot ends (for a game
 //                     that waits at a prompt with its drive running, whose boot never ends)
 //   --warmup <n>      run n frames after the boot before measuring (script frames count from the boot)
@@ -136,7 +137,7 @@ int main(int argc, char **argv) {
 #endif
     if (argc < 8)
         return fail("usage: game_profile <rom dir> <work dir> <image> <cpu MHz> <memory MB> <frames> <script> "
-                    "[--nice <n>] [--boot-frames <n>] [--warmup <n>] [--rtc <time>] [--no-idle-skip] [--no-synth-worker] [--no-direct-memory] [--accesses] [--pcs <n>] [--shots <n>] [--csv <file>] [--hashes <file>] [--sound <file>]");
+                    "[--nice <n>] [--disk2 <image>] [--boot-frames <n>] [--warmup <n>] [--rtc <time>] [--no-idle-skip] [--no-synth-worker] [--no-direct-memory] [--accesses] [--pcs <n>] [--shots <n>] [--csv <file>] [--hashes <file>] [--sound <file>]");
     const std::string work = argv[2];
     Config config;
     config.rom_dir = argv[1];
@@ -165,6 +166,7 @@ int main(int argc, char **argv) {
         else if (option == "--pcs" && i + 1 < argc) { config.count_pcs = true; top_pcs = std::strtol(argv[++i], nullptr, 10); }
         else if (option == "--rtc" && i + 1 < argc) { config.rtc = argv[++i]; if (config.rtc == "host") config.rtc.clear(); }
         else if (option == "--warmup" && i + 1 < argc) warmup = std::strtol(argv[++i], nullptr, 10);
+        else if (option == "--disk2" && i + 1 < argc) config.media[kairo68::kFloppy1] = argv[++i];
         else if (option == "--boot-frames" && i + 1 < argc) fixed_boot = std::strtol(argv[++i], nullptr, 10);
         else if (option == "--nice" && i + 1 < argc) {
             const int nice = std::atoi(argv[++i]);

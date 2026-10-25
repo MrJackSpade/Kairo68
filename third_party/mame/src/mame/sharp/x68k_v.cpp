@@ -220,32 +220,45 @@ void x68k_state::decode_text_line(int line)
 	int divisor = 1;
 	if(m_crtc->gfx_double_scan())
 		divisor = 2;
-	const int yscr = (m_crtc->yscr_text() & 0x3ff);
+	const int yscr = (m_crtc->yscr_text(line) & 0x3ff);
 	const uint32_t row = ((((line - m_crtc->vbegin()) / divisor) + yscr) & 0x3ff) * 64;
-	const int xorigin = (m_crtc->xscr_text() & 0x3ff) - m_crtc->hbegin();
-	// Sixteen pixels share each plane word: read the four once per word. xscr is never negative,
-	// so xscr / 16 is xscr >> 4.
-	int word = -1;
-	uint16_t plane0 = 0, plane1 = 0, plane2 = 0, plane3 = 0;
-	for (int pixel = m_crtc->hbegin(); pixel <= m_crtc->hend(); pixel++)
+	const int xorigin = (m_crtc->xscr_text(line) & 0x3ff) - m_crtc->hbegin();
+	// Sixteen pixels share each plane word (bit 15 the leftmost): each byte of a plane word gives
+	// eight pixels' bit of that plane at once, spread one bit a byte by a table. The words the line
+	// covers are decoded whole, then the line is copied from its first pixel's place in the first
+	// word (Kairo68#29). xscr is never negative, so xscr / 16 is xscr >> 4.
+	static const auto spread = [] {
+		std::array<uint64_t, 256> table{};
+		for (int b = 0; b < 256; b++)
+			for (int i = 0; i < 8; i++)
+				if (b & (0x80 >> i))
+					table[b] |= uint64_t(1) << (8 * i);
+		return table;
+	}();
+	const int first = m_crtc->hbegin(), last = m_crtc->hend();
+	if (last < first)
+		return;
+	const int first_word = (xorigin + first) >> 4, last_word = (xorigin + last) >> 4;
+	uint8_t words[sizeof(m_text_line) + 32];
+	if (size_t(last_word - first_word + 1) * 16 > std::size(words))
+		throw emu_fatalerror("Kairo68: the text layer line spans %d words", last_word - first_word + 1);
+	uint8_t *out = words;
+	for (int word = first_word; word <= last_word; word++, out += 16)
 	{
-		const int xscr = xorigin + pixel;
-		if ((xscr >> 4) != word)
+		const uint32_t loc = (row + (word & 0x7f)) & 0xffff;
+		const uint16_t plane0 = m_tvram[loc], plane1 = m_tvram[loc+0x10000], plane2 = m_tvram[loc+0x20000], plane3 = m_tvram[loc+0x30000];
+		const uint64_t left = spread[plane0 >> 8] | (spread[plane1 >> 8] << 1) | (spread[plane2 >> 8] << 2) | (spread[plane3 >> 8] << 3);
+		const uint64_t right = spread[plane0 & 0xff] | (spread[plane1 & 0xff] << 1) | (spread[plane2 & 0xff] << 2) | (spread[plane3 & 0xff] << 3);
+		for (int i = 0; i < 8; i++)
 		{
-			word = xscr >> 4;
-			const uint32_t loc = (row + (word & 0x7f)) & 0xffff;
-			plane0 = m_tvram[loc];
-			plane1 = m_tvram[loc+0x10000];
-			plane2 = m_tvram[loc+0x20000];
-			plane3 = m_tvram[loc+0x30000];
+			out[i] = uint8_t(left >> (8 * i));
+			out[8 + i] = uint8_t(right >> (8 * i));
 		}
-		const int bit = 15 - (xscr & 0x0f);
-		m_text_line[pixel] = ((plane0 >> bit) & 0x01) | (((plane1 >> bit) & 0x01) << 1)
-							| (((plane2 >> bit) & 0x01) << 2) | (((plane3 >> bit) & 0x01) << 3);
 	}
+	std::copy_n(words + ((xorigin + first) & 15), last - first + 1, m_text_line + first);
 }
 
-bool x68k_state::draw_gfx_scanline( bitmap_ind16 &bitmap, rectangle cliprect, uint8_t priority)
+bool x68k_state::draw_gfx_scanline( bitmap_ind16 &bitmap, rectangle cliprect, uint8_t priority, int scroll_line)
 {
 	int pixel;
 	uint32_t loc;  // location in GVRAM
@@ -266,8 +279,8 @@ bool x68k_state::draw_gfx_scanline( bitmap_ind16 &bitmap, rectangle cliprect, ui
 			// adjust for scroll registers
 			if(m_video.reg[2] & 0x0010 && priority == m_video.gfxlayer_pri[0])
 			{
-				xscr = (m_crtc->xscr_gfx(0) & 0x3ff);
-				yscr = (m_crtc->yscr_gfx(0) & 0x3ff);
+				xscr = (m_crtc->xscr_gfx(scroll_line >= 0 ? scroll_line : scanline, 0) & 0x3ff);
+				yscr = (m_crtc->yscr_gfx(scroll_line >= 0 ? scroll_line : scanline, 0) & 0x3ff);
 				lineoffset = (((scanline - m_crtc->vbegin()) + yscr) & 0x3ff) * 1024;
 				loc = xscr & 0x3ff;
 				for(pixel=m_crtc->hbegin();pixel<=m_crtc->hend();pixel++)
@@ -319,13 +332,51 @@ bool x68k_state::draw_gfx_scanline( bitmap_ind16 &bitmap, rectangle cliprect, ui
 				{
 				case 0x00: // 16 colours
 				{
-					xscr = m_crtc->xscr_gfx(page) & 0x1ff;
-					yscr = m_crtc->yscr_gfx(page) & 0x1ff;
+					xscr = m_crtc->xscr_gfx(scroll_line >= 0 ? scroll_line : scanline, page) & 0x1ff;
+					yscr = m_crtc->yscr_gfx(scroll_line >= 0 ? scroll_line : scanline, page) & 0x1ff;
 					lineoffset = (((scanline - m_crtc->vbegin() / divisor) + yscr) & 0x1ff) * 512;
 					loc = xscr & 0x1ff;
 					shift = 4;
 					const uint16_t *const row = &m_gvram[lineoffset];
 					const int plane = page*shift;
+					if(!ret && !special)
+					{
+						// Kairo68: without blending or the special priority, a pixel whose colour shows
+						// (any, on the bottom page) stores it and clears its special pixel. The same
+						// stores in runs that don't wrap GVRAM's row, a form the compiler vectorizes
+						// (Kairo68#29).
+						uint32_t at = loc;
+						for(pixel=first;pixel<=last;)
+						{
+							const int run = std::min<int>(last - pixel + 1, 0x200 - at);
+							// Three different bitmaps: GVRAM, the graphics layer and the special layer.
+							const uint16_t *__restrict const src = row + at;
+							uint16_t *__restrict const d = dest + pixel;
+							uint16_t *__restrict const sp = spec + pixel;
+							if(priority == 3)
+							{
+								for(int i = 0; i < run; i++)
+								{
+									d[i] = (src[i] >> plane) & 0x000f;
+									sp[i] = 0;
+								}
+							}
+							else
+							{
+								for(int i = 0; i < run; i++)
+								{
+									// keep is all ones where the colour is 0: the pixel and its special pixel stay.
+									const uint16_t c = (src[i] >> plane) & 0x000f;
+									const uint16_t keep = uint16_t(-uint16_t(c == 0));
+									d[i] = (d[i] & keep) | c;
+									sp[i] &= keep;
+								}
+							}
+							pixel += run;
+							at = 0;
+						}
+						break;
+					}
 					for(pixel=first;pixel<=last;pixel++)
 					{
 						colour = ((row[loc] >> plane) & 0x000f);
@@ -369,10 +420,10 @@ bool x68k_state::draw_gfx_scanline( bitmap_ind16 &bitmap, rectangle cliprect, ui
 						// What effect do priorites and plane disable have here? Does it work in 16bit color mode?
 						uint16_t xscr0, yscr0, xscr1, yscr1;
 						uint32_t loc0, loc1, lineoffset0, lineoffset1;
-						xscr0 = m_crtc->xscr_gfx(page) & 0x1ff;
-						yscr0 = m_crtc->yscr_gfx(page) & 0x1ff;
-						xscr1 = m_crtc->xscr_gfx(page + 1) & 0x1ff;
-						yscr1 = m_crtc->yscr_gfx(page + 1) & 0x1ff;
+						xscr0 = m_crtc->xscr_gfx(scroll_line >= 0 ? scroll_line : scanline, page) & 0x1ff;
+						yscr0 = m_crtc->yscr_gfx(scroll_line >= 0 ? scroll_line : scanline, page) & 0x1ff;
+						xscr1 = m_crtc->xscr_gfx(scroll_line >= 0 ? scroll_line : scanline, page + 1) & 0x1ff;
+						yscr1 = m_crtc->yscr_gfx(scroll_line >= 0 ? scroll_line : scanline, page + 1) & 0x1ff;
 
 						lineoffset0 = (((scanline - m_crtc->vbegin() / divisor) + yscr0) & 0x1ff) * 512;
 						loc0 = xscr0 & 0x1ff;
@@ -424,8 +475,8 @@ bool x68k_state::draw_gfx_scanline( bitmap_ind16 &bitmap, rectangle cliprect, ui
 					break;
 				case 0x03: // 65536 colours
 				{
-					xscr = m_crtc->xscr_gfx(0) & 0x1ff;
-					yscr = m_crtc->yscr_gfx(0) & 0x1ff;
+					xscr = m_crtc->xscr_gfx(scroll_line >= 0 ? scroll_line : scanline, 0) & 0x1ff;
+					yscr = m_crtc->yscr_gfx(scroll_line >= 0 ? scroll_line : scanline, 0) & 0x1ff;
 					lineoffset = (((scanline - m_crtc->vbegin() / divisor) + yscr) & 0x1ff) * 512;
 					loc = xscr & 0x1ff;
 					const uint16_t *const row = &m_gvram[lineoffset];
@@ -447,7 +498,9 @@ bool x68k_state::draw_gfx_scanline( bitmap_ind16 &bitmap, rectangle cliprect, ui
 	return ret;
 }
 
-bool x68k_state::draw_gfx(bitmap_rgb32 &bitmap,rectangle cliprect)
+// Kairo68: scroll_line is the screen line whose scroll registers draw every row of cliprect, or -1
+// for each row's own line (Kairo68#29).
+bool x68k_state::draw_gfx(bitmap_rgb32 &bitmap,rectangle cliprect, int scroll_line)
 {
 	int priority;
 	bool gfxblend=false;
@@ -467,7 +520,7 @@ bool x68k_state::draw_gfx(bitmap_rgb32 &bitmap,rectangle cliprect)
 
 	for(priority=3;priority>=0;priority--)
 	{
-		gfxblend = draw_gfx_scanline(m_gfxbitmap,gfxrect,priority);
+		gfxblend = draw_gfx_scanline(m_gfxbitmap,gfxrect,priority,scroll_line);
 	}
 	return gfxblend;
 }
@@ -572,6 +625,10 @@ void x68k_state::draw_sprites(bitmap_ind16 &bitmap, screen_device &screen, recta
 		int yflip = m_spritereg[ptr+2] & 0x8000;
 		int sx = (m_spritereg[ptr+0] & 0x3ff) - 16;
 		int sy = (m_spritereg[ptr+1] & 0x3ff) - 16;
+		// Kairo68: a sprite whose 16 rows all lie outside the lines being drawn draws nothing; skip
+		// it before prio_transpen, which would clip it whole (Kairo68#29).
+		const int top = (m_video.bg_vstart / divisor) + sy;
+		if (top > cliprect.max_y || top + 15 < cliprect.min_y) continue;
 
 		rect.min_x=m_video.bg_hstart;
 		rect.min_y=m_video.bg_vstart;
@@ -674,6 +731,10 @@ void x68k_state::video_start()
 {
 	int gfx_index;
 
+	// Kairo68: scroll register writes may leave lines waiting, with the registers recorded, except
+	// in the special priority mode (screen_update).
+	m_crtc->set_scroll_can_wait([this] { return (m_video.reg[2] & 0x1800) != 0x1000; });
+
 	for (gfx_index = 0; gfx_index < MAX_GFX_ELEMENTS; gfx_index++)
 		if (m_gfxdecode->gfx(gfx_index) == nullptr)
 			break;
@@ -716,6 +777,163 @@ void x68k_state::device_post_load()
 	m_bg0_16->mark_all_dirty();
 	m_bg1_16->mark_all_dirty();
 }
+
+namespace {
+
+// Kairo68: what screen_update's mix reads for every pixel, taken once a call: nothing it reads
+// changes while it runs (Kairo68#18).
+struct x68k_mix
+{
+	bool text_zero_shows, special, gfxzero;
+	int gfxmode; // get_gfx_pixel, decided once: 65,536 colours, 16-bit colours (gfx16bcol), or the palette
+	const pen_t *pcgpens, *gfxpens;
+	const uint8_t *text;
+
+	// get_gfx_pixel<false>.
+	ATTR_FORCE_INLINE rgb_t gfx_plain(uint16_t raw) const
+	{
+		if(gfxmode == 2)
+			return (raw || gfxzero) ? x68k_state::GGGGGRRRRRBBBBBI(raw) : rgb_t(0);
+		if(gfxmode == 1)
+			return (raw || gfxzero) ? pal555(raw, 6, 11, 1) : rgb_t(0);
+		const pen_t pen = gfxpens[raw & 0xff];
+		return ((pen & 0xffffff) || gfxzero) ? rgb_t(pen) : rgb_t(0);
+	}
+
+	// get_gfx_pixel<true>.
+	ATTR_FORCE_INLINE rgb_t gfx_blend(uint16_t raw, rgb_t blendpix) const
+	{
+		if(gfxmode == 2)
+			return (raw || gfxzero) ? x68k_state::GGGGGRRRRRBBBBBI(raw) : rgb_t(0);
+		if(gfxmode == 1)
+		{
+			if(!(raw || gfxzero))
+				return rgb_t(0);
+			if(raw & 1)
+				return ((blendpix >> 1) & 0xff7f7f7f) + ((pal555(raw, 6, 11, 1) >> 2) & 0x3f3f3f);
+			return pal555(raw, 6, 11, 1);
+		}
+		uint16_t colour = raw & 0xff;
+		const bool half = colour & 1;
+		if(half)
+			colour &= 0xfe;
+		const pen_t pen = gfxpens[colour];
+		if(!((pen & 0xffffff) || gfxzero))
+			return rgb_t(0);
+		if(half)
+			return ((blendpix >> 1) & 0xff7f7f7f) + ((pen >> 2) & 0x3f3f3f);
+		return rgb_t(pen);
+	}
+};
+
+// Kairo68: one line of screen_update's mix, with the layers' priority levels (-1 for a hidden
+// layer) and the blend mode as constants: the same steps on the same values for every pixel, with
+// the per-pixel tests of which layer a level holds decided by the compiler (Kairo68#29).
+template <int TextPrio, int PcgPrio, int GfxPrio, bool Blend>
+void x68k_mix_line(const x68k_mix &m, uint32_t *dest, const uint16_t *pcgrow, const uint16_t *specialrow, const uint16_t *gfxrow, int first, int last)
+{
+	for(int pixel=first;pixel<=last;pixel++)
+	{
+		if(m.special) // special priority
+		{
+			uint16_t colour = specialrow[pixel] & 0xff;
+			// XXX: this might check the pen color not the palette index
+			if(colour & ~1)
+			{
+				dest[pixel] = m.gfxpens[colour & ~1];
+				continue;
+			}
+		}
+		rgb_t outpix = dest[pixel], pix = 0;
+		bool pcgpix = false, gfxpix = false;
+		for(int priority = 0; priority < 3; priority++)
+		{
+			if(Blend)
+			{
+				if((priority == TextPrio) && !pcgpix)
+				{
+					const uint16_t colour = m.text[pixel];
+					if(colour || m.text_zero_shows)
+					{
+						pix = m.pcgpens[colour];
+						pcgpix = true;
+					}
+				}
+				else if((priority == PcgPrio) && !pcgpix)
+				{
+					uint16_t colour = pcgrow[pixel] & 0xff;
+					if(colour)
+					{
+						pix = m.pcgpens[colour];
+						pcgpix = true;
+					}
+					else if(outpix && (PcgPrio > TextPrio) && (TextPrio != -1))
+						pix = outpix;
+				}
+				else if(priority == GfxPrio)
+					gfxpix = true;
+				if((pix & 0xffffff) || ((priority == 2) && gfxpix))
+				{
+					if(!(pix & 0xffffff))
+						pix = outpix;
+					rgb_t blendpix = m.gfx_blend(gfxrow[pixel], pix);
+					outpix = blendpix & 0xffffff ? blendpix : pix;
+					break;
+				}
+			}
+			else
+			{
+				if((priority == TextPrio) && !pcgpix)
+				{
+					const uint16_t colour = m.text[pixel];
+					if(colour || m.text_zero_shows)
+					{
+						pix = m.pcgpens[colour];
+						pcgpix = true;
+					}
+				}
+				else if((priority == PcgPrio) && !pcgpix)
+				{
+					uint16_t colour = pcgrow[pixel] & 0xff;
+					if(colour)
+					{
+						pix = m.pcgpens[colour];
+						pcgpix = true;
+					}
+					else if(outpix && (PcgPrio > TextPrio) && (TextPrio != -1))
+						pix = outpix;
+				}
+				else if(priority == GfxPrio)
+					pix = m.gfx_plain(gfxrow[pixel]);
+				if(pix & 0xffffff)
+				{
+					outpix = pix;
+					break;
+				}
+			}
+		}
+		dest[pixel] = outpix;
+	}
+}
+
+using x68k_mix_fn = void (*)(const x68k_mix &, uint32_t *, const uint16_t *, const uint16_t *, const uint16_t *, int, int);
+
+// The levels screen_update gives the shown layers are 0, 1, 2 in order, so these are every case.
+x68k_mix_fn x68k_mixer(int textprio, int pcgprio, int gfxprio, bool blend)
+{
+	switch((textprio + 1) * 16 + (pcgprio + 1) * 4 + (gfxprio + 1))
+	{
+#define X68K_MIXER(t, p, g) case (t + 1) * 16 + (p + 1) * 4 + (g + 1): 		return blend ? &x68k_mix_line<t, p, g, true> : &x68k_mix_line<t, p, g, false>;
+	X68K_MIXER(-1, -1, -1)
+	X68K_MIXER(0, -1, -1) X68K_MIXER(-1, 0, -1) X68K_MIXER(-1, -1, 0)
+	X68K_MIXER(0, 1, -1) X68K_MIXER(1, 0, -1) X68K_MIXER(0, -1, 1) X68K_MIXER(1, -1, 0) X68K_MIXER(-1, 0, 1) X68K_MIXER(-1, 1, 0)
+	X68K_MIXER(0, 1, 2) X68K_MIXER(0, 2, 1) X68K_MIXER(1, 0, 2) X68K_MIXER(1, 2, 0) X68K_MIXER(2, 0, 1) X68K_MIXER(2, 1, 0)
+#undef X68K_MIXER
+	}
+	throw emu_fatalerror("Kairo68: layer priority levels text %d, sprites %d, graphics %d", textprio, pcgprio, gfxprio);
+}
+
+} // anonymous namespace
 
 uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
 {
@@ -792,13 +1010,14 @@ uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, 
 		int divisor = 1;
 		if(!(m_video.bg_hvres & 0x0c) && m_crtc->gfx_double_scan())
 			divisor = 2;
+		// Kairo68: the rows and pens taken once a line (Kairo68#29).
+		const pen_t *const pens = m_pcgpalette->pens();
 		for(scanline=rect.min_y;scanline<=rect.max_y;scanline++)
 		{
+			const uint16_t *const src = &m_pcgbitmap.pix(scanline / divisor, 0);
+			uint32_t *const dst = &bitmap.pix(scanline, 0);
 			for(pixel=m_crtc->hbegin();pixel<=m_crtc->hend();pixel++)
-			{
-				uint8_t colour = m_pcgbitmap.pix(scanline / divisor, pixel) & 0xff;
-				bitmap.pix(scanline, pixel) = m_pcgpalette->pen(colour);
-			}
+				dst[pixel] = pens[src[pixel] & 0xff];
 		}
 	}
 	else
@@ -807,8 +1026,20 @@ uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, 
 
 	bool gfx16bcol = false; // if the gfx layer was blended so gfxbitmap is 16bit color
 	int divisor = 1;
+	// Kairo68: lines of rect can have scroll registers recorded from when the beam passed them
+	// (x68k_crtc_device::record_scroll). Each graphics row is drawn with its line's registers. When
+	// the graphics are double-scanned, two screen lines share a row but can have different
+	// registers, so each line's row is drawn just before the line is mixed, as a screen_update
+	// call for that line alone would have drawn it (Kairo68#29). Records are only made outside
+	// the special priority mode, whose mix reads graphics rows by another divisor.
+	const bool gfx_per_line = m_crtc->gfx_double_scan() && m_crtc->has_scroll_records(rect.min_y, rect.max_y);
+	if (m_crtc->has_scroll_records(rect.min_y, rect.max_y) && ((m_video.reg[2] & 0x1800) == 0x1000))
+		throw emu_fatalerror("Kairo68: scroll registers recorded in the special priority mode");
 	// Graphics screen(s)
-	gfx16bcol = draw_gfx(bitmap,rect);
+	if (gfx_per_line)
+		gfx16bcol = draw_gfx(bitmap, rectangle(rect.min_x, rect.max_x, rect.min_y, rect.min_y), rect.min_y);
+	else
+		gfx16bcol = draw_gfx(bitmap, rect, m_crtc->gfx_double_scan() ? rect.min_y : -1);
 	KAIRO68_SCREEN_LAP(screen_gfx_ns);
 
 	// Sprite / BG Tiles
@@ -855,140 +1086,36 @@ uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, 
 	}
 
 	bool blend = (((m_video.reg[2] & 0x1900) == 0x1900) && (m_video.gfx_pri != 2));
+	x68k_mix mix;
 	// Kairo68: colour 0 of the text layer shows at priority level 2 (get_text_pixel).
-	const bool text_zero_shows = ((m_video.reg[1] & 0x0c00) == 0x0800);
-	// Kairo68: what the mix reads for every pixel, taken once: nothing it reads changes while it runs.
-	const bool special = ((m_video.reg[2] & 0x1800) == 0x1000);
-	const pen_t *const pcgpens = m_pcgpalette->pens();
-	const pen_t *const gfxpens = m_gfxpalette->pens();
-	// get_gfx_pixel, decided once: 65,536 colours, 16-bit colours (gfx16bcol), or the palette.
-	const int gfxmode = ((m_video.reg[0] & 0x03) == 3) ? 2 : (gfx16bcol ? 1 : 0);
-	const bool gfxzero = (m_video.gfx_pri == 2);
+	mix.text_zero_shows = ((m_video.reg[1] & 0x0c00) == 0x0800);
+	mix.special = ((m_video.reg[2] & 0x1800) == 0x1000);
+	mix.pcgpens = m_pcgpalette->pens();
+	mix.gfxpens = m_gfxpalette->pens();
+	mix.gfxmode = ((m_video.reg[0] & 0x03) == 3) ? 2 : (gfx16bcol ? 1 : 0);
+	mix.gfxzero = (m_video.gfx_pri == 2);
+	mix.text = m_text_line;
+	const x68k_mix_fn mixer = x68k_mixer(textprio, pcgprio, gfxprio, blend);
 	const int gfxdivisor = m_crtc->gfx_double_scan() ? 2 : 1;
-	// get_gfx_pixel<false>.
-	auto gfx_plain = [&](uint16_t raw) -> rgb_t
-	{
-		if(gfxmode == 2)
-			return (raw || gfxzero) ? GGGGGRRRRRBBBBBI(raw) : rgb_t(0);
-		if(gfxmode == 1)
-			return (raw || gfxzero) ? pal555(raw, 6, 11, 1) : rgb_t(0);
-		const pen_t pen = gfxpens[raw & 0xff];
-		return ((pen & 0xffffff) || gfxzero) ? rgb_t(pen) : rgb_t(0);
-	};
-	// get_gfx_pixel<true>.
-	auto gfx_blend = [&](uint16_t raw, rgb_t blendpix) -> rgb_t
-	{
-		if(gfxmode == 2)
-			return (raw || gfxzero) ? GGGGGRRRRRBBBBBI(raw) : rgb_t(0);
-		if(gfxmode == 1)
-		{
-			if(!(raw || gfxzero))
-				return rgb_t(0);
-			if(raw & 1)
-				return ((blendpix >> 1) & 0xff7f7f7f) + ((pal555(raw, 6, 11, 1) >> 2) & 0x3f3f3f);
-			return pal555(raw, 6, 11, 1);
-		}
-		uint16_t colour = raw & 0xff;
-		const bool half = colour & 1;
-		if(half)
-			colour &= 0xfe;
-		const pen_t pen = gfxpens[colour];
-		if(!((pen & 0xffffff) || gfxzero))
-			return rgb_t(0);
-		if(half)
-			return ((blendpix >> 1) & 0xff7f7f7f) + ((pen >> 2) & 0x3f3f3f);
-		return rgb_t(pen);
-	};
+	int gfx_row_line = rect.min_y; // Kairo68: the line whose registers drew the graphics row last
 	for(scanline=rect.min_y;scanline<=rect.max_y;scanline++)
 	{
+		if(gfx_per_line && scanline != rect.min_y)
+		{
+			const uint16_t *const regs = m_crtc->scroll_regs(scanline);
+			if(((scanline >> 1) != (gfx_row_line >> 1)) || !std::equal(regs, regs + 10, m_crtc->scroll_regs(gfx_row_line)))
+			{
+				draw_gfx(bitmap, rectangle(rect.min_x, rect.max_x, scanline, scanline), scanline);
+				gfx_row_line = scanline;
+			}
+		}
 		if(textprio != -1)
 			decode_text_line(scanline);
 		uint32_t *const dest = &bitmap.pix(scanline, 0);
 		const uint16_t *const pcgrow = &m_pcgbitmap.pix(scanline / divisor, 0);
 		const uint16_t *const specialrow = &m_special.pix(scanline / divisor, 0);
 		const uint16_t *const gfxrow = &m_gfxbitmap.pix(scanline / gfxdivisor, 0);
-		for(pixel=m_crtc->hbegin();pixel<=m_crtc->hend();pixel++)
-		{
-			if(special) // special priority
-			{
-				uint16_t colour = specialrow[pixel] & 0xff;
-				// XXX: this might check the pen color not the palette index
-				if(colour & ~1)
-				{
-					dest[pixel] = gfxpens[colour & ~1];
-					continue;
-				}
-			}
-			rgb_t outpix = dest[pixel], pix = 0;
-			bool pcgpix = false, gfxpix = false;
-			for(priority = 0; priority < 3; priority++)
-			{
-				if(blend)
-				{
-					if((priority == textprio) && !pcgpix)
-					{
-						const uint16_t colour = m_text_line[pixel];
-						if(colour || text_zero_shows)
-						{
-							pix = pcgpens[colour];
-							pcgpix = true;
-						}
-					}
-					else if((priority == pcgprio) && !pcgpix)
-					{
-						uint16_t colour = pcgrow[pixel] & 0xff;
-						if(colour)
-						{
-							pix = pcgpens[colour];
-							pcgpix = true;
-						}
-						else if(outpix && (pcgprio > textprio) && (textprio != -1))
-							pix = outpix;
-					}
-					else if(priority == gfxprio)
-						gfxpix = true;
-					if((pix & 0xffffff) || ((priority == 2) && gfxpix))
-					{
-						if(!(pix & 0xffffff))
-							pix = outpix;
-						rgb_t blendpix = gfx_blend(gfxrow[pixel], pix);
-						outpix = blendpix & 0xffffff ? blendpix : pix;
-						break;
-					}
-				}
-				else
-				{
-					if((priority == textprio) && !pcgpix)
-					{
-						const uint16_t colour = m_text_line[pixel];
-						if(colour || text_zero_shows)
-						{
-							pix = pcgpens[colour];
-							pcgpix = true;
-						}
-					}
-					else if((priority == pcgprio) && !pcgpix)
-					{
-						uint16_t colour = pcgrow[pixel] & 0xff;
-						if(colour)
-						{
-							pix = pcgpens[colour];
-							pcgpix = true;
-						}
-						else if(outpix && (pcgprio > textprio) && (textprio != -1))
-							pix = outpix;
-					}
-					else if(priority == gfxprio)
-						pix = gfx_plain(gfxrow[pixel]);
-					if(pix & 0xffffff)
-					{
-						outpix = pix;
-						break;
-					}
-				}
-			}
-			dest[pixel] = outpix;
-		}
+		mixer(mix, dest, pcgrow, specialrow, gfxrow, m_crtc->hbegin(), m_crtc->hend());
 	}
 	KAIRO68_SCREEN_LAP(screen_mix_ns);
 #undef KAIRO68_SCREEN_LAP
