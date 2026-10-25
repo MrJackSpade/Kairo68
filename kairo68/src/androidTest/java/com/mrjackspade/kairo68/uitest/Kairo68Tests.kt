@@ -39,7 +39,7 @@ object Kairo68App : AppUnderTest() {
     override val bootGameFile = "games/Alien Syndrome (1992)(Dempa).zip"
     override val otherGame = "Mahjong Saikyou Musashi"
     override val defaultOption = "memory"
-    override val mediaSwap = MediaSwap("Mahjong Saikyou Musashi", "Floppy 1", "Disk 1 of 2")
+    override val mediaSwap = MediaSwap("Mahjong Saikyou Musashi", "Floppy 1", "Disk 1 of 2", filler = "dim")
 }
 
 class Kairo68FirstRunTests : FirstRunTests() { override val app = Kairo68App }
