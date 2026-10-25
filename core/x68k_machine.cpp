@@ -129,7 +129,13 @@ struct X68kMachine::Impl : public osd_interface {
 
     // Video.
     render_target *target = nullptr;
-    std::vector<uint32_t> pixels;
+    // The latest picture as 0xAARRGGBB words (alpha undefined): the screen's own bitmap, or owned
+    // when it had to be dimmed or must outlive frames MAME skips (render_frame).
+    const uint32_t *picture = nullptr;
+    uint32_t picture_pitch = 0; // words from one row to the next
+    std::vector<uint32_t> owned;
+    // frame()'s RGBA copy of the picture, for the tools.
+    mutable std::vector<uint32_t> rgba;
     uint32_t width = 0, height = 0;
     double frame_period = 1.0 / 55.46;
 
@@ -182,6 +188,7 @@ struct X68kMachine::Impl : public osd_interface {
     void config_save(config_type, util::xml::data_node *) {}
     void update(bool skip_redraw) override;
     void render_frame();
+    void own_picture();
     void run_tasks(std::unique_lock<std::mutex> &lock);
     void input_update(bool relative_reset) override;
     void find_fields();
@@ -469,6 +476,9 @@ void X68kMachine::Impl::update(bool skip_redraw) {
         // (x68k_state::screen_update and the renderer) took half the device's time (Kairo68#2).
         // MAME's fast-forward skips 11 frames in 12, with their screen updates, until the boot ends.
         machine->video().set_fastforward(config.skip_memory_check && booting.load());
+        // Fast-forwarded frames may go undrawn and leave the picture as it is, while MAME draws
+        // on (or reallocates) the screen's bitmaps: keep a copy of it meanwhile.
+        if (machine->video().fastforward()) own_picture();
         lock.lock();
         if (!exiting) {
             frame_ready = true;
@@ -537,8 +547,10 @@ void X68kMachine::Impl::update_booting() {
 
 // The finished picture straight from the screen's bitmap (Kairo68#20). The target shows only the
 // screen, at its native size, as one unblended quad at full brightness, so MAME's renderer only
-// copied the visible area; one pass now copies it and sets alpha. The target stays allocated:
-// MAME updates a screen only while a target shows it.
+// copied the visible area. At full brightness the picture is that area of the bitmap itself, its
+// 0xRRGGBB words handed to the presenter as B, G, R, A bytes (Kairo#50); the host reads it before
+// the next frame runs. The target stays allocated: MAME updates a screen only while a target
+// shows it.
 void X68kMachine::Impl::render_frame() {
     KAIRO68_PERF_TIME(render_ns);
     screen_device *screen = screen_device_enumerator(machine->root_device()).first();
@@ -550,8 +562,6 @@ void X68kMachine::Impl::render_frame() {
     const bitmap_rgb32 &bitmap = finished.as_rgb32();
     const rectangle &visible = screen->visible_area();
     const uint32_t w = uint32_t(visible.width()), h = uint32_t(visible.height());
-    pixels.resize(size_t(w) * h);
-    uint32_t *out = pixels.data();
     // The quad's colour, as screen_device::update_quads sets it: the screen's colour darkened by its
     // brightness, which the driver sets from the monitor contrast for fades. MAME's renderer
     // scales each channel by trunc(256 * c / 255) and shifts it down by 8 (rendersw.hxx,
@@ -559,28 +569,39 @@ void X68kMachine::Impl::render_frame() {
     // whole number only at 0 and 255.
     const rgb_t quad = screen->color() - rgb_t(0, 0xff - screen->brightness(), 0xff - screen->brightness(),
                                                0xff - screen->brightness());
-    const uint32_t sr = uint32_t(quad.r()) * 256 / 255, sg = uint32_t(quad.g()) * 256 / 255,
-                   sb = uint32_t(quad.b()) * 256 / 255;
-    const bool full = quad.r() == 0xff && quad.g() == 0xff && quad.b() == 0xff;
-    // MAME's 0xRRGGBB to the RGBA bytes frame() returns: red in the low byte, opaque.
-    for (int32_t y = visible.top(); y <= visible.bottom(); ++y) {
-        const uint32_t *row = &bitmap.pix(y, visible.left());
-        if (full) {
-            for (uint32_t x = 0; x < w; ++x) {
-                const uint32_t rgb = row[x];
-                *out++ = 0xff000000u | ((rgb & 0xff) << 16) | (rgb & 0xff00) | ((rgb >> 16) & 0xff);
-            }
-        } else {
-            for (uint32_t x = 0; x < w; ++x) {
-                const uint32_t rgb = row[x];
-                const uint32_t r = (((rgb >> 16) & 0xff) * sr) >> 8, g = (((rgb >> 8) & 0xff) * sg) >> 8,
-                               b = ((rgb & 0xff) * sb) >> 8;
-                *out++ = 0xff000000u | (b << 16) | (g << 8) | r;
-            }
-        }
-    }
     width = w;
     height = h;
+    if (quad.r() == 0xff && quad.g() == 0xff && quad.b() == 0xff) {
+        picture = &bitmap.pix(visible.top(), visible.left());
+        picture_pitch = uint32_t(bitmap.rowpixels());
+        return;
+    }
+    const uint32_t sr = uint32_t(quad.r()) * 256 / 255, sg = uint32_t(quad.g()) * 256 / 255,
+                   sb = uint32_t(quad.b()) * 256 / 255;
+    owned.resize(size_t(w) * h);
+    uint32_t *out = owned.data();
+    for (int32_t y = visible.top(); y <= visible.bottom(); ++y) {
+        const uint32_t *row = &bitmap.pix(y, visible.left());
+        for (uint32_t x = 0; x < w; ++x) {
+            const uint32_t rgb = row[x];
+            const uint32_t r = (((rgb >> 16) & 0xff) * sr) >> 8, g = (((rgb >> 8) & 0xff) * sg) >> 8,
+                           b = ((rgb & 0xff) * sb) >> 8;
+            *out++ = 0xff000000u | (r << 16) | (g << 8) | b;
+        }
+    }
+    picture = owned.data();
+    picture_pitch = w;
+}
+
+// Copies a picture that is the screen's bitmap into owned.
+void X68kMachine::Impl::own_picture() {
+    if (!picture || picture == owned.data()) return;
+    std::vector<uint32_t> copy(size_t(width) * height);
+    for (uint32_t y = 0; y < height; ++y)
+        std::copy_n(picture + size_t(y) * picture_pitch, width, copy.data() + size_t(y) * width);
+    owned = std::move(copy);
+    picture = owned.data();
+    picture_pitch = width;
 }
 
 std::unique_ptr<X68kMachine> X68kMachine::create(const Config &config, std::string &error) {
@@ -630,10 +651,28 @@ bool X68kMachine::run_frame(std::string &error) {
 double X68kMachine::frame_seconds() const { return impl_->frame_period; }
 
 const uint8_t *X68kMachine::frame(uint32_t &width, uint32_t &height) const {
-    if (impl_->pixels.empty()) return nullptr;
+    if (!impl_->picture) return nullptr;
     width = impl_->width;
     height = impl_->height;
-    return reinterpret_cast<const uint8_t *>(impl_->pixels.data());
+    // 0xAARRGGBB to the RGBA bytes: red in the low byte, opaque.
+    impl_->rgba.resize(size_t(width) * height);
+    uint32_t *out = impl_->rgba.data();
+    for (uint32_t y = 0; y < height; ++y) {
+        const uint32_t *row = impl_->picture + size_t(y) * impl_->picture_pitch;
+        for (uint32_t x = 0; x < width; ++x) {
+            const uint32_t rgb = row[x];
+            *out++ = 0xff000000u | ((rgb & 0xff) << 16) | (rgb & 0xff00) | ((rgb >> 16) & 0xff);
+        }
+    }
+    return reinterpret_cast<const uint8_t *>(impl_->rgba.data());
+}
+
+const uint8_t *X68kMachine::picture(uint32_t &width, uint32_t &height, uint32_t &stride) const {
+    if (!impl_->picture) return nullptr;
+    width = impl_->width;
+    height = impl_->height;
+    stride = impl_->picture_pitch * 4;
+    return reinterpret_cast<const uint8_t *>(impl_->picture);
 }
 
 int X68kMachine::sample_rate() const { return impl_->config.sample_rate; }

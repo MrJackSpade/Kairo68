@@ -27,16 +27,20 @@ public:
     bool run_frame() override { return machine_->run_frame(error_); }
     std::string error() override { return error_; }
 
+    // MAME's screen bitmap itself, B, G, R, A bytes inside wider rows (Kairo#50).
     const uint8_t *frame(uint32_t &width, uint32_t &height) override {
-        const uint8_t *pixels = machine_->frame(width, height);
+        const uint8_t *pixels = machine_->picture(width, height, stride_);
         if (pixels) return pixels;
         // Black until the machine draws its first picture.
         width = 768;
         height = 512;
+        stride_ = 0;
         blank_.resize(width * height * 4);
         for (size_t i = 3; i < blank_.size(); i += 4) blank_[i] = 0xff;
         return blank_.data();
     }
+    bool frame_bgra() override { return true; }
+    uint32_t frame_stride() override { return stride_; }
 
     double frame_seconds() override { return machine_->frame_seconds(); }
     int32_t audio_rate() override { return machine_->sample_rate(); }
@@ -89,6 +93,7 @@ private:
     std::unique_ptr<X68kMachine> machine_;
     std::string error_;
     std::vector<uint8_t> blank_;
+    uint32_t stride_ = 0;
     std::array<bool, kairo68::kKeyCodes> keys_{};
 };
 

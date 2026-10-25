@@ -76,8 +76,12 @@ public:
     bool run_frame(std::string &error);
     // The guest time a frame lasts.
     double frame_seconds() const;
-    // The latest picture, RGBA rows of width pixels; null before the first one.
+    // The latest picture, RGBA rows of width pixels; null before the first one. It converts
+    // picture() each call: for the tools, which compare it between builds.
     const uint8_t *frame(uint32_t &width, uint32_t &height) const;
+    // The latest picture as rows of B, G, R and an undefined alpha byte, stride bytes apart; null
+    // before the first one. Valid until the next run_frame.
+    const uint8_t *picture(uint32_t &width, uint32_t &height, uint32_t &stride) const;
     int sample_rate() const;
     // Takes up to max_frames interleaved stereo frames produced so far.
     uint32_t read_audio(int16_t *stereo, uint32_t max_frames);
