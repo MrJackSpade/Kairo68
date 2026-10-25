@@ -761,6 +761,7 @@ void x68k_state::video_start()
 	m_screen->register_screen_bitmap(m_pcgbitmap);
 	m_screen->register_screen_bitmap(m_gfxbitmap);
 	m_screen->register_screen_bitmap(m_special);
+	m_screen->register_screen_bitmap(m_underbitmap);
 
 //  m_scanline_timer->adjust(attotime::zero, 0, attotime::from_hz(55.45)/568);
 }
@@ -830,7 +831,7 @@ struct x68k_mix
 // layer) and the blend mode as constants: the same steps on the same values for every pixel, with
 // the per-pixel tests of which layer a level holds decided by the compiler (Kairo68#29).
 template <int TextPrio, int PcgPrio, int GfxPrio, bool Blend>
-void x68k_mix_line(const x68k_mix &m, uint32_t *dest, const uint16_t *pcgrow, const uint16_t *specialrow, const uint16_t *gfxrow, int first, int last)
+void x68k_mix_line(const x68k_mix &m, uint32_t *dest, const uint16_t *underrow, const uint16_t *pcgrow, const uint16_t *specialrow, const uint16_t *gfxrow, int first, int last)
 {
 	for(int pixel=first;pixel<=last;pixel++)
 	{
@@ -844,7 +845,7 @@ void x68k_mix_line(const x68k_mix &m, uint32_t *dest, const uint16_t *pcgrow, co
 				continue;
 			}
 		}
-		rgb_t outpix = dest[pixel], pix = 0;
+		rgb_t outpix = m.pcgpens[underrow[pixel] & 0xff], pix = 0;
 		bool pcgpix = false, gfxpix = false;
 		for(int priority = 0; priority < 3; priority++)
 		{
@@ -916,7 +917,7 @@ void x68k_mix_line(const x68k_mix &m, uint32_t *dest, const uint16_t *pcgrow, co
 	}
 }
 
-using x68k_mix_fn = void (*)(const x68k_mix &, uint32_t *, const uint16_t *, const uint16_t *, const uint16_t *, int, int);
+using x68k_mix_fn = void (*)(const x68k_mix &, uint32_t *, const uint16_t *, const uint16_t *, const uint16_t *, const uint16_t *, int, int);
 
 // The levels screen_update gives the shown layers are 0, 1, 2 in order, so these are every case.
 x68k_mix_fn x68k_mixer(int textprio, int pcgprio, int gfxprio, bool blend)
@@ -997,31 +998,23 @@ uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, 
 		if(m_spritereg[0x404] & 0x0008)
 		{
 			clear = true;
-			draw_bg(m_pcgbitmap, screen, 1, true, pcgrect);
+			draw_bg(m_underbitmap, screen, 1, true, pcgrect);
 		}
 		else if(m_spritereg[0x404] & 0x0001)
 		{
 			clear = true;
-			draw_bg(m_pcgbitmap, screen, 0, true, pcgrect);
+			draw_bg(m_underbitmap, screen, 0, true, pcgrect);
 		}
 	}
-	if(clear)
-	{
-		int divisor = 1;
-		if(!(m_video.bg_hvres & 0x0c) && m_crtc->gfx_double_scan())
-			divisor = 2;
-		// Kairo68: the rows and pens taken once a line (Kairo68#29).
-		const pen_t *const pens = m_pcgpalette->pens();
-		for(scanline=rect.min_y;scanline<=rect.max_y;scanline++)
-		{
-			const uint16_t *const src = &m_pcgbitmap.pix(scanline / divisor, 0);
-			uint32_t *const dst = &bitmap.pix(scanline, 0);
-			for(pixel=m_crtc->hbegin();pixel<=m_crtc->hend();pixel++)
-				dst[pixel] = pens[src[pixel] & 0xff];
-		}
-	}
-	else
-		bitmap.fill(m_pcgpalette->pen(0), rect);
+	// Kairo68: the layer under everything is drawn to its own bitmap, and the mix starts each pixel
+	// from its pen there (or from pen 0 without it) instead of reading back the screen bitmap this
+	// pass filled with those pens (Kairo68#29).
+	int under_divisor = 1;
+	if(!(m_video.bg_hvres & 0x0c) && m_crtc->gfx_double_scan())
+		under_divisor = 2;
+	static const uint16_t no_under[2048] = {};
+	if(m_crtc->hend() >= int(std::size(no_under)))
+		throw emu_fatalerror("Kairo68: the screen is %d pixels wide", m_crtc->hend() + 1);
 	KAIRO68_SCREEN_LAP(screen_under_ns);
 
 	bool gfx16bcol = false; // if the gfx layer was blended so gfxbitmap is 16bit color
@@ -1115,7 +1108,8 @@ uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, 
 		const uint16_t *const pcgrow = &m_pcgbitmap.pix(scanline / divisor, 0);
 		const uint16_t *const specialrow = &m_special.pix(scanline / divisor, 0);
 		const uint16_t *const gfxrow = &m_gfxbitmap.pix(scanline / gfxdivisor, 0);
-		mixer(mix, dest, pcgrow, specialrow, gfxrow, m_crtc->hbegin(), m_crtc->hend());
+		const uint16_t *const underrow = clear ? &m_underbitmap.pix(scanline / under_divisor, 0) : no_under;
+		mixer(mix, dest, underrow, pcgrow, specialrow, gfxrow, m_crtc->hbegin(), m_crtc->hend());
 	}
 	KAIRO68_SCREEN_LAP(screen_mix_ns);
 #undef KAIRO68_SCREEN_LAP

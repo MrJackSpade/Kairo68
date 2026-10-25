@@ -1333,6 +1333,33 @@ M68000_FTU_INLINE = [
      'void m68000_device::start_interrupt_vector_lookup()',),
 ]
 
+# The layer under BG and sprites is drawn to its own bitmap, and the mix starts each pixel from its
+# pen there, or from pen 0 without it, instead of a pass that filled the screen bitmap with those
+# pens for the mix to read back (Kairo68#29).
+X68K_UNDER_ROW = [
+    ('src/mame/sharp/x68k.h',
+     '\tbitmap_ind16 m_pcgbitmap;\n\tbitmap_ind16 m_gfxbitmap;\n\tbitmap_ind16 m_special;\n',
+     '\tbitmap_ind16 m_pcgbitmap;\n\tbitmap_ind16 m_gfxbitmap;\n\tbitmap_ind16 m_special;\n\tbitmap_ind16 m_underbitmap; // Kairo68: the BG layer drawn under everything (screen_update)\n',),
+    ('src/mame/sharp/x68k_v.cpp',
+     '\tm_screen->register_screen_bitmap(m_special);\n',
+     '\tm_screen->register_screen_bitmap(m_special);\n\tm_screen->register_screen_bitmap(m_underbitmap);\n',),
+    ('src/mame/sharp/x68k_v.cpp',
+     'void x68k_mix_line(const x68k_mix &m, uint32_t *dest, const uint16_t *pcgrow, const uint16_t *specialrow, const uint16_t *gfxrow, int first, int last)\n{',
+     'void x68k_mix_line(const x68k_mix &m, uint32_t *dest, const uint16_t *underrow, const uint16_t *pcgrow, const uint16_t *specialrow, const uint16_t *gfxrow, int first, int last)\n{',),
+    ('src/mame/sharp/x68k_v.cpp',
+     '\t\trgb_t outpix = dest[pixel], pix = 0;\n\t\tbool pcgpix = false, gfxpix = false;\n',
+     '\t\trgb_t outpix = m.pcgpens[underrow[pixel] & 0xff], pix = 0;\n\t\tbool pcgpix = false, gfxpix = false;\n',),
+    ('src/mame/sharp/x68k_v.cpp',
+     'using x68k_mix_fn = void (*)(const x68k_mix &, uint32_t *, const uint16_t *, const uint16_t *, const uint16_t *, int, int);\n',
+     'using x68k_mix_fn = void (*)(const x68k_mix &, uint32_t *, const uint16_t *, const uint16_t *, const uint16_t *, const uint16_t *, int, int);\n',),
+    ('src/mame/sharp/x68k_v.cpp',
+     '\t\tif(m_spritereg[0x404] & 0x0008)\n\t\t{\n\t\t\tclear = true;\n\t\t\tdraw_bg(m_pcgbitmap, screen, 1, true, pcgrect);\n\t\t}\n\t\telse if(m_spritereg[0x404] & 0x0001)\n\t\t{\n\t\t\tclear = true;\n\t\t\tdraw_bg(m_pcgbitmap, screen, 0, true, pcgrect);\n\t\t}\n\t}\n\tif(clear)\n\t{\n\t\tint divisor = 1;\n\t\tif(!(m_video.bg_hvres & 0x0c) && m_crtc->gfx_double_scan())\n\t\t\tdivisor = 2;\n\t\t// Kairo68: the rows and pens taken once a line (Kairo68#29).\n\t\tconst pen_t *const pens = m_pcgpalette->pens();\n\t\tfor(scanline=rect.min_y;scanline<=rect.max_y;scanline++)\n\t\t{\n\t\t\tconst uint16_t *const src = &m_pcgbitmap.pix(scanline / divisor, 0);\n\t\t\tuint32_t *const dst = &bitmap.pix(scanline, 0);\n\t\t\tfor(pixel=m_crtc->hbegin();pixel<=m_crtc->hend();pixel++)\n\t\t\t\tdst[pixel] = pens[src[pixel] & 0xff];\n\t\t}\n\t}\n\telse\n\t\tbitmap.fill(m_pcgpalette->pen(0), rect);\n\tKAIRO68_SCREEN_LAP(screen_under_ns);\n',
+     '\t\tif(m_spritereg[0x404] & 0x0008)\n\t\t{\n\t\t\tclear = true;\n\t\t\tdraw_bg(m_underbitmap, screen, 1, true, pcgrect);\n\t\t}\n\t\telse if(m_spritereg[0x404] & 0x0001)\n\t\t{\n\t\t\tclear = true;\n\t\t\tdraw_bg(m_underbitmap, screen, 0, true, pcgrect);\n\t\t}\n\t}\n\t// Kairo68: the layer under everything is drawn to its own bitmap, and the mix starts each pixel\n\t// from its pen there (or from pen 0 without it) instead of reading back the screen bitmap this\n\t// pass filled with those pens (Kairo68#29).\n\tint under_divisor = 1;\n\tif(!(m_video.bg_hvres & 0x0c) && m_crtc->gfx_double_scan())\n\t\tunder_divisor = 2;\n\tstatic const uint16_t no_under[2048] = {};\n\tif(m_crtc->hend() >= int(std::size(no_under)))\n\t\tthrow emu_fatalerror("Kairo68: the screen is %d pixels wide", m_crtc->hend() + 1);\n\tKAIRO68_SCREEN_LAP(screen_under_ns);\n',),
+    ('src/mame/sharp/x68k_v.cpp',
+     '\t\tconst uint16_t *const gfxrow = &m_gfxbitmap.pix(scanline / gfxdivisor, 0);\n\t\tmixer(mix, dest, pcgrow, specialrow, gfxrow, m_crtc->hbegin(), m_crtc->hend());\n',
+     '\t\tconst uint16_t *const gfxrow = &m_gfxbitmap.pix(scanline / gfxdivisor, 0);\n\t\tconst uint16_t *const underrow = clear ? &m_underbitmap.pix(scanline / under_divisor, 0) : no_under;\n\t\tmixer(mix, dest, underrow, pcgrow, specialrow, gfxrow, m_crtc->hbegin(), m_crtc->hend());\n',),
+]
+
 PATCHES = {'x68k-save-state': X68K_SAVE_STATE, 'x68k-sasi-count': X68K_SASI_COUNT, 'x68k-sasi-dma': X68K_SASI_DMA,
            'osdlib-without-sdl': OSDLIB_WITHOUT_SDL, 'upd765-save-state': UPD765_SAVE_STATE, 'rtc-save-state': RTC_SAVE_STATE,
            'floppy-save-state': FLOPPY_SAVE_STATE, 'hd63450-save-state': HD63450_SAVE_STATE,
@@ -1353,7 +1380,8 @@ PATCHES = {'x68k-save-state': X68K_SAVE_STATE, 'x68k-sasi-count': X68K_SASI_COUN
            'x68k-gfx-hoist': X68K_GFX_HOIST,
            'floppy-next-cell': FLOPPY_NEXT_CELL,
            'x68k-line-scroll': X68K_LINE_SCROLL,
-           'm68000-ftu-inline': M68000_FTU_INLINE}
+           'm68000-ftu-inline': M68000_FTU_INLINE,
+           'x68k-under-row': X68K_UNDER_ROW}
 
 
 def apply(root):

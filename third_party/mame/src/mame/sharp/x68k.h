@@ -121,6 +121,7 @@ protected:
 	bitmap_ind16 m_pcgbitmap;
 	bitmap_ind16 m_gfxbitmap;
 	bitmap_ind16 m_special;
+	bitmap_ind16 m_underbitmap; // Kairo68: the BG layer drawn under everything (screen_update)
 
 	void floppy_load_unload(bool load, floppy_image_device *dev);
 	void floppy_load(floppy_image_device *dev);
