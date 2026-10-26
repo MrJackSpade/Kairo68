@@ -36,7 +36,6 @@ class MainActivity : MachineActivity<DiskImageEntry>() {
         setOf(X68kKeys.SHIFT, X68kKeys.CTRL, X68kKeys.OPT1, X68kKeys.OPT2), X68kKeys.joystick.zip(X68kKeys.joystickLabels),
         "The pad in joystick port 1.", ControllerGuestSpec.STANDARD_ACTIONS, X68kKeys.layout)
     override val bindingsCodec = X68kKeys.bindings
-    override fun defaultBindings(layout: ControllerLayout) = X68kKeys.defaults(layout)
     override val artworkDownloadsEnabled: Boolean get() = resources.getBoolean(R.bool.catalog_art_download_enabled)
 
     /** Floppy images in the formats MAME's X68000 reads, and SASI hard disk images. */
