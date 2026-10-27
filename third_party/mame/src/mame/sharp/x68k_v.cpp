@@ -281,25 +281,58 @@ bool x68k_state::draw_gfx_scanline( bitmap_ind16 &bitmap, rectangle cliprect, ui
 			{
 				xscr = (m_crtc->xscr_gfx(scroll_line >= 0 ? scroll_line : scanline, 0) & 0x3ff);
 				yscr = (m_crtc->yscr_gfx(scroll_line >= 0 ? scroll_line : scanline, 0) & 0x3ff);
-				lineoffset = (((scanline - m_crtc->vbegin()) + yscr) & 0x3ff) * 1024;
+				// Kairo68 (x68k-gvram-1024): the 1024x1024 picture is the four pages as its quadrants;
+				// the row is (y & 511) of the two pages beside each other at the line's half.
+				const uint32_t y = ((scanline - m_crtc->vbegin()) + yscr) & 0x3ff;
+				lineoffset = (y & 0x1ff) * 512;
+				const int ypage = (y >> 9) << 1;
 				loc = xscr & 0x3ff;
+				if((m_video.reg[2] & 0x1800) != 0x1000)
+				{
+					// Kairo68 (x68k-gvram-1024): without the special priority, a pixel whose colour
+					// shows (any, on the bottom page) stores it and clears its special pixel. The same
+					// stores in runs within one page's half of the row, a form the compiler vectorizes,
+					// as the 512x512 16-colour page draws (Kairo68#30).
+					const uint16_t *const row = &m_gvram[lineoffset];
+					uint16_t *const dest = &bitmap.pix(scanline, 0);
+					uint16_t *const spec = &m_special.pix(scanline, 0);
+					const int last = m_crtc->hend();
+					uint32_t at = loc;
+					for(pixel=m_crtc->hbegin();pixel<=last;)
+					{
+						const int run = std::min<int>(last - pixel + 1, 0x200 - (at & 0x1ff));
+						const int plane = (ypage | (at >> 9)) * 4;
+						const uint16_t *__restrict const src = row + (at & 0x1ff);
+						uint16_t *__restrict const d = dest + pixel;
+						uint16_t *__restrict const sp = spec + pixel;
+						if(priority == 3)
+						{
+							for(int i = 0; i < run; i++)
+							{
+								d[i] = (src[i] >> plane) & 0x000f;
+								sp[i] = 0;
+							}
+						}
+						else
+						{
+							for(int i = 0; i < run; i++)
+							{
+								// keep is all ones where the colour is 0: the pixel and its special pixel stay.
+								const uint16_t c = (src[i] >> plane) & 0x000f;
+								const uint16_t keep = uint16_t(-uint16_t(c == 0));
+								d[i] = (d[i] & keep) | c;
+								sp[i] &= keep;
+							}
+						}
+						pixel += run;
+						at = (at + run) & 0x3ff;
+					}
+					ret = false;
+					continue;
+				}
 				for(pixel=m_crtc->hbegin();pixel<=m_crtc->hend();pixel++)
 				{
-					switch(lineoffset & 0xc0000)
-					{
-					case 0x00000:
-						colour = m_gvram[lineoffset + (loc & 0x3ff)] & 0x000f;
-						break;
-					case 0x40000:
-						colour = (m_gvram[(lineoffset - 0x40000) + (loc & 0x3ff)] & 0x00f0) >> 4;
-						break;
-					case 0x80000:
-						colour = (m_gvram[(lineoffset - 0x80000) + (loc & 0x3ff)] & 0x0f00) >> 8;
-						break;
-					case 0xc0000:
-						colour = (m_gvram[(lineoffset - 0xc0000) + (loc & 0x3ff)] & 0xf000) >> 12;
-						break;
-					}
+					colour = (m_gvram[lineoffset + (loc & 0x1ff)] >> ((ypage | (loc >> 9)) * 4)) & 0x000f;
 					if(colour || (priority == 3))
 					{
 						if(((m_video.reg[2] & 0x1800) == 0x1000) && (colour & 1))
@@ -936,8 +969,33 @@ x68k_mix_fn x68k_mixer(int textprio, int pcgprio, int gfxprio, bool blend)
 
 } // anonymous namespace
 
-uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect_in)
 {
+	// Kairo68 (x68k-unchanged-frame): a frame drawn whole with nothing the picture shows changing
+	// during it is the picture of every frame after it until something changes. Meanwhile the
+	// screen keeps showing it (UPDATE_HAS_NOT_CHANGED: it swaps neither bitmap) and nothing is
+	// drawn. A change later in a frame draws its lines from the frame's top, which are what they
+	// were up to the change. An interlaced picture is drawn every frame (Kairo68#30).
+	const rectangle &visible = screen.visible_area();
+	const uint64_t generation = m_crtc->picture_generation();
+	if (screen.frame_number() != m_update_frame)
+	{
+		m_update_frame = screen.frame_number();
+		m_frame_skipped = false;
+	}
+	if (!m_crtc->interlaced() && generation == m_drawn_generation)
+	{
+		m_frame_skipped = true;
+		return UPDATE_HAS_NOT_CHANGED;
+	}
+	rectangle cliprect = cliprect_in;
+	if (m_frame_skipped)
+	{
+		cliprect.min_y = visible.min_y;
+		m_frame_skipped = false;
+	}
+	if (cliprect.max_y >= visible.max_y)
+		m_drawn_generation = m_crtc->frame_start_generation() == generation ? generation : 0;
 	KAIRO68_PERF_COUNT(screen_updates, 1);
 	KAIRO68_PERF_COUNT(screen_lines, cliprect.height());
 	KAIRO68_PERF_TIME(screen_ns);

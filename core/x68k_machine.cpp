@@ -369,12 +369,32 @@ void X68kMachine::Impl::input_update(bool) {
 // n * 8 + b; the pad is joystick port 1's FM Towns pad.
 void X68kMachine::Impl::find_fields() {
     fields_found = true;
+    int mouse_fields = 0;
     for (auto &[tag, port] : machine->ioport().ports()) {
         const auto line = tag.rfind(":LINE");
         if (tag.starts_with(":keyboard:") && line != std::string::npos && line + 6 == tag.size()) {
             const int row = std::stoi(tag.substr(line + 5), nullptr, 16);
             for (ioport_field &field : port->fields())
                 if (field.type() == IPT_KEYBOARD) key_fields[row * 8 + std::countr_zero(field.mask())] = &field;
+        } else if (tag.starts_with(":mouse_port:")) {
+            // The X68000 mouse's axes and buttons read Kairo68's mouse (init), the first mouse.
+            // MAME maps them to the third mouse by default, which no host has, so the guest's mouse
+            // never moved (Kairo68#32).
+            for (ioport_field &field : port->fields()) {
+                input_code code;
+                switch (field.type()) {
+                case IPT_MOUSE_X: code = MOUSECODE_X_INDEXED(0); break;
+                case IPT_MOUSE_Y: code = MOUSECODE_Y_INDEXED(0); break;
+                case IPT_BUTTON1: code = MOUSECODE_BUTTON1_INDEXED(0); break;
+                case IPT_BUTTON2: code = MOUSECODE_BUTTON2_INDEXED(0); break;
+                default: continue;
+                }
+                ioport_field::user_settings settings;
+                field.get_user_settings(settings);
+                settings.seq[SEQ_TYPE_STANDARD] = input_seq(code);
+                field.set_user_settings(settings);
+                ++mouse_fields;
+            }
         } else if (tag == ":joy1:townspad:PAD") {
             for (ioport_field &field : port->fields()) {
                 switch (field.type()) {
@@ -392,6 +412,7 @@ void X68kMachine::Impl::find_fields() {
         }
     }
     if (!key_fields[0x01]) throw emu_fatalerror("The X68000 keyboard's ports were not found");
+    if (mouse_fields != 4) throw emu_fatalerror("The X68000 mouse's axes and buttons were not found");
     for (ioport_field *field : pad_fields)
         if (!field) throw emu_fatalerror("Joystick port 1's FM Towns pad was not found");
 }

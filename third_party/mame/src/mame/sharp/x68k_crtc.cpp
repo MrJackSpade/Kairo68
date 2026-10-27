@@ -125,6 +125,7 @@ void x68k_crtc_device::device_pre_save()
 void x68k_crtc_device::device_post_load()
 {
 	forget_scroll();
+	m_picture_generation++;
 }
 
 void x68k_crtc_device::forget_scroll()
@@ -141,6 +142,7 @@ void x68k_crtc_device::forget_scroll()
 // lines and forgets the records, so the records are always the newest state of those lines.
 void x68k_crtc_device::record_scroll()
 {
+	m_picture_generation++;
 	if (m_partial_line < 0)
 		return;
 	const int line = m_partial_line;
@@ -160,6 +162,20 @@ void x68k_crtc_device::record_scroll()
 		std::copy_n(&m_reg[10], 10, m_line_scroll[from]);
 	if (line > m_scroll_last)
 		m_scroll_last = line;
+}
+
+// Kairo68 (x68k-unchanged-frame): whether text_copy would write any word the destination raster
+// does not already hold.
+bool x68k_crtc_device::text_copy_changes(unsigned src, unsigned dest, u8 planes)
+{
+	const offs_t src_ram = src * 256, dest_ram = dest * 256;
+	for (u8 plane = 0; plane <= 3; plane++)
+		if (BIT(planes, plane))
+			for (offs_t word = 0; word < 256; word++)
+				if (m_tvram_read_callback(src_ram + word + 0x10000 * plane, 0xffff) !=
+						m_tvram_read_callback(dest_ram + word + 0x10000 * plane, 0xffff))
+					return true;
+	return false;
 }
 
 void x68k_crtc_device::text_copy(unsigned src, unsigned dest, u8 planes)
@@ -267,8 +283,16 @@ TIMER_CALLBACK_MEMBER(x68k_crtc_device::hsync)
 
 	if (m_operation & 8)
 	{
-		flush_partial();
-		text_copy((m_reg[22] & 0xff00) >> 8, (m_reg[22] & 0x00ff), (m_reg[21] & 0xf));
+		// Kairo68 (x68k-unchanged-frame): a copy onto rows that already hold the same words changes
+		// nothing; a game that copies every line (Carat's raster effect) would otherwise change its
+		// still picture every frame (Kairo68#30).
+		const unsigned src = (m_reg[22] & 0xff00) >> 8, dest = m_reg[22] & 0x00ff;
+		const u8 planes = m_reg[21] & 0xf;
+		if (text_copy_changes(src, dest, planes))
+		{
+			flush_partial();
+			text_copy(src, dest, planes);
+		}
 	}
 
 	int scan = screen().vpos();
@@ -276,7 +300,10 @@ TIMER_CALLBACK_MEMBER(x68k_crtc_device::hsync)
 	{
 		// Kairo68: a new frame; the records were for the frame that ended, which drew their lines.
 		if (scan == 0)
+		{
 			forget_scroll();
+			m_frame_start_generation = m_picture_generation;
+		}
 		hsync_time = screen().time_until_pos(scan, m_hend);
 		m_scanline_timer->adjust(hsync_time);
 		if ((scan != 0) && (scan < m_vend))
@@ -307,7 +334,7 @@ TIMER_CALLBACK_MEMBER(x68k_crtc_device::raster_irq)
 	if (scan <= m_vtotal)
 	{
 		m_rint_callback(0);
-		flush_partial();
+		draw_passed_lines();
 		screen().update_partial(scan - 1);
 		irq_time = screen().time_until_pos(scan, m_hbegin);
 		// end of HBlank period clears GPIP6 also?
@@ -396,6 +423,14 @@ TIMER_CALLBACK_MEMBER(x68k_crtc_device::vblank_irq)
  */
 void x68k_crtc_device::flush_partial()
 {
+	m_picture_generation++;
+	draw_passed_lines();
+}
+
+// Kairo68 (x68k-unchanged-frame): flush_partial's drawing, for a caller that changes nothing the
+// picture shows (the raster interrupt draws the lines above it).
+void x68k_crtc_device::draw_passed_lines()
+{
 	if (m_partial_line >= 0)
 	{
 		const int line = m_partial_line;
@@ -415,8 +450,15 @@ void x68k_crtc_device::flush_partial()
 
 void x68k_crtc_device::crtc_w(offs_t offset, u16 data, u16 mem_mask)
 {
+	// Kairo68 (x68k-crtc-unseen-registers): R9 (the raster interrupt's line) and R21 to R23 (the
+	// text access masks and the copy and clear setup) are read only when the CPU writes VRAM or
+	// starts an operation, which draw the lines the beam has passed first themselves; nothing the
+	// picture shows changes, so a write to them draws nothing. A game whose raster interrupt
+	// rewrites them on every line (Carat) drew each line on its own (Kairo68#30).
+	if (offset == 9 || (offset >= 21 && offset <= 23))
+		;
 	// Kairo68: R10 to R19 only move the layers.
-	if (offset >= 10 && offset <= 19 && m_scroll_can_wait && m_scroll_can_wait())
+	else if (offset >= 10 && offset <= 19 && m_scroll_can_wait && m_scroll_can_wait())
 		record_scroll();
 	else
 		flush_partial();
@@ -623,7 +665,13 @@ void x68k_crtc_device::gvram_w(offs_t offset, u16 data, u16 mem_mask)
 				}
 				break;
 			case 0x0000:
-				if (offset < 0x40000)
+				if (is_1024x1024())
+				{
+					// Kairo68 (x68k-gvram-1024): the 1024x1024 picture is the four pages as its quadrants.
+					const u8 shift = gvram_1024_page(offset) * 4;
+					m_gvram_write_callback(gvram_1024_word(offset), (data & 0x000f) << shift, 0x000f << shift);
+				}
+				else if (offset < 0x40000)
 				{
 					m_gvram_write_callback(offset, data & 0x000f, 0x000f);
 				}
@@ -699,7 +747,13 @@ u16 x68k_crtc_device::gvram_r(offs_t offset)
 				ret = 0xffff;
 			break;
 		case 0x0000:  // 16 colour (paletted) - 4 bits per word
-			if (offset < 0x40000)
+			if (is_1024x1024())
+			{
+				// Kairo68 (x68k-gvram-1024): the 1024x1024 picture is the four pages as its quadrants.
+				const u8 shift = gvram_1024_page(offset) * 4;
+				ret = (m_gvram_read_callback(gvram_1024_word(offset)) >> shift) & 0x000f;
+			}
+			else if (offset < 0x40000)
 				ret = m_gvram_read_callback(offset) & 0x000f;
 			else if (offset >= 0x40000 && offset < 0x80000)
 				ret = (m_gvram_read_callback(offset - 0x40000) & 0x00f0) >> 4;

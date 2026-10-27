@@ -122,6 +122,12 @@ protected:
 	bitmap_ind16 m_gfxbitmap;
 	bitmap_ind16 m_special;
 	bitmap_ind16 m_underbitmap; // Kairo68: the BG layer drawn under everything (screen_update)
+	// Kairo68 (x68k-unchanged-frame): the frame screen_update last saw, whether it left that
+	// frame's lines so far undrawn, and the CRTC's change count of the last frame drawn whole
+	// without a change during it (0 for none): the picture the screen keeps.
+	uint64_t m_update_frame = ~uint64_t(0);
+	bool m_frame_skipped = false;
+	uint64_t m_drawn_generation = 0;
 
 	void floppy_load_unload(bool load, floppy_image_device *dev);
 	void floppy_load(floppy_image_device *dev);

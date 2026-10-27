@@ -35,6 +35,7 @@ public:
 	// Kairo68: draws the lines the beam has passed and are not drawn yet; call before anything the
 	// picture shows changes (mame_patches.py X68K_DEFERRED_PARTIAL).
 	void flush_partial();
+	void draw_passed_lines();  // Kairo68 (x68k-unchanged-frame)
 	// Kairo68: the scroll registers (R10 to R19) a line is drawn with: those in effect when the beam
 	// passed it, recorded by a scroll register write that leaves the line waiting, or the current
 	// ones (mame_patches.py X68K_LINE_SCROLL).
@@ -43,6 +44,12 @@ public:
 	// recorded; without one, every write draws them first.
 	void set_scroll_can_wait(std::function<bool ()> test) { m_scroll_can_wait = std::move(test); }
 	const u16 *scroll_regs(int line) const { return (line >= m_scroll_first && line <= m_scroll_last) ? m_line_scroll[line] : &m_reg[10]; }
+	// Kairo68 (x68k-unchanged-frame): a count of the changes to anything the picture shows
+	// (flush_partial and record_scroll run before each), the count when the frame began (line 0),
+	// and whether the picture is interlaced, whose fields alternate by themselves.
+	uint64_t picture_generation() const { return m_picture_generation; }
+	uint64_t frame_start_generation() const { return m_frame_start_generation; }
+	bool interlaced() const { return m_interlace; }
 
 	// getters
 	u16 xscr_text() const { return m_reg[10]; }
@@ -55,6 +62,11 @@ public:
 	u16 yscr_gfx(int page) const { return m_reg[13 + page * 2]; }
 	u8 vfactor() const { return (m_reg[20] & 0x0c) >> 2; }
 	bool is_1024x1024() const { return BIT(m_reg[20], 10); }
+	// Kairo68 (x68k-gvram-1024): in the 1024x1024 16-colour mode, the pixel at word offset
+	// y * 1024 + x of G-VRAM is in the page of its quadrant (0 top left, 1 top right, 2 bottom left,
+	// 3 bottom right), at (y & 511) * 512 + (x & 511) of that page, as on the X68000.
+	static u8 gvram_1024_page(offs_t offset) { return u8(BIT(offset, 19) << 1 | BIT(offset, 9)); }
+	static offs_t gvram_1024_word(offs_t offset) { return ((offset >> 1) & 0x3fe00) | (offset & 0x1ff); }
 	bool gfx_double_scan() const { return (m_reg[20] & 0x1e) == 0x10; }
 	bool gfx_layer_buffer() const { return BIT(m_reg[20], 11); }
 	u8 gfx_color_mode() const { return (m_reg[20] >> 8) & 3; }
@@ -79,6 +91,7 @@ protected:
 private:
 	// internal helpers
 	void text_copy(unsigned src, unsigned dest, u8 planes);
+	bool text_copy_changes(unsigned src, unsigned dest, u8 planes);  // Kairo68 (x68k-unchanged-frame)
 	TIMER_CALLBACK_MEMBER(operation_end);
 	void refresh_mode();
 	TIMER_CALLBACK_MEMBER(hsync);
@@ -135,6 +148,7 @@ private:
 	int m_scroll_first = 0;
 	int m_scroll_last = -1;
 	int m_drawn_through = -1;
+	uint64_t m_picture_generation = 1, m_frame_start_generation = 0;  // Kairo68 (x68k-unchanged-frame)
 	std::function<bool ()> m_scroll_can_wait;
 	emu_timer *m_raster_irq_timer;
 	emu_timer *m_vblank_irq_timer;

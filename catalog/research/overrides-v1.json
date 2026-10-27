@@ -3,6 +3,54 @@
   "x68000:150574": {
    "adult": true
   },
+  "x68000:157447": {
+   "controller": {
+    "defaults": {
+     "withoutSticks": [
+      {
+       "input": "virtual:up",
+       "mouse": "moveUp"
+      },
+      {
+       "input": "virtual:down",
+       "mouse": "moveDown"
+      },
+      {
+       "input": "virtual:left",
+       "mouse": "moveLeft"
+      },
+      {
+       "input": "virtual:right",
+       "mouse": "moveRight"
+      },
+      {
+       "input": "virtual:lsup",
+       "mouse": "moveUp"
+      },
+      {
+       "input": "virtual:lsdown",
+       "mouse": "moveDown"
+      },
+      {
+       "input": "virtual:lsleft",
+       "mouse": "moveLeft"
+      },
+      {
+       "input": "virtual:lsright",
+       "mouse": "moveRight"
+      },
+      {
+       "input": "virtual:a",
+       "mouse": "leftButton"
+      },
+      {
+       "input": "virtual:b",
+       "mouse": "rightButton"
+      }
+     ]
+    }
+   }
+  },
   "x68000:187145": {
    "adult": true
   },

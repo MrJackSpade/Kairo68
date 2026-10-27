@@ -7,7 +7,9 @@
 //
 // <script> is a comma-separated list of <frame>:<+|-><key|pad><code> events, by frame after the
 // boot ends: "+" presses, "-" lets go. key codes are X68000 scan codes (0x39 is Space, 0x1d is
-// Return); pad codes are the pad bits (4 is A, 6 is Run). "-" alone is no input.
+// Return); pad codes are the pad bits (4 is A, 6 is Run). The mouse: "+mox<n>" and "+moy<n>" move it
+// by n mickeys across and down, "+mob<n>" and "-mob<n>" press and release button n (1 left, 2 right).
+// "-" alone is no input.
 //
 // Options:
 //   --disk2 <image>   put a second disk image in drive 1 (a game's other disk)
@@ -23,6 +25,9 @@
 //   --accesses        count accesses by address range (slows every access; stage times are not real)
 //   --pcs <n>         count instructions by address and list the <n> busiest with their code (slower still)
 //   --shots <n>       write the picture every n frames as <work dir>/frame-<frame>.ppm
+//   --words <a>:<n>   at the end, print n words of guest memory from hex address a (code or data)
+//   --state <name>    at the end, print every saved-state entry whose name holds <name> (such as
+//                     m_reg for the CRTC's registers) as 16-bit words, to see how the guest set a device
 //   --csv <file>      write each frame's host time and counters
 //   --sound <file>    write the measured frames' sound, 16-bit stereo at the machine's rate
 //   --hashes <file>   write a hash of each frame's picture and sound, to show that two builds run
@@ -61,7 +66,8 @@ int fail(const std::string &message) {
 struct Event {
     long frame;
     bool down;
-    bool pad;
+    // "key", "pad", "mox", "moy" or "mob" (game_profile's script).
+    std::string device;
     int code;
 };
 
@@ -81,11 +87,11 @@ bool parse_script(const std::string &script, std::vector<Event> &events, std::st
         event.frame = std::strtol(item.substr(0, colon).c_str(), nullptr, 10);
         event.down = item[colon + 1] == '+';
         const std::string device = item.substr(colon + 2, 3);
-        if (device != "key" && device != "pad") {
+        if (device != "key" && device != "pad" && device != "mox" && device != "moy" && device != "mob") {
             error = "bad script device in \"" + item + "\"";
             return false;
         }
-        event.pad = device == "pad";
+        event.device = device;
         event.code = int(std::strtol(item.substr(colon + 5).c_str(), nullptr, 0));
         events.push_back(event);
         start = end + 1;
@@ -137,7 +143,7 @@ int main(int argc, char **argv) {
 #endif
     if (argc < 8)
         return fail("usage: game_profile <rom dir> <work dir> <image> <cpu MHz> <memory MB> <frames> <script> "
-                    "[--nice <n>] [--disk2 <image>] [--boot-frames <n>] [--warmup <n>] [--rtc <time>] [--no-idle-skip] [--no-synth-worker] [--no-direct-memory] [--accesses] [--pcs <n>] [--shots <n>] [--csv <file>] [--hashes <file>] [--sound <file>]");
+                    "[--nice <n>] [--disk2 <image>] [--boot-frames <n>] [--warmup <n>] [--rtc <time>] [--no-idle-skip] [--no-synth-worker] [--no-direct-memory] [--accesses] [--pcs <n>] [--shots <n>] [--words <a>:<n>] [--state <name>] [--csv <file>] [--hashes <file>] [--sound <file>]");
     const std::string work = argv[2];
     Config config;
     config.rom_dir = argv[1];
@@ -151,6 +157,8 @@ int main(int argc, char **argv) {
     std::string error;
     if (!parse_script(argv[7], events, error)) return fail(error);
     long shots = 0;
+    std::vector<std::string> state_names;
+    std::vector<std::pair<uint32_t, size_t>> word_dumps;
     long warmup = 0;
     long top_pcs = 0;
     long fixed_boot = -1;
@@ -173,6 +181,14 @@ int main(int argc, char **argv) {
             config.on_emulation_thread = [nice] { set_priority(nice); };
         }
         else if (option == "--shots" && i + 1 < argc) shots = std::strtol(argv[++i], nullptr, 10);
+        else if (option == "--state" && i + 1 < argc) state_names.push_back(argv[++i]);
+        else if (option == "--words" && i + 1 < argc) {
+            const std::string spec = argv[++i];
+            const size_t colon = spec.find(':');
+            if (colon == std::string::npos) return fail("--words takes <hex address>:<count>");
+            word_dumps.emplace_back(uint32_t(std::strtoul(spec.substr(0, colon).c_str(), nullptr, 16)),
+                                    size_t(std::strtoul(spec.substr(colon + 1).c_str(), nullptr, 10)));
+        }
         else if (option == "--csv" && i + 1 < argc) csv_file = argv[++i];
         else if (option == "--hashes" && i + 1 < argc) hash_file = argv[++i];
         else if (option == "--sound" && i + 1 < argc) sound_file = argv[++i];
@@ -230,7 +246,10 @@ int main(int argc, char **argv) {
         // Script frames count from the boot.
         for (; next_event < events.size() && events[next_event].frame <= frame + warmup; ++next_event) {
             const Event &event = events[next_event];
-            if (event.pad) machine->joystick(event.code, event.down);
+            if (event.device == "pad") machine->joystick(event.code, event.down);
+            else if (event.device == "mox") machine->mouse_move(event.code, 0);
+            else if (event.device == "moy") machine->mouse_move(0, event.code);
+            else if (event.device == "mob") machine->mouse_button(event.code, event.down);
             else machine->key(event.code, event.down);
         }
         if (frame < 0) {
@@ -325,6 +344,20 @@ int main(int argc, char **argv) {
             const std::string base = name.substr(6, name.size() - 9);
             std::printf("  %-52s %8.1f fires %9.3f ms\n", base.c_str(),
                         double(totals["timer." + base + ".fires"]) / double(frames), double(ns) / double(frames) / 1e6);
+        }
+    }
+    for (const auto &[address, count] : word_dumps) {
+        std::printf("words %06x:", unsigned(address));
+        for (const uint16_t word : machine->read_words(address, count)) std::printf(" %04x", word);
+        std::printf("\n");
+    }
+    for (const auto &name : state_names) {
+        for (const auto &[entry, bytes] : machine->state_entries()) {
+            if (entry.find(name) == std::string::npos) continue;
+            std::printf("state %s:", entry.c_str());
+            for (size_t at = 0; at + 1 < bytes.size() && at < 128; at += 2)
+                std::printf(" %04x", unsigned(bytes[at] | bytes[at + 1] << 8));
+            std::printf("\n");
         }
     }
     if (top_pcs > 0) {

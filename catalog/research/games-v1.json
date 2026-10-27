@@ -378,12 +378,6 @@
    "developer": "Mitsuky",
    "diskSets": {
     "sha256-fd-v1:a9f25c556b8be157a06d132a4b1c4751d3ec6b537a28619c4681688127c381e8": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:81f94783e976f9d0666f9f071a9a463e97b6876dc982c3548bc1318298dbf9d2",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:81f94783e976f9d0666f9f071a9a463e97b6876dc982c3548bc1318298dbf9d2"
      ]
@@ -584,12 +578,6 @@
    "developer": "Dempa Shimbunsha",
    "diskSets": {
     "sha256-fd-v1:5b1e001c1b80c7a3ccb0a5aa46789f6d1f58a0458d719b97c58bdb18d4a5cbef": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:a77275c06c37ed8a6211cf1d4f99bfcdda063f251a1fe10502b6521af3947389",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:a77275c06c37ed8a6211cf1d4f99bfcdda063f251a1fe10502b6521af3947389"
      ]
@@ -884,12 +872,6 @@
    "developer": "Sprite",
    "diskSets": {
     "sha256-fd-v1:f7e76f69c0702cff8b169fcafd097ae12b8fcb931b8ad8575747daa1d36c5624": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:2746ef3d6169241ed5bc778c5aa2e33efca7a66ea8e4accf65d41109c4ede8c6",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:2746ef3d6169241ed5bc778c5aa2e33efca7a66ea8e4accf65d41109c4ede8c6"
      ]
@@ -951,12 +933,6 @@
    "developer": "Wolf Team",
    "diskSets": {
     "sha256-fd-v1:0c2d4dc3ef9600032921db84aa01df9d92434c4cea2b805d67cba7adf0250041": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:9cd5c26327ef3c15a9b18548d769fe9ae3f74f56fdcffb981d08617be03a1225",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:9cd5c26327ef3c15a9b18548d769fe9ae3f74f56fdcffb981d08617be03a1225"
      ]
@@ -1906,12 +1882,6 @@
    "developer": "Arsys Software",
    "diskSets": {
     "sha256-fd-v1:24efbbeffa68b25cfbbe76dcf8ce67b8a2dc1cc3fd0cc92b2493c749cc4de2ea": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:52d240cfcb254decf98081f4d03417ccffbe487c8251e9add82a8a3c9a67c861",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:52d240cfcb254decf98081f4d03417ccffbe487c8251e9add82a8a3c9a67c861"
      ]
@@ -1975,12 +1945,6 @@
    "developer": "Hudson Soft",
    "diskSets": {
     "sha256-fd-v1:43b044b6c22afbf4f026f684eaa006ada766644175acfc21b10960ff919d2811": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:a832490536b5c4b8237f65c6ed479ab3d3811de0924a8aed9d7ae8ac1ffe6288",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:a832490536b5c4b8237f65c6ed479ab3d3811de0924a8aed9d7ae8ac1ffe6288"
      ]
@@ -2168,12 +2132,6 @@
    "developer": "Dempa Shimbunsha",
    "diskSets": {
     "sha256-fd-v1:25b51872944034fcd71c49d5b8393c471c24b3c4a4e485548dae12147acd04b2": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:10d20a9ffde3599ab5fffd5f700fa4c9af8a32909e7599d6f2dd8de330a86a67",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:10d20a9ffde3599ab5fffd5f700fa4c9af8a32909e7599d6f2dd8de330a86a67"
      ]
@@ -3120,7 +3078,7 @@
     "sha256-fd-v1:a3c426efbb3ae2027827a47a52d39ac90ea3e16cef20e1db518d772e66f2a4dc": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:aa827f5f4512db1413e37b4a0fad15094f51ebdbebfed9a13dc8428c5a68e894",
+       "contentId": "sha256-fd-v1:87b0efeb81d49c8ef7f4441c2c71b3458652f37a91c4cf530a9302f2a737f95f",
        "role": "floppyB"
       }
      ],
@@ -3211,7 +3169,7 @@
     "sha256-fd-v1:2c58dbe9396bfae430fc9300f20efc26cf88a29f9702cd484835c126bbf43f0c": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:c787deb6bf10f7a1cf729c6301cc5b33ac7ccecdd7ee87e0f1ee3b112b126421",
+       "contentId": "sha256-fd-v1:52957ce10349b3d8134fd43be42df392b3e431e28092dfa379a3419493076a1e",
        "role": "floppyB"
       }
      ],
@@ -3368,6 +3326,52 @@
     "sha256-fd-v1:919eab096b63e9a078ee97e85cc1cbd31e1f3d1d2ceaa93804f5d3754b34cb87",
     "sha256-fd-v1:a9ae99cac1266feccf08a1040a8e6df3fa63bf608d7ea0708c9b4fec76fd56ef"
    ],
+   "controller": {
+    "defaults": {
+     "withoutSticks": [
+      {
+       "input": "virtual:up",
+       "mouse": "moveUp"
+      },
+      {
+       "input": "virtual:down",
+       "mouse": "moveDown"
+      },
+      {
+       "input": "virtual:left",
+       "mouse": "moveLeft"
+      },
+      {
+       "input": "virtual:right",
+       "mouse": "moveRight"
+      },
+      {
+       "input": "virtual:lsup",
+       "mouse": "moveUp"
+      },
+      {
+       "input": "virtual:lsdown",
+       "mouse": "moveDown"
+      },
+      {
+       "input": "virtual:lsleft",
+       "mouse": "moveLeft"
+      },
+      {
+       "input": "virtual:lsright",
+       "mouse": "moveRight"
+      },
+      {
+       "input": "virtual:a",
+       "mouse": "leftButton"
+      },
+      {
+       "input": "virtual:b",
+       "mouse": "rightButton"
+      }
+     ]
+    }
+   },
    "description": "An adventure in which a young man meets Stella, queen of a magic world.",
    "developer": "Cat's Pro",
    "diskSets": {
@@ -4626,12 +4630,6 @@
    "developer": "Wolf Team",
    "diskSets": {
     "sha256-fd-v1:fd3944fd7d7fa87c0133494f0ba9d32a91e00a203576a690d4d59657b0193328": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:be1a6b1448a748d59089e0dbaf6d5de1d21991bd7bce8e91d54e44dabd94f4ee",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:be1a6b1448a748d59089e0dbaf6d5de1d21991bd7bce8e91d54e44dabd94f4ee",
       "sha256-fd-v1:dcaa1a6f8f9aac24217364564b7ba12d0451f67f4d29b0091e51aa65958a705d"
@@ -4788,7 +4786,7 @@
     }
    },
    "launchbox": "157517",
-   "mobygames": 47715,
+   "mobygames": 117855,
    "publisher": "Gainax",
    "screenshotUrl": "https://images.launchbox-app.com/fce673c9-d293-4fd0-9650-9f8aba853cb4.png",
    "sourceGroups": [
@@ -4992,7 +4990,7 @@
     "sha256-fd-v1:5ac8c0720a5f533678c093ecc5e02aa2604e9f30ae6d3551a9148660eef36356": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:a4fcef772ccc7836a7c31ccf9fa7090b91de571d82c9d612ab6a9ff31f6882a0",
+       "contentId": "sha256-fd-v1:e37939f7bede2b3ba2b123a2b3f3e57bb986b61501fec46a1600ce5ced251ace",
        "role": "floppyB"
       }
      ],
@@ -5073,23 +5071,73 @@
   },
   "x68000:157527": {
    "boxArtUrl": "https://images.launchbox-app.com/7288d48c-aa96-4b78-9364-ab96a2248837.png",
+   "contentIds": [
+    "sha256-fd-v1:538345d55a2784bef3ac29bc8901f259913bfc13034b95c39dc8e2a8c373e224",
+    "sha256-fd-v1:5b6a43b88864646c62a77ab6884a54d02b7108b226bb807c50b870617aff27bc",
+    "sha256-fd-v1:97e2901c5fafb5e1a3fdd5774c91d7cbbe5e7d5369fb09c6e11e20e49abeec78",
+    "sha256-fd-v1:cbb599d65db7d3b6d3624908474d30885aac944a6a32818f0717336950e55bb9",
+    "sha256-fd-v1:f2f654b5167071334689dacb1d8057b8e57349e2d2034cbab4707230c652106e"
+   ],
    "description": "Konami's shooter: fly the Vic Viper against the Bacterian empire, collecting capsules to choose speed, missiles, lasers and options.",
    "developer": "SPS",
+   "diskSets": {
+    "sha256-fd-v1:5b6a43b88864646c62a77ab6884a54d02b7108b226bb807c50b870617aff27bc": {
+     "media": [
+      {
+       "contentId": "sha256-fd-v1:cbb599d65db7d3b6d3624908474d30885aac944a6a32818f0717336950e55bb9",
+       "role": "floppyB"
+      }
+     ],
+     "setDisks": [
+      "sha256-fd-v1:538345d55a2784bef3ac29bc8901f259913bfc13034b95c39dc8e2a8c373e224",
+      "sha256-fd-v1:97e2901c5fafb5e1a3fdd5774c91d7cbbe5e7d5369fb09c6e11e20e49abeec78",
+      "sha256-fd-v1:cbb599d65db7d3b6d3624908474d30885aac944a6a32818f0717336950e55bb9",
+      "sha256-fd-v1:f2f654b5167071334689dacb1d8057b8e57349e2d2034cbab4707230c652106e"
+     ]
+    }
+   },
    "launchbox": "157527",
    "mobygames": 4512,
    "publisher": "Sharp",
    "screenshotUrl": "https://images.launchbox-app.com/061523c3-b6f3-41a5-b28f-3fe5d237e4e9.png",
+   "sourceGroups": [
+    "x68000:Nemesis.zip"
+   ],
    "title": "Gradius",
    "year": 1987
   },
   "x68000:157528": {
    "boxArtUrl": "https://images.launchbox-app.com/924cb376-2120-49ca-957e-40d4703e6e14.jpg",
+   "contentIds": [
+    "sha256-fd-v1:04a577e39af9e64e22813d8738b227c5c845533a0da261099ac63ff19ced5ab8",
+    "sha256-fd-v1:37f6426e2343965d064cf908407fc58fba9777119ab9df82e67c35ab9fff8d86",
+    "sha256-fd-v1:ee6c94261273b302c3d1704f150c1930aefe42d1ee23fa1201a43bc5cf4365b6",
+    "sha256-fd-v1:f146eec102dcfdde40c5ce2010929655afcdf9f240482c1c9ff8c92584166721"
+   ],
    "description": "A top-down shooter in which a combat walker fights in an African war over rare metals, recoiling with each shot.",
    "developer": "Wolf Team",
+   "diskSets": {
+    "sha256-fd-v1:37f6426e2343965d064cf908407fc58fba9777119ab9df82e67c35ab9fff8d86": {
+     "media": [
+      {
+       "contentId": "sha256-fd-v1:04a577e39af9e64e22813d8738b227c5c845533a0da261099ac63ff19ced5ab8",
+       "role": "floppyB"
+      }
+     ],
+     "setDisks": [
+      "sha256-fd-v1:04a577e39af9e64e22813d8738b227c5c845533a0da261099ac63ff19ced5ab8",
+      "sha256-fd-v1:ee6c94261273b302c3d1704f150c1930aefe42d1ee23fa1201a43bc5cf4365b6",
+      "sha256-fd-v1:f146eec102dcfdde40c5ce2010929655afcdf9f240482c1c9ff8c92584166721"
+     ]
+    }
+   },
    "launchbox": "157528",
    "mobygames": 37896,
    "publisher": "Wolf Team",
    "screenshotUrl": "https://images.launchbox-app.com/417162d3-3cee-43ab-b482-046c4b958f61.png",
+   "sourceGroups": [
+    "x68000:Granada + v2.0 (1990)(Wolf Team).zip"
+   ],
    "title": "Granada",
    "year": 1990
   },
@@ -6075,12 +6123,6 @@
    "developer": "Namco",
    "diskSets": {
     "sha256-fd-v1:d46eb281056481e3746ca934ea7006b7aa4a0b07b446fbfc8b1092de01b62ebe": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:935b0fd16b49d88fa11e9527e2a8cd39492cb714d2c84bbc30845904fb47147b",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:5c7118f26a579d490a986b43814ce3ddb5baeabc3565a9e6348110daf1a2e450",
       "sha256-fd-v1:935b0fd16b49d88fa11e9527e2a8cd39492cb714d2c84bbc30845904fb47147b",
@@ -6465,12 +6507,6 @@
    "developer": "N.H. System",
    "diskSets": {
     "sha256-fd-v1:3af034c7e358fd6f412bd454ad53f06ef2cc71e518e915556f4fe4a9b544fdf3": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:dff8fe1cfbf879146c21f0946981354f50cb0eb049d251f14d1e2aa19b961bc7",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:dff8fe1cfbf879146c21f0946981354f50cb0eb049d251f14d1e2aa19b961bc7"
      ]
@@ -7064,7 +7100,7 @@
     "sha256-fd-v1:27c8db7b599c822d3689421be995f013e8373ec2fbfa7b6201299506111365da": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:82a1be9e31b44cbdd982c1e7958c1a6ae9a7a72fe0cfd1c4bcec3cf063739f92",
+       "contentId": "sha256-fd-v1:02f7e931e130db8b4ae6730791f948a15bcd75d103a8abc630cce1046bb0b36f",
        "role": "floppyB"
       }
      ],
@@ -8002,7 +8038,7 @@
     "sha256-fd-v1:cfe8fa80ae4f6ae6bf1f4fd3316416f33c87f8e1b04bbfb9a63654bb2ba36065": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:d19a49f40f48bd555bfa1b938d04a2fb1c3c085a801321c890fdfe4d7356ab38",
+       "contentId": "sha256-fd-v1:80c9a56c94eb258b3096b056b317c51a22b5eee3ada630322d4c330226e68685",
        "role": "floppyB"
       }
      ],
@@ -8307,10 +8343,10 @@
    "description": "The fifth Dream Program System: three short, unrelated scenarios.",
    "developer": "Alice Soft",
    "diskSets": {
-    "sha256-fd-v1:bdd7135e435b19da8719fd7a8a0d9d3a68e45365c9c53bd348dc28a417c6661c": {
+    "sha256-fd-v1:90d78a2edbe6adf49949da1db69b095e4b6df91bda87b385fdcdd81764e8061b": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:90d78a2edbe6adf49949da1db69b095e4b6df91bda87b385fdcdd81764e8061b",
+       "contentId": "sha256-fd-v1:80c78360d43ffb1ab04bc929a4ae6879b2904d68a086f7dd9931a13f57379b3f",
        "role": "floppyB"
       }
      ],
@@ -8325,12 +8361,12 @@
       "sha256-fd-v1:747645a22cd5831e937de5ac822b5a91cd30c5e4d4ee925675db75dc25f38573",
       "sha256-fd-v1:7b46344d7b1d373be9bd16aa2cdb4db99ce1ab343a68e974447d2f4b1d429854",
       "sha256-fd-v1:80c78360d43ffb1ab04bc929a4ae6879b2904d68a086f7dd9931a13f57379b3f",
-      "sha256-fd-v1:90d78a2edbe6adf49949da1db69b095e4b6df91bda87b385fdcdd81764e8061b",
       "sha256-fd-v1:96e94a6904c269e328c64454278c5212c7345afc7351debbd70e818eb9563eb1",
       "sha256-fd-v1:ac2d31ca485b62337e4f224f440485245ef7a0919ac50562e5c087162e046e9a",
       "sha256-fd-v1:aebf8f4c12a9457b9e937fa06ca2402fda1cfee113f2399cd1b5bc4ce5a80fc2",
       "sha256-fd-v1:b39d2b6ed19a44242ae0dbc57d6de31f085b19713f46a4e8f43bd3f02840a238",
       "sha256-fd-v1:b4e810f465f208c710dae8af86e96b5569a15270adf02429747c57ac89ff39e7",
+      "sha256-fd-v1:bdd7135e435b19da8719fd7a8a0d9d3a68e45365c9c53bd348dc28a417c6661c",
       "sha256-fd-v1:d024c4519057ed6fbe28db949e7dc4476910bb376c3b4e0770578707817d08b0",
       "sha256-fd-v1:e1bf3f73292974641ff67260afab4912f9101bd8f0a1dbba29e317f6cc3088ce",
       "sha256-fd-v1:f63d74fa7455d494c7d27c469cd5651d262fef19c7b9a98d59c112797e343698"
@@ -8808,12 +8844,6 @@
    "developer": "Bullet-Proof Software",
    "diskSets": {
     "sha256-fd-v1:0696b9b7a2a17883e4c8d6141ffa93ef587f96a3be9ba152713ad00730abc0b2": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:e10f9c3b775765afe5b4ac7817e258692d65d573a18174d6300cfc465ba66fe5",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:0beb862e193b8759400d20e21ed01f6849937bf17f4a3ce996c3496db20df77a",
       "sha256-fd-v1:1fcc65e41318aaf8684c7d1bf0f9c24111f22dd2f10f248708d1395149d30fc5",
@@ -8910,16 +8940,16 @@
    "description": "A party role-playing game based on Tunnels & Trolls, set as an old peace between humans and monsters breaks down.",
    "developer": "Starcraft",
    "diskSets": {
-    "sha256-fd-v1:63fa2176b82b3dd3ad53383dd0947b31def9f03cc4e0334531ba06dbd12b3930": {
+    "sha256-fd-v1:f136f55fa7adcec3f5a980b6a97d219badf2d50002f4e9529b39bf98ed7f6265": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:f136f55fa7adcec3f5a980b6a97d219badf2d50002f4e9529b39bf98ed7f6265",
+       "contentId": "sha256-fd-v1:63fa2176b82b3dd3ad53383dd0947b31def9f03cc4e0334531ba06dbd12b3930",
        "role": "floppyB"
       }
      ],
      "setDisks": [
-      "sha256-fd-v1:e355fde5fc2057f1da2f504ffe4acffd11b21cdda4712f53a07d493f6fa69b55",
-      "sha256-fd-v1:f136f55fa7adcec3f5a980b6a97d219badf2d50002f4e9529b39bf98ed7f6265"
+      "sha256-fd-v1:63fa2176b82b3dd3ad53383dd0947b31def9f03cc4e0334531ba06dbd12b3930",
+      "sha256-fd-v1:e355fde5fc2057f1da2f504ffe4acffd11b21cdda4712f53a07d493f6fa69b55"
      ]
     }
    },
@@ -9389,7 +9419,7 @@
     "sha256-fd-v1:4ee2bfc19d4e2a10a15b7b1f03c19257f4572a552810a4a27c10e7356f1c7ce9": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:866711fc56db0cebafab08837075b1c2fc4c786fe4b904c6f4af74289c549b65",
+       "contentId": "sha256-fd-v1:6bc2e68a896a1430e85194e25199caeabcb9def7297315603f381c32dd4774fc",
        "role": "floppyB"
       }
      ],
@@ -9775,12 +9805,6 @@
    "developer": "YU-RI",
    "diskSets": {
     "sha256-fd-v1:f373f68966b3be99aa7ccf57d665eb12e69dcedc9ba1d8e2974970504662c0d0": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:8d21e1f7c0d161ce1dadd3db9a24fbdf1389afa339dc896aa0e492f82b193729",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:7c701f331192d4ba00d24cd60052a6743d6928038f5b890b19180aecbc26b761",
       "sha256-fd-v1:8d21e1f7c0d161ce1dadd3db9a24fbdf1389afa339dc896aa0e492f82b193729"
@@ -10246,12 +10270,6 @@
    "developer": "Gamma AWC",
    "diskSets": {
     "sha256-fd-v1:bdf01f2b41982c61c406e87a890a2876e60bf73daead648ffbb5b240e5198128": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:b3734b09f9c96ce451af507489e756fb3405f81c815361bc1901494b6237d193",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:b3734b09f9c96ce451af507489e756fb3405f81c815361bc1901494b6237d193"
      ]
@@ -10503,12 +10521,6 @@
    "developer": "Dempa Shimbunsha",
    "diskSets": {
     "sha256-fd-v1:10eeb927c532d5ae720ce6283226f8b87290b0d7f693271b9caebb9db783f80b": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:bec76b793e588959a3931657743d31695d189c687a30559b1476dcd9e11aa5e7",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:10f36a4ca092ba113b41511ee2fa667a433e8e9e8b05c39ac2d5d32e5d8f0131",
       "sha256-fd-v1:bec76b793e588959a3931657743d31695d189c687a30559b1476dcd9e11aa5e7"
@@ -11571,7 +11583,7 @@
     "sha256-fd-v1:cf41e23e60d6410a36d955822cf6d6e85c8b43525dd3d3d6c642a830096001cd": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:22cccbfe4742c8888fbfeddcf697c435dd70c20e941caffba454dc1f0dd135de",
+       "contentId": "sha256-fd-v1:0b908d7c4319df92a3d297a82ff4a4ca3011c2548273856252872e080755d27e",
        "role": "floppyB"
       }
      ],
@@ -12472,12 +12484,6 @@
    "developer": "Sprite",
    "diskSets": {
     "sha256-fd-v1:f6d9bbf4460c82d0d0f70a7d9f515be8615a11d62c05c39163b57fdad4446331": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:15c48e86df1bd0e599367c29fefb976286054983aaaa92a4083e6ad6e2ab5f44",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:15c48e86df1bd0e599367c29fefb976286054983aaaa92a4083e6ad6e2ab5f44"
      ]
@@ -12500,12 +12506,6 @@
    "developer": "Sprite",
    "diskSets": {
     "sha256-fd-v1:98217bbaf1f7556e9154feec52b2068d6b4003d9664bf1bea68247ec561ec43c": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:710534dff98c2b200ffd953d2be1d2a5c1ab2698a8367d13c4cb6b74e859f5e9",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:710534dff98c2b200ffd953d2be1d2a5c1ab2698a8367d13c4cb6b74e859f5e9"
      ]
@@ -12625,11 +12625,27 @@
   },
   "x68000:187343": {
    "boxArtUrl": "https://images.launchbox-app.com/153db537-6730-42ca-b27d-b2d0d3e11fd6.jpg",
+   "contentIds": [
+    "sha256-fd-v1:219a23eac57663664d6d3225234152669525a8f810286dd326fa9f66365a418a",
+    "sha256-fd-v1:4772eeee759a2e545f2efcd4df3ddcf7ef681dcb5bd20a59f631afe131b4f0e0",
+    "sha256-fd-v1:6f57a2f6f4db8e94be48e0519678cf829e39241fa26d8e634f50436b1d55ba57"
+   ],
    "description": "A doujin match-three puzzle game with special blocks that change how pieces clear.",
    "developer": "Take Soft",
+   "diskSets": {
+    "sha256-fd-v1:6f57a2f6f4db8e94be48e0519678cf829e39241fa26d8e634f50436b1d55ba57": {
+     "setDisks": [
+      "sha256-fd-v1:219a23eac57663664d6d3225234152669525a8f810286dd326fa9f66365a418a",
+      "sha256-fd-v1:4772eeee759a2e545f2efcd4df3ddcf7ef681dcb5bd20a59f631afe131b4f0e0"
+     ]
+    }
+   },
    "launchbox": "187343",
    "publisher": "Take Soft",
    "screenshotUrl": "https://images.launchbox-app.com/0e61f856-6c30-4b12-b68e-907db8e3981e.png",
+   "sourceGroups": [
+    "x68000:Bodhidharma + Mark II.zip"
+   ],
    "title": "Bodhidharma Mark 2"
   },
   "x68000:187399": {
@@ -15389,12 +15405,6 @@
    "developer": "Electric Sheep",
    "diskSets": {
     "sha256-fd-v1:cb00d29c8a0bf566f2bb0a9376c7f9411209f0b52b0b9c3952acb86bb0808460": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:377b4ca90d033da19dd918eb30b2843a6173ef4072904eda9f2d256960ac745c",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:1eab74ba1fc56a56a23b7630b0081825cccd5fd7f938c92ea5f417430aa29d0d",
       "sha256-fd-v1:377b4ca90d033da19dd918eb30b2843a6173ef4072904eda9f2d256960ac745c",
@@ -15868,12 +15878,6 @@
    "developer": "Thinking Rabbit",
    "diskSets": {
     "sha256-fd-v1:1bb26add57d8aca9e3a23a9658ae8ad07374a6e1db91ede6a144c58aeecf55d6": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:0fe8bd9c4a5a335155547db5d3a12142bf9acdef4f51935180a68653a0549522",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:0fe8bd9c4a5a335155547db5d3a12142bf9acdef4f51935180a68653a0549522"
      ]
@@ -16341,7 +16345,7 @@
     "sha256-fd-v1:33ff57ee8b0106c894267f6f28b4b01addff8fef770335c33eccb94fac08e5e0": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:034fb7cdc602b2531e5c7711f8f9f0cc9f7ee8ca0a3be69c9ad9edca0256e1d1",
+       "contentId": "sha256-fd-v1:7c286e3be9ee4a072141523d9cd223f07631c5016dbe8298bb72ac4e03eeee53",
        "role": "floppyB"
       }
      ],
@@ -17095,12 +17099,6 @@
    "developer": "Nankoku Byouyou",
    "diskSets": {
     "sha256-fd-v1:45214e49de7871a254c8dc6e55237dfa793a1bf685c926db4f67f3f7d443a05e": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:52fbaa9cb04f1cd79d9b277788ec2885aba70985c84fc40af135638c9c7d6cca",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:52fbaa9cb04f1cd79d9b277788ec2885aba70985c84fc40af135638c9c7d6cca"
      ]
@@ -17225,12 +17223,6 @@
    "developer": "Kabosu",
    "diskSets": {
     "sha256-fd-v1:f97470666f2ea53bb9bfdab893d236446fb94d349fb0e99ba42c2d091fb73bd5": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:95f8e3342868882615c10e90a1bda609c18b68fa5b0b0e16760182df093029dd",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:95f8e3342868882615c10e90a1bda609c18b68fa5b0b0e16760182df093029dd"
      ]
@@ -17293,12 +17285,6 @@
    "developer": "LTT",
    "diskSets": {
     "sha256-fd-v1:be5e7a77cd0476a4ddfb0734eab1756f907fd4d881cc9be841a84b2cd47ddc71": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:0e3f7813be3e977198748064b6b0bc0bf226500d8bf8ee0de10041b2825873a8",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:0e3f7813be3e977198748064b6b0bc0bf226500d8bf8ee0de10041b2825873a8",
       "sha256-fd-v1:2650e0b76ea924ed979d00d702e30de4e2836a1335a5af603db105a70a9aa110"
@@ -17420,12 +17406,6 @@
    "developer": "Hasamichi",
    "diskSets": {
     "sha256-fd-v1:6f1a1bc8601218e5a28c0ef079c4b6ec8bc2171aef26f294f0dacc3061b97b8a": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:49d46a354d9be118be9074fdd2024200c86384541334d570592d1755b1f08cd9",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:49d46a354d9be118be9074fdd2024200c86384541334d570592d1755b1f08cd9",
       "sha256-fd-v1:bc91f35e1cb218b4432e197627d47c2692c21897aa6dffcaa29b09d1d1bd2644"
@@ -17724,12 +17704,6 @@
    "developer": "Kukan",
    "diskSets": {
     "sha256-fd-v1:352212090aeb70b9561a05125cb8a8b6f08039690f2068534d84b361f702c55e": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:5d230bc94079dac6de0398a94e911b0b910491bdb3f4879fd66584010ca33eaf",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:5d230bc94079dac6de0398a94e911b0b910491bdb3f4879fd66584010ca33eaf"
      ]
@@ -17897,11 +17871,17 @@
    "aliases": [
     "Daifugo Gakuen"
    ],
+   "contentIds": [
+    "sha256-fd-v1:ac048fe2117849579d9af49f28b83f429344fa8210804090abe0db23129ead8f"
+   ],
    "description": "A daifugo betting card game.",
    "developer": "Jushoku Soft",
    "launchbox": "189935",
    "publisher": "Jushoku Soft",
    "screenshotUrl": "https://images.launchbox-app.com/0c528570-4c56-458f-9468-f1316eb40860.png",
+   "sourceGroups": [
+    "x68000:Dai Fugou Gakuen v1.1 (1993)(Juushoku Soft).zip"
+   ],
    "title": "Dai Fugou Gakuen"
   },
   "x68000:189936": {
@@ -18193,12 +18173,6 @@
    "developer": "Mitsuru Kamiyama",
    "diskSets": {
     "sha256-fd-v1:4cba778cc5460a438e78ddc2c6f7f1c2c6c8be8157a8c9c9ac4ecb8e242c4b1f": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:0f1a9057da328d31bf0e68a90e3b2c9c56bc8ccf8f9a8dbe512caa8ebaf1d51b",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:0f1a9057da328d31bf0e68a90e3b2c9c56bc8ccf8f9a8dbe512caa8ebaf1d51b"
      ]
@@ -18517,12 +18491,6 @@
    "description": "A racing game for up to eight players, each steering with just two buttons.",
    "diskSets": {
     "sha256-fd-v1:22356a01084c4a57998640e2e0f27cd8f7d918e5a7c13c3ee82272013749ed75": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:16fa90cd2df535321398ff5fad0e38b3a144e5672dad3de61c6f35ebe70f6818",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:16fa90cd2df535321398ff5fad0e38b3a144e5672dad3de61c6f35ebe70f6818",
       "sha256-fd-v1:fb8105def0b519a8cb2936044a6fbcfb60e23b401eb0f6eb23c7298443d16ac5"
@@ -18652,12 +18620,6 @@
    "developer": "Tiny-Tomo",
    "diskSets": {
     "sha256-fd-v1:acb8351fd02cc45a490a10276bce27cfa810908eaf871d332dcaadce0887ebeb": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:84bc08eee0817c90445e0c762f98fe095b877d6c645f461f18fabcdad6da39c0",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:84bc08eee0817c90445e0c762f98fe095b877d6c645f461f18fabcdad6da39c0"
      ]
@@ -18836,12 +18798,6 @@
      ]
     },
     "sha256-fd-v1:51fa77015178bbc58dc6a3a46873d17d551f51af638a356344035cefa4d7aaa8": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:a6d41e560b1fc41320b7d6cd067c88747689e7794a6a7fa12459fe53326ff67b",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:a6d41e560b1fc41320b7d6cd067c88747689e7794a6a7fa12459fe53326ff67b"
      ]
@@ -18882,12 +18838,6 @@
    "developer": "Sprite",
    "diskSets": {
     "sha256-fd-v1:c666fd7bd609e30bb5c0c5e2a42d8dd8a38d7f3e420cdd08e5d5b8ef56732ead": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:7df7f0823c7c11e8585ef2a74a6107858cc4e6b4586dd8861c747195669bab63",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:7df7f0823c7c11e8585ef2a74a6107858cc4e6b4586dd8861c747195669bab63",
       "sha256-fd-v1:c282495b5a715bcb1d0007e1ae32b90113f961de8b79a23800e4eeaee784ecd4"
@@ -19218,12 +19168,6 @@
    "developer": "Breakthrough",
    "diskSets": {
     "sha256-fd-v1:bd258741f84c91ca99c15040d751492b782d86262cc25c21a94d67d7e8b47457": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:3df9fc7399f307a7f165a3d88845aee7918c51e615b0e2b4e5a2071ebe5ee78d",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:3df9fc7399f307a7f165a3d88845aee7918c51e615b0e2b4e5a2071ebe5ee78d"
      ]
@@ -19320,10 +19264,16 @@
    "title": "Hori Hori Ume Ume"
   },
   "x68000:190516": {
+   "contentIds": [
+    "sha256-fd-v1:bdf65151bda3987fdbdbe44ccc70ed80adb8713a36ddb387d9374fbe6a90b98f"
+   ],
    "developer": "Hayabusa Soft",
    "launchbox": "190516",
    "publisher": "Hayabusa Soft",
    "screenshotUrl": "https://images.launchbox-app.com/e188b2c7-6001-4512-a6b4-91e82530c830.png",
+   "sourceGroups": [
+    "x68000:Hot Jump v0.00 (199x)(Hayabusa Soft).zip"
+   ],
    "title": "Hot Jump"
   },
   "x68000:190517": {
@@ -19593,12 +19543,6 @@
    "developer": "Kometa Kimiaki",
    "diskSets": {
     "sha256-fd-v1:ead6c68651554403df9b1024a212896e5e0199fead60b75e5da5fc6b66350dd9": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:b5eec23e1062489d0a0d4abb764d53c06e3942954f61430d3643b6945acc5f81",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:b5eec23e1062489d0a0d4abb764d53c06e3942954f61430d3643b6945acc5f81"
      ]
@@ -19632,12 +19576,6 @@
    "developer": "Hayabusa Soft",
    "diskSets": {
     "sha256-fd-v1:ed78f3947e7298bc39c3860fd6afe193fd43922846db004b1f99249dff56b8f7": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:8a91b31483b4c95b5bca2c9bddf77ccd04d10e8bd04434302c04dd333d6f0b09",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:8a91b31483b4c95b5bca2c9bddf77ccd04d10e8bd04434302c04dd333d6f0b09"
      ]
@@ -19788,12 +19726,6 @@
    "developer": "Yamazaki",
    "diskSets": {
     "sha256-fd-v1:cfecad7bb0c59ece29c083e3fbd58957545010b45b7d4100486c99165f61ef88": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:4e034619834d0f3dafff14369aa3059145e42709bacc78c5308a940c6c5c1a72",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:4e034619834d0f3dafff14369aa3059145e42709bacc78c5308a940c6c5c1a72",
       "sha256-fd-v1:fe140f799307e99a98eb241160ad288df82a12d623e8def8f1139b2787d4645a"
@@ -19871,12 +19803,6 @@
    "developer": "ORB",
    "diskSets": {
     "sha256-fd-v1:e821ea180a79986c699c991074db1ae3f7843ad7db74a42561a54859688bfbda": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:fb59626deca03e5bc993a194702a2d62fbdbc8f5fd3686c4b33cdb52d7ddee36",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:fb59626deca03e5bc993a194702a2d62fbdbc8f5fd3686c4b33cdb52d7ddee36"
      ]
@@ -19905,7 +19831,7 @@
     "sha256-fd-v1:deb06acb395929b4132f9a6dd154c14f6c0913a46cfc250c134071439d7a99af": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:4a421c2bd311be6cdb28e0a682a761ecddd9b7672febfeed3dbbc846dc6c9510",
+       "contentId": "sha256-fd-v1:19534c609d553f219bff2e9a838acd15c91c75ee02a848b0bd5e9ac159c362e3",
        "role": "floppyB"
       }
      ],
@@ -20037,7 +19963,7 @@
     "sha256-fd-v1:572c0a24b49b6963d1db8a05b25448b5b32f8b6e547959803ad0896b677d8c3a": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:1a0b8e342612f408065d318d507f7951b833476b2a39b434a49efc5b8a10e3bd",
+       "contentId": "sha256-fd-v1:c79f47930820f8c9579dce3cdfbc2392dcd3d24f9d8ca40f6792926eb362cce7",
        "role": "floppyB"
       }
      ],
@@ -20122,12 +20048,6 @@
    "developer": "Hoshishiba Takayuki",
    "diskSets": {
     "sha256-fd-v1:fa21b37825497819ea83e2154251cc4c986b9c6821f76adddb38491807ec4e19": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:bef1f5280574cb50156d578b89af495b0424428330828842a433772bb7aa99ad",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:bef1f5280574cb50156d578b89af495b0424428330828842a433772bb7aa99ad"
      ]
@@ -20190,12 +20110,6 @@
    "developer": "Takeboo",
    "diskSets": {
     "sha256-fd-v1:d86b0ed949beb3df92638c93b246eb3f526a51d33814c51a8ae78c6049286ca3": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:b1ff32c8ca24145b9e9e04eafbe2f43254c42d047f056580166ad234d611c001",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:585f6125f291b0ebecd623cdbebeca1d51e0cd13ae202d220333d2884cc666a8",
       "sha256-fd-v1:b1ff32c8ca24145b9e9e04eafbe2f43254c42d047f056580166ad234d611c001"
@@ -20251,12 +20165,6 @@
    "developer": "Hiramatsu M.",
    "diskSets": {
     "sha256-fd-v1:f12517f4f45940eeb3c190171c61f4c5e7686201db8232246c689565a9ebe046": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:62c436bb907f350a247eb63ae5682ba27085e3f9a864c8fe608ab9808e4da8e8",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:62c436bb907f350a247eb63ae5682ba27085e3f9a864c8fe608ab9808e4da8e8"
      ]
@@ -20424,12 +20332,6 @@
    "developer": "Yopino",
    "diskSets": {
     "sha256-fd-v1:f10b18106cdca1156d6ba9546f580475f32b0ac6ef4ad648728b8b4b4cc80edc": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:27717343eb7f60a0bd4d90c541cff4d272768ae5ad472f6f0056567b0a59c0b9",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:27717343eb7f60a0bd4d90c541cff4d272768ae5ad472f6f0056567b0a59c0b9"
      ]
@@ -20472,10 +20374,16 @@
    "title": "Marble Panic"
   },
   "x68000:190745": {
+   "contentIds": [
+    "sha256-fd-v1:feaf81e553750fd20e079525af21847e9585f529f41f57771b424d9dc2b821ee"
+   ],
    "developer": "Studio Pickles",
    "launchbox": "190745",
    "publisher": "Studio Pickles",
    "screenshotUrl": "https://images.launchbox-app.com/e7579b07-5743-4edb-938d-5e1d7ecfe7c9.png",
+   "sourceGroups": [
+    "x68000:Marble Reverser v1.0 (1992)(Studio Pickles).zip"
+   ],
    "title": "Marble Reverser"
   },
   "x68000:190746": {
@@ -20626,12 +20534,6 @@
    "developer": "YOH",
    "diskSets": {
     "sha256-fd-v1:51479dbb7a6e6192d129253a17f5c953f06f2aad47def77c7d9881ce4efdb10a": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:15b8c3683ec60a75871438541977f82556627f3018daed8b9e906d3464748f6a",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:15b8c3683ec60a75871438541977f82556627f3018daed8b9e906d3464748f6a",
       "sha256-fd-v1:e7d844cbf9ff70248366730660e5a2f7873c40e1851395a85f0ef018017dc231",
@@ -20825,11 +20727,17 @@
    "title": "Nemesis '94 Gradius 2"
   },
   "x68000:190966": {
+   "contentIds": [
+    "sha256-fd-v1:16b183e30eabfec5de18071769258d78a52d6911d1b9b4f176b8c466cecf85c8"
+   ],
    "description": "Blackjack against a distracting dealer.",
    "developer": "T.O.F.",
    "launchbox": "190966",
    "publisher": "T.O.F.",
    "screenshotUrl": "https://images.launchbox-app.com/2f14690d-9b3b-4635-aa89-2e88fd446de0.png",
+   "sourceGroups": [
+    "x68000:Nervous Black Jack v2.00 (1992)(T.O.F.).zip"
+   ],
    "title": "Nervous Black Jack"
   },
   "x68000:190967": {
@@ -21065,12 +20973,6 @@
    "developer": "Parsec",
    "diskSets": {
     "sha256-fd-v1:06b7be55a16bd8dbae9e5e4ba3910a60fe131bc30b2e329258a90c2f2f2711db": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:de021f8161604e0bea67fb997d5d4405f32724ae687ab85b1823d9b503ac0c66",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:de021f8161604e0bea67fb997d5d4405f32724ae687ab85b1823d9b503ac0c66"
      ]
@@ -21572,12 +21474,6 @@
    "developer": "Annandule Project",
    "diskSets": {
     "sha256-fd-v1:aaa06c9dc13f139a603a28d9a5427f2dcec31fca005891da449309fe3770e32a": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:29d68de71acad8704aaa643feac4c68ed278f3e94cfaf63c0662a7a1317ab4c8",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:29d68de71acad8704aaa643feac4c68ed278f3e94cfaf63c0662a7a1317ab4c8"
      ]
@@ -21666,12 +21562,6 @@
    "developer": "Yoichi Hayashi",
    "diskSets": {
     "sha256-fd-v1:a0360edf4aba76fd268f51ecd24f901c78992d3fff35ecbd3ee5599970f19725": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:0d1be4e89d60e57955cece3861886362a34aa1438316a40d454f443fd43f26e0",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:0d1be4e89d60e57955cece3861886362a34aa1438316a40d454f443fd43f26e0"
      ]
@@ -21836,12 +21726,6 @@
    ],
    "diskSets": {
     "sha256-fd-v1:8e1b5e79cf5e1549d98e069ea862fc0b930bdc14a0584b715454800da4d93433": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:844708702079d40f93fd3c75845fc3932e161aeaeb1d70281ea33245bc81b507",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:844708702079d40f93fd3c75845fc3932e161aeaeb1d70281ea33245bc81b507"
      ]
@@ -21949,12 +21833,6 @@
    "developer": "P.Pink.Pot",
    "diskSets": {
     "sha256-fd-v1:6cc6b413a1c5947f92e832b25f56c7d07fb502e7dadf0827ce5a1bf9928e0c66": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:3bf5b14c132f6c5dc92af4967014dd7db489058206250776ff9fe297eedb8664",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:3bf5b14c132f6c5dc92af4967014dd7db489058206250776ff9fe297eedb8664",
       "sha256-fd-v1:6f71535a8139744a7c8ea097def8c042dc8a6d5fb8edb7e23a0fe62292697855"
@@ -22146,12 +22024,6 @@
    "developer": "KMC",
    "diskSets": {
     "sha256-fd-v1:fee1872f0f8adb14ef5da0b388909de6cb777214fb6ecb0ac370853cf69b5816": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:61da916e04217713631be7a810a41f0cfe63fdd7e6e935f0b905e4cdb569392d",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:61da916e04217713631be7a810a41f0cfe63fdd7e6e935f0b905e4cdb569392d"
      ]
@@ -22341,12 +22213,6 @@
    "developer": "Dotmap Brothers",
    "diskSets": {
     "sha256-fd-v1:034768e69b9da582897ee3110eb5e063c296d99f41f7f5b872cd436a91b631f2": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:3036a6a98de974ee99a6b53410d2cb7caa91a68317474df28ad7105913f20cee",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:3036a6a98de974ee99a6b53410d2cb7caa91a68317474df28ad7105913f20cee"
      ]
@@ -23407,19 +23273,19 @@
    "description": "A fighting game starring Sailor Venus from the Sailor Moon manga.",
    "developer": "DK Software",
    "diskSets": {
-    "sha256-fd-v1:9122dfa24f290c1004e8a3caf0d65c89c4f39c9a6d7c7c7a2b33e0ff31f80d10": {
+    "sha256-fd-v1:d0dc5323b1103bb00e267a67035b674069c5dcb26f90e339fe3739756be57f38": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:a12b913e70630c9d0f9443d8cb479ebf04efa2e727ae6b992e6c787fd26e09b7",
+       "contentId": "sha256-fd-v1:9122dfa24f290c1004e8a3caf0d65c89c4f39c9a6d7c7c7a2b33e0ff31f80d10",
        "role": "floppyB"
       }
      ],
      "setDisks": [
       "sha256-fd-v1:5eb35682ae7475a601042e647cb943d406c9e5a9ec010a4c6967a9664a4d1169",
+      "sha256-fd-v1:9122dfa24f290c1004e8a3caf0d65c89c4f39c9a6d7c7c7a2b33e0ff31f80d10",
       "sha256-fd-v1:99fa412c9e64785fee3eb7f004107370ff35c2dedec130a8cc1b121227da21a8",
       "sha256-fd-v1:9e4de026668c603b478b9168bea87802f8e018f12f78cf68642fedb3920e5c92",
-      "sha256-fd-v1:a12b913e70630c9d0f9443d8cb479ebf04efa2e727ae6b992e6c787fd26e09b7",
-      "sha256-fd-v1:d0dc5323b1103bb00e267a67035b674069c5dcb26f90e339fe3739756be57f38"
+      "sha256-fd-v1:a12b913e70630c9d0f9443d8cb479ebf04efa2e727ae6b992e6c787fd26e09b7"
      ]
     }
    },
@@ -23511,12 +23377,6 @@
    "developer": "Team Dangeroude",
    "diskSets": {
     "sha256-fd-v1:87ac7adb191cab503f15c1ed18e2e373342e1166916dc473fca0a4b86c78db98": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:8fee98c6371c3dcb6a9ea7df910aa04daa8b3cb6629cc0a8de9db09e7a1a7cd1",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:8fee98c6371c3dcb6a9ea7df910aa04daa8b3cb6629cc0a8de9db09e7a1a7cd1",
       "sha256-fd-v1:f75114f1dee8328dd888a5bc3e9ccfb52077073770d61ecd02b1ed8e271b8ff0"
@@ -23641,7 +23501,7 @@
     "sha256-fd-v1:73d75f82f95b37cb89d9f520936d747694e3059762afe2885a016378276e3d4e": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:5bbda1804097c5067285634ef4ee6bb8fd23594bc6e700b74853d235911db591",
+       "contentId": "sha256-fd-v1:9847e3be5a72832c10b0d5fb70b474a2039b5c25a7d34e85a3c3656c470c7ef3",
        "role": "floppyB"
       }
      ],
@@ -23665,12 +23525,6 @@
    ],
    "diskSets": {
     "sha256-fd-v1:16ef420cdff2e209476ba98c6f54c061be91b7092ae7e10e506734b9a887ecf3": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:c623943f829a174eb031e99c2ba362ecbb3b6870a48b510e949382f79b5489ff",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:c623943f829a174eb031e99c2ba362ecbb3b6870a48b510e949382f79b5489ff"
      ]
@@ -23768,12 +23622,6 @@
    "description": "The first two Yaritai Houdai adventures in one set.",
    "diskSets": {
     "sha256-fd-v1:f7b1cd8252fe20c44b8e7423df08601f20521b12c315843b9ddad63dce4f56cc": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:3b99db00fa2d9fb5071ce698b6e5973771894a88d83b9683dcc0f187a63d36b7",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:3b99db00fa2d9fb5071ce698b6e5973771894a88d83b9683dcc0f187a63d36b7"
      ]
@@ -23793,17 +23641,6 @@
    ],
    "title": "Hero Hero Disk 4 Indojin No Yabou",
    "year": 1990
-  },
-  "x68000:local-071abb983c": {
-   "contentIds": [
-    "sha256-fd-v1:ac048fe2117849579d9af49f28b83f429344fa8210804090abe0db23129ead8f"
-   ],
-   "description": "A daifugo betting card game.",
-   "sourceGroups": [
-    "x68000:Dai Fugou Gakuen v1.1 (1993)(Juushoku Soft).zip"
-   ],
-   "title": "Dai Fugou Gakuen v1.1",
-   "year": 1993
   },
   "x68000:local-0747105398": {
    "contentIds": [
@@ -23904,7 +23741,7 @@
     "sha256-fd-v1:729f6f12d4cf3874f44b2c50f3b13dd3e9ddd7b701d615f37e951bb9d701c871": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:20d2ac6fb0f4f629f1fb3c85042c0b6c5558924d408a4e8c34f1ceb9f33babdf",
+       "contentId": "sha256-fd-v1:6158d9ec5ae38797690f48012edba88676606b3a19cd5e35715ad4e5da9e0f3d",
        "role": "floppyB"
       }
      ],
@@ -23943,12 +23780,6 @@
    ],
    "diskSets": {
     "sha256-fd-v1:29dcfcecdaee7968e26e66954a7a28d16883db16c238687cb42b858abd2344b0": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:eafc083cb42e4d620b19fffefe6477f77cdd7a9d6f5bd269ef6eca3691bce5db",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:344516df81113061c40c175f75d91d82bac27b235030ac1477ffffe1b5a026a9",
       "sha256-fd-v1:eafc083cb42e4d620b19fffefe6477f77cdd7a9d6f5bd269ef6eca3691bce5db"
@@ -24007,7 +23838,7 @@
     "sha256-fd-v1:f0c169e2a7ee7ca31bb3f277131b136dc4d6916c6c182f0ad3070937feb66194": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:7e73408ac03c49a9c49e0e0f09ce67abcb6b07d6e092ac3a5455e00eb2a2b2d6",
+       "contentId": "sha256-fd-v1:3ff6f56c6c418567c32d928769da9c8d1605602dc9176500ab6b65a28303afe0",
        "role": "floppyB"
       }
      ],
@@ -24044,12 +23875,6 @@
    ],
    "diskSets": {
     "sha256-fd-v1:8f4d578d4067495ad7ee6c3d63605ef01087759f9db67ea628c0fee9c08c7518": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:46518973557ff4f64fd6e0ca497ef94b92bae973524d76863c82f53284d6517d",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:46518973557ff4f64fd6e0ca497ef94b92bae973524d76863c82f53284d6517d"
      ]
@@ -24069,7 +23894,7 @@
    "sourceGroups": [
     "x68000:Minami No Hiroshi No Eigo Kyoushitsu v2.0 (1989)(Todo2).zip"
    ],
-   "title": "Minami No Hiroshi No Eigo Kyoushitsu v2.0",
+   "title": "Minami No Hiroshi No Eigo Kyoushitsu",
    "year": 1989
   },
   "x68000:local-15ad8c7695": {
@@ -24125,10 +23950,10 @@
     "sha256-fd-v1:f8735d2a81eeff5ed6046069c729469e420118d2d47959e08fbd6b018ee9f8c8"
    ],
    "diskSets": {
-    "sha256-fd-v1:266cb30d20648159f66ad946f5a287d79bcedd76332e083badd63e7b3a3bc760": {
+    "sha256-fd-v1:5893a43ad3b4f85fcadc909c0af2368052147ff4fd554d822d043e32f7f074ed": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:5893a43ad3b4f85fcadc909c0af2368052147ff4fd554d822d043e32f7f074ed",
+       "contentId": "sha256-fd-v1:f8735d2a81eeff5ed6046069c729469e420118d2d47959e08fbd6b018ee9f8c8",
        "role": "floppyB"
       }
      ],
@@ -24136,7 +23961,7 @@
       "sha256-fd-v1:0391f2749e3afa3c37281f6c734814eeab9d725a293ccd50b8330e04f159b70a",
       "sha256-fd-v1:0de005e92eb147ae36e5f534b193aa474e257c728e2365dd610476b7482c3a2a",
       "sha256-fd-v1:19df4b961e4d09cb55950ef6af457fd4e74a4d466871101775dccdd5863c8d19",
-      "sha256-fd-v1:5893a43ad3b4f85fcadc909c0af2368052147ff4fd554d822d043e32f7f074ed",
+      "sha256-fd-v1:266cb30d20648159f66ad946f5a287d79bcedd76332e083badd63e7b3a3bc760",
       "sha256-fd-v1:73144be88df217ebb14bb00673960355f776d69b290cbce8e99b7db8fb7c0b9f",
       "sha256-fd-v1:ca03295769787b6df8c6013a904a31953b35b162b5920f62527b875b6d0b7893",
       "sha256-fd-v1:d6cb066829cce6e885f2d51ab5b23a7e8f05e606fa4959481a26436628da8a3d",
@@ -24236,12 +24061,6 @@
    ],
    "diskSets": {
     "sha256-fd-v1:f7e30617afad8d35510e62acdd985476421a776dbc94cf58106f2f7ce329a4bd": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:1f940d7df8be287c6fbc66f1047adc32429416bd027044770c7274184d922bf8",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:1f940d7df8be287c6fbc66f1047adc32429416bd027044770c7274184d922bf8"
      ]
@@ -24286,7 +24105,7 @@
    "sourceGroups": [
     "x68000:Sailor V Game v3.00 (1994)(Phank's).zip"
    ],
-   "title": "Sailor V Game v3.00",
+   "title": "Sailor V Game",
    "year": 1994
   },
   "x68000:local-1fcf078059": {
@@ -24329,7 +24148,7 @@
     "sha256-fd-v1:14d7d8387db0b302066062dd24ee41a826c1a3e8c25a17aa555a91bad610fbdd": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:5235e60518f639eda82b5c5723938564900571db4bdd91c69e496681bab0e4e5",
+       "contentId": "sha256-fd-v1:225dec833bfb6c7ce46fe4d1394f6880b4d3c5df6b3e2ac1825e9ff8a03e6441",
        "role": "floppyB"
       }
      ],
@@ -24371,7 +24190,7 @@
     "sha256-fd-v1:d1c627e5b147ee62c2a2851e903c0da4a5768dd4fd1bfa0dd24843e32b07d383": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:98790354c773ecd36900b8191f11b5ba0be9a93e21f533fe97d2ebd1c0f22786",
+       "contentId": "sha256-fd-v1:ca18e62d8151e03d002a21708d6de70afa9b3d2ec9de7c2585b88d5f8b998bf4",
        "role": "floppyB"
       }
      ],
@@ -24434,18 +24253,18 @@
    ],
    "description": "A role-playing game set in the Record of Lodoss War world.",
    "diskSets": {
-    "sha256-fd-v1:7e8f74f60447bb310cdb1c2499032b8b743e914ceef20c5f2bd9024b13ee3920": {
+    "sha256-fd-v1:09434219c9ecbf225d30f82344b32ad01e8840f220442ea58b5600282aa96554": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:2e7f44ff48f657d1cc3f03c23cbc3cd3718aa9908681ff5af8d0f7d161711a82",
+       "contentId": "sha256-fd-v1:a73a41a6af089dd9e09dddabb547c4de69b838ea7ff141f6acd9530002123155",
        "role": "floppyB"
       }
      ],
      "setDisks": [
-      "sha256-fd-v1:09434219c9ecbf225d30f82344b32ad01e8840f220442ea58b5600282aa96554",
       "sha256-fd-v1:14869a551148e5a2d13ba25cc4ac8822b4d838ca22a0a43238ae195e5da68f8c",
       "sha256-fd-v1:2e7f44ff48f657d1cc3f03c23cbc3cd3718aa9908681ff5af8d0f7d161711a82",
       "sha256-fd-v1:3515e21f7e237126f283986910309ec48590feec36a7a20023c956e7fea3bd48",
+      "sha256-fd-v1:7e8f74f60447bb310cdb1c2499032b8b743e914ceef20c5f2bd9024b13ee3920",
       "sha256-fd-v1:a177ec66ee03a65fbbb873bbff04371333c1e28c7d03777ad9394b05d1b35220",
       "sha256-fd-v1:a73a41a6af089dd9e09dddabb547c4de69b838ea7ff141f6acd9530002123155",
       "sha256-fd-v1:ad6d5f3a5bfdea124c1de522a41ffdaad5808f0f507c726a97cdb618d9e6b25f",
@@ -24483,7 +24302,7 @@
     "sha256-fd-v1:ca82db2366f7cded971801901677464b6e9a936d6832cf5946f2fe18e6003bae": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:3879dbeb153b765d10b23db84cc5fe36c17500412e0f2cd6583d20050c8e2b36",
+       "contentId": "sha256-fd-v1:a955836d853dbc18193d7dd2bb8255e6c863537cc021c49420b22d2b0c4665f0",
        "role": "floppyB"
       }
      ],
@@ -24641,7 +24460,7 @@
    "sourceGroups": [
     "x68000:Ueshita Hanten!! Upside Down v1.02a (1995)(TAU Software).zip"
    ],
-   "title": "Ueshita Hanten!! Upside Down v1.02a",
+   "title": "Ueshita Hanten!! Upside Down",
    "year": 1995
   },
   "x68000:local-2dbe2369d8": {
@@ -24664,10 +24483,10 @@
    ],
    "description": "Phantasie III and IV, party role-playing games, in one set.",
    "diskSets": {
-    "sha256-fd-v1:d303551256a3e4fc9f4eb7f0d2fe2ad959d8030c5878a15b4ed3ebcfd55c5528": {
+    "sha256-fd-v1:cc3c014e04459e9cf534ca31005f6353575f77bac4f5cfec462bfc580bb5fc12": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:2056dade87b264a6bbcde223e1ad439e1392cf17da13f8631db4cf0cbeee3a47",
+       "contentId": "sha256-fd-v1:d303551256a3e4fc9f4eb7f0d2fe2ad959d8030c5878a15b4ed3ebcfd55c5528",
        "role": "floppyB"
       }
      ],
@@ -24675,7 +24494,7 @@
       "sha256-fd-v1:1ba5d800dfa1e8d67a742f4c3a82aed55f846fee223f1fa1cd8f3421747f0013",
       "sha256-fd-v1:2056dade87b264a6bbcde223e1ad439e1392cf17da13f8631db4cf0cbeee3a47",
       "sha256-fd-v1:42d032895a6a1e224da60cd9a5dab1103be7413de856a19590567d60130e0f44",
-      "sha256-fd-v1:cc3c014e04459e9cf534ca31005f6353575f77bac4f5cfec462bfc580bb5fc12"
+      "sha256-fd-v1:d303551256a3e4fc9f4eb7f0d2fe2ad959d8030c5878a15b4ed3ebcfd55c5528"
      ]
     }
    },
@@ -24749,7 +24568,7 @@
     "sha256-fd-v1:55fb255ec807d4085ee29bbe790c94ea255014072d53adca8f1e6b91fa88871f": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:fb8858978ca04bedfb93679f90f8908a27de139236901afe1e802d3deb3891e3",
+       "contentId": "sha256-fd-v1:8bfe59fcb66756589b13e3b548302af42053cf06432aa710dbd0715a2c68182a",
        "role": "floppyB"
       }
      ],
@@ -24793,10 +24612,10 @@
    ],
    "description": "Both Hoshi no Suna Monogatari mystery adventures in one set.",
    "diskSets": {
-    "sha256-fd-v1:9e5d6aa50798360d248e005cba50ade54770ae50a7dd85b9310da4cd5aa794b8": {
+    "sha256-fd-v1:dfb3020ae4ec29c1f5e1a432211e798f210619ff0437a10f0795288848a330bf": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:dfb3020ae4ec29c1f5e1a432211e798f210619ff0437a10f0795288848a330bf",
+       "contentId": "sha256-fd-v1:d55e7522c90214133c63f45704742bf8b5fc7997c821c0ac4d05bd3f086a923d",
        "role": "floppyB"
       }
      ],
@@ -24808,11 +24627,11 @@
       "sha256-fd-v1:57b59f021258a7423d54bfbb77564ca3f5e111c55ce38137b26fb2d66cf6317d",
       "sha256-fd-v1:5d1a71479e595ea6a8a8abee9535967984816532c4c013c0435283b6446a8945",
       "sha256-fd-v1:88410f8088b84c3acb66b6bbffb2bbf893abc3c4d3f627923338fa31a5c76fc7",
+      "sha256-fd-v1:9e5d6aa50798360d248e005cba50ade54770ae50a7dd85b9310da4cd5aa794b8",
       "sha256-fd-v1:b047d02d764e2e89cdf92d67bbb9c03bd310ac88355e6ac3e606e308cfa3bc31",
       "sha256-fd-v1:c17c65383c317df025decd350ea8ec98c2017078a74faf632c089dacef104ae3",
       "sha256-fd-v1:d55e7522c90214133c63f45704742bf8b5fc7997c821c0ac4d05bd3f086a923d",
-      "sha256-fd-v1:dc3ffc09c44e940e5afa12c2c374c53abd2eba2059d617b05c4ecd28cec0ee8c",
-      "sha256-fd-v1:dfb3020ae4ec29c1f5e1a432211e798f210619ff0437a10f0795288848a330bf"
+      "sha256-fd-v1:dc3ffc09c44e940e5afa12c2c374c53abd2eba2059d617b05c4ecd28cec0ee8c"
      ]
     }
    },
@@ -24829,12 +24648,6 @@
    "description": "Evil Stone and its follow-up in one set.",
    "diskSets": {
     "sha256-fd-v1:00fe3d1bef9cf87800b9f2bda908bc9b15fd43f05b2df820eaeff9ae91aacb91": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:d4090fc2e54ed5d39710bf24e742d7ec420f8ed7d6c7a8b5eb50ea1f5caaa2f5",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:d4090fc2e54ed5d39710bf24e742d7ec420f8ed7d6c7a8b5eb50ea1f5caaa2f5"
      ]
@@ -24858,12 +24671,6 @@
    "description": "Pac-Man: eat every dot in the maze while the ghosts give chase, turning the tables with power pellets.",
    "diskSets": {
     "sha256-fd-v1:d7c508ad0d47c841213eb9e7870468f3c1af104d8ecdbed6b4013108c61c6350": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:155824da19c6382f021fdac97dcb387aecb1e18f6e6e14e37f3e1027b28c29d9",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:155824da19c6382f021fdac97dcb387aecb1e18f6e6e14e37f3e1027b28c29d9",
       "sha256-fd-v1:1db29ad4763b6d4db9194f1bbd327d1f746695a6a39d2dee74bbc269bc6e3e66",
@@ -24911,18 +24718,18 @@
    ],
    "description": "The four Jotei Senki doujin fighting games in one set.",
    "diskSets": {
-    "sha256-fd-v1:58e54bb0bf8673535e7ef675324cb52ac9ea2f70bb17b16e269de674c3e6a795": {
+    "sha256-fd-v1:27bbf10b8ae24a2e3dc07f29b6083e1d1a42e48d65f68c870f549fa58f2d3810": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:950c69a538d0c264cdbb519ac723db5d25a9a924c6b9ed37ecff4d4b8d0ba9b4",
+       "contentId": "sha256-fd-v1:58e54bb0bf8673535e7ef675324cb52ac9ea2f70bb17b16e269de674c3e6a795",
        "role": "floppyB"
       }
      ],
      "setDisks": [
       "sha256-fd-v1:278a4b80e972860918a7dc10464c5e775f946350bc0dd845a9032254d9607120",
-      "sha256-fd-v1:27bbf10b8ae24a2e3dc07f29b6083e1d1a42e48d65f68c870f549fa58f2d3810",
       "sha256-fd-v1:486057296309a679d72284a4c98cba7348577e3c27c60413d1d4fbbc31385208",
       "sha256-fd-v1:4d2d19ae0a53cb8fb5ef0903057243fdd7d614502e0058d07adbfb06d884dd94",
+      "sha256-fd-v1:58e54bb0bf8673535e7ef675324cb52ac9ea2f70bb17b16e269de674c3e6a795",
       "sha256-fd-v1:7dce23f67817373c80ecc2a84de7ca12f185b33eb8b9fd5818e4495ce1defde7",
       "sha256-fd-v1:950c69a538d0c264cdbb519ac723db5d25a9a924c6b9ed37ecff4d4b8d0ba9b4",
       "sha256-fd-v1:9c1d3d8ee5532c740537a4f482a0e6b52b2d149063bd108987d1052c3599fb95"
@@ -25008,12 +24815,6 @@
    "description": "Both Satellite games in one set.",
    "diskSets": {
     "sha256-fd-v1:c9582df056097f9ac718c386187f467ed9ee053ada1f5128ac20d07852cc3a56": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:651ce8f7f6d7d2a3476eb3441b8754f8f7efb035932543af757cda8c872c3ae9",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:651ce8f7f6d7d2a3476eb3441b8754f8f7efb035932543af757cda8c872c3ae9"
      ]
@@ -25052,7 +24853,7 @@
     "sha256-fd-v1:8a05d97239b9aaeb9f6e2c224922421ce3c40bd3be2ec7834cc4bdd57ee722b6": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:73639f7f73b67e26cb88849b8619d306fdf96ae9c6fe7390c135439913eb66de",
+       "contentId": "sha256-fd-v1:6ab0731e7af9c5eaed2dce0e01ae09ce186440865c4e06936c7b47b7a4c3768f",
        "role": "floppyB"
       }
      ],
@@ -25094,7 +24895,7 @@
     "sha256-fd-v1:5386edc41f83ac702407bf5e8f24e15231db0234560b1bca3f975346dc657b30": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:1e878a15422cd6f5e92b69440a718760c059ca42433e208425e016ce8af8802e",
+       "contentId": "sha256-fd-v1:b548a4dca2e37aaf906abc1df1b2936cdf76805acac4c7308e602301aea33e54",
        "role": "floppyB"
       }
      ],
@@ -25171,7 +24972,7 @@
    "sourceGroups": [
     "x68000:Mega Powerful Jangken Pro-68K v1.05 (1992)(Gainen Shuppon).zip"
    ],
-   "title": "Mega Powerful Jangken Pro-68K v1.05",
+   "title": "Mega Powerful Jangken Pro-68K",
    "year": 1992
   },
   "x68000:local-491c418fe5": {
@@ -25237,7 +25038,7 @@
     "sha256-fd-v1:5405bf0e59815fea3c5ab692d501fb3a32fdcc16d868831e6a098c507bdf246b": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:d64ca589e2dc73fe215d3859b19616c00193e911ba032c57670ea4ae32450c72",
+       "contentId": "sha256-fd-v1:72d4fc311b0d0c5788fbfc8ab682cfcf042582248c3e888791d463175dd995a3",
        "role": "floppyB"
       }
      ],
@@ -25398,12 +25199,6 @@
    "description": "Two Saotome Gakuen adventures in one set.",
    "diskSets": {
     "sha256-fd-v1:7d2a5fa7819e74a4c55920a29d29feb26a2f9c5b75da1a264cb718cee14e68eb": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:aca71acdf98f01fd3ca00e103e92ed1eafc4db5f74443bdd78837d120fec36e7",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:aca71acdf98f01fd3ca00e103e92ed1eafc4db5f74443bdd78837d120fec36e7"
      ]
@@ -25454,7 +25249,7 @@
    "sourceGroups": [
     "x68000:Ramune Club v1.50 (1991)(Mog-Net).zip"
    ],
-   "title": "Ramune Club v1.50",
+   "title": "Ramune Club",
    "year": 1991
   },
   "x68000:local-575010bbde": {
@@ -25554,7 +25349,7 @@
     "sha256-fd-v1:a25395e4edc98e2c5fb6516f02d2cf4ea8a0045250308cb0d186289a6be888b9": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:ff90dd19a80f9ec68f46cf4c5495cb13478e497f6a1debf8adca4f0e7f3cf3b2",
+       "contentId": "sha256-fd-v1:c4624f951a9b5fd09dd80702c3ddcf68cb2c4d26de1992fa81d04d4a559927dc",
        "role": "floppyB"
       }
      ],
@@ -25599,7 +25394,7 @@
    "sourceGroups": [
     "x68000:C Ryokukensa V3 (1992)(Hayabusa Soft).zip"
    ],
-   "title": "C Ryokukensa V3",
+   "title": "C Ryokukensa",
    "year": 1992
   },
   "x68000:local-5df6af942b": {
@@ -25640,32 +25435,6 @@
    "title": "Pinky 1",
    "year": 1990
   },
-  "x68000:local-6150124375": {
-   "contentIds": [
-    "sha256-fd-v1:219a23eac57663664d6d3225234152669525a8f810286dd326fa9f66365a418a",
-    "sha256-fd-v1:4772eeee759a2e545f2efcd4df3ddcf7ef681dcb5bd20a59f631afe131b4f0e0",
-    "sha256-fd-v1:6f57a2f6f4db8e94be48e0519678cf829e39241fa26d8e634f50436b1d55ba57"
-   ],
-   "description": "The Bodhidharma puzzle games in one set.",
-   "diskSets": {
-    "sha256-fd-v1:6f57a2f6f4db8e94be48e0519678cf829e39241fa26d8e634f50436b1d55ba57": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:4772eeee759a2e545f2efcd4df3ddcf7ef681dcb5bd20a59f631afe131b4f0e0",
-       "role": "floppyB"
-      }
-     ],
-     "setDisks": [
-      "sha256-fd-v1:219a23eac57663664d6d3225234152669525a8f810286dd326fa9f66365a418a",
-      "sha256-fd-v1:4772eeee759a2e545f2efcd4df3ddcf7ef681dcb5bd20a59f631afe131b4f0e0"
-     ]
-    }
-   },
-   "sourceGroups": [
-    "x68000:Bodhidharma + Mark II.zip"
-   ],
-   "title": "Bodhidharma + Mark II"
-  },
   "x68000:local-642e5c6c2c": {
    "contentIds": [
     "sha256-fd-v1:71bc0701592d6245a9b675007abd90f44cba4d1d7aa300a1d03ca4ea207ba641"
@@ -25684,12 +25453,6 @@
    "description": "Both illustrated Adventure Land text adventures in one set.",
    "diskSets": {
     "sha256-fd-v1:939644dc69dc1436177527c22623786f3d43da15f30f1193200040b45d0a230c": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:1169083f9ddd34d29bcbf11ad202dae649052702fc6228d3260a737001c79a88",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:1169083f9ddd34d29bcbf11ad202dae649052702fc6228d3260a737001c79a88",
       "sha256-fd-v1:e832dc50f08ce2406955015b9c38c687fa3b4fcc7606e1f357cb157871ba28f4"
@@ -25749,12 +25512,6 @@
    "description": "Konami's Gradius and Gradius II side-scrolling shooters in one set.",
    "diskSets": {
     "sha256-fd-v1:ee06c2be5ddd8ffd94223be0707e3901d96b998212ac8b0b78ad867ca7cff0a9": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:9075d45f94f39e50084fc7189e56f621b0410519109390b1672deeea15141117",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:473ebfd0580cc32a5904488618e50b438c58891263be0e52482fb57f1704d351",
       "sha256-fd-v1:9075d45f94f39e50084fc7189e56f621b0410519109390b1672deeea15141117",
@@ -25781,7 +25538,7 @@
     "sha256-fd-v1:a4b34df0e8cc3d49a93285a50738707f7bef9bd54d22d6ad52c2ace7810b22a0": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:f973e05fffff01125fee5a109d1ce365d736b45ba9b03da6cb0fb8f91ee87c3a",
+       "contentId": "sha256-fd-v1:01512813fe069b468ba1a13395b9afbf5ebeee2ff064b6682b9597c1c8b4e0c4",
        "role": "floppyB"
       }
      ],
@@ -26009,7 +25766,7 @@
     "sha256-fd-v1:0991d4c826166d4f6f781749946bd22a6767c9169750ded93b09a1a90ba32708": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:bbf7bf6e0bbf2218c476e98055549ba82a30db658c1d4e76bb264181b3ba98cb",
+       "contentId": "sha256-fd-v1:0cfef56918c78f5ecb2c7d09f4cc7f7fb620c58f0647e7838ff2bd5111e8d8eb",
        "role": "floppyB"
       }
      ],
@@ -26054,19 +25811,19 @@
    ],
    "description": "Ultima IV, V and VI in one set: the Avatar's role-playing adventures in Britannia.",
    "diskSets": {
-    "sha256-fd-v1:6d9e0f59dfcaa0e6cf0bc668532ea45c277d97f114c14a15c1f915e187119542": {
+    "sha256-fd-v1:b6fe414644ef7f7a56ce40e8db2883b4cc4e254bb53947f7a48ed1c99342fecb": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:78b6db6587d197f9a8d846dcf7ef8a7fd8c6acfeb4d09fe3d60a26c2d84bc327",
+       "contentId": "sha256-fd-v1:0203aa619789998f5607d68c702366637cbe7f443d7da70162812da1fb90a09f",
        "role": "floppyB"
       }
      ],
      "setDisks": [
       "sha256-fd-v1:0203aa619789998f5607d68c702366637cbe7f443d7da70162812da1fb90a09f",
       "sha256-fd-v1:659639c0c7ae1cad4db000fbdb3a71eda7b941a5bc57817438e5948ff1266214",
+      "sha256-fd-v1:6d9e0f59dfcaa0e6cf0bc668532ea45c277d97f114c14a15c1f915e187119542",
       "sha256-fd-v1:78b6db6587d197f9a8d846dcf7ef8a7fd8c6acfeb4d09fe3d60a26c2d84bc327",
       "sha256-fd-v1:89f049d4740eda15a20887e60c6c420c3d0b1b40dfa713d7130ebf3e0e9aa199",
-      "sha256-fd-v1:b6fe414644ef7f7a56ce40e8db2883b4cc4e254bb53947f7a48ed1c99342fecb",
       "sha256-fd-v1:cd0c49110c5cc8d35349a1e4023d15001170e63363dc970a26e8e6f97b134e2e"
      ]
     }
@@ -26085,12 +25842,6 @@
    "description": "The three Pinky Ponky dating games in one set.",
    "diskSets": {
     "sha256-fd-v1:17294980ad8e7cf583ca285b9fa14809b7c1dfa0c04d088ad513c5caf47c17f9": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:534d6313f0bc0c444e09212baaaf0a5b45908a82495ab7a5b78d424b010c30c6",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:534d6313f0bc0c444e09212baaaf0a5b45908a82495ab7a5b78d424b010c30c6",
       "sha256-fd-v1:c17b857f7b1a88805b9b0010a171aa3649eb14773587d2f7b387a62e145c3534"
@@ -26126,7 +25877,7 @@
     "sha256-fd-v1:84703fa11fe1c40665f32645a646bc94c2fa9074cb8859fb5a413783490dc77d": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:8a02322d15746e68f39dd5f267265e9f2193c7afa9c665f50026ac59c6c467fe",
+       "contentId": "sha256-fd-v1:a4f7a837678a9822701afce5327fdd9009f466d1ab5d9d0b6c8fa475118d3209",
        "role": "floppyB"
       }
      ],
@@ -26172,7 +25923,7 @@
    "sourceGroups": [
     "x68000:Block Stocker v2.00 (1989)(X-Soft).zip"
    ],
-   "title": "Block Stocker v2.00",
+   "title": "Block Stocker",
    "year": 1989
   },
   "x68000:local-7d9894be8f": {
@@ -26188,7 +25939,7 @@
     "sha256-fd-v1:dbbc3a20ccd8ebf467292da24b0c6576e09a77a48c86c1920160717a07dda849": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:abd7f783cea31d76421075ef4e55405fd1c131f023aeed49216c45e8956de737",
+       "contentId": "sha256-fd-v1:2127d1fe679e566d80fc6d203e838178de7c5f9a228f49d4d7e91601abba5859",
        "role": "floppyB"
       }
      ],
@@ -26270,12 +26021,6 @@
    ],
    "diskSets": {
     "sha256-fd-v1:9b078f220ae46cec0fb4917961dc655bc0e1cbf096b5906a93338ba471069aaf": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:5cc6dffaf36813d7ac3c3c304983b95ba85b2e624123f5cd934b091cb71ac80f",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:5cc6dffaf36813d7ac3c3c304983b95ba85b2e624123f5cd934b091cb71ac80f"
      ]
@@ -26323,7 +26068,7 @@
     "sha256-fd-v1:1080720f872f1485906a408b6650e345c17dcc9a4f7923cb9f0d1cd416262322": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:116ade17c0ee03a61fcf2e2b57328cbfff6359d78f609a29661be0ff55837a11",
+       "contentId": "sha256-fd-v1:9af19259f76fdc130288f07c850aabbd7fbcadf60feeb9d77ca97c2cf772893d",
        "role": "floppyB"
       }
      ],
@@ -26387,7 +26132,7 @@
     "sha256-fd-v1:8981931ff97d05122408a7011a37b31c73bbe8fecbed7265b4ace474f3df3028": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:876e0dea70bc40e40f704fdc2722073004e84bef6c56907894ef6aeade6f03e6",
+       "contentId": "sha256-fd-v1:4107765ef381095482a36a9246e4b0ad7c11e4a2c33c8167be0b4bfa85af49dc",
        "role": "floppyB"
       }
      ],
@@ -26413,35 +26158,6 @@
     "x68000:The 4th Unit + Act 2-5.zip"
    ],
    "title": "The 4th Unit + Act 2-5"
-  },
-  "x68000:local-8aa8fa44f6": {
-   "contentIds": [
-    "sha256-fd-v1:04a577e39af9e64e22813d8738b227c5c845533a0da261099ac63ff19ced5ab8",
-    "sha256-fd-v1:37f6426e2343965d064cf908407fc58fba9777119ab9df82e67c35ab9fff8d86",
-    "sha256-fd-v1:ee6c94261273b302c3d1704f150c1930aefe42d1ee23fa1201a43bc5cf4365b6",
-    "sha256-fd-v1:f146eec102dcfdde40c5ce2010929655afcdf9f240482c1c9ff8c92584166721"
-   ],
-   "description": "Wolf Team's Granada, a top-down mech shooter, with its updated version.",
-   "diskSets": {
-    "sha256-fd-v1:37f6426e2343965d064cf908407fc58fba9777119ab9df82e67c35ab9fff8d86": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:04a577e39af9e64e22813d8738b227c5c845533a0da261099ac63ff19ced5ab8",
-       "role": "floppyB"
-      }
-     ],
-     "setDisks": [
-      "sha256-fd-v1:04a577e39af9e64e22813d8738b227c5c845533a0da261099ac63ff19ced5ab8",
-      "sha256-fd-v1:ee6c94261273b302c3d1704f150c1930aefe42d1ee23fa1201a43bc5cf4365b6",
-      "sha256-fd-v1:f146eec102dcfdde40c5ce2010929655afcdf9f240482c1c9ff8c92584166721"
-     ]
-    }
-   },
-   "sourceGroups": [
-    "x68000:Granada + v2.0 (1990)(Wolf Team).zip"
-   ],
-   "title": "Granada + v2.0",
-   "year": 1990
   },
   "x68000:local-8ae3d491ec": {
    "contentIds": [
@@ -26525,7 +26241,7 @@
    "sourceGroups": [
     "x68000:Jan Ken Club v1.2 (19xx)(Dream Project).zip"
    ],
-   "title": "Jan Ken Club v1.2"
+   "title": "Jan Ken Club"
   },
   "x68000:local-904b5baacb": {
    "contentIds": [
@@ -26535,12 +26251,6 @@
    "description": "Both Battle Unit shooters in one set.",
    "diskSets": {
     "sha256-fd-v1:02dbac177547995f081b123bc1fdde2102474becafee56bf0bfd7942894c1445": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:390200509c2fd565a0dbd1d80f4e1b73c025911be8c2714a04fdcb6eecbfea37",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:390200509c2fd565a0dbd1d80f4e1b73c025911be8c2714a04fdcb6eecbfea37"
      ]
@@ -26590,7 +26300,7 @@
     "sha256-fd-v1:b205673c1deb6c2c6f24ca9a453bde728282912dbfa7168d1bc4e9720ca51a0c": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:029c65fde576e35e079b1e1724085bfe2391861988c990eb0b4c368b2cc1a03c",
+       "contentId": "sha256-fd-v1:59ed4c515509f8dce77f9d99c3946d0b8a55319f01f311468924ad19a4c13125",
        "role": "floppyB"
       }
      ],
@@ -26634,7 +26344,7 @@
     "sha256-fd-v1:21920a72a50deecf9cc1b1a945b804bf7e55ade4ce5f7368bb974d7038251800": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:78e33b092200c5cccef0fefdcab78e3f204a762b6408698bbd2a0a631dad0e21",
+       "contentId": "sha256-fd-v1:3d759576a5032b712c387f94953e9b76bf386b06d7d03a62f76fb42e5f26a17c",
        "role": "floppyB"
       }
      ],
@@ -26741,7 +26451,7 @@
     "sha256-fd-v1:bb669953b965b2648a742ca80bdb5e57db92e5917d9f61428a35e1ef3a359b64": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:fd83e3a7553c9b40eb5c9ba254debe6ef6462982942f6f7774adac2710f324fe",
+       "contentId": "sha256-fd-v1:2b2ed5353da93cc45e17a44798ad37bc214fd7425a2d070f5144a9a569a4fe6a",
        "role": "floppyB"
       }
      ],
@@ -26781,19 +26491,19 @@
    ],
    "description": "SystemSoft's Daisenryaku II and III '90 war strategy games in one set.",
    "diskSets": {
-    "sha256-fd-v1:98d9e5f53b5d0678384a9fb5ec04a57f2ed3b226cc49238996880d7f1c3fc40b": {
+    "sha256-fd-v1:6dfa34023b0b54a709d19779671de27a77be6fbd0cd55f8cb5c59721d503eb31": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:561053108329ae7ddd3c6c0b139113e3ae1a47ef1a5d3ae71b0d48c6decb461f",
+       "contentId": "sha256-fd-v1:98d9e5f53b5d0678384a9fb5ec04a57f2ed3b226cc49238996880d7f1c3fc40b",
        "role": "floppyB"
       }
      ],
      "setDisks": [
       "sha256-fd-v1:561053108329ae7ddd3c6c0b139113e3ae1a47ef1a5d3ae71b0d48c6decb461f",
-      "sha256-fd-v1:6dfa34023b0b54a709d19779671de27a77be6fbd0cd55f8cb5c59721d503eb31",
       "sha256-fd-v1:82ab6106275e7ed29abfe284bd58e0f298edc20200d25010161df9a5901f87cc",
       "sha256-fd-v1:8a7d40ddbae486b50756ca703d83a011663b4e820001833994c34aef90a6891b",
       "sha256-fd-v1:917f59bb0fb9ff3c508b82948a9db8991bd11b2887978d3b90cde3a43b9c87b7",
+      "sha256-fd-v1:98d9e5f53b5d0678384a9fb5ec04a57f2ed3b226cc49238996880d7f1c3fc40b",
       "sha256-fd-v1:c154b024e12a66e4f9074d69e8743cac7c79c950936c709f4dbf6182207823c7",
       "sha256-fd-v1:df76680ca3365664c9f04af79bf5e8be05a82248af690ed313de2e2e1c4bf0d5"
      ]
@@ -26820,7 +26530,7 @@
    "sourceGroups": [
     "x68000:Vs Klith v0.50 (1993)(K1).zip"
    ],
-   "title": "Vs Klith v0.50",
+   "title": "Vs Klith",
    "year": 1993
   },
   "x68000:local-98aefd2fc2": {
@@ -26880,17 +26590,6 @@
    "title": "Anzu Fly!",
    "year": 1991
   },
-  "x68000:local-9f507087e8": {
-   "contentIds": [
-    "sha256-fd-v1:16b183e30eabfec5de18071769258d78a52d6911d1b9b4f176b8c466cecf85c8"
-   ],
-   "description": "Blackjack against a distracting dealer.",
-   "sourceGroups": [
-    "x68000:Nervous Black Jack v2.00 (1992)(T.O.F.).zip"
-   ],
-   "title": "Nervous Black Jack v2.00",
-   "year": 1992
-  },
   "x68000:local-9f5388ddbb": {
    "contentIds": [
     "sha256-fd-v1:0548f3da4087083dba866bba39488915a28f43f24bd922e9010e07737a47c0c3",
@@ -26906,7 +26605,7 @@
     "sha256-fd-v1:35ca459fd40fa4160683673907a3117fa11b1cc2aeacc00b0a02b5a41c6ed82e": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:c9f404add35950aeeb0628894dc635dcbe1603e49d2765777f8f5c9e4da47a26",
+       "contentId": "sha256-fd-v1:227d1fd9ad08e989974b27ea20d278101f3649b49c6af369d9c9c45f8aa86399",
        "role": "floppyB"
       }
      ],
@@ -26954,16 +26653,6 @@
    ],
    "title": "Black Jack 68K II Animation Version"
   },
-  "x68000:local-a2da2bf093": {
-   "contentIds": [
-    "sha256-fd-v1:feaf81e553750fd20e079525af21847e9585f529f41f57771b424d9dc2b821ee"
-   ],
-   "sourceGroups": [
-    "x68000:Marble Reverser v1.0 (1992)(Studio Pickles).zip"
-   ],
-   "title": "Marble Reverser v1.0",
-   "year": 1992
-  },
   "x68000:local-a4dbaf70eb": {
    "contentIds": [
     "sha256-fd-v1:1214006031ce468fca0491f2502dfeb7f60823bf28b38b4b00a9c4563b663c0b",
@@ -26982,10 +26671,10 @@
    ],
    "description": "ArtDink's A-Train II and III railway and city-building simulations in one set.",
    "diskSets": {
-    "sha256-fd-v1:d8666cfb23e3c4c5be15c09f56e1a2ad52c33f46a557fb360362952721d729a2": {
+    "sha256-fd-v1:eaac3377b0c908177a280843d50ba20d0e6e44d54d42ef871f8a501b2afd0e50": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:8c9fe9bdbe65e943845696874583432a29f2fc41946672824b79cfa1d7eed438",
+       "contentId": "sha256-fd-v1:9d03526ba45efd7236a0fe794c2bccbb8d18e76d298bad7b141e043c11d3317d",
        "role": "floppyB"
       }
      ],
@@ -27000,8 +26689,8 @@
       "sha256-fd-v1:9d03526ba45efd7236a0fe794c2bccbb8d18e76d298bad7b141e043c11d3317d",
       "sha256-fd-v1:b2542dbfe8f9b7333a9bc56f760a0013a5fdaef1266cb86681839af739245285",
       "sha256-fd-v1:c05b284ee48d601443731850c7f6d1e249922d80ecb5adbc850ae4e64850c8ab",
-      "sha256-fd-v1:e15ce80674646d048aeeff6b5769dbd53d1c3d1903b41aa5a09a214f20aab1e8",
-      "sha256-fd-v1:eaac3377b0c908177a280843d50ba20d0e6e44d54d42ef871f8a501b2afd0e50"
+      "sha256-fd-v1:d8666cfb23e3c4c5be15c09f56e1a2ad52c33f46a557fb360362952721d729a2",
+      "sha256-fd-v1:e15ce80674646d048aeeff6b5769dbd53d1c3d1903b41aa5a09a214f20aab1e8"
      ]
     }
    },
@@ -27193,7 +26882,7 @@
     "sha256-fd-v1:d9515dc6a76c1ef2fb7cd91a503fc8d92bc82f4273b23e0e1292755a18134885": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:29a07eef249e7506e3deee73b33b9782dd394d68fdfd57ad28cefa38ca880bd5",
+       "contentId": "sha256-fd-v1:6d167280d0eac3e7bd999363a2248c8bbdfa572a55989ea86a1b2b6d206e9c8d",
        "role": "floppyB"
       }
      ],
@@ -27236,7 +26925,7 @@
     "sha256-fd-v1:4bab46bea5f22030da3751e7e7ac71e9b12be1a2d55475b9497b065a6eeaa739": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:43d50e1b46f736c1bab1eb7bff18cd5037457d360f3b939332a04eaca1c3d0c3",
+       "contentId": "sha256-fd-v1:b93e7eea5d15e7f3031dbec28d1bbc3fe111caeaf286dd9c76553850953b36b6",
        "role": "floppyB"
       }
      ],
@@ -27352,12 +27041,6 @@
    "description": "Both Diamond Explorer games in one set.",
    "diskSets": {
     "sha256-fd-v1:64cdb940ae2a5c6f4c5a7c45b5e3d9a33c70e5bfbf42464044b162f005214146": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:4b3886a21df49c93f180b87392ca7c5a088194a1b3aeeda5622c3a47f0e2589d",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:4b3886a21df49c93f180b87392ca7c5a088194a1b3aeeda5622c3a47f0e2589d"
      ]
@@ -27384,7 +27067,7 @@
    "sourceGroups": [
     "x68000:Hey! Say! Education Committee v0.12 (1993)(Taka-P).zip"
    ],
-   "title": "Hey! Say! Education Committee v0.12",
+   "title": "Hey! Say! Education Committee",
    "year": 1993
   },
   "x68000:local-b84e8acd58": {
@@ -27396,15 +27079,6 @@
    ],
    "title": "Majo Halldra No Yabou",
    "year": 1993
-  },
-  "x68000:local-b8df659d3e": {
-   "contentIds": [
-    "sha256-fd-v1:bdf65151bda3987fdbdbe44ccc70ed80adb8713a36ddb387d9374fbe6a90b98f"
-   ],
-   "sourceGroups": [
-    "x68000:Hot Jump v0.00 (199x)(Hayabusa Soft).zip"
-   ],
-   "title": "Hot Jump v0.00"
   },
   "x68000:local-b9e01471c2": {
    "contentIds": [
@@ -27453,7 +27127,7 @@
    "sourceGroups": [
     "x68000:BM68 v0.20r2 (19xx)(T'cube).zip"
    ],
-   "title": "BM68 v0.20r2"
+   "title": "BM68"
   },
   "x68000:local-bb37d76a06": {
    "contentIds": [
@@ -27509,7 +27183,7 @@
     "sha256-fd-v1:aeb07b558611e948a12cbf8ef1a47d4ea0115d05da56001d6126bc02a03e5783": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:653a7e0649f90ab93e80bb57644448a6bcad4df2079b1d7e39212eae5b430b9e",
+       "contentId": "sha256-fd-v1:4b95d373dc36ecede1abfa55e51d4b003955ba4c63ad45b22cdd8409baaf1c81",
        "role": "floppyB"
       }
      ],
@@ -27562,7 +27236,7 @@
    "sourceGroups": [
     "x68000:Imazoman v1.00 (199x)(-).zip"
    ],
-   "title": "Imazoman v1.00"
+   "title": "Imazoman"
   },
   "x68000:local-c24a238c5e": {
    "contentIds": [
@@ -27581,12 +27255,6 @@
    ],
    "diskSets": {
     "sha256-fd-v1:fc1e863cb035557e424d8554954f7d75213d8b6a2ded44c83f08cca31804c1e8": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:0f2feaf00e04b214de422f07197f21063a0ab9ed47fd5fa2f6f1e107555d853d",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:0f2feaf00e04b214de422f07197f21063a0ab9ed47fd5fa2f6f1e107555d853d",
       "sha256-fd-v1:fc7c7854d1abe61301035054cf525e4c50a46b82fa5e6cc15c822c67278fcfe1"
@@ -27613,7 +27281,7 @@
     "sha256-fd-v1:862aeed24cea8ad3f9f719f1bcbb699040a3afd7257744a63dc9c53ebeb39b27": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:76facada5e87a8a1fd740ccd4783f269198eb666b2a03fd33a1733b06cc6cede",
+       "contentId": "sha256-fd-v1:f442363de1bd5d0fde7b45828959a0f53307b2ab500ad872ee36917f265f4bc1",
        "role": "floppyB"
       }
      ],
@@ -27642,12 +27310,6 @@
    "description": "The Mon Mon memory card games in one set.",
    "diskSets": {
     "sha256-fd-v1:1eccefe9c0aecfb855167d32b24b002fe35fa0e80ae8edc21a43a274b2c5d7b0": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:00b0c9c46a1284416e82a693cf47087a55791d624b3727aac52ac93f9c30fd2e",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:00b0c9c46a1284416e82a693cf47087a55791d624b3727aac52ac93f9c30fd2e",
       "sha256-fd-v1:78c4b0a7e69a06281177cff90949e233bcfbde40f87e8c60351c5a9817885a60",
@@ -27688,12 +27350,6 @@
    "description": "Both Hiroshi action games in one set.",
    "diskSets": {
     "sha256-fd-v1:272d4a8a620ab19f57076ad5f529e4dfdc480a8f0fe2a3178b7de3fceae19760": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:888fcc0bbf03e3735b052423bfa10c94ac372148660531f4995cff38b4e5c008",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:888fcc0bbf03e3735b052423bfa10c94ac372148660531f4995cff38b4e5c008"
      ]
@@ -27783,12 +27439,6 @@
    ],
    "diskSets": {
     "sha256-fd-v1:0df7a49236c532cf7edf78de0b8a11ed637ec8a4d08424dd74b0e196265dfa02": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:9efce5ec60a67b229803f2f5ed3c27583991534a5ac99d15cce851736b9a04be",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:9efce5ec60a67b229803f2f5ed3c27583991534a5ac99d15cce851736b9a04be"
      ]
@@ -27863,7 +27513,7 @@
    "sourceGroups": [
     "x68000:EEL Edit Elements v2.00A (1995)(Cat Soft).zip"
    ],
-   "title": "EEL Edit Elements v2.00A",
+   "title": "EEL Edit Elements",
    "year": 1995
   },
   "x68000:local-cf61dab533": {
@@ -27898,17 +27548,17 @@
     "sha256-fd-v1:da4499d47ce7d7c5148482489420f6d2651d96ac7322a383cc84e2c1f762d5d9"
    ],
    "diskSets": {
-    "sha256-fd-v1:da4499d47ce7d7c5148482489420f6d2651d96ac7322a383cc84e2c1f762d5d9": {
+    "sha256-fd-v1:0a8526ffd2d0a9bade9645ab1027ffc039dbe73f1e76df4906a942d9e5e69b8e": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:0a8526ffd2d0a9bade9645ab1027ffc039dbe73f1e76df4906a942d9e5e69b8e",
+       "contentId": "sha256-fd-v1:da4499d47ce7d7c5148482489420f6d2651d96ac7322a383cc84e2c1f762d5d9",
        "role": "floppyB"
       }
      ],
      "setDisks": [
-      "sha256-fd-v1:0a8526ffd2d0a9bade9645ab1027ffc039dbe73f1e76df4906a942d9e5e69b8e",
       "sha256-fd-v1:3f13be591dd1d373936d21070475f1b02b0e891598be183a25865eb9a3a18dd2",
-      "sha256-fd-v1:6f100338bccafde0948d37bad76764c3c90a844db54f36a3807e45c53fc740e1"
+      "sha256-fd-v1:6f100338bccafde0948d37bad76764c3c90a844db54f36a3807e45c53fc740e1",
+      "sha256-fd-v1:da4499d47ce7d7c5148482489420f6d2651d96ac7322a383cc84e2c1f762d5d9"
      ]
     }
    },
@@ -27926,16 +27576,16 @@
    ],
    "description": "Both Sword Master games in one set.",
    "diskSets": {
-    "sha256-fd-v1:ea34177afce81c6daa6efef035884cd2b2768ea8a8f29ab7fb779ac445ff03a1": {
+    "sha256-fd-v1:1ee798a51b1184fe02340dd4e3af59d1c286835aea8efe6c1345cfd0717f917d": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:b653c3f4c7023cef0f1bd74caeba4723aa42cbe61434c4473f813610b358fa9f",
+       "contentId": "sha256-fd-v1:ea34177afce81c6daa6efef035884cd2b2768ea8a8f29ab7fb779ac445ff03a1",
        "role": "floppyB"
       }
      ],
      "setDisks": [
-      "sha256-fd-v1:1ee798a51b1184fe02340dd4e3af59d1c286835aea8efe6c1345cfd0717f917d",
-      "sha256-fd-v1:b653c3f4c7023cef0f1bd74caeba4723aa42cbe61434c4473f813610b358fa9f"
+      "sha256-fd-v1:b653c3f4c7023cef0f1bd74caeba4723aa42cbe61434c4473f813610b358fa9f",
+      "sha256-fd-v1:ea34177afce81c6daa6efef035884cd2b2768ea8a8f29ab7fb779ac445ff03a1"
      ]
     }
    },
@@ -28004,7 +27654,7 @@
     "sha256-fd-v1:2b504e428a8c37f569921022a2cd410142e892b9e0fbe777d21ec9864548bb37": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:395e5c7937999353e889083266668e25c7d82a2aa94364eaa7820c51af3fa545",
+       "contentId": "sha256-fd-v1:2b707035b620ff8de562703f7c7ce1d2059f8d47d42f32f89ee42f5abf26a7b9",
        "role": "floppyB"
       }
      ],
@@ -28169,7 +27819,7 @@
    "sourceGroups": [
     "x68000:Mou Ichido Aoune v1.01 (1995)(TAU Software).zip"
    ],
-   "title": "Mou Ichido Aoune v1.01",
+   "title": "Mou Ichido Aoune",
    "year": 1995
   },
   "x68000:local-de88e845d4": {
@@ -28188,7 +27838,7 @@
    "sourceGroups": [
     "x68000:Moria v4.87 (19xx)(Kobayashi Kenichi).zip"
    ],
-   "title": "Moria v4.87"
+   "title": "Moria"
   },
   "x68000:local-e06ae7d174": {
    "contentIds": [
@@ -28227,7 +27877,7 @@
     "sha256-fd-v1:86fcefeee92e34c81d8d204c0a7bd420e40f313506bf0c7c258a97fe631c8efe": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:a758f2a68dbf8ffc9a70ce6f9f5167b81c8e2bf6db26e329dbbe9edcb806b2c6",
+       "contentId": "sha256-fd-v1:8e77bcfed9f29cc5c5017282e251c62afa32a4f111008975906a47a671026807",
        "role": "floppyB"
       }
      ],
@@ -28257,12 +27907,6 @@
    "description": "Three doujin board and casino games from Iron Gear's Nouten Chokudake! series.",
    "diskSets": {
     "sha256-fd-v1:cfd3d40903584ab07eead02fda61037efd9acfe11aca8be46838c41389cdc61a": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:9050dc59fcf8cb0472af94603c6af685d3dd666e97e806d2e2417a019a64b590",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:79d6e5d9eefa7664bcef8dba0ac7ea7d320e8249657947807b1eeb2e0cfb9d15",
       "sha256-fd-v1:9050dc59fcf8cb0472af94603c6af685d3dd666e97e806d2e2417a019a64b590"
@@ -28273,44 +27917,6 @@
     "x68000:Naniwa Do Konjou Series Bangaihen Nouten Chokudake! I+II+III.zip"
    ],
    "title": "Naniwa Do Konjou Series Bangaihen Nouten Chokudake! I+II+III"
-  },
-  "x68000:local-e253732ff4": {
-   "contentIds": [
-    "sha256-fd-v1:13c9ace96df57e9ab0a16d59acf9c1d5b8580643f2164a002ed36a56264f4080",
-    "sha256-fd-v1:2deb7794783efd95ed48aa505b96fb0146826c18ac51de01c015344e4f0516d6",
-    "sha256-fd-v1:46cb897168393f42914aa029febd9b8eb154d9f76f1c5f3095e5d03354babddd",
-    "sha256-fd-v1:866e02708f6392341dbc5e7ef5d4eb56a1d5f8415674b28b84aebbf8968cdd4b",
-    "sha256-fd-v1:a986f8f456bb3df37cd4c9b8922f6b9cfde6d1580c414bdbe3a2091a74edb77e",
-    "sha256-fd-v1:bfa59c6a47b8d34adde32dbf8d87100a7e3c098648ecfd54712f05b9d4af2838",
-    "sha256-fd-v1:d24dd847edd3c99230957ecd7b17118a7e7dbbf2eabefc5aabedbff5d77939d4",
-    "sha256-fd-v1:ee44c6100e849edc9159dbf5365d2f87fd26fcedf887200cdb264de3a1863950",
-    "sha256-fd-v1:fb841410ccd8d4f87cd1c8d9c232efb9fd1c963434b2aec5fffa970d52c11ef7"
-   ],
-   "description": "A Tenshitachi no Gogo adventure with extras.",
-   "diskSets": {
-    "sha256-fd-v1:2deb7794783efd95ed48aa505b96fb0146826c18ac51de01c015344e4f0516d6": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:866e02708f6392341dbc5e7ef5d4eb56a1d5f8415674b28b84aebbf8968cdd4b",
-       "role": "floppyB"
-      }
-     ],
-     "setDisks": [
-      "sha256-fd-v1:13c9ace96df57e9ab0a16d59acf9c1d5b8580643f2164a002ed36a56264f4080",
-      "sha256-fd-v1:46cb897168393f42914aa029febd9b8eb154d9f76f1c5f3095e5d03354babddd",
-      "sha256-fd-v1:866e02708f6392341dbc5e7ef5d4eb56a1d5f8415674b28b84aebbf8968cdd4b",
-      "sha256-fd-v1:a986f8f456bb3df37cd4c9b8922f6b9cfde6d1580c414bdbe3a2091a74edb77e",
-      "sha256-fd-v1:bfa59c6a47b8d34adde32dbf8d87100a7e3c098648ecfd54712f05b9d4af2838",
-      "sha256-fd-v1:d24dd847edd3c99230957ecd7b17118a7e7dbbf2eabefc5aabedbff5d77939d4",
-      "sha256-fd-v1:ee44c6100e849edc9159dbf5365d2f87fd26fcedf887200cdb264de3a1863950",
-      "sha256-fd-v1:fb841410ccd8d4f87cd1c8d9c232efb9fd1c963434b2aec5fffa970d52c11ef7"
-     ]
-    }
-   },
-   "sourceGroups": [
-    "x68000:Tenshitachi No Gogo +.zip"
-   ],
-   "title": "Tenshitachi No Gogo +"
   },
   "x68000:local-e5f25464a9": {
    "contentIds": [
@@ -28340,12 +27946,6 @@
    "description": "Both Marble Reverser doujin puzzle games in one set.",
    "diskSets": {
     "sha256-fd-v1:0a6e735c6713028b84640a4d13cf834ab3b7b088593d72a9ecb7a70e1b3d5f4f": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:4468b0bccfdab0e9a31867204a025e7fd1b46bb0cd257b42e4878ca29e12ebf2",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:4468b0bccfdab0e9a31867204a025e7fd1b46bb0cd257b42e4878ca29e12ebf2"
      ]
@@ -28469,35 +28069,6 @@
    "title": "Me No Sakkaku Honken Program",
    "year": 1992
   },
-  "x68000:local-ecd5d2a942": {
-   "contentIds": [
-    "sha256-fd-v1:538345d55a2784bef3ac29bc8901f259913bfc13034b95c39dc8e2a8c373e224",
-    "sha256-fd-v1:5b6a43b88864646c62a77ab6884a54d02b7108b226bb807c50b870617aff27bc",
-    "sha256-fd-v1:97e2901c5fafb5e1a3fdd5774c91d7cbbe5e7d5369fb09c6e11e20e49abeec78",
-    "sha256-fd-v1:cbb599d65db7d3b6d3624908474d30885aac944a6a32818f0717336950e55bb9",
-    "sha256-fd-v1:f2f654b5167071334689dacb1d8057b8e57349e2d2034cbab4707230c652106e"
-   ],
-   "diskSets": {
-    "sha256-fd-v1:5b6a43b88864646c62a77ab6884a54d02b7108b226bb807c50b870617aff27bc": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:cbb599d65db7d3b6d3624908474d30885aac944a6a32818f0717336950e55bb9",
-       "role": "floppyB"
-      }
-     ],
-     "setDisks": [
-      "sha256-fd-v1:538345d55a2784bef3ac29bc8901f259913bfc13034b95c39dc8e2a8c373e224",
-      "sha256-fd-v1:97e2901c5fafb5e1a3fdd5774c91d7cbbe5e7d5369fb09c6e11e20e49abeec78",
-      "sha256-fd-v1:cbb599d65db7d3b6d3624908474d30885aac944a6a32818f0717336950e55bb9",
-      "sha256-fd-v1:f2f654b5167071334689dacb1d8057b8e57349e2d2034cbab4707230c652106e"
-     ]
-    }
-   },
-   "sourceGroups": [
-    "x68000:Nemesis.zip"
-   ],
-   "title": "Nemesis"
-  },
   "x68000:local-ecd907091f": {
    "contentIds": [
     "sha256-fd-v1:2496083c5de49a4bf7b2df4779135e332af1ef81c26dea7e8f25db0746055ad1",
@@ -28513,7 +28084,7 @@
     "sha256-fd-v1:fdffeb4625dcc996d664deb043c153a1d9ff9b251a984ba3e5ea3961b8fad845": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:b5b269874cb4745feb8045e6ca600e9dc508117509c6d3ada63abb4fb4dd40bb",
+       "contentId": "sha256-fd-v1:2496083c5de49a4bf7b2df4779135e332af1ef81c26dea7e8f25db0746055ad1",
        "role": "floppyB"
       }
      ],
@@ -28566,7 +28137,7 @@
     "sha256-fd-v1:8be2ffb86c6e3d76d7c7eed2debf435ecdafc971107458016de8bf6729bcbc0d": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:1bd9f11cdfbbe67b0e5759c7c75ae9c4cf386a42e9a515fa829af241d4f670b0",
+       "contentId": "sha256-fd-v1:54b10a56f2d7e658d242792a72c2ee8da45bb5ea5d8e393eeb13ab2ad8f46c78",
        "role": "floppyB"
       }
      ],
@@ -28656,7 +28227,7 @@
     "sha256-fd-v1:3793971d337d9ae269c8ef9b9050301124457656ddedb36b62e122788c4f0096": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:2360f526a33bf32eb8df553e6d85a4ae72182996a370758440b00027c07d3577",
+       "contentId": "sha256-fd-v1:35346303f500d9c0f0f78827a6037913394683c60a0de36db531f97f9095cae5",
        "role": "floppyB"
       }
      ],
@@ -28737,12 +28308,6 @@
    "description": "Three Sion action games from Oh! X magazine in one set.",
    "diskSets": {
     "sha256-fd-v1:c7e2306f6f582f22477e0810876df05bed59b7b52c1f1c4afb4b02e13be123e4": {
-     "media": [
-      {
-       "contentId": "sha256-fd-v1:38a4fef89fc883396460268127b7f2a84c657b146f966ec8e31472b84d573a74",
-       "role": "floppyB"
-      }
-     ],
      "setDisks": [
       "sha256-fd-v1:1436673b90d29d7a725a370e6d06ce85b24f1faaf995f4a2e893d0cf63054bab",
       "sha256-fd-v1:38a4fef89fc883396460268127b7f2a84c657b146f966ec8e31472b84d573a74"
@@ -28795,7 +28360,7 @@
     "sha256-fd-v1:bd75e5b044ae2a1e843be8a2b4e01e763a623622d769e1bcf92e6fb2615bf8c8": {
      "media": [
       {
-       "contentId": "sha256-fd-v1:df99fbdb9e4bcf12f2d85e03680abe3da49280d6e1b4cb83b4fbda2805e868d8",
+       "contentId": "sha256-fd-v1:47dd9d521aabe18546ae080a407afafdd00ecf4ec54c206a497c0242e5e1a969",
        "role": "floppyB"
       }
      ],
@@ -28818,7 +28383,7 @@
    "sourceGroups": [
     "x68000:Hey! Say! Education Committee v0.10 (1993)(Taka-P).zip"
    ],
-   "title": "Hey! Say! Education Committee v0.10",
+   "title": "Hey! Say! Education Committee",
    "year": 1993
   },
   "x68000:local-f4ef1d7985": {
@@ -28857,7 +28422,7 @@
    "sourceGroups": [
     "x68000:Chami 68K v0.02 (1990)(M.HIJK).zip"
    ],
-   "title": "Chami 68K v0.02",
+   "title": "Chami 68K",
    "year": 1990
   },
   "x68000:local-fd3651207a": {
@@ -28896,7 +28461,7 @@
    "sourceGroups": [
     "x68000:Stroke.x v0.20 (demo) (1991)(Etou Hiroshi).zip"
    ],
-   "title": "Stroke.x v0.20",
+   "title": "Stroke.x",
    "year": 1991
   },
   "x68000:local-ff127c719b": {
@@ -29076,8 +28641,42 @@
   },
   "x68000:moby-45838": {
    "adult": true,
+   "contentIds": [
+    "sha256-fd-v1:13c9ace96df57e9ab0a16d59acf9c1d5b8580643f2164a002ed36a56264f4080",
+    "sha256-fd-v1:2deb7794783efd95ed48aa505b96fb0146826c18ac51de01c015344e4f0516d6",
+    "sha256-fd-v1:46cb897168393f42914aa029febd9b8eb154d9f76f1c5f3095e5d03354babddd",
+    "sha256-fd-v1:866e02708f6392341dbc5e7ef5d4eb56a1d5f8415674b28b84aebbf8968cdd4b",
+    "sha256-fd-v1:a986f8f456bb3df37cd4c9b8922f6b9cfde6d1580c414bdbe3a2091a74edb77e",
+    "sha256-fd-v1:bfa59c6a47b8d34adde32dbf8d87100a7e3c098648ecfd54712f05b9d4af2838",
+    "sha256-fd-v1:d24dd847edd3c99230957ecd7b17118a7e7dbbf2eabefc5aabedbff5d77939d4",
+    "sha256-fd-v1:ee44c6100e849edc9159dbf5365d2f87fd26fcedf887200cdb264de3a1863950",
+    "sha256-fd-v1:fb841410ccd8d4f87cd1c8d9c232efb9fd1c963434b2aec5fffa970d52c11ef7"
+   ],
    "description": "A Tenshitachi no Gogo adventure about a transfer student named Hayato.",
+   "diskSets": {
+    "sha256-fd-v1:2deb7794783efd95ed48aa505b96fb0146826c18ac51de01c015344e4f0516d6": {
+     "media": [
+      {
+       "contentId": "sha256-fd-v1:ee44c6100e849edc9159dbf5365d2f87fd26fcedf887200cdb264de3a1863950",
+       "role": "floppyB"
+      }
+     ],
+     "setDisks": [
+      "sha256-fd-v1:13c9ace96df57e9ab0a16d59acf9c1d5b8580643f2164a002ed36a56264f4080",
+      "sha256-fd-v1:46cb897168393f42914aa029febd9b8eb154d9f76f1c5f3095e5d03354babddd",
+      "sha256-fd-v1:866e02708f6392341dbc5e7ef5d4eb56a1d5f8415674b28b84aebbf8968cdd4b",
+      "sha256-fd-v1:a986f8f456bb3df37cd4c9b8922f6b9cfde6d1580c414bdbe3a2091a74edb77e",
+      "sha256-fd-v1:bfa59c6a47b8d34adde32dbf8d87100a7e3c098648ecfd54712f05b9d4af2838",
+      "sha256-fd-v1:d24dd847edd3c99230957ecd7b17118a7e7dbbf2eabefc5aabedbff5d77939d4",
+      "sha256-fd-v1:ee44c6100e849edc9159dbf5365d2f87fd26fcedf887200cdb264de3a1863950",
+      "sha256-fd-v1:fb841410ccd8d4f87cd1c8d9c232efb9fd1c963434b2aec5fffa970d52c11ef7"
+     ]
+    }
+   },
    "mobygames": 45838,
+   "sourceGroups": [
+    "x68000:Tenshitachi No Gogo +.zip"
+   ],
    "title": "Tenshitachi no Gogo: Tenkōsei",
    "year": 1995
   },
