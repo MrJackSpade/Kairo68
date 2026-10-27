@@ -1484,21 +1484,69 @@
   },
   "x68000:150589": {
    "boxArtUrl": "https://images.launchbox-app.com/87a9a353-ae6f-4cda-9169-7205971affea.jpg",
+   "contentIds": [
+    "sha256-fd-v1:02532938197cef291d38ab2a27c37440bb8d761616e7387152a4907b69b3e49d",
+    "sha256-fd-v1:24a86d5e763b886c92b042b91426ef09fe08d411245ee453b4f91ac0d2660a02",
+    "sha256-fd-v1:7d4e21411804709703ae00d23ad38ae7a13e7cb63ed7b7af9939fea9ea22fe7a"
+   ],
    "description": "An Alice Soft fan disc with a new short adventure and extra material from the company's games.",
    "developer": "Alice Soft",
+   "diskSets": {
+    "sha256-fd-v1:24a86d5e763b886c92b042b91426ef09fe08d411245ee453b4f91ac0d2660a02": {
+     "media": [
+      {
+       "contentId": "sha256-fd-v1:7d4e21411804709703ae00d23ad38ae7a13e7cb63ed7b7af9939fea9ea22fe7a",
+       "role": "floppyB"
+      }
+     ],
+     "setDisks": [
+      "sha256-fd-v1:02532938197cef291d38ab2a27c37440bb8d761616e7387152a4907b69b3e49d",
+      "sha256-fd-v1:7d4e21411804709703ae00d23ad38ae7a13e7cb63ed7b7af9939fea9ea22fe7a"
+     ]
+    }
+   },
    "launchbox": "150589",
    "publisher": "Alice Soft",
    "screenshotUrl": "https://images.launchbox-app.com/0921b7c5-16c6-404a-9cfb-60409cfca2df.png",
+   "sourceGroups": [
+    "x68000:Alice No Yakata I + II (19xx)(Alice Soft).zip",
+    "x68000:Alice No Yakata I+II (19xx)(Alice Soft).zip"
+   ],
    "title": "Alice no Yakata",
    "year": 1990
   },
   "x68000:150590": {
    "boxArtUrl": "https://images.launchbox-app.com/dbbdca33-5844-4175-81b0-afcaf85bacb9.jpg",
+   "contentIds": [
+    "sha256-fd-v1:3be9a05b6f33172d96c7200c6af7c138bee2629d840bba74e3df6619914eba81",
+    "sha256-fd-v1:43a64b7d21ffe8206a074948d26aa4c584bca274c51c31281cd47c41e4b6b8cc",
+    "sha256-fd-v1:9479db06615ee50e8a84ef0c5d80eae1395f1f28e8d936b50b2bbb64e1f3b7de",
+    "sha256-fd-v1:99ef7799cbc3dc5551c237f75e9a47e02c0fa52f38605993de76c254d3054259"
+   ],
    "description": "An Alice Soft fan disc collecting four short games and extras such as the soundtracks of earlier titles.",
    "developer": "Alice Soft",
+   "diskSets": {
+    "sha256-fd-v1:43a64b7d21ffe8206a074948d26aa4c584bca274c51c31281cd47c41e4b6b8cc": {
+     "media": [
+      {
+       "contentId": "sha256-fd-v1:3be9a05b6f33172d96c7200c6af7c138bee2629d840bba74e3df6619914eba81",
+       "role": "floppyB"
+      }
+     ],
+     "setDisks": [
+      "sha256-fd-v1:3be9a05b6f33172d96c7200c6af7c138bee2629d840bba74e3df6619914eba81",
+      "sha256-fd-v1:9479db06615ee50e8a84ef0c5d80eae1395f1f28e8d936b50b2bbb64e1f3b7de",
+      "sha256-fd-v1:99ef7799cbc3dc5551c237f75e9a47e02c0fa52f38605993de76c254d3054259"
+     ]
+    }
+   },
    "launchbox": "150590",
    "publisher": "Alice Soft",
    "screenshotUrl": "https://images.launchbox-app.com/d40dc999-7fc7-4ee3-ab65-e5d1ecfcf67c.png",
+   "sourceGroups": [
+    "x68000:Alice No Yakata I + II (19xx)(Alice Soft).zip",
+    "x68000:Alice No Yakata I+II (19xx)(Alice Soft).zip"
+   ],
    "title": "Alice no Yakata II",
    "year": 1992
   },
@@ -25658,13 +25706,6 @@
    "title": "Aikoku Pro Uso-68K",
    "year": 1990
   },
-  "x68000:local-6dc147e910": {
-   "description": "Both Alice no Yakata fan discs in one set.",
-   "sourceGroups": [
-    "x68000:Alice No Yakata I + II (19xx)(Alice Soft).zip"
-   ],
-   "title": "Alice No Yakata I + II"
-  },
   "x68000:local-7062f8387d": {
    "contentIds": [
     "sha256-fd-v1:19ac877de4546f26c8403353d6c8fa9ae1a7161b3ec36ab1db519b28beb312de",
@@ -27222,13 +27263,6 @@
    "title": "Daikon Oroshi Pro Uso-68K",
    "year": 1990
   },
-  "x68000:local-c23be3b51b": {
-   "description": "Both Alice no Yakata fan discs in one set.",
-   "sourceGroups": [
-    "x68000:Alice No Yakata I+II (19xx)(Alice Soft).zip"
-   ],
-   "title": "Alice No Yakata I+II"
-  },
   "x68000:local-c2426c98eb": {
    "contentIds": [
     "sha256-fd-v1:005eac829cd5a469e007c0d0022b5265061ec7d770d2d5add639877736a022c0"
@@ -28754,37 +28788,9 @@
  },
  "schemaVersion": 1,
  "sharedContentIds": {
-  "sha256-fd-v1:02532938197cef291d38ab2a27c37440bb8d761616e7387152a4907b69b3e49d": [
-   "x68000:local-6dc147e910",
-   "x68000:local-c23be3b51b"
-  ],
-  "sha256-fd-v1:24a86d5e763b886c92b042b91426ef09fe08d411245ee453b4f91ac0d2660a02": [
-   "x68000:local-6dc147e910",
-   "x68000:local-c23be3b51b"
-  ],
-  "sha256-fd-v1:3be9a05b6f33172d96c7200c6af7c138bee2629d840bba74e3df6619914eba81": [
-   "x68000:local-6dc147e910",
-   "x68000:local-c23be3b51b"
-  ],
-  "sha256-fd-v1:43a64b7d21ffe8206a074948d26aa4c584bca274c51c31281cd47c41e4b6b8cc": [
-   "x68000:local-6dc147e910",
-   "x68000:local-c23be3b51b"
-  ],
   "sha256-fd-v1:52b5a4ad1c1853428ba7ba5a348447e3d1a543c24f321237ec8909d3467910dd": [
    "x68000:local-2b87c4ab96",
    "x68000:local-5adb23bec5"
-  ],
-  "sha256-fd-v1:7d4e21411804709703ae00d23ad38ae7a13e7cb63ed7b7af9939fea9ea22fe7a": [
-   "x68000:local-6dc147e910",
-   "x68000:local-c23be3b51b"
-  ],
-  "sha256-fd-v1:9479db06615ee50e8a84ef0c5d80eae1395f1f28e8d936b50b2bbb64e1f3b7de": [
-   "x68000:local-6dc147e910",
-   "x68000:local-c23be3b51b"
-  ],
-  "sha256-fd-v1:99ef7799cbc3dc5551c237f75e9a47e02c0fa52f38605993de76c254d3054259": [
-   "x68000:local-6dc147e910",
-   "x68000:local-c23be3b51b"
   ]
  }
 }
