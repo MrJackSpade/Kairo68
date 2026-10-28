@@ -14,9 +14,7 @@ import org.json.JSONArray
  */
 object X68kCatalog : LayeredGameCatalog.Schema {
     override val platform = "x68000"
-    override val updateUrl = "https://raw.githubusercontent.com/MrJackSpade/Kairo68/main/catalog/core-v3.json"
-    override val metadataUrl = "https://raw.githubusercontent.com/MrJackSpade/Kairo68/main/catalog/core-v3.meta.json"
-    override val coreVersion = 3
+    override val catalogUrl = "https://raw.githubusercontent.com/MrJackSpade/Kairo68/main/catalog/"
     override val selfHostedArt = "/MrJackSpade/Kairo68/main/catalog/artwork/art/catalog/"
     override val contentId = Regex("sha256-(?:fd|hd)-v1:[0-9a-f]{64}")
     override val mediaExtensions = Regex("\\.(?:zip|7z|xdf|dim|d88|88d|hdm|2hd|dup|hdf)$", RegexOption.IGNORE_CASE)
