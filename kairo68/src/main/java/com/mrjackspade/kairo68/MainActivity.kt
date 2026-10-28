@@ -12,7 +12,7 @@ import com.mrjackspade.kairo.frontend.MachineActivity
 import com.mrjackspade.kairo.frontend.MachineFirstRun
 import com.mrjackspade.kairo.frontend.NativeMachine
 import com.mrjackspade.kairo.frontend.UiText
-import com.mrjackspade.kairo.frontend.mediaFor
+import com.mrjackspade.kairo.frontend.companionFor
 import com.mrjackspade.kairo.frontend.R as FrontendR
 
 import java.io.File
@@ -50,6 +50,7 @@ class MainActivity : MachineActivity<DiskImageEntry>() {
     override fun createLibrary(catalog: LayeredGameCatalog) = disks
 
     private fun isHardDisk(entry: DiskImageEntry) = format.kind(entry.displayName) == "hd"
+    private fun isFloppy(entry: DiskImageEntry) = format.kind(entry.displayName) == "fd"
 
     override val machineOptions = X68kCatalog.options
     // In the core's drive order (x68k_machine.h Drive).
@@ -71,8 +72,8 @@ class MainActivity : MachineActivity<DiskImageEntry>() {
                            progress: (String) -> Unit) {
         requireFirmware()
         val floppy0 = entry.takeUnless(::isHardDisk)
-        val floppy1 = game.mediaId("floppyB")?.let { id ->
-            mediaFor(id, entry, libraryEntries) ?: error(getString(FrontendR.string.kairo_second_disk_missing))
+        val floppy1 = floppy0?.let {
+            companionFor(game.mediaId("floppyB"), it, launchEntries, UiText.res(FrontendR.string.kairo_second_disk_missing), ::isFloppy)
         }
         val hardDisk = entry.takeIf(::isHardDisk)
         val media = listOf(floppy0, floppy1, hardDisk)
