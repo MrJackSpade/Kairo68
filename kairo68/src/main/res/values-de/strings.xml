@@ -41,11 +41,6 @@
     <string name="firmware_font_description">die Text- und Kanji-Schrift des %1$s</string>
     <!-- EN: The second disk this game needs is not in the library -->
     <string name="second_disk_missing">Der zweite Datenträger, den dieses Spiel benötigt, ist nicht in der Bibliothek</string>
-    <!-- EN: the emulator could not read or write the state -->
-    <string name="state_error_io">Der Emulator konnte den Speicherstand nicht lesen oder schreiben</string>
-    <!-- %1$d is the emulator's error code. -->
-    <!-- EN: code %1$d -->
-    <string name="state_error_code">Code %1$d</string>
     <!-- EN: Memory -->
     <string name="option_memory">Arbeitsspeicher</string>
     <!-- %1$d is a size in megabytes. -->

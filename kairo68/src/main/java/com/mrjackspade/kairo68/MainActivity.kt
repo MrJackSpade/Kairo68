@@ -84,9 +84,4 @@ class MainActivity : MachineActivity<DiskImageEntry>() {
         awaitRunning()
         mediaStarted(media)
     }
-
-    override fun stateError(code: Int) = when (code) {
-        2 -> getString(R.string.state_error_io)
-        else -> getString(R.string.state_error_code, code)
-    }
 }

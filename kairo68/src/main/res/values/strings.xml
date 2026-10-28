@@ -27,9 +27,6 @@
     <string name="firmware_font_description">the %1$s\'s text and kanji font</string>
 
     <string name="second_disk_missing">The second disk this game needs is not in the library</string>
-    <string name="state_error_io">the emulator could not read or write the state</string>
-    <!-- %1$d is the emulator's error code. -->
-    <string name="state_error_code">code %1$d</string>
 
     <string name="option_memory">Memory</string>
     <!-- %1$d is a size in megabytes. -->

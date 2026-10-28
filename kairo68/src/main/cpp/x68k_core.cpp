@@ -18,7 +18,6 @@ using kairo68::X68kMachine;
 static_assert(kairo68::kFloppy0 == 0 && kairo68::kFloppy1 == 1 && kairo68::kHardDisk == 2);
 constexpr const char *kStateFile = "/state.sta";
 // MainActivity.stateError reads this.
-constexpr int kStateFailed = 2;
 
 class X68kCore : public kairo::MachineCore {
 public:
@@ -71,16 +70,16 @@ public:
     bool booting() override { return machine_->booting(); }
 
     int save_state(const std::string &directory) override {
-        return machine_->save_state(directory + kStateFile) ? 0 : kStateFailed;
+        return machine_->save_state(directory + kStateFile) ? 0 : kFailed;
     }
 
     int load_state(const std::string &directory) override {
-        return machine_->load_state(directory + kStateFile) ? 0 : kStateFailed;
+        return machine_->load_state(directory + kStateFile) ? 0 : kFailed;
     }
 
     int media(int slot, const std::string &path) override {
         if (slot < 0 || slot >= kairo68::kDrives) return kUnsupported;
-        return machine_->insert(kairo68::Drive(slot), path) ? 0 : kStateFailed;
+        return machine_->insert(kairo68::Drive(slot), path) ? 0 : kFailed;
     }
 
     std::vector<std::string> media_paths() override {
