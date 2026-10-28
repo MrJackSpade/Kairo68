@@ -10,6 +10,8 @@ import com.mrjackspade.kairo.frontend.JisMainBlock.RETURN
 import com.mrjackspade.kairo.frontend.JisMainBlock.SPACE
 import com.mrjackspade.kairo.frontend.JoystickInputRouter
 import com.mrjackspade.kairo.frontend.KeyboardKey
+import com.mrjackspade.kairo.frontend.UiText
+import com.mrjackspade.kairo.frontend.R as FrontendR
 import android.view.KeyEvent
 
 /**
@@ -70,7 +72,7 @@ object X68kKeys {
             GuestKeyboardPage("ABC", JisMainBlock.alphabetRows(CTRL, SHIFT, listOf(KeyboardKey("Caps", CAPS),
                 KeyboardKey("Kana", KANA), KeyboardKey("XF1", XF1), KeyboardKey("XF2", XF2), KeyboardKey("Space", SPACE, 4f),
                 KeyboardKey("XF3", XF3), KeyboardKey("XF4", XF4), KeyboardKey("XF5", XF5)))),
-            GuestKeyboardPage("?123", JisMainBlock.symbolRows(), pickerLabel = "Symbols"),
+            GuestKeyboardPage("?123", JisMainBlock.symbolRows(), pickerLabel = UiText.res(R.string.keyboard_symbols)),
             GuestKeyboardPage("X68000", x68kRows())
         ),
         modifiers = setOf(SHIFT, CTRL, OPT1, OPT2),
@@ -189,7 +191,8 @@ object X68kKeys {
 
     /** The pad's controls in the core's order (x68k_machine.h kJoystickControls). */
     val joystick = JoystickInputRouter.DEFAULT_CONTROLS + listOf("run", "select")
-    val joystickLabels = listOf("Up", "Down", "Left", "Right", "A", "B", "RUN", "SELECT")
+    val joystickLabels = listOf(FrontendR.string.kairo_up, FrontendR.string.kairo_down, FrontendR.string.kairo_left,
+        FrontendR.string.kairo_right).map { UiText.res(it) } + listOf("A", "B", "RUN", "SELECT").map(UiText::fixed)
 
     val bindings = ControllerBindingsCodec({ it in bindableCodes }, joystick,
         setOf("menu", "pause", "restart", "exit", "fastForward"))
