@@ -33,12 +33,12 @@ public:
 	u16 tvram_r(offs_t offset);
 
 	// Kairo68: draws the lines the beam has passed and are not drawn yet; call before anything the
-	// picture shows changes (mame_patches.py X68K_DEFERRED_PARTIAL).
+	// picture shows changes (tools/patches.py X68K_DEFERRED_PARTIAL).
 	void flush_partial();
 	void draw_passed_lines();  // Kairo68 (x68k-unchanged-frame)
 	// Kairo68: the scroll registers (R10 to R19) a line is drawn with: those in effect when the beam
 	// passed it, recorded by a scroll register write that leaves the line waiting, or the current
-	// ones (mame_patches.py X68K_LINE_SCROLL).
+	// ones (tools/patches.py X68K_LINE_SCROLL).
 	bool has_scroll_records(int first, int last) const { return m_scroll_last >= 0 && first <= m_scroll_last && last >= m_scroll_first; }
 	// Kairo68: the driver's test of whether lines can wait for drawing with their scroll registers
 	// recorded; without one, every write draws them first.

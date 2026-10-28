@@ -1,8 +1,10 @@
-"""Kairo68's local changes to the imported MAME sources, applied by tools/import_mame.py after it
-copies the subset. Each change replaces text that must occur exactly once in its file, so a MAME
-update that moves the code stops the import instead of applying the change in the wrong place.
+"""Kairo68's local changes to the imported MAME sources (third_party/mame), which
+shared/tools/local_patches.py applies and checks, and tools/import_mame.py applies after it copies
+the subset. Each change replaces text that must occur exactly once in its file, so a MAME update
+that moves the code stops the import instead of applying the change in the wrong place.
 docs/source-import.md describes each change."""
-from pathlib import Path
+
+BASE = 'mame'
 
 # The x68000 driver registers only its video RAM and sprite registers for save states (MAME does
 # not mark it MACHINE_SUPPORTS_SAVE). A loaded state then keeps the video controller, system
@@ -507,7 +509,7 @@ MFP_TIMER_ELAPSE = [
      """	TIMER_CALLBACK_MEMBER(timer_count);
 """,
      """	TIMER_CALLBACK_MEMBER(timer_count);
-	// Kairo68: delay mode fires only where the count elapses (mame_patches.py MFP_TIMER_ELAPSE).
+	// Kairo68: delay mode fires only where the count elapses (tools/patches.py MFP_TIMER_ELAPSE).
 	int timer_delay_prescale(int index) const;
 	attotime timer_tick(int index) const;
 	void sync_timer_count(int index);
@@ -719,7 +721,7 @@ X68K_DEFERRED_PARTIAL = [
 	u16 tvram_r(offs_t offset);
 
 	// Kairo68: draws the lines the beam has passed and are not drawn yet; call before anything the
-	// picture shows changes (mame_patches.py X68K_DEFERRED_PARTIAL).
+	// picture shows changes (tools/patches.py X68K_DEFERRED_PARTIAL).
 	void flush_partial();
 """,),
     ('src/mame/sharp/x68k_crtc.h',
@@ -1251,7 +1253,7 @@ FLOPPY_NEXT_CELL = [
 X68K_LINE_SCROLL = [
     ('src/mame/sharp/x68k_crtc.h',
      '\tvoid flush_partial();\n\n\t// getters\n\tu16 xscr_text() const { return m_reg[10]; }\n\tu16 yscr_text() const { return m_reg[11]; }\n',
-     "\tvoid flush_partial();\n\t// Kairo68: the scroll registers (R10 to R19) a line is drawn with: those in effect when the beam\n\t// passed it, recorded by a scroll register write that leaves the line waiting, or the current\n\t// ones (mame_patches.py X68K_LINE_SCROLL).\n\tbool has_scroll_records(int first, int last) const { return m_scroll_last >= 0 && first <= m_scroll_last && last >= m_scroll_first; }\n\t// Kairo68: the driver's test of whether lines can wait for drawing with their scroll registers\n\t// recorded; without one, every write draws them first.\n\tvoid set_scroll_can_wait(std::function<bool ()> test) { m_scroll_can_wait = std::move(test); }\n\tconst u16 *scroll_regs(int line) const { return (line >= m_scroll_first && line <= m_scroll_last) ? m_line_scroll[line] : &m_reg[10]; }\n\n\t// getters\n\tu16 xscr_text() const { return m_reg[10]; }\n\tu16 xscr_text(int line) const { return scroll_regs(line)[0]; }\n\tu16 yscr_text(int line) const { return scroll_regs(line)[1]; }\n\tu16 xscr_gfx(int line, int page) const { return scroll_regs(line)[2 + page * 2]; }\n\tu16 yscr_gfx(int line, int page) const { return scroll_regs(line)[3 + page * 2]; }\n\tu16 yscr_text() const { return m_reg[11]; }\n",),
+     "\tvoid flush_partial();\n\t// Kairo68: the scroll registers (R10 to R19) a line is drawn with: those in effect when the beam\n\t// passed it, recorded by a scroll register write that leaves the line waiting, or the current\n\t// ones (tools/patches.py X68K_LINE_SCROLL).\n\tbool has_scroll_records(int first, int last) const { return m_scroll_last >= 0 && first <= m_scroll_last && last >= m_scroll_first; }\n\t// Kairo68: the driver's test of whether lines can wait for drawing with their scroll registers\n\t// recorded; without one, every write draws them first.\n\tvoid set_scroll_can_wait(std::function<bool ()> test) { m_scroll_can_wait = std::move(test); }\n\tconst u16 *scroll_regs(int line) const { return (line >= m_scroll_first && line <= m_scroll_last) ? m_line_scroll[line] : &m_reg[10]; }\n\n\t// getters\n\tu16 xscr_text() const { return m_reg[10]; }\n\tu16 xscr_text(int line) const { return scroll_regs(line)[0]; }\n\tu16 yscr_text(int line) const { return scroll_regs(line)[1]; }\n\tu16 xscr_gfx(int line, int page) const { return scroll_regs(line)[2 + page * 2]; }\n\tu16 yscr_gfx(int line, int page) const { return scroll_regs(line)[3 + page * 2]; }\n\tu16 yscr_text() const { return m_reg[11]; }\n",),
     ('src/mame/sharp/x68k_crtc.h',
      '\tvirtual void device_reset() override ATTR_COLD;\n\n',
      '\tvirtual void device_reset() override ATTR_COLD;\n\tvirtual void device_pre_save() override ATTR_COLD;\n\tvirtual void device_post_load() override ATTR_COLD;\n\n',),
@@ -1414,8 +1416,8 @@ X68K_UNCHANGED_FRAME = [
      ' *    operation is completed.\n */\nvoid x68k_crtc_device::flush_partial()\n{\n\tif (m_partial_line >= 0)\n\t{\n',
      " *    operation is completed.\n */\nvoid x68k_crtc_device::flush_partial()\n{\n\tm_picture_generation++;\n\tdraw_passed_lines();\n}\n\n// Kairo68 (x68k-unchanged-frame): flush_partial's drawing, for a caller that changes nothing the\n// picture shows (the raster interrupt draws the lines above it).\nvoid x68k_crtc_device::draw_passed_lines()\n{\n\tif (m_partial_line >= 0)\n\t{\n",),
     ('src/mame/sharp/x68k_crtc.h',
-     '\t// Kairo68: draws the lines the beam has passed and are not drawn yet; call before anything the\n\t// picture shows changes (mame_patches.py X68K_DEFERRED_PARTIAL).\n\tvoid flush_partial();\n\t// Kairo68: the scroll registers (R10 to R19) a line is drawn with: those in effect when the beam\n\t// passed it, recorded by a scroll register write that leaves the line waiting, or the current\n\t// ones (mame_patches.py X68K_LINE_SCROLL).\n',
-     '\t// Kairo68: draws the lines the beam has passed and are not drawn yet; call before anything the\n\t// picture shows changes (mame_patches.py X68K_DEFERRED_PARTIAL).\n\tvoid flush_partial();\n\tvoid draw_passed_lines();  // Kairo68 (x68k-unchanged-frame)\n\t// Kairo68: the scroll registers (R10 to R19) a line is drawn with: those in effect when the beam\n\t// passed it, recorded by a scroll register write that leaves the line waiting, or the current\n\t// ones (mame_patches.py X68K_LINE_SCROLL).\n',),
+     '\t// Kairo68: draws the lines the beam has passed and are not drawn yet; call before anything the\n\t// picture shows changes (tools/patches.py X68K_DEFERRED_PARTIAL).\n\tvoid flush_partial();\n\t// Kairo68: the scroll registers (R10 to R19) a line is drawn with: those in effect when the beam\n\t// passed it, recorded by a scroll register write that leaves the line waiting, or the current\n\t// ones (tools/patches.py X68K_LINE_SCROLL).\n',
+     '\t// Kairo68: draws the lines the beam has passed and are not drawn yet; call before anything the\n\t// picture shows changes (tools/patches.py X68K_DEFERRED_PARTIAL).\n\tvoid flush_partial();\n\tvoid draw_passed_lines();  // Kairo68 (x68k-unchanged-frame)\n\t// Kairo68: the scroll registers (R10 to R19) a line is drawn with: those in effect when the beam\n\t// passed it, recorded by a scroll register write that leaves the line waiting, or the current\n\t// ones (tools/patches.py X68K_LINE_SCROLL).\n',),
     ('src/mame/sharp/x68k_crtc.h',
      '\t// recorded; without one, every write draws them first.\n\tvoid set_scroll_can_wait(std::function<bool ()> test) { m_scroll_can_wait = std::move(test); }\n\tconst u16 *scroll_regs(int line) const { return (line >= m_scroll_first && line <= m_scroll_last) ? m_line_scroll[line] : &m_reg[10]; }\n\n\t// getters\n\tu16 xscr_text() const { return m_reg[10]; }\n',
      '\t// recorded; without one, every write draws them first.\n\tvoid set_scroll_can_wait(std::function<bool ()> test) { m_scroll_can_wait = std::move(test); }\n\tconst u16 *scroll_regs(int line) const { return (line >= m_scroll_first && line <= m_scroll_last) ? m_line_scroll[line] : &m_reg[10]; }\n\t// Kairo68 (x68k-unchanged-frame): a count of the changes to anything the picture shows\n\t// (flush_partial and record_scroll run before each), the count when the frame began (line 0),\n\t// and whether the picture is interlaced, whose fields alternate by themselves.\n\tuint64_t picture_generation() const { return m_picture_generation; }\n\tuint64_t frame_start_generation() const { return m_frame_start_generation; }\n\tbool interlaced() const { return m_interlace; }\n\n\t// getters\n\tu16 xscr_text() const { return m_reg[10]; }\n',),
@@ -1455,17 +1457,3 @@ PATCHES = {'x68k-save-state': X68K_SAVE_STATE, 'x68k-sasi-count': X68K_SASI_COUN
            'x68k-gvram-1024': X68K_GVRAM_1024,
            'x68k-crtc-unseen-registers': X68K_CRTC_UNSEEN_REGISTERS,
            'x68k-unchanged-frame': X68K_UNCHANGED_FRAME}
-
-
-def apply(root):
-    """Applies every change to the MAME tree at root."""
-    for name, changes in PATCHES.items():
-        for rel, old, new in changes:
-            path = Path(root) / rel
-            # MAME's sources have LF line endings; keep the file's bytes as they are.
-            with open(path, encoding='utf-8', newline='') as f:
-                text = f.read()
-            if text.count(old) != 1:
-                raise SystemExit(f'patch {name}: {rel} does not contain the text to replace exactly once')
-            with open(path, 'w', encoding='utf-8', newline='') as f:
-                f.write(text.replace(old, new))

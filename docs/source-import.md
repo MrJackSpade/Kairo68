@@ -31,7 +31,7 @@ After copying, nested Git metadata (`.gitignore`, `.gitattributes`, `.gitmodules
 
 ## Local changes
 
-`tools/import_mame.py` applies Kairo68's changes to the copied sources from `tools/mame_patches.py`; each replaces text that must occur exactly once, so an import against a MAME that moved the code stops instead of patching the wrong place.
+`tools/import_mame.py` applies Kairo68's changes to the copied sources from `tools/patches.py` with `shared/tools/local_patches.py`; each replaces text that must occur exactly once, so an import against a MAME that moved the code stops instead of patching the wrong place.
 
 MAME does not mark the x68000 driver as supporting save states. These changes make a loaded state restore the machine exactly; `core/test/boot_test.cpp` checks it by comparing every saved entry, frame by frame, for a second after a save and after a load.
 

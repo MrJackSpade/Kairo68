@@ -105,7 +105,7 @@ protected:
 	void rx_buffer_full();
 	void rx_error();
 	TIMER_CALLBACK_MEMBER(timer_count);
-	// Kairo68: delay mode fires only where the count elapses (mame_patches.py MFP_TIMER_ELAPSE).
+	// Kairo68: delay mode fires only where the count elapses (tools/patches.py MFP_TIMER_ELAPSE).
 	int timer_delay_prescale(int index) const;
 	attotime timer_tick(int index) const;
 	void sync_timer_count(int index);
