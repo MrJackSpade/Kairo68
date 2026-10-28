@@ -75,10 +75,12 @@ object X68kKeys {
             GuestKeyboardPage("?123", JisMainBlock.symbolRows(), pickerLabel = UiText.res(FrontendR.string.kairo_keyboard_symbols)),
             GuestKeyboardPage("X68000", x68kRows())
         ),
-        modifiers = setOf(SHIFT, CTRL, OPT1, OPT2),
+        modifiers = setOf(SHIFT, CTRL, OPT1, OPT2, CAPS, KANA),
         shiftCodes = setOf(SHIFT),
-        capsCode = null,
-        chordShiftCode = SHIFT
+        // CAPS and かな lock, each with its light; with かな on the keys show their kana (JisMainBlock).
+        capsCode = CAPS,
+        chordShiftCode = SHIFT,
+        kanaCode = KANA
     )
 
     private fun x68kRows(): List<List<KeyboardKey>> = listOf(
