@@ -28,7 +28,7 @@ class MainActivity : MachineActivity<DiskImageEntry>() {
             UiText.res(FrontendR.string.kairo_folder_button)),
         UiText.res(FrontendR.string.kairo_saves_group), "MrJackSpade/Kairo68")
     override val machine = Machine(768, 512, 4.0 / 3.0, "state.sta")
-    override val bridge by lazy { NativeMachine("kairo68") }
+    override val bridge by lazy { NativeMachine("kairo68", listOf(X68kKeys.CAPS, X68kKeys.KANA)) }
     override val keyboard = X68kKeys.layout
     override val maxKeyCode = X68kKeys.MAX_CODE
     override fun guestKey(androidKey: Int) = X68kKeys.fromAndroid(androidKey)

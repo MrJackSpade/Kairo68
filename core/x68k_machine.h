@@ -98,6 +98,8 @@ public:
     // a floppy drive that has run stops, a hard disk has been read, or the guest polls the joystick
     // ports. A key, pad or mouse press ends it at once. Always false without skip_memory_check.
     bool booting() const;
+    // The lock keys on, as the keyboard's lights show them: bit 0 Caps, bit 1 Kana (かな).
+    int locks();
     // Run on the machine's own thread at the end of the frame; false when MAME refused.
     bool save_state(const std::string &file);
     bool load_state(const std::string &file);

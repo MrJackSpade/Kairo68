@@ -154,6 +154,9 @@ struct X68kMachine::Impl : public osd_interface {
     std::array<bool, kKeyCodes> keys_applied{};
     std::array<bool, kJoystickControls> pad_applied{};
     bool fields_found = false;
+    // The keyboard's Caps and かな lights (x68k_kbd.cpp outputs), lit at 0; found with the fields.
+    osd::output_item const *led_caps = nullptr;
+    osd::output_item const *led_kana = nullptr;
     std::atomic<int> mouse_dx{0}, mouse_dy{0};
     int mouse_frame_dx = 0, mouse_frame_dy = 0;
     std::array<std::atomic<bool>, 2> mouse_buttons{};
@@ -411,6 +414,11 @@ void X68kMachine::Impl::find_fields() {
             }
         }
     }
+    machine->output().notify_all([this](osd::output_item const &item) {
+        if (item.name() == "key_led_caps") led_caps = &item;
+        if (item.name() == "key_led_kana") led_kana = &item;
+    });
+    if (!led_caps || !led_kana) throw emu_fatalerror("The X68000 keyboard's Caps and Kana lights were not found");
     if (!key_fields[0x01]) throw emu_fatalerror("The X68000 keyboard's ports were not found");
     if (mouse_fields != 4) throw emu_fatalerror("The X68000 mouse's axes and buttons were not found");
     for (ioport_field *field : pad_fields)
@@ -738,6 +746,13 @@ void X68kMachine::reset() {
 }
 
 bool X68kMachine::booting() const { return impl_->config.skip_memory_check && impl_->booting.load(); }
+
+int X68kMachine::locks() {
+    return impl_->between_frames<int>([this](running_machine &) {
+        if (!impl_->fields_found) impl_->find_fields();
+        return (impl_->led_caps->value() == 0 ? 1 : 0) | (impl_->led_kana->value() == 0 ? 2 : 0);
+    });
+}
 
 bool X68kMachine::save_state(const std::string &file) {
     return impl_->between_frames<bool>([file](running_machine &m) {

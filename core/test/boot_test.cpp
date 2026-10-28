@@ -3,9 +3,11 @@
 //   boot_test <rom dir> <work dir> <image> <seconds>
 //
 // Runs the floppy for <seconds> of guest time, writing <work dir>/boot.ppm of the last picture
-// and boot.wav of the sound, then presses the pad's A button, Space and Return and writes pressed.ppm. Then it saves a state, runs on, loads the state, and checks that the
-// second after the load draws and plays the same as the second after the save. Last it starts a second
-// machine in the same process, as the app does for its next game.
+// and boot.wav of the sound, then presses the pad's A button, Space and Return and writes pressed.ppm. It
+// presses Caps, whose lamp the reported lock keys must show for an <image> of "" (the ROM's keyboard
+// handling). Then it saves a state, runs on, loads the state, and checks that the lock keys are as
+// saved and the second after the load draws and plays the same as the second after the save. Last it
+// starts a second machine in the same process, as the app does for its next game.
 
 #include <cstdio>
 #include <cstdlib>
@@ -24,6 +26,7 @@ namespace {
 // X68000 key scan codes.
 constexpr int kSpace = 0x35;
 constexpr int kReturn = 0x1d;
+constexpr int kCaps = 0x5d;
 
 // A run of this many seconds runs one frame.
 constexpr double kOneFrame = 1e-6;
@@ -135,6 +138,18 @@ int main(int argc, char **argv) {
     write_ppm(work + "/pressed.ppm", pressed);
     std::printf("press: the picture %s\n", pressed.picture == boot.picture ? "did not change" : "changed");
 
+    // Caps: the ROM's keyboard handling lights its lamp, which locks() reports (bit 0), and a state
+    // keeps it. A game may take the keyboard over and leave the lamp alone, so only a boot without a
+    // disk must light it.
+    Run caps;
+    machine->key(kCaps, true);
+    if (!run(*machine, 0.2, caps, error)) return fail("run while Caps is pressed: " + error);
+    machine->key(kCaps, false);
+    if (!run(*machine, 0.3, caps, error)) return fail("run after Caps: " + error);
+    std::printf("locks after Caps: %d\n", machine->locks());
+    const int locks = machine->locks();
+    if (image.empty() && !(locks & 1)) return fail("Caps does not light");
+
     const std::string state = work + "/state.sta";
     if (!machine->save_state(state)) return fail("save state");
     // The second after the save and the second after the load, frame by frame. State a saved state
@@ -149,6 +164,8 @@ int main(int argc, char **argv) {
     }
     if (!run(*machine, 2, ignored, error)) return fail("run on: " + error);
     if (!machine->load_state(state)) return fail("load state");
+    std::printf("locks after load: %d\n", machine->locks());
+    if (machine->locks() != locks) return fail("a loaded state does not keep its lock keys");
     bool drifted = false;
     for (int frame = 0; frame <= frames; ++frame) {
         if (frame > 0 && !run(*machine, kOneFrame, after_load, error)) return fail("run after load: " + error);
