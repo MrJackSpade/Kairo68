@@ -12,7 +12,7 @@
    ],
    "description": "Konami's X68000 remake of the first Castlevania: Simon Belmont whips his way through redesigned castle stages, with new items and a soundtrack that can use the Roland MT-32.",
    "descriptions": {
-    "ar": "نسخة Konami المعاد صنعها لجهاز X68000 من أول Castlevania: يشق سايمون بيلمونت طريقه بالسوط عبر مراحل قلعة أعيد تصميمها، مع عناصر جديدة وموسيقى تدعم Roland MT-32.",
+    "ar": "نسخة Konami المعاد صنعها لجهاز X68000 من أول كاسلفينيا: يشق سايمون بيلمونت طريقه بالسوط عبر مراحل قلعة أعيد تصميمها، مع عناصر جديدة وموسيقى تدعم Roland MT-32.",
     "de": "Konamis X68000-Remake des ersten Castlevania: Simon Belmont peitscht sich durch neu gestaltete Schlossabschnitte, mit neuen Items und einem Soundtrack, der den Roland MT-32 nutzen kann.",
     "es": "El remake para X68000 del primer Castlevania de Konami: Simon Belmont se abre paso a latigazos por niveles del castillo rediseñados, con objetos nuevos y una banda sonora que puede usar el Roland MT-32.",
     "id": "Remake X68000 dari Castlevania pertama oleh Konami: Simon Belmont menyabetkan cambuknya melewati stage kastil yang didesain ulang, dengan item baru dan soundtrack yang dapat memakai Roland MT-32.",
@@ -396,7 +396,7 @@
    "boxArtUrl": "https://images.launchbox-app.com/c64fb5ff-1cdf-491c-810a-7fa059399441.jpg",
    "description": "Pac-Man in a scrolling isometric maze: eat every dot, use power pellets on the ghosts, and jump over pursuers.",
    "descriptions": {
-    "ar": "Pac-Man في متاهة متساوية القياس متحركة: كُل كل النقاط، واستخدم كرات القوة على الأشباح، واقفز فوق المطاردين.",
+    "ar": "باك مان في متاهة متساوية القياس متحركة: كُل كل النقاط، واستخدم كرات القوة على الأشباح، واقفز فوق المطاردين.",
     "de": "Pac-Man in einem scrollenden isometrischen Labyrinth: Friss alle Punkte, nutze Power-Pillen gegen die Geister und springe über Verfolger hinweg.",
     "es": "Pac-Man en un laberinto isométrico con desplazamiento: come todos los puntos, usa las píldoras de poder contra los fantasmas y salta sobre tus perseguidores.",
     "id": "Pac-Man di labirin isometrik bergulir: makan semua titik, pakai power pellet pada hantu, dan lompati para pengejar.",
@@ -1475,7 +1475,7 @@
    "descriptions": {
     "ar": "لعبة أسئلة يُمتحن فيها شخص مهووس بمعرفة الأوتاكو على يد سانتا كلوز مخيف.",
     "de": "Ein Quizspiel, in dem ein Geek von einem furchterregenden Weihnachtsmann zu Otaku-Wissen befragt wird.",
-    "es": "Un juego de preguntas en el que un geek es interrogado sobre conocimientos otaku por un temible Santa Claus.",
+    "es": "Un juego de preguntas en el que un geek es interrogado sobre conocimientos otaku por un temible Papá Noel.",
     "id": "Game trivia tempat seorang kutu buku diuji pengetahuan otaku-nya oleh Sinterklas yang menakutkan.",
     "ja": "オタクが、恐ろしいサンタクロースからオタク知識のクイズを出される、トリビアゲーム。",
     "ko": "오타쿠 지식에 대해 무시무시한 산타클로스에게 퀴즈를 받는 괴짜가 나오는 퀴즈 게임이다.",
@@ -2184,7 +2184,7 @@
    ],
    "description": "The fourth Street Fighter II, adding Cammy, Fei Long, Dee Jay and T. Hawk to the roster, with refreshed graphics and sound.",
    "descriptions": {
-    "ar": "الجزء الرابع من Street Fighter II، يضيف كامي وفاي لونغ وديه جاي وT. Hawk إلى القائمة، مع رسوم وصوت محدّثين.",
+    "ar": "الجزء الرابع من ستريت فايتر 2، يضيف كامي وفاي لونغ وديه جاي وT. Hawk إلى القائمة، مع رسوم وصوت محدّثين.",
     "de": "Das vierte Street Fighter II, das Cammy, Fei Long, Dee Jay und T. Hawk zum Aufgebot hinzufügt, mit überarbeiteter Grafik und überarbeitetem Sound.",
     "es": "El cuarto Street Fighter II, que suma a Cammy, Fei Long, Dee Jay y T. Hawk a los luchadores, con gráficos y sonido renovados.",
     "id": "Street Fighter II keempat, menambahkan Cammy, Fei Long, Dee Jay, dan T. Hawk ke jajaran karakter, dengan grafis dan suara yang diperbarui.",
@@ -2676,14 +2676,14 @@
    ],
    "description": "Fly an X-wing in the Death Star battle from Star Wars: dogfight TIE fighters in space, then race down the trench to the exhaust port.",
    "descriptions": {
-    "ar": "قُد X-wing في معركة نجمة الموت من Star Wars: خض معارك جوية ضد مقاتلات TIE في الفضاء، ثم انطلق عبر الخندق نحو منفذ العادم.",
+    "ar": "قُد X-wing في معركة نجمة الموت من حرب النجوم: خض معارك جوية ضد مقاتلات TIE في الفضاء، ثم انطلق عبر الخندق نحو منفذ العادم.",
     "de": "Fliege einen X-Wing in der Schlacht um den Todesstern aus Star Wars: Liefere dir im Weltraum Luftkämpfe mit TIE-Jägern und rase dann durch den Graben zum Abluftschacht.",
     "es": "Vuela un X-wing en la batalla de la Estrella de la Muerte de Star Wars: combate contra cazas TIE en el espacio y luego recorre la zanja a toda velocidad hasta el conducto de escape.",
     "id": "Terbangkan X-wing dalam pertempuran Death Star dari Star Wars: bertarung melawan pesawat TIE di luar angkasa, lalu melesat menyusuri parit menuju lubang pembuangan.",
     "ja": "スター・ウォーズのデス・スター戦で、Xウイングを操縦する。宇宙でTIEファイターと空中戦を繰り広げ、トレンチを駆け抜けて排気口を目指す。",
     "ko": "스타워즈의 데스 스타 전투에서 X-윙을 조종한다. 우주에서 타이 파이터와 교전한 뒤 트렌치를 따라 배기구를 향해 질주한다.",
     "pt-BR": "Pilote um X-wing na batalha da Estrela da Morte de Star Wars: enfrente caças TIE no espaço e depois acelere pela trincheira até a saída de exaustão.",
-    "ru": "Пилотируйте X-wing в битве за Звезду Смерти из Star Wars: сражайтесь с истребителями TIE в космосе, а затем неситесь по траншее к вентиляционной шахте."
+    "ru": "Пилотируйте X-wing в битве за Звезду Смерти из «Звездных войн»: сражайтесь с истребителями TIE в космосе, а затем неситесь по траншее к вентиляционной шахте."
    },
    "developer": "M.N.M Software",
    "diskSets": {
@@ -3306,10 +3306,10 @@
     "ar": "لعبة استراتيجية بالأدوار من Koei عن جنكيز خان: افتح منغوليا ثم العالم، وأدر الجيوش والأراضي والخلافة.",
     "de": "Koeis rundenbasiertes Strategiespiel über Dschingis Khan: Erobere die Mongolei, dann die Welt und verwalte Armeen, Gebiet und Nachfolge.",
     "es": "El juego de estrategia por turnos de Koei sobre Gengis Kan: conquista Mongolia y luego el mundo, administrando ejércitos, territorio y sucesión.",
-    "id": "Game strategi berbasis giliran dari Koei tentang Genghis Khan: taklukkan Mongolia, lalu dunia, sambil mengelola pasukan, wilayah, dan suksesi.",
+    "id": "Game strategi berbasis giliran dari Koei tentang Jenghis Khan: taklukkan Mongolia, lalu dunia, sambil mengelola pasukan, wilayah, dan suksesi.",
     "ja": "光栄によるチンギス・ハンを題材にしたターン制ストラテジー。モンゴルを征服し、さらに世界へと進み、軍隊、領土、継承を管理する。",
     "ko": "칭기즈 칸을 다룬 코에이의 턴제 전략 게임이다. 몽골을 정복한 뒤 세계로 나아가며 군대, 영토, 계승을 관리한다.",
-    "pt-BR": "O jogo de estratégia por turnos da Koei sobre Genghis Khan: conquiste a Mongólia e depois o mundo, gerenciando exércitos, territórios e sucessão.",
+    "pt-BR": "O jogo de estratégia por turnos da Koei sobre Gengis Khan: conquiste a Mongólia e depois o mundo, gerenciando exércitos, territórios e sucessão.",
     "ru": "Пошаговая стратегия Koei о Чингисхане: завоюйте Монголию, а затем весь мир, управляя армиями, территорией и престолонаследием."
    },
    "developer": "Koei",
@@ -6583,7 +6583,7 @@
    ],
    "description": "An adventure based on the anime Nadia: The Secret of Blue Water, itself loosely inspired by Jules Verne.",
    "descriptions": {
-    "ar": "مغامرة مبنية على أنمي Nadia: The Secret of Blue Water، المستوحى بدوره بشكل فضفاض من جول فيرن.",
+    "ar": "مغامرة مبنية على أنمي الماسة الزرقاء، المستوحى بدوره بشكل فضفاض من جول فيرن.",
     "de": "Ein Adventure nach dem Anime Nadia: The Secret of Blue Water, der selbst lose von Jules Verne inspiriert ist.",
     "es": "Una aventura basada en el anime Nadia: El secreto de Blue Water, a su vez vagamente inspirado en Julio Verne.",
     "id": "Petualangan berdasarkan anime Nadia: The Secret of Blue Water, yang sendiri terinspirasi secara longgar dari Jules Verne.",
@@ -6874,7 +6874,7 @@
    ],
    "description": "A space strategy game based on the anime Legend of the Galactic Heroes, commanding fleets in the war between the Empire and the Free Planets Alliance.",
    "descriptions": {
-    "ar": "لعبة استراتيجية فضائية مبنية على أنمي Legend of the Galactic Heroes، تقود فيها الأساطيل في الحرب بين الإمبراطورية وتحالف الكواكب الحرة.",
+    "ar": "لعبة استراتيجية فضائية مبنية على أنمي أسطورة أبطال المجرة، تقود فيها الأساطيل في الحرب بين الإمبراطورية وتحالف الكواكب الحرة.",
     "de": "Ein Weltraum-Strategiespiel nach dem Anime Legend of the Galactic Heroes: Befehlige Flotten im Krieg zwischen dem Imperium und der Allianz der Freien Planeten.",
     "es": "Un juego de estrategia espacial basado en el anime Legend of the Galactic Heroes, en el que se comandan flotas en la guerra entre el Imperio y la Alianza de Planetas Libres.",
     "id": "Game strategi luar angkasa berdasarkan anime Legend of the Galactic Heroes, memimpin armada dalam perang antara Kekaisaran dan Aliansi Planet Bebas.",
@@ -6924,7 +6924,7 @@
    "boxArtUrl": "https://images.launchbox-app.com/85d98f5e-60ed-4748-a35f-c75aed61061a.png",
    "description": "The second strategy game based on Legend of the Galactic Heroes, with larger campaigns of the interstellar war.",
    "descriptions": {
-    "ar": "لعبة الاستراتيجية الثانية المبنية على Legend of the Galactic Heroes، بحملات أكبر للحرب بين النجوم.",
+    "ar": "لعبة الاستراتيجية الثانية المبنية على أسطورة أبطال المجرة، بحملات أكبر للحرب بين النجوم.",
     "de": "Das zweite Strategiespiel nach Legend of the Galactic Heroes, mit größeren Kampagnen des interstellaren Krieges.",
     "es": "El segundo juego de estrategia basado en Legend of the Galactic Heroes, con campañas más amplias de la guerra interestelar.",
     "id": "Game strategi kedua berdasarkan Legend of the Galactic Heroes, dengan kampanye perang antarbintang yang lebih besar.",
@@ -9894,7 +9894,7 @@
    "boxArtUrl": "https://images.launchbox-app.com/0c8ec285-2a8b-44b3-9a5f-d24b89aebd1c.jpg",
    "description": "The third Twilight Zone role-playing game, returning its hero to a mysterious mansion.",
    "descriptions": {
-    "ar": "لعبة تقمص الأدوار الثالثة في Twilight Zone، تعيد بطلها إلى قصر غامض.",
+    "ar": "لعبة تقمص الأدوار الثالثة في توايلايت زون، تعيد بطلها إلى قصر غامض.",
     "de": "Das dritte Twilight-Zone-Rollenspiel, das seinen Helden in ein geheimnisvolles Herrenhaus zurückführt.",
     "es": "El tercer juego de rol de Twilight Zone, que devuelve a su héroe a una misteriosa mansión.",
     "id": "RPG Twilight Zone ketiga, mengembalikan pahlawannya ke sebuah rumah besar yang misterius.",
@@ -12337,7 +12337,7 @@
     "ja": "マンガ・アニメ「超神伝説うろつき童子」を原作としたホラーアドベンチャー。",
     "ko": "만화와 애니메이션 Urotsukidoji를 바탕으로 한 공포 어드벤처이다.",
     "pt-BR": "Uma aventura de terror baseada no mangá e anime Urotsukidoji.",
-    "ru": "Хоррор-приключение по манге и аниме Urotsukidoji."
+    "ru": "Хоррор-приключение по манге и аниме «Уроцукидодзи. Легенда о сверхдемоне»."
    },
    "developer": "FairyTale",
    "diskSets": {
@@ -14279,7 +14279,7 @@
    "boxArtUrl": "https://images.launchbox-app.com/60985abe-550c-4cdd-8632-d7a3b6385318.jpg",
    "description": "The second Might and Magic: a party of six travels the world of Cron, and through time, to save it from destruction.",
    "descriptions": {
-    "ar": "Might and Magic الثانية: فريق من ستة يسافر عبر عالم كرون وعبر الزمن لإنقاذه من الدمار.",
+    "ar": "مايت آند ماجك الثانية: فريق من ستة يسافر عبر عالم كرون وعبر الزمن لإنقاذه من الدمار.",
     "de": "Das zweite Might and Magic: Eine Gruppe aus sechs Helden reist durch die Welt Cron und durch die Zeit, um sie vor der Zerstörung zu retten.",
     "es": "El segundo Might and Magic: un grupo de seis viaja por el mundo de Cron, y a través del tiempo, para salvarlo de la destrucción.",
     "id": "Might and Magic kedua: party enam orang melakukan perjalanan keliling dunia Cron, dan menembus waktu, untuk menyelamatkannya dari kehancuran.",
@@ -14302,7 +14302,7 @@
    "boxArtUrl": "https://images.launchbox-app.com/c0e765aa-588b-49a6-b5bc-e4a06897cc8d.jpg",
    "description": "The first Might and Magic: a party of six explores the world of Varn in first-person, mapping dungeons and searching for the Inner Sanctum.",
    "descriptions": {
-    "ar": "أول Might and Magic: فريق من ستة يستكشف عالم فارن من منظور الشخص الأول، راسمًا خرائط الأقبية وباحثًا عن الملاذ الداخلي.",
+    "ar": "أول مايت آند ماجك: فريق من ستة يستكشف عالم فارن من منظور الشخص الأول، راسمًا خرائط الأقبية وباحثًا عن الملاذ الداخلي.",
     "de": "Das erste Might and Magic: Eine Gruppe aus sechs Helden erkundet in der Ego-Perspektive die Welt Varn, kartiert Dungeons und sucht das Inner Sanctum.",
     "es": "El primer Might and Magic: un grupo de seis explora el mundo de Varn en primera persona, trazando mapas de mazmorras y buscando el Santuario Interior.",
     "id": "Might and Magic pertama: party enam orang menjelajahi dunia Varn dalam sudut pandang orang pertama, memetakan dungeon dan mencari Inner Sanctum.",
@@ -14354,7 +14354,7 @@
    ],
    "description": "Taito's road racer in the style of Out Run: drive a sports car through traffic and beat the checkpoint times.",
    "descriptions": {
-    "ar": "لعبة سباق طرق من Taito بأسلوب Out Run: قُد سيارة رياضية وسط الزحام وتجاوز أزمنة نقاط التفتيش.",
+    "ar": "لعبة سباق طرق من Taito بأسلوب أوت ران: قُد سيارة رياضية وسط الزحام وتجاوز أزمنة نقاط التفتيش.",
     "de": "Taitos Straßenrennspiel im Stil von Out Run: Fahre einen Sportwagen durch den Verkehr und schlage die Checkpoint-Zeiten.",
     "es": "El juego de carreras de Taito al estilo de Out Run: conduce un deportivo entre el tráfico y supera los tiempos de los puntos de control.",
     "id": "Game balap jalan raya Taito bergaya Out Run: kemudikan mobil sport melewati lalu lintas dan kalahkan waktu di setiap pos pemeriksaan.",
@@ -14447,7 +14447,7 @@
    ],
    "description": "An updated Xevious with new enemies and patterns: fly the Solvalou, shooting air targets and bombing ground installations.",
    "descriptions": {
-    "ar": "Xevious محدّثة بأعداء وأنماط جديدة: قُد Solvalou، مطلقًا النار على الأهداف الجوية وقاصفًا المنشآت الأرضية.",
+    "ar": "إكسفيوس محدّثة بأعداء وأنماط جديدة: قُد Solvalou، مطلقًا النار على الأهداف الجوية وقاصفًا المنشآت الأرضية.",
     "de": "Ein aktualisiertes Xevious mit neuen Gegnern und Mustern: Fliege den Solvalou, schieße auf Luftziele und bombardiere Bodeneinrichtungen.",
     "es": "Un Xevious actualizado con nuevos enemigos y patrones: vuela el Solvalou, disparando a objetivos aéreos y bombardeando instalaciones terrestres.",
     "id": "Xevious yang diperbarui dengan musuh dan pola baru: terbangkan Solvalou, tembak target udara dan bom instalasi darat.",
@@ -16887,7 +16887,7 @@
    "boxArtUrl": "https://images.launchbox-app.com/03921924-2be8-4166-997f-d51e5d58c71c.jpg",
    "description": "A terrain editor for SimCity: shape the land with rivers, lakes, islands and forests before building.",
    "descriptions": {
-    "ar": "محرر تضاريس لـ SimCity: شكّل الأرض بالأنهار والبحيرات والجزر والغابات قبل البناء.",
+    "ar": "محرر تضاريس لـ سيم سيتي: شكّل الأرض بالأنهار والبحيرات والجزر والغابات قبل البناء.",
     "de": "Ein Geländeeditor für SimCity: Forme das Land mit Flüssen, Seen, Inseln und Wäldern, bevor du baust.",
     "es": "Un editor de terreno para SimCity: da forma a la tierra con ríos, lagos, islas y bosques antes de construir.",
     "id": "Editor medan untuk SimCity: bentuk daratan dengan sungai, danau, pulau, dan hutan sebelum membangun.",
@@ -17332,14 +17332,14 @@
    ],
    "description": "A doujin fighting game based on Sailor Moon, updated several times.",
    "descriptions": {
-    "ar": "لعبة قتال دوجين مبنية على Sailor Moon، حُدّثت عدة مرات.",
+    "ar": "لعبة قتال دوجين مبنية على سيلور مون، حُدّثت عدة مرات.",
     "de": "Ein Doujin-Kampfspiel nach Sailor Moon, mehrfach aktualisiert.",
     "es": "Un juego de peleas doujin basado en Sailor Moon, actualizado varias veces.",
     "id": "Game fighting doujin berdasarkan Sailor Moon, diperbarui beberapa kali.",
     "ja": "セーラームーンを題材にし、何度もアップデートされた同人格闘ゲーム。",
     "ko": "달의 요정 세일러문을 바탕으로 한 동인 격투 게임으로, 여러 차례 업데이트되었다.",
     "pt-BR": "Um jogo de luta doujin baseado em Sailor Moon, atualizado várias vezes.",
-    "ru": "Додзин-файтинг по мотивам Sailor Moon, обновлявшийся несколько раз."
+    "ru": "Додзин-файтинг по мотивам «Сейлор Мун», обновлявшийся несколько раз."
    },
    "developer": "Sprite",
    "diskSets": {
@@ -17367,14 +17367,14 @@
    ],
    "description": "A doujin fighting game set in the world of Sailor Moon.",
    "descriptions": {
-    "ar": "لعبة قتال دوجين تدور في عالم Sailor Moon.",
+    "ar": "لعبة قتال دوجين تدور في عالم سيلور مون.",
     "de": "Ein Doujin-Kampfspiel in der Welt von Sailor Moon.",
     "es": "Un juego de peleas doujin ambientado en el mundo de Sailor Moon.",
     "id": "Game fighting doujin berlatar dunia Sailor Moon.",
     "ja": "セーラームーンの世界を舞台にした同人格闘ゲーム。",
     "ko": "달의 요정 세일러문의 세계관을 배경으로 한 동인 격투 게임이다.",
     "pt-BR": "Um jogo de luta doujin ambientado no mundo de Sailor Moon.",
-    "ru": "Додзин-файтинг в мире Sailor Moon."
+    "ru": "Додзин-файтинг в мире «Сейлор Мун»."
    },
    "developer": "Sprite",
    "diskSets": {
@@ -18782,7 +18782,7 @@
    "boxArtUrl": "https://images.launchbox-app.com/6c1b3595-f624-47df-bc79-957b99d92fdb.jpg",
    "description": "The deluxe edition of the second Legend of the Galactic Heroes strategy game, with an added game set.",
    "descriptions": {
-    "ar": "الإصدار الفاخر من لعبة الاستراتيجية الثانية Legend of the Galactic Heroes، مع مجموعة لعبة إضافية.",
+    "ar": "الإصدار الفاخر من لعبة الاستراتيجية الثانية أسطورة أبطال المجرة، مع مجموعة لعبة إضافية.",
     "de": "Die Deluxe-Ausgabe des zweiten Strategiespiels Legend of the Galactic Heroes, mit einem zusätzlichen Spieleset.",
     "es": "La edición de lujo del segundo juego de estrategia de Legend of the Galactic Heroes, con un conjunto de juego adicional.",
     "id": "Edisi deluxe game strategi Legend of the Galactic Heroes kedua, dengan set game tambahan.",
@@ -19030,7 +19030,7 @@
    "boxArtUrl": "https://images.launchbox-app.com/f5fe4aee-39d1-48d8-b267-2fe61f558e6e.jpg",
    "description": "The third strategy game based on Legend of the Galactic Heroes: command fleets in the war between the Empire and the Alliance.",
    "descriptions": {
-    "ar": "لعبة الاستراتيجية الثالثة المبنية على Legend of the Galactic Heroes: قُد الأساطيل في الحرب بين الإمبراطورية والتحالف.",
+    "ar": "لعبة الاستراتيجية الثالثة المبنية على أسطورة أبطال المجرة: قُد الأساطيل في الحرب بين الإمبراطورية والتحالف.",
     "de": "Das dritte Strategiespiel nach Legend of the Galactic Heroes: Befehlige Flotten im Krieg zwischen dem Imperium und der Allianz.",
     "es": "El tercer juego de estrategia basado en Legend of the Galactic Heroes: comanda flotas en la guerra entre el Imperio y la Alianza.",
     "id": "Game strategi ketiga berdasarkan Legend of the Galactic Heroes: pimpin armada dalam perang antara Kekaisaran dan Aliansi.",
@@ -19559,7 +19559,7 @@
    "boxArtUrl": "https://images.launchbox-app.com/7e2f1452-0fc1-4812-b2d0-57963013c30a.jpg",
    "description": "The fourth Twilight Zone role-playing game: after aliens take over Earth, resistance groups fight back.",
    "descriptions": {
-    "ar": "لعبة تقمص أدوار Twilight Zone الرابعة: بعد استيلاء الفضائيين على الأرض، تقاوم مجموعات المقاومة.",
+    "ar": "لعبة تقمص أدوار توايلايت زون الرابعة: بعد استيلاء الفضائيين على الأرض، تقاوم مجموعات المقاومة.",
     "de": "Das vierte Twilight-Zone-Rollenspiel: Nachdem Aliens die Erde übernommen haben, wehren sich Widerstandsgruppen.",
     "es": "El cuarto juego de rol de Twilight Zone: tras la toma de la Tierra por alienígenas, los grupos de resistencia contraatacan.",
     "id": "RPG Twilight Zone keempat: setelah alien menguasai Bumi, kelompok perlawanan melawan balik.",
@@ -23066,7 +23066,7 @@
     "ar": "رواية بصرية غموض: عميل منظمة تستخدم السحر يُرسل إلى ترانسيلفانيا.",
     "de": "Eine Krimi-Visual-Novel: Ein Agent einer magiebegabten Organisation wird nach Siebenbürgen geschickt.",
     "es": "Una novela visual de misterio: un agente de una organización que usa magia es enviado a Transilvania.",
-    "id": "Visual novel misteri: seorang agen organisasi pengguna sihir dikirim ke Transylvania.",
+    "id": "Visual novel misteri: seorang agen organisasi pengguna sihir dikirim ke Transilvania.",
     "ja": "魔法を使う組織のエージェントがトランシルバニアに派遣される、ミステリーのビジュアルノベル。",
     "ko": "마법을 쓰는 조직의 요원이 트란실바니아로 파견되는 미스터리 비주얼 노벨이다.",
     "pt-BR": "Uma visual novel de mistério: um agente de uma organização que usa magia é enviado à Transilvânia.",
@@ -23779,7 +23779,7 @@
    "boxArtUrl": "https://images.launchbox-app.com/10ea5943-7960-43f7-b2d0-22847216d65f.jpg",
    "description": "An upgrade and scenario collection for Legend of the Galactic Heroes.",
    "descriptions": {
-    "ar": "ترقية ومجموعة سيناريوهات لـ Legend of the Galactic Heroes.",
+    "ar": "ترقية ومجموعة سيناريوهات لـ أسطورة أبطال المجرة.",
     "de": "Ein Upgrade und eine Szenario-Sammlung für Legend of the Galactic Heroes.",
     "es": "Una mejora y colección de escenarios para Legend of the Galactic Heroes.",
     "id": "Peningkatan dan koleksi skenario untuk Legend of the Galactic Heroes.",
@@ -24258,14 +24258,14 @@
    ],
    "description": "A version of the classic mainframe Star Trek game: a turn-based, text-based hunt for Klingons across the galaxy.",
    "descriptions": {
-    "ar": "نسخة من لعبة Star Trek الكلاسيكية للحواسيب المركزية: مطاردة نصية بالأدوار للكلينغون عبر المجرة.",
+    "ar": "نسخة من لعبة ستار تريك الكلاسيكية للحواسيب المركزية: مطاردة نصية بالأدوار للكلينغون عبر المجرة.",
     "de": "Eine Version des klassischen Mainframe-Spiels Star Trek: eine rundenbasierte, textbasierte Jagd auf Klingonen quer durch die Galaxie.",
     "es": "Una versión del clásico juego Star Trek de los mainframes: una cacería de klingons por la galaxia, por turnos y basada en texto.",
     "id": "Versi game Star Trek mainframe klasik: perburuan Klingon berbasis giliran dan teks di seluruh galaksi.",
     "ja": "大型汎用機で遊ばれた定番のスター・トレックゲームのバージョン。銀河全体でクリンゴンを探す、ターン制のテキストゲーム。",
     "ko": "고전 메인프레임 스타 트렉 게임 버전이다. 은하 전역에서 클링온을 사냥하는 턴제 텍스트 기반 게임이다.",
     "pt-BR": "Uma versão do clássico jogo de Star Trek para mainframe: uma caçada por turnos, em texto, a Klingons pela galáxia.",
-    "ru": "Версия классической игры Star Trek для мейнфреймов: пошаговая текстовая охота на клингонов по всей галактике."
+    "ru": "Версия классической игры «Звездный путь» для мейнфреймов: пошаговая текстовая охота на клингонов по всей галактике."
    },
    "developer": "To$hi",
    "launchbox": "189547",
@@ -24285,14 +24285,14 @@
    ],
    "description": "A doujin Star Wars game.",
    "descriptions": {
-    "ar": "لعبة Star Wars دوجين.",
+    "ar": "لعبة حرب النجوم دوجين.",
     "de": "Ein Doujin-Spiel zu Star Wars.",
     "es": "Un juego doujin de Star Wars.",
     "id": "Game Star Wars doujin.",
     "ja": "同人のスター・ウォーズゲーム。",
     "ko": "동인 스타워즈 게임이다.",
     "pt-BR": "Um jogo doujin de Star Wars.",
-    "ru": "Додзин-игра по Star Wars."
+    "ru": "Додзин-игра по «Звездным войнам»."
    },
    "developer": "K.Y.A.T.",
    "launchbox": "189548",
@@ -24642,7 +24642,7 @@
     "ja": "マインスイーパーのバージョン。隠された地雷を踏まないように、グリッド上のセルを開いていく。",
     "ko": "지뢰찾기 버전이다. 격자의 칸을 열되 숨겨진 지뢰를 밟지 않아야 한다.",
     "pt-BR": "Uma versão de Campo Minado: revele células em uma grade sem acertar as minas escondidas.",
-    "ru": "Версия Minesweeper: открывайте клетки на сетке, не наткнувшись на скрытые мины."
+    "ru": "Версия «Сапера»: открывайте клетки на сетке, не наткнувшись на скрытые мины."
    },
    "developer": "MPU",
    "diskSets": {
@@ -24673,7 +24673,7 @@
    ],
    "description": "A doujin game in the style of Bomberman: place timed bombs to clear a maze and defeat enemies.",
    "descriptions": {
-    "ar": "لعبة دوجين بأسلوب Bomberman: ضع قنابل موقوتة لتطهير متاهة وهزيمة الأعداء.",
+    "ar": "لعبة دوجين بأسلوب بومبرمان: ضع قنابل موقوتة لتطهير متاهة وهزيمة الأعداء.",
     "de": "Ein Doujin-Spiel im Stil von Bomberman: Lege Zeitbomben, um ein Labyrinth zu räumen und Gegner zu besiegen.",
     "es": "Un juego doujin al estilo de Bomberman: coloca bombas con temporizador para despejar un laberinto y derrotar a los enemigos.",
     "id": "Game doujin bergaya Bomberman: pasang bom berwaktu untuk membersihkan labirin dan mengalahkan musuh.",
@@ -25668,14 +25668,14 @@
    ],
    "description": "A falling-block puzzle game for one or two players in the style of Tetris.",
    "descriptions": {
-    "ar": "لعبة ألغاز كتل متساقطة للاعب واحد أو اثنين بأسلوب Tetris.",
+    "ar": "لعبة ألغاز كتل متساقطة للاعب واحد أو اثنين بأسلوب تتريس.",
     "de": "Ein Puzzlespiel mit fallenden Blöcken für einen oder zwei Spieler im Stil von Tetris.",
     "es": "Un rompecabezas de bloques que caen para uno o dos jugadores al estilo de Tetris.",
     "id": "Game teka-teki blok jatuh untuk satu atau dua pemain bergaya Tetris.",
     "ja": "テトリス風の、1〜2人用の落ちものパズルゲーム。",
     "ko": "테트리스 스타일의 1~2인용 낙하 블록 퍼즐 게임이다.",
     "pt-BR": "Um quebra-cabeça de blocos que caem para um ou dois jogadores no estilo de Tetris.",
-    "ru": "Головоломка с падающими блоками для одного или двух игроков в стиле Tetris."
+    "ru": "Головоломка с падающими блоками для одного или двух игроков в стиле Тетриса."
    },
    "developer": "K.W.P.",
    "launchbox": "190055",
@@ -26171,7 +26171,7 @@
    ],
    "description": "A version of Frogger: guide frogs across a busy road and a river of logs to their homes.",
    "descriptions": {
-    "ar": "نسخة من Frogger: قُد ضفادع عبر طريق مزدحم ونهر من الجذوع إلى بيوتها.",
+    "ar": "نسخة من فروغر: قُد ضفادع عبر طريق مزدحم ونهر من الجذوع إلى بيوتها.",
     "de": "Eine Version von Frogger: Führe Frösche über eine belebte Straße und einen Fluss aus Baumstämmen zu ihren Heimen.",
     "es": "Una versión de Frogger: guía ranas por una carretera concurrida y un río de troncos hasta sus hogares.",
     "id": "Versi Frogger: pandu katak melintasi jalan raya yang ramai dan sungai berisi batang kayu menuju rumah mereka.",
@@ -26196,7 +26196,7 @@
    ],
    "description": "A version of Frogger: guide frogs across a busy road and a river of logs and turtles to their homes.",
    "descriptions": {
-    "ar": "نسخة من Frogger: قُد ضفادع عبر طريق مزدحم ونهر من الجذوع والسلاحف إلى بيوتها.",
+    "ar": "نسخة من فروغر: قُد ضفادع عبر طريق مزدحم ونهر من الجذوع والسلاحف إلى بيوتها.",
     "de": "Eine Version von Frogger: Führe Frösche über eine belebte Straße und einen Fluss aus Baumstämmen und Schildkröten zu ihren Heimen.",
     "es": "Una versión de Frogger: guía ranas por una carretera concurrida y un río de troncos y tortugas hasta sus hogares.",
     "id": "Versi Frogger: pandu katak melintasi jalan raya yang ramai dan sungai berisi batang kayu dan kura-kura menuju rumah mereka.",
@@ -26368,7 +26368,7 @@
    ],
    "description": "A faithful doujin version of Galaxian: shoot down alien formations as they peel off to dive at you.",
    "descriptions": {
-    "ar": "نسخة دوجين أمينة من Galaxian: أسقط تشكيلات الفضائيين وهم ينفصلون للانقضاض عليك.",
+    "ar": "نسخة دوجين أمينة من غالاكسيان: أسقط تشكيلات الفضائيين وهم ينفصلون للانقضاض عليك.",
     "de": "Eine originalgetreue Doujin-Version von Galaxian: Schieße Alienformationen ab, während sie ausscheren und auf dich herabstürzen.",
     "es": "Una fiel versión doujin de Galaxian: derriba formaciones alienígenas mientras se desprenden para lanzarse en picada contra ti.",
     "id": "Versi doujin Galaxian yang setia: tembak formasi alien yang memisahkan diri untuk menukik ke arah Anda.",
@@ -26392,7 +26392,7 @@
    ],
    "description": "A very tough doujin take on Galaxian as a bullet-hell shooter.",
    "descriptions": {
-    "ar": "نسخة دوجين صعبة جدًا من Galaxian كلعبة إطلاق نار بوابل رصاص.",
+    "ar": "نسخة دوجين صعبة جدًا من غالاكسيان كلعبة إطلاق نار بوابل رصاص.",
     "de": "Eine sehr harte Doujin-Version von Galaxian als Bullet-Hell-Shooter.",
     "es": "Una versión doujin muy difícil de Galaxian como juego de disparos de balas.",
     "id": "Versi doujin Galaxian yang sangat sulit sebagai penembak bullet-hell.",
@@ -26582,7 +26582,7 @@
    ],
    "description": "A deliberately punishing single-player version of Galaxian.",
    "descriptions": {
-    "ar": "نسخة عقابية عمدًا للاعب واحد من Galaxian.",
+    "ar": "نسخة عقابية عمدًا للاعب واحد من غالاكسيان.",
     "de": "Eine absichtlich gnadenlose Einzelspieler-Version von Galaxian.",
     "es": "Una versión para un jugador de Galaxian deliberadamente castigadora.",
     "id": "Versi pemain tunggal Galaxian yang sengaja dibuat menyiksa.",
@@ -26818,7 +26818,7 @@
    ],
    "description": "A spin-off of Xevious starring the Grobda tank: fight other tanks in an arena, shielding against their shots.",
    "descriptions": {
-    "ar": "عمل جانبي من Xevious بطله دبابة Grobda: قاتل دبابات أخرى في حلبة، محتميًا من طلقاتها.",
+    "ar": "عمل جانبي من إكسفيوس بطله دبابة Grobda: قاتل دبابات أخرى في حلبة، محتميًا من طلقاتها.",
     "de": "Ein Xevious-Ableger mit dem Panzer Grobda: Kämpfe in einer Arena gegen andere Panzer und schütze dich vor ihren Schüssen.",
     "es": "Un spin-off de Xevious protagonizado por el tanque Grobda: combate contra otros tanques en una arena, protegiéndote de sus disparos.",
     "id": "Spin-off Xevious dengan tank Grobda: lawan tank lain di arena sambil berlindung dari tembakan mereka.",
@@ -27460,7 +27460,7 @@
    ],
    "description": "The Pac-Man game included within Pac-Mania, playable on its own.",
    "descriptions": {
-    "ar": "لعبة Pac-Man المضمّنة في Pac-Mania، قابلة للعب بمفردها.",
+    "ar": "لعبة باك مان المضمّنة في Pac-Mania، قابلة للعب بمفردها.",
     "de": "Das in Pac-Mania enthaltene Pac-Man-Spiel, auch einzeln spielbar.",
     "es": "El juego de Pac-Man incluido en Pac-Mania, que se puede jugar por separado.",
     "id": "Game Pac-Man yang termasuk dalam Pac-Mania, dapat dimainkan sendiri.",
@@ -27623,14 +27623,14 @@
    ],
    "description": "A Tetris game with a monkey that teaches you how to play.",
    "descriptions": {
-    "ar": "لعبة Tetris مع قرد يعلّمك كيفية اللعب.",
+    "ar": "لعبة تتريس مع قرد يعلّمك كيفية اللعب.",
     "de": "Ein Tetris-Spiel mit einem Affen, der dir das Spielen beibringt.",
     "es": "Un Tetris con un mono que te enseña a jugar.",
     "id": "Game Tetris dengan seekor monyet yang mengajarkan cara bermain.",
     "ja": "遊び方を教えてくれるサルが登場するテトリスゲーム。",
     "ko": "플레이 방법을 알려 주는 원숭이가 나오는 테트리스 게임이다.",
     "pt-BR": "Um Tetris com um macaco que ensina como jogar.",
-    "ru": "Игра в стиле Tetris с обезьяной, которая учит играть."
+    "ru": "Игра в стиле Тетриса с обезьяной, которая учит играть."
    },
    "developer": "Pineapple",
    "launchbox": "190600",
@@ -29178,7 +29178,7 @@
   "x68000:191035": {
    "description": "A Pac-Man variant that adds its own ideas to the maze chase.",
    "descriptions": {
-    "ar": "نسخة من Pac-Man تضيف أفكارها الخاصة إلى مطاردة المتاهة.",
+    "ar": "نسخة من باك مان تضيف أفكارها الخاصة إلى مطاردة المتاهة.",
     "de": "Eine Pac-Man-Variante, die der Labyrinthjagd eigene Ideen hinzufügt.",
     "es": "Una variante de Pac-Man que añade sus propias ideas a la persecución en el laberinto.",
     "id": "Varian Pac-Man yang menambahkan gagasannya sendiri ke dalam kejar-kejaran di labirin.",
@@ -29397,14 +29397,14 @@
    ],
    "description": "Tetris with a small twist.",
    "descriptions": {
-    "ar": "Tetris بتعديل صغير.",
+    "ar": "تتريس بتعديل صغير.",
     "de": "Tetris mit einer kleinen Wendung.",
     "es": "Tetris con un pequeño giro.",
     "id": "Tetris dengan sedikit tambahan.",
     "ja": "ちょっとした工夫のあるテトリス。",
     "ko": "약간의 변화를 준 테트리스이다.",
     "pt-BR": "Tetris com uma pequena variação.",
-    "ru": "Tetris с небольшой особенностью."
+    "ru": "Тетрис с небольшой особенностью."
    },
    "developer": "Ko.mo.mo",
    "launchbox": "191197",
@@ -30404,7 +30404,7 @@
    ],
    "description": "A doujin Space Invaders with an authentic look, sound and pace.",
    "descriptions": {
-    "ar": "لعبة Space Invaders دوجين بمظهر وصوت وإيقاع أصيل.",
+    "ar": "لعبة سبيس إنفيدرز دوجين بمظهر وصوت وإيقاع أصيل.",
     "de": "Ein Doujin-Space-Invaders mit authentischem Look, Sound und Tempo.",
     "es": "Un Space Invaders doujin con aspecto, sonido y ritmo auténticos.",
     "id": "Space Invaders doujin dengan tampilan, suara, dan tempo yang autentik.",
@@ -31060,7 +31060,7 @@
    ],
    "description": "A picture puzzle based on Tenchi Muyo: slide the pieces into place to complete the image.",
    "descriptions": {
-    "ar": "لغز صور مبني على Tenchi Muyo: حرّك القطع إلى مكانها لإكمال الصورة.",
+    "ar": "لغز صور مبني على تينتشي ميو: حرّك القطع إلى مكانها لإكمال الصورة.",
     "de": "Ein Bilderpuzzle nach Tenchi Muyo: Schiebe die Teile an ihren Platz, um das Bild zu vervollständigen.",
     "es": "Un rompecabezas de imágenes basado en Tenchi Muyo: desliza las piezas a su lugar para completar la imagen.",
     "id": "Teka-teki gambar berdasarkan Tenchi Muyo: geser kepingan ke tempatnya untuk melengkapi gambar.",
@@ -31095,14 +31095,14 @@
    ],
    "description": "A Tetris version that tracks your statistics as you improve.",
    "descriptions": {
-    "ar": "نسخة Tetris تتابع إحصاءاتك مع تحسنك.",
+    "ar": "نسخة تتريس تتابع إحصاءاتك مع تحسنك.",
     "de": "Eine Tetris-Version, die deine Statistiken festhält, während du dich verbesserst.",
     "es": "Una versión de Tetris que registra tus estadísticas a medida que mejoras.",
     "id": "Versi Tetris yang melacak statistik Anda seiring kemajuan.",
     "ja": "上達するにつれて成績を記録してくれるテトリス。",
     "ko": "실력이 늘어 가는 동안 통계를 기록하는 테트리스 버전이다.",
     "pt-BR": "Uma versão de Tetris que registra suas estatísticas conforme você melhora.",
-    "ru": "Версия Tetris, отслеживающая вашу статистику по мере роста мастерства."
+    "ru": "Версия Тетриса, отслеживающая вашу статистику по мере роста мастерства."
    },
    "developer": "Shimizu Jun",
    "launchbox": "192220",
@@ -31120,14 +31120,14 @@
   "x68000:192301": {
    "description": "An improved Tetris by Cyber Factory.",
    "descriptions": {
-    "ar": "Tetris محسّنة من Cyber Factory.",
+    "ar": "تتريس محسّنة من Cyber Factory.",
     "de": "Ein verbessertes Tetris von Cyber Factory.",
     "es": "Un Tetris mejorado de Cyber Factory.",
     "id": "Tetris yang ditingkatkan oleh Cyber Factory.",
     "ja": "Cyber Factoryによる改良版テトリス。",
     "ko": "Cyber Factory가 개량한 테트리스이다.",
     "pt-BR": "Um Tetris aprimorado da Cyber Factory.",
-    "ru": "Улучшенный Tetris от Cyber Factory."
+    "ru": "Улучшенный Тетрис от Cyber Factory."
    },
    "developer": "Cyber Factory",
    "launchbox": "192301",
@@ -31138,14 +31138,14 @@
   "x68000:192302": {
    "description": "A further improved Tetris by Cyber Factory.",
    "descriptions": {
-    "ar": "Tetris محسّنة أكثر من Cyber Factory.",
+    "ar": "تتريس محسّنة أكثر من Cyber Factory.",
     "de": "Ein weiter verbessertes Tetris von Cyber Factory.",
     "es": "Un Tetris aún más mejorado de Cyber Factory.",
     "id": "Tetris yang ditingkatkan lebih lanjut oleh Cyber Factory.",
     "ja": "Cyber Factoryによる、さらに改良されたテトリス。",
     "ko": "Cyber Factory가 더욱 개량한 테트리스이다.",
     "pt-BR": "Um Tetris ainda mais aprimorado da Cyber Factory.",
-    "ru": "Еще более улучшенный Tetris от Cyber Factory."
+    "ru": "Еще более улучшенный Тетрис от Cyber Factory."
    },
    "developer": "Cyber Factory",
    "launchbox": "192302",
@@ -32030,14 +32030,14 @@
    ],
    "description": "A fighting game starring Sailor Venus from the Sailor Moon manga.",
    "descriptions": {
-    "ar": "لعبة قتال بطلتها Sailor Venus من مانغا Sailor Moon.",
+    "ar": "لعبة قتال بطلتها Sailor Venus من مانغا سيلور مون.",
     "de": "Ein Kampfspiel mit Sailor Venus aus dem Manga Sailor Moon.",
     "es": "Un juego de peleas protagonizado por Sailor Venus del manga Sailor Moon.",
     "id": "Game fighting dengan tokoh Sailor Venus dari manga Sailor Moon.",
     "ja": "マンガ「美少女戦士セーラームーン」のセーラーヴィーナスが主人公の格闘ゲーム。",
     "ko": "달의 요정 세일러문 만화의 Sailor Venus가 주인공인 격투 게임이다.",
     "pt-BR": "Um jogo de luta estrelado por Sailor Venus, do mangá Sailor Moon.",
-    "ru": "Файтинг с Сейлор Венерой из манги Sailor Moon в главной роли."
+    "ru": "Файтинг с Сейлор Венерой из манги «Сейлор Мун» в главной роли."
    },
    "developer": "DK Software",
    "diskSets": {
@@ -32122,7 +32122,7 @@
    ],
    "description": "A Street Fighter fan game in which Guile takes on other Guile-like fighters.",
    "descriptions": {
-    "ar": "لعبة معجبين لـ Street Fighter يواجه فيها غايل مقاتلين مشابهين له.",
+    "ar": "لعبة معجبين لـ ستريت فايتر يواجه فيها غايل مقاتلين مشابهين له.",
     "de": "Ein Street-Fighter-Fanspiel, in dem Guile gegen andere Guile-ähnliche Kämpfer antritt.",
     "es": "Un juego de fans de Street Fighter en el que Guile se enfrenta a otros luchadores parecidos a Guile.",
     "id": "Game buatan penggemar Street Fighter tempat Guile melawan petarung-petarung ala Guile lainnya.",
@@ -32258,7 +32258,7 @@
    "boxArtUrl": "https://images.launchbox-app.com/r2_60c1f6af-babb-4cd5-87c3-c50987afd681.jpg",
    "description": "A modified Space Harrier in which Ryu from Street Fighter flies and shoots fireballs.",
    "descriptions": {
-    "ar": "Space Harrier معدّلة يطير فيها ريو من Street Fighter ويطلق كرات النار.",
+    "ar": "Space Harrier معدّلة يطير فيها ريو من ستريت فايتر ويطلق كرات النار.",
     "de": "Ein modifiziertes Space Harrier, in dem Ryu aus Street Fighter fliegt und Feuerbälle schießt.",
     "es": "Un Space Harrier modificado en el que Ryu de Street Fighter vuela y dispara bolas de fuego.",
     "id": "Space Harrier yang dimodifikasi tempat Ryu dari Street Fighter terbang dan menembakkan bola api.",
@@ -33698,7 +33698,7 @@
    ],
    "description": "Pac-Man: eat every dot in the maze while the ghosts give chase, turning the tables with power pellets.",
    "descriptions": {
-    "ar": "Pac-Man: كُل كل نقطة في المتاهة بينما تطاردك الأشباح، وقلب الطاولة عليها بكرات القوة.",
+    "ar": "باك مان: كُل كل نقطة في المتاهة بينما تطاردك الأشباح، وقلب الطاولة عليها بكرات القوة.",
     "de": "Pac-Man: Friss alle Punkte im Labyrinth, während dich die Geister jagen, und wende mit Power-Pillen das Blatt.",
     "es": "Pac-Man: come todos los puntos del laberinto mientras los fantasmas te persiguen, y da vuelta la situación con las píldoras de poder.",
     "id": "Pac-Man: makan setiap titik di labirin sementara hantu mengejar, dan balikkan keadaan dengan power pellet.",
@@ -36702,7 +36702,7 @@
    ],
    "description": "The third and fourth Twilight Zone role-playing games in one set.",
    "descriptions": {
-    "ar": "لعبتا تقمص الأدوار الثالثة والرابعة من Twilight Zone في مجموعة واحدة.",
+    "ar": "لعبتا تقمص الأدوار الثالثة والرابعة من توايلايت زون في مجموعة واحدة.",
     "de": "Das dritte und das vierte Twilight-Zone-Rollenspiel in einem Set.",
     "es": "El tercer y el cuarto juego de rol de Twilight Zone en un solo conjunto.",
     "id": "RPG Twilight Zone ketiga dan keempat dalam satu set.",
@@ -38292,7 +38292,7 @@
   "x68000:moby-207007": {
    "description": "The first Legend of the Galactic Heroes strategy game bundled with its power-up and scenario disk.",
    "descriptions": {
-    "ar": "لعبة الاستراتيجية الأولى Legend of the Galactic Heroes مع قرص التعزيز والسيناريوهات.",
+    "ar": "لعبة الاستراتيجية الأولى أسطورة أبطال المجرة مع قرص التعزيز والسيناريوهات.",
     "de": "Das erste Strategiespiel Legend of the Galactic Heroes zusammen mit seiner Power-up- und Szenario-Diskette.",
     "es": "El primer juego de estrategia de Legend of the Galactic Heroes con su disco de potenciación y escenarios.",
     "id": "Game strategi Legend of the Galactic Heroes pertama beserta disk power-up dan skenarionya.",
@@ -38502,7 +38502,7 @@
    },
    "description": "Hudson's falling-block puzzle game with Bomberman bombs: line up matching pieces and detonate them to send attacks to your opponent.",
    "descriptions": {
-    "ar": "لعبة ألغاز كتل متساقطة من Hudson بقنابل Bomberman: صفّ القطع المتطابقة وفجّرها لإرسال هجمات إلى خصمك.",
+    "ar": "لعبة ألغاز كتل متساقطة من Hudson بقنابل بومبرمان: صفّ القطع المتطابقة وفجّرها لإرسال هجمات إلى خصمك.",
     "de": "Hudsons Puzzlespiel mit fallenden Blöcken und Bomberman-Bomben: Reihe passende Teile auf und lasse sie explodieren, um Angriffe an deinen Gegner zu schicken.",
     "es": "El juego de rompecabezas de bloques que caen de Hudson con bombas de Bomberman: alinea piezas iguales y detónalas para enviar ataques a tu oponente.",
     "id": "Game teka-teki blok jatuh dari Hudson dengan bom Bomberman: sejajarkan kepingan yang sama dan ledakkan untuk mengirim serangan ke lawan.",
