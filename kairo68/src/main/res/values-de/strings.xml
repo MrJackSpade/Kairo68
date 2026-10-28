@@ -6,32 +6,15 @@
     <string name="credits">%1$s verwendet die %3$s-Emulation von %2$s. Quellcode und Herkunft: github.com/%4$s.</string>
     <!-- EN: Choose a games folder to find floppy and hard disk images and the ZIP and 7z archives holding them -->
     <string name="library_empty">Wählen Sie einen Spieleordner, um Disketten- und Festplattenabbilder und die ZIP- und 7z-Archive mit ihnen zu finden</string>
-    <!-- EN: Folder access expired. Select the games folder again. -->
-    <string name="library_expired">Der Ordnerzugriff ist abgelaufen. Wählen Sie den Spieleordner erneut aus.</string>
-    <!-- EN: Choose a games folder -->
-    <string name="folder_title">Spieleordner auswählen</string>
     <!-- %1$s is the machine's name, X68000; %2$s the app's name, Kairo68. -->
     <!-- EN: Select the folder containing your %1$s games. %2$s will scan its floppy and hard disk images and the ZIP and 7z archives holding them. -->
     <string name="folder_description">Wählen Sie den Ordner mit Ihren %1$s-Spielen. %2$s durchsucht seine Disketten- und Festplattenabbilder und die ZIP- und 7z-Archive mit ihnen.</string>
-    <!-- EN: Choose games folder… -->
-    <string name="folder_button">Spieleordner auswählen…</string>
-    <!-- EN: SAVE STATES -->
-    <string name="saves_group">SPEICHERSTÄNDE</string>
     <!-- EN: The pad in joystick port 1. -->
     <string name="joystick_help">Das Pad an Joystick-Port 1.</string>
-    <!-- EN: Symbols -->
-    <string name="keyboard_symbols">Symbole</string>
-    <!-- EN: Floppy disk -->
-    <string name="floppy_disk">Diskette</string>
-    <!-- EN: Hard disk -->
-    <string name="hard_disk">Festplatte</string>
     <!-- EN: Floppy 0 -->
     <string name="floppy_0">Diskette 0</string>
     <!-- EN: Floppy 1 -->
     <string name="floppy_1">Diskette 1</string>
-    <!-- A firmware file's description: %1$s is its file name; %2$s what it does. -->
-    <!-- EN: %1$s · %2$s -->
-    <string name="firmware_part">%1$s · %2$s</string>
     <!-- EN: Character font -->
     <string name="firmware_font">Zeichensatz</string>
     <!-- %1$s is the machine's name, X68000. -->
@@ -39,16 +22,4 @@
     <string name="firmware_ipl_description">das BIOS, das den %1$s startet und Spiele lädt</string>
     <!-- EN: the %1$s\'s text and kanji font -->
     <string name="firmware_font_description">die Text- und Kanji-Schrift des %1$s</string>
-    <!-- EN: The second disk this game needs is not in the library -->
-    <string name="second_disk_missing">Der zweite Datenträger, den dieses Spiel benötigt, ist nicht in der Bibliothek</string>
-    <!-- EN: Memory -->
-    <string name="option_memory">Arbeitsspeicher</string>
-    <!-- %1$d is a size in megabytes. -->
-    <!-- EN: %1$d MB -->
-    <string name="memory_mb">%1$d MB</string>
-    <!-- EN: CPU clock -->
-    <string name="option_clock">CPU-Takt</string>
-    <!-- %1$d is a clock speed in megahertz. -->
-    <!-- EN: %1$d MHz -->
-    <string name="clock_mhz">%1$d MHz</string>
 </resources>

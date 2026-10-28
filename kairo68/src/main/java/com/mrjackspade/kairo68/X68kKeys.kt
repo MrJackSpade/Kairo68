@@ -72,7 +72,7 @@ object X68kKeys {
             GuestKeyboardPage("ABC", JisMainBlock.alphabetRows(CTRL, SHIFT, listOf(KeyboardKey("Caps", CAPS),
                 KeyboardKey("Kana", KANA), KeyboardKey("XF1", XF1), KeyboardKey("XF2", XF2), KeyboardKey("Space", SPACE, 4f),
                 KeyboardKey("XF3", XF3), KeyboardKey("XF4", XF4), KeyboardKey("XF5", XF5)))),
-            GuestKeyboardPage("?123", JisMainBlock.symbolRows(), pickerLabel = UiText.res(R.string.keyboard_symbols)),
+            GuestKeyboardPage("?123", JisMainBlock.symbolRows(), pickerLabel = UiText.res(FrontendR.string.kairo_keyboard_symbols)),
             GuestKeyboardPage("X68000", x68kRows())
         ),
         modifiers = setOf(SHIFT, CTRL, OPT1, OPT2),
