@@ -44,7 +44,7 @@ PROJECTS = {'emu': 'emu.lua', 'utils': 'lib.lua', 'expat': '3rdparty.lua', 'zlib
             'utf8proc': '3rdparty.lua', 'ymfm': '3rdparty.lua', 'jpeg': '3rdparty.lua',
             '7z': '3rdparty.lua'}
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'shared' / 'tools'))
 import import_mame  # noqa: E402
 
 

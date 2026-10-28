@@ -1,5 +1,5 @@
 """Kairo68's local changes to the imported MAME sources (third_party/mame), which
-shared/tools/local_patches.py applies and checks, and tools/import_mame.py applies after it copies
+shared/tools/local_patches.py applies and checks, and shared/tools/import_mame.py applies after it copies
 the subset. Each change replaces text that must occur exactly once in its file, so a MAME update
 that moves the code stops the import instead of applying the change in the wrong place.
 docs/source-import.md describes each change."""
@@ -1432,7 +1432,22 @@ X68K_UNCHANGED_FRAME = [
      "\n} // anonymous namespace\n\nuint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect_in)\n{\n\t// Kairo68 (x68k-unchanged-frame): a frame drawn whole with nothing the picture shows changing\n\t// during it is the picture of every frame after it until something changes. Meanwhile the\n\t// screen keeps showing it (UPDATE_HAS_NOT_CHANGED: it swaps neither bitmap) and nothing is\n\t// drawn. A change later in a frame draws its lines from the frame's top, which are what they\n\t// were up to the change. An interlaced picture is drawn every frame (Kairo68#30).\n\tconst rectangle &visible = screen.visible_area();\n\tconst uint64_t generation = m_crtc->picture_generation();\n\tif (screen.frame_number() != m_update_frame)\n\t{\n\t\tm_update_frame = screen.frame_number();\n\t\tm_frame_skipped = false;\n\t}\n\tif (!m_crtc->interlaced() && generation == m_drawn_generation)\n\t{\n\t\tm_frame_skipped = true;\n\t\treturn UPDATE_HAS_NOT_CHANGED;\n\t}\n\trectangle cliprect = cliprect_in;\n\tif (m_frame_skipped)\n\t{\n\t\tcliprect.min_y = visible.min_y;\n\t\tm_frame_skipped = false;\n\t}\n\tif (cliprect.max_y >= visible.max_y)\n\t\tm_drawn_generation = m_crtc->frame_start_generation() == generation ? generation : 0;\n\tKAIRO68_PERF_COUNT(screen_updates, 1);\n\tKAIRO68_PERF_COUNT(screen_lines, cliprect.height());\n\tKAIRO68_PERF_TIME(screen_ns);\n",),
 ]
 
+# Whether the SASI controller is in a command, which ends the boot's fast-forward once a hard disk
+# answers (core/x68k_machine.cpp). It was made in the snapshot directly with Kairo68 1eacf55.
+X68K_SASI_BUSY = [
+    ('src/mame/sharp/x68k_hdc.h',
+     '''	// Kairo68: DMA request, REQ during a data phase
+	auto drq_callback() { return m_drq_cb.bind(); }
+''',
+     '''	// Kairo68: DMA request, REQ during a data phase
+	auto drq_callback() { return m_drq_cb.bind(); }
+	// Kairo68: a command in progress, which ends the boot's fast-forward
+	bool busy() const { return m_phase != sasi_phase::BUSFREE; }
+'''),
+]
+
 PATCHES = {'x68k-save-state': X68K_SAVE_STATE, 'x68k-sasi-count': X68K_SASI_COUNT, 'x68k-sasi-dma': X68K_SASI_DMA,
+           'x68k-sasi-busy': X68K_SASI_BUSY,
            'osdlib-without-sdl': OSDLIB_WITHOUT_SDL, 'upd765-save-state': UPD765_SAVE_STATE, 'rtc-save-state': RTC_SAVE_STATE,
            'floppy-save-state': FLOPPY_SAVE_STATE, 'hd63450-save-state': HD63450_SAVE_STATE,
            'perf-counters': PERF_COUNTERS,
