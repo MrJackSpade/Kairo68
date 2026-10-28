@@ -67,7 +67,7 @@ public:
 
     void reset() override { machine_->reset(); }
     // FrameMachine fast-forwards while the core boots (Config::skip_memory_check).
-    bool booting() override { return machine_->booting(); }
+    bool loading() override { return machine_->booting(); }
     // Bit 0 Caps, bit 1 Kana, as NativeMachine lists them (MainActivity).
     int locks() override { return machine_->locks(); }
 
