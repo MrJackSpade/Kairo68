@@ -37,7 +37,11 @@ object X68kCatalog : LayeredGameCatalog.Schema {
         UiText.res(FrontendR.string.kairo_startup_commands_hint), Regex("[ -~]{1,120}"), 8) { _, _ -> emptyList() }
 
     override val settings: List<CatalogSetting> = options.map(CatalogSetting::Choice) +
-        CatalogSetting.Drive("floppyB", UiText.res(R.string.floppy_1)) + startupCommands
+        CatalogSetting.Drive("floppyB", UiText.res(R.string.floppy_1)) + startupCommands +
+        // A game's startup menus and disk swaps (shared StartupAutomation).
+        listOf(CatalogSetting.StartupChoices,
+        // Floppy drives 0 and 1 (MainActivity.mediaSlots).
+        CatalogSetting.DiskSwaps(2) { _, id -> id.startsWith("sha256-fd-v1:") })
     override val fields = CatalogSetting.fields(settings)
     /** The core steers IOCS's mouse pointer to a point (X68kMachine::mouse_warp). */
     override val directTouch = true
@@ -45,7 +49,7 @@ object X68kCatalog : LayeredGameCatalog.Schema {
     override fun validMedia(role: String, contentId: String) = role == "floppyB" && contentId.startsWith("sha256-fd-v1:")
 
     override fun validField(field: String, value: Any): Boolean =
-        field in fields && CatalogSetting.validSection(settings, field, value)
+        field in fields && CatalogSetting.valid(settings, contentId, field, value)
 
     override fun validBindings(bindings: JSONArray) = X68kKeys.bindings.valid(bindings)
 }
