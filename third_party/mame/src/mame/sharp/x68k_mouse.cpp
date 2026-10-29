@@ -50,7 +50,8 @@ void x68k_mouse_device::device_start()
 s16 read_axis(ioport_port &port, u16 &old_val)
 {
 	u16 const new_val = port.read();
-	s16 const delta = new_val - old_val;
+	// Kairo68: the axes are 12 bits wide, so their difference is too, as a signed 12-bit number.
+	s16 const delta = s16(u16((new_val - old_val) << 4)) >> 4;
 
 	old_val = new_val;
 

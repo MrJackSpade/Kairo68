@@ -4,6 +4,7 @@
 
 #include "x68k_machine.h"
 #include "kairo/jis_keys.h"
+#include "kairo/relative_warp.h"
 #include "kairo68_perf.h"
 
 #include <algorithm>
@@ -34,6 +35,7 @@
 #include "machine/ram.h"
 #include "sound/ymopm.h"
 #include "sharp/x68k_hdc.h"
+#include "sharp/x68k_mouse.h"
 #include "sharp/x68k.h"
 #include "audio_effects/compressor.h"
 #include "audio_effects/eq.h"
@@ -200,7 +202,19 @@ struct X68kMachine::Impl : public osd_interface {
     // kWarpStill frames is where the guest stops it.
     static constexpr int kWarpWait = 3;
     static constexpr int kWarpStill = 30;
+    // A guest that keeps a pointer of its own (Lemmings) leaves IOCS's where it was: after
+    // kWarpProbe steps that did not move it, the warp is the corner warp (kairo/relative_warp.h)
+    // instead, its motion passed on at most 127 counts at a time, a mouse packet's most, each
+    // once the guest has taken the last.
+    static constexpr int kWarpProbe = 3;
+    int warp_start_x = -1, warp_start_y = -1, warp_steps = 0;
+    bool cornering = false;
+    kairo::RelativeWarp corner;
+    int corner_x = 0, corner_y = 0;      // the point the corner warp heads for
+    int corner_dx = 0, corner_dy = 0;    // its motion not yet passed on
+    x68k_mouse_device *mouse = nullptr;  // the X68000 mouse, which says when the guest took motion
     void steer_warp();
+    void steer_corner();
     memory_passthrough_handler mouse_tap;
     void update_booting();
 #ifdef KAIRO68_PERF
@@ -376,10 +390,6 @@ void X68kMachine::Impl::init(running_machine &running) {
 }
 
 void X68kMachine::Impl::steer_warp() {
-    if (warp_new.exchange(false)) {
-        warp_wait = warp_still = 0;
-        warp_last_x = warp_last_y = -1;
-    }
     // Main RAM's words are in host order.
     const auto word = [this](offs_t address) {
         u16 value;
@@ -387,6 +397,18 @@ void X68kMachine::Impl::steer_warp() {
         return int(value);
     };
     const int x = word(0x0ace), y = word(0x0ad0);
+    if (warp_new.exchange(false)) {
+        warp_wait = warp_still = warp_steps = 0;
+        warp_last_x = warp_last_y = -1;
+        warp_start_x = x;
+        warp_start_y = y;
+        cornering = false;
+        corner_dx = corner_dy = 0;
+    }
+    if (cornering) {
+        steer_corner();
+        return;
+    }
     const int dx = warp_x.load() - x, dy = warp_y.load() - y;
     if (dx == 0 && dy == 0) {
         warp_done = true;
@@ -403,6 +425,16 @@ void X68kMachine::Impl::steer_warp() {
         --warp_wait;
         return;
     }
+    if (warp_steps >= kWarpProbe && x == warp_start_x && y == warp_start_y) {
+        // The guest keeps its own pointer: the steps so far moved it, and the corner warp's push
+        // undoes them.
+        cornering = true;
+        corner_x = warp_x.load();
+        corner_y = warp_y.load();
+        corner.start(corner_x, corner_y, int(width), int(height));
+        steer_corner();
+        return;
+    }
     const auto step = [](int distance) {
         if (distance == 0) return 0;
         const int quarter = distance / 4;
@@ -411,6 +443,45 @@ void X68kMachine::Impl::steer_warp() {
     mouse_frame_dx += step(dx);
     mouse_frame_dy += step(dy);
     warp_wait = kWarpWait;
+    ++warp_steps;
+}
+
+void X68kMachine::Impl::steer_corner() {
+    // A drag after the tap (X68kMachine::mouse_move moves the warp's point): the corner warp holds
+    // it until its counts from the corner go out, and after them it is ordinary motion.
+    const int drag_x = warp_x.load() - corner_x, drag_y = warp_y.load() - corner_y;
+    if (drag_x || drag_y) {
+        corner_x += drag_x;
+        corner_y += drag_y;
+        if (!corner.hold(drag_x, drag_y)) {
+            corner_dx += drag_x;
+            corner_dy += drag_y;
+        }
+    }
+    // The ports take motion at the frame after it is given; until the guest polls the mouse, it has
+    // not taken it.
+    if (warp_wait > 0) {
+        --warp_wait;
+        return;
+    }
+    if (!mouse) mouse = machine->root_device().subdevice<x68k_mouse_device>("mouse_port:x68k");
+    if (!mouse) throw emu_fatalerror("The X68000 mouse was not found");
+    if (mouse->kairo68_motion_pending()) return;
+    if (corner_dx || corner_dy) {
+        const int dx = std::clamp(corner_dx, -127, 127), dy = std::clamp(corner_dy, -127, 127);
+        mouse_frame_dx += dx;
+        mouse_frame_dy += dy;
+        corner_dx -= dx;
+        corner_dy -= dy;
+        warp_wait = 1;
+        return;
+    }
+    // Everything the warp gave has reached the guest.
+    int dx, dy;
+    corner.step(true, dx, dy);
+    corner_dx += dx;
+    corner_dy += dy;
+    if (corner.done() && !corner_dx && !corner_dy) warp_done = true;
 }
 
 void X68kMachine::Impl::input_update(bool) {

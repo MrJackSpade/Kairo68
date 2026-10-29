@@ -1504,6 +1504,25 @@ X68K_SPLIT_CHECK = [
     ('src/mame/sharp/x68k.h', '\tuint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);\n', "\tuint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);\npublic:\n\t// Kairo68#33: draws cliprect of the machine's current state into bitmap as screen_update does,\n\t// whatever this frame drew before, and leaves the frame's drawing as it was: for the check that\n\t// a frame drawn whole and drawn in pieces gives the same picture.\n\tvoid kairo68_draw(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)\n\t{\n\t\tconst uint64_t frame = m_update_frame, drawn = m_drawn_generation;\n\t\tconst bool skipped = m_frame_skipped;\n\t\tm_update_frame = screen.frame_number();\n\t\tm_frame_skipped = false;\n\t\tm_drawn_generation = 0;\n\t\tscreen_update(screen, bitmap, cliprect);\n\t\tm_update_frame = frame;\n\t\tm_frame_skipped = skipped;\n\t\tm_drawn_generation = drawn;\n\t}\nprotected:\n"),
 ]
 
+# Kairo68#78: the X68000 mouse's X and Y ports are 12 bits wide (0 to 4095), and read_axis took
+# their motion as the 16-bit difference of two readings. Motion across the counter's wrap point (left
+# or up past 0) read as nearly 4096 the other way, clamped to a full +127 move: the pointer jumped to
+# the opposite side. The difference is a signed 12-bit number.
+X68K_MOUSE_WRAP = [
+    ('src/mame/sharp/x68k_mouse.cpp',
+     '\tu16 const new_val = port.read();\n\ts16 const delta = new_val - old_val;\n',
+     '\tu16 const new_val = port.read();\n\t// Kairo68: the axes are 12 bits wide, so their difference is too, as a signed 12-bit number.\n\ts16 const delta = s16(u16((new_val - old_val) << 4)) >> 4;\n',),
+]
+
+# Kairo68#78: whether the guest has taken the mouse's motion yet (X68kMachine's corner warp). The
+# mouse sends the motion since the last poll, clamped to a packet's -128 to 127, so motion given
+# before the guest took the last would merge with it and be clipped.
+X68K_MOUSE_PENDING = [
+    ('src/mame/sharp/x68k_mouse.h',
+     '\tvirtual void input_rts(int state) override; // MSCTRL (active low)\n',
+     '\tvirtual void input_rts(int state) override; // MSCTRL (active low)\n\n\t// Kairo68: whether the axes moved since the guest last polled the mouse, so a packet has motion\n\t// the guest has not taken yet.\n\tbool kairo68_motion_pending() { return u16(m_x_axis->read()) != m_x || u16(m_y_axis->read()) != m_y; }\n',),
+]
+
 PATCHES = {'x68k-save-state': X68K_SAVE_STATE, 'x68k-sasi-count': X68K_SASI_COUNT, 'x68k-sasi-dma': X68K_SASI_DMA,
            'x68k-sasi-busy': X68K_SASI_BUSY,
            'osdlib-without-sdl': OSDLIB_WITHOUT_SDL, 'upd765-save-state': UPD765_SAVE_STATE, 'rtc-save-state': RTC_SAVE_STATE,
@@ -1532,5 +1551,7 @@ PATCHES = {'x68k-save-state': X68K_SAVE_STATE, 'x68k-sasi-count': X68K_SASI_COUN
            'x68k-unchanged-frame': X68K_UNCHANGED_FRAME,
            'm68000-trap-hook': M68000_TRAP_HOOK,
            'm68000-linef-hook': M68000_LINEF_HOOK,
-           'x68k-split-check': X68K_SPLIT_CHECK
+           'x68k-split-check': X68K_SPLIT_CHECK,
+           'x68k-mouse-wrap': X68K_MOUSE_WRAP,
+           'x68k-mouse-pending': X68K_MOUSE_PENDING
 }

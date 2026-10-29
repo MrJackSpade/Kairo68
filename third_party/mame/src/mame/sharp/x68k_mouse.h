@@ -15,6 +15,10 @@ public:
 
 	virtual void input_rts(int state) override; // MSCTRL (active low)
 
+	// Kairo68: whether the axes moved since the guest last polled the mouse, so a packet has motion
+	// the guest has not taken yet.
+	bool kairo68_motion_pending() { return u16(m_x_axis->read()) != m_x || u16(m_y_axis->read()) != m_y; }
+
 protected:
 	virtual ioport_constructor device_input_ports() const override ATTR_COLD;
 	virtual void device_start() override ATTR_COLD;
