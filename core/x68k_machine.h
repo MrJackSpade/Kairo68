@@ -120,9 +120,14 @@ public:
     // whether it set the mouse up with any IOCS mouse call. Patch group m68000-trap-hook.
     void guest_input(uint64_t &keyboard_waits, uint64_t &keyboard_polls, uint64_t &mouse_reads,
                      bool &mouse_set_up) const;
-    // Run on the machine's own thread at the end of the frame; false when MAME refused.
-    bool save_state(const std::string &file);
-    bool load_state(const std::string &file);
+    // Run on the machine's own thread at the end of the frame; false with why when MAME refused.
+    // As MAME's own save and load (running_machine::handle_saveload), the machine first runs on, up
+    // to a second, while it has anonymous timers, which a state cannot hold: a disk just ejected
+    // leaves one, and a session paused in the menu has not run it out.
+    bool save_state(const std::string &file, std::string &error);
+    bool load_state(const std::string &file, std::string &error);
+    // Runs the machine on until it can save or load (save_state), up to a second.
+    bool await_state_ready(std::string &error);
 
     // A measurement build's counters (core/kairo68_perf.h) since the last call, by name, then
     // cleared; empty in any other build. Between frames only.

@@ -216,7 +216,15 @@ int main(int argc, char **argv) {
     if (image.empty() && !(locks & 1)) return fail("Caps does not light");
 
     const std::string state = work + "/state.sta";
-    if (!machine->save_state(state)) return fail("save state");
+    // A second floppy is ejected right before the save, as the Disks page does while the menu holds
+    // the machine: the save runs the machine on past the timer the eject leaves.
+    if (!config.media[kairo68::kFloppy1].empty() && !machine->insert(kairo68::kFloppy1, "")) return fail("eject drive 1");
+    if (!machine->save_state(state, error)) return fail("save state: " + error);
+    // The sound of the frames the save ran on (save_state) is from before the state.
+    {
+        int16_t drained[4096 * 2];
+        while (machine->read_audio(drained, 4096) > 0) {}
+    }
     // The second after the save and the second after the load, frame by frame. State a saved state
     // misses shows up as saved state that drifts apart; the first frame it does names the culprit.
     const int frames = static_cast<int>(1 / machine->frame_seconds() + 0.5);
@@ -228,7 +236,7 @@ int main(int argc, char **argv) {
         saved.push_back(state_hashes(*machine, nullptr));
     }
     if (!run(*machine, 2, ignored, error)) return fail("run on: " + error);
-    if (!machine->load_state(state)) return fail("load state");
+    if (!machine->load_state(state, error)) return fail("load state: " + error);
     std::printf("locks after load: %d\n", machine->locks());
     if (machine->locks() != locks) return fail("a loaded state does not keep its lock keys");
     bool drifted = false;

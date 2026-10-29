@@ -84,13 +84,15 @@ public:
     }
 
     int save_state(const std::string &directory) override {
-        return machine_->save_state(directory + kStateFile) ? 0 : kFailed;
+        return machine_->save_state(directory + kStateFile, state_error_) ? 0 : kFailed;
     }
+    // MAME's reason, or why the machine could not get to a point it can save at.
+    std::string state_error() override { return state_error_; }
 
     // The emulator's state holds no disk image: the host records and restores them (machine_jni.cpp).
     bool media_in_state() override { return false; }
     int load_state(const std::string &directory) override {
-        return machine_->load_state(directory + kStateFile) ? 0 : kFailed;
+        return machine_->load_state(directory + kStateFile, state_error_) ? 0 : kFailed;
     }
 
     int media(int slot, const std::string &path) override {
@@ -107,6 +109,7 @@ public:
 private:
     std::unique_ptr<X68kMachine> machine_;
     std::string error_;
+    std::string state_error_;
     std::vector<uint8_t> blank_;
     uint32_t stride_ = 0;
     std::array<bool, kairo68::kKeyCodes> keys_{};

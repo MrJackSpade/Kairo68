@@ -899,26 +899,57 @@ int X68kMachine::locks() {
     });
 }
 
-bool X68kMachine::save_state(const std::string &file) {
-    return impl_->between_frames<bool>([file](running_machine &m) {
-        // As running_machine::handle_saveload: anonymous timers cannot be saved or restored.
-        if (!m.scheduler().can_save()) return false;
-        emu_file out(OPEN_FLAG_WRITE | OPEN_FLAG_CREATE | OPEN_FLAG_CREATE_PATHS);
-        if (out.open(file)) return false;
-        return m.save().write_file(out) == STATERR_NONE;
-    });
+namespace {
+
+// MAME's reason for a save or load it refused (save_error).
+std::string state_error_text(save_error error) {
+    switch (error) {
+    case STATERR_NOT_FOUND: return "the state was not found";
+    case STATERR_INVALID_HEADER: return "the file is not a MAME state";
+    case STATERR_READ_ERROR: return "the state could not be read";
+    case STATERR_WRITE_ERROR: return "the state could not be written";
+    case STATERR_DISABLED: return "this machine cannot save states";
+    default: return "MAME error " + std::to_string(int(error));
+    }
 }
 
-bool X68kMachine::load_state(const std::string &file) {
+} // namespace
+
+bool X68kMachine::await_state_ready(std::string &error) {
+    // As running_machine::handle_saveload: anonymous timers cannot be saved or restored, and the
+    // machine runs on, up to a second, until they have fired.
+    for (double waited = 0;; waited += frame_seconds()) {
+        if (impl_->between_frames<bool>([](running_machine &m) { return m.scheduler().can_save(); })) return true;
+        if (waited >= 1) {
+            error = "the machine kept timers a state cannot hold for a second";
+            return false;
+        }
+        if (!run_frame(error)) return false;
+    }
+}
+
+bool X68kMachine::save_state(const std::string &file, std::string &error) {
+    if (!await_state_ready(error)) return false;
+    error = impl_->between_frames<std::string>([file](running_machine &m) -> std::string {
+        emu_file out(OPEN_FLAG_WRITE | OPEN_FLAG_CREATE | OPEN_FLAG_CREATE_PATHS);
+        if (out.open(file)) return "could not create " + file;
+        const save_error saved = m.save().write_file(out);
+        return saved == STATERR_NONE ? "" : state_error_text(saved);
+    });
+    return error.empty();
+}
+
+bool X68kMachine::load_state(const std::string &file, std::string &error) {
     // A saved state is past the boot.
     impl_->booting = false;
-    return impl_->between_frames<bool>([file](running_machine &m) {
-        // As running_machine::handle_saveload: anonymous timers cannot be saved or restored.
-        if (!m.scheduler().can_save()) return false;
+    if (!await_state_ready(error)) return false;
+    error = impl_->between_frames<std::string>([file](running_machine &m) -> std::string {
         emu_file in(OPEN_FLAG_READ);
-        if (in.open(file)) return false;
-        return m.save().read_file(in) == STATERR_NONE;
+        if (in.open(file)) return "could not open " + file;
+        const save_error loaded = m.save().read_file(in);
+        return loaded == STATERR_NONE ? "" : state_error_text(loaded);
     });
+    return error.empty();
 }
 
 std::vector<std::pair<std::string, uint64_t>> X68kMachine::take_perf() {
