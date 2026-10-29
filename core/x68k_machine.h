@@ -102,6 +102,12 @@ public:
     bool loading() const;
     // The lock keys on, as the keyboard's lights show them: bit 0 Caps, bit 1 Kana (かな).
     int locks();
+    // How the guest reads its input, as counts since the machine started: its IOCS calls waiting for
+    // a key (_B_KEYINP) and polling the keyboard (_B_KEYSNS); and its mouse reads, IOCS calls
+    // (_MS_STAT, _MS_GETDT, _MS_CURGT) and a program's own accesses to the mouse's SCC channel; and
+    // whether it set the mouse up with any IOCS mouse call. Patch group m68000-trap-hook.
+    void guest_input(uint64_t &keyboard_waits, uint64_t &keyboard_polls, uint64_t &mouse_reads,
+                     bool &mouse_set_up) const;
     // Run on the machine's own thread at the end of the frame; false when MAME refused.
     bool save_state(const std::string &file);
     bool load_state(const std::string &file);

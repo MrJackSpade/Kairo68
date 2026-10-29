@@ -106931,6 +106931,7 @@ void m68000_device::trap_imm4_ip() // 4e40 fff0
 {
 	switch(m_inst_substate) {
 	case 0:
+	if(m_trap_hook) m_trap_hook(m_ird & 15, m_da[0]); // Kairo68: set_trap_hook
 	// 1d0 trap1
 	m_ftu = m_sr;
 	m_au = m_pc - 2;

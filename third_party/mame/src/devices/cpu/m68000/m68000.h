@@ -58,6 +58,9 @@ public:
 	// that memory: a tap's accesses would be skipped.
 	void enable_direct_memory();
 
+	// Kairo68: called on each TRAP instruction with its number and D0, before the exception.
+	void set_trap_hook(std::function<void (int, u32)> hook) { m_trap_hook = std::move(hook); }
+
 	// cpu space map with autovectors
 	void default_autovectors_map(address_map &map) ATTR_COLD;
 
@@ -272,6 +275,8 @@ protected:
 	u32 m_next_state;
 	u32 m_post_run;
 	int m_post_run_cycles;
+
+	std::function<void (int, u32)> m_trap_hook; // Kairo68: set_trap_hook
 
 	// Kairo68: the idle-loop skip (enable_idle_skip, idle_check).
 	static constexpr int IDLE_STATE_WORDS = 56;

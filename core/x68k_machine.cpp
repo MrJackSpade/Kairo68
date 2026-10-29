@@ -175,6 +175,11 @@ struct X68kMachine::Impl : public osd_interface {
     bool joystick_read = false;
     bool joystick_read_before = false;
     memory_passthrough_handler joystick_tap;
+    // The guest's IOCS keyboard and mouse calls and its program's own mouse accesses
+    // (X68kMachine::guest_input), counted on MAME's thread.
+    std::atomic<uint64_t> keyboard_waits{0}, keyboard_polls{0}, mouse_reads{0};
+    std::atomic<bool> mouse_set_up{false};
+    memory_passthrough_handler mouse_tap;
     void update_booting();
 #ifdef KAIRO68_PERF
     // Config::count_accesses: one read and one write tap per counted address range.
@@ -492,6 +497,28 @@ void X68kMachine::Impl::update(bool skip_redraw) {
                 if (!fm) throw emu_fatalerror("The X68000's YM2151 was not found");
                 downcast<ym2151_device &>(*fm).enable_synthesis_worker();
             }
+            // IOCS calls are trap #15 with the call in D0's low byte: _B_KEYINP ($00) waits for a
+            // key, _B_KEYSNS ($01) asks for one, _MS_STAT/_MS_GETDT/_MS_CURGT ($73-$75) read the mouse.
+            // Any mouse call ($70-$7C) sets the mouse up: a program may then read its data from the
+            // IOCS work area, in RAM no tap sees (Cat's Part-1).
+            downcast<m68000_device &>(*cpu).set_trap_hook([this](int trap, u32 d0) {
+                if (trap != 15) return;
+                const u8 call = u8(d0);
+                if (call == 0x00) keyboard_waits.fetch_add(1, std::memory_order_relaxed);
+                else if (call == 0x01) keyboard_polls.fetch_add(1, std::memory_order_relaxed);
+                if (call >= 0x70 && call <= 0x7c) mouse_set_up.store(true, std::memory_order_relaxed);
+                if (call >= 0x73 && call <= 0x75) mouse_reads.fetch_add(1, std::memory_order_relaxed);
+            });
+            // The ROM polls the mouse through the SCC's channel B whether anything uses it or not; a
+            // program that reads the mouse itself (Cat's Part-1) does so from RAM, below the ROMs.
+            m68000_device &m68k = downcast<m68000_device &>(*cpu);
+            const auto program_mouse = [this, &m68k](offs_t, u16, u16) {
+                if (m68k.pc() < 0xf00000) mouse_reads.fetch_add(1, std::memory_order_relaxed);
+            };
+            mouse_tap = cpu->memory().space(AS_PROGRAM).install_readwrite_tap(
+                    0xe98000, 0xe98003, "kairo68_mouse",
+                    [program_mouse](offs_t offset, u16 &data, u16 mask) { program_mouse(offset, data, mask); },
+                    program_mouse);
             // The PPI's ports A and B are the two joystick ports.
             joystick_tap = cpu->memory().space(AS_PROGRAM).install_read_tap(
                     0xe9a000, 0xe9a003, "kairo68_joystick",
@@ -752,6 +779,14 @@ void X68kMachine::reset() {
 bool X68kMachine::booting() const { return impl_->config.skip_memory_check && impl_->booting.load(); }
 
 bool X68kMachine::loading() const { return booting() || impl_->floppy_running.load(); }
+
+void X68kMachine::guest_input(uint64_t &keyboard_waits, uint64_t &keyboard_polls, uint64_t &mouse_reads,
+                              bool &mouse_set_up) const {
+    keyboard_waits = impl_->keyboard_waits.load(std::memory_order_relaxed);
+    keyboard_polls = impl_->keyboard_polls.load(std::memory_order_relaxed);
+    mouse_reads = impl_->mouse_reads.load(std::memory_order_relaxed);
+    mouse_set_up = impl_->mouse_set_up.load(std::memory_order_relaxed);
+}
 
 int X68kMachine::locks() {
     return impl_->between_frames<int>([this](running_machine &) {

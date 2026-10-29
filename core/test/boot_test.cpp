@@ -1,9 +1,9 @@
 // Boots an X68000 floppy or SASI hard disk on the host and checks what the app relies on.
 //
-//   boot_test <rom dir> <work dir> <image> <seconds>
+//   boot_test <rom dir> <work dir> <image> <seconds> [<second floppy>]
 //
 // Runs the floppy for <seconds> of guest time, writing <work dir>/boot.ppm of the last picture
-// and boot.wav of the sound, then presses the pad's A button, Space and Return and writes pressed.ppm. It
+// and boot.wav of the sound (with <second floppy> in drive 1, when given), then presses the pad's A button, Space and Return and writes pressed.ppm. It
 // presses Caps, whose lamp the reported lock keys must show for an <image> of "" (the ROM's keyboard
 // handling). Then it saves a state, runs on, loads the state, and checks that the lock keys are as
 // saved and the second after the load draws and plays the same as the second after the save. Last it
@@ -104,7 +104,8 @@ void write_wav(const std::string &file, const std::vector<int16_t> &sound, uint3
 } // namespace
 
 int main(int argc, char **argv) {
-    if (argc != 5) return fail("usage: boot_test <rom dir> <work dir> <image> <seconds>");
+    if (argc != 5 && argc != 6)
+        return fail("usage: boot_test <rom dir> <work dir> <image> <seconds> [<second floppy>]");
     const std::string work = argv[2];
     Config config;
     config.rom_dir = argv[1];
@@ -114,6 +115,7 @@ int main(int argc, char **argv) {
     const bool hard_disk = image.size() > 4 && (image.substr(image.size() - 4) == ".hdf" || image.substr(image.size() - 4) == ".HDF");
     const kairo68::Drive drive = hard_disk ? kairo68::kHardDisk : kairo68::kFloppy0;
     config.media[drive] = image;
+    if (argc == 6) config.media[kairo68::kFloppy1] = argv[5];
     const double seconds = std::atof(argv[4]);
 
     std::string error;
@@ -128,6 +130,12 @@ int main(int argc, char **argv) {
                 boot.seconds, machine->frame_seconds());
     if (boot.picture.empty()) return fail("no picture");
     std::printf("loading in %llu frames of the boot run\n", (unsigned long long) boot.loading_frames);
+    uint64_t keyboard_waits = 0, keyboard_polls = 0, mouse_reads = 0;
+    bool mouse_set_up = false;
+    machine->guest_input(keyboard_waits, keyboard_polls, mouse_reads, mouse_set_up);
+    std::printf("guest input in the boot run: %llu key waits, %llu keyboard polls, %llu mouse reads, mouse %s\n",
+                (unsigned long long) keyboard_waits, (unsigned long long) keyboard_polls,
+                (unsigned long long) mouse_reads, mouse_set_up ? "set up" : "not set up");
     std::printf("booting in %llu frames of the boot run\n", (unsigned long long) boot.booting_frames);
     std::printf("drive after boot: %s\n", machine->media_path(drive).c_str());
     const double expected = boot.seconds * machine->sample_rate();

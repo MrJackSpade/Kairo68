@@ -1446,6 +1446,33 @@ X68K_SASI_BUSY = [
 '''),
 ]
 
+# Auto touch mode (Kairo#78) hears how a program reads its input from its IOCS calls (trap #15, the
+# call in D0): the ROM polls the mouse on its own, used or not, so the mouse's polls say nothing.
+# The CPU reports each TRAP to a hook (X68kMachine::guest_input).
+M68000_TRAP_HOOK = [
+    ('src/devices/cpu/m68000/m68000.h',
+     '\tvoid enable_direct_memory();\n',
+     '\tvoid enable_direct_memory();\n\n'
+     '\t// Kairo68: called on each TRAP instruction with its number and D0, before the exception.\n'
+     '\tvoid set_trap_hook(std::function<void (int, u32)> hook) { m_trap_hook = std::move(hook); }\n'),
+    ('src/devices/cpu/m68000/m68000.h',
+     '\t// Kairo68: the idle-loop skip (enable_idle_skip, idle_check).\n',
+     '\tstd::function<void (int, u32)> m_trap_hook; // Kairo68: set_trap_hook\n\n'
+     '\t// Kairo68: the idle-loop skip (enable_idle_skip, idle_check).\n'),
+    ('src/devices/cpu/m68000/m68000-sdf.cpp',
+     'void m68000_device::trap_imm4_df() // 4e40 fff0\n{\n\t// 1d0 trap1\n',
+     'void m68000_device::trap_imm4_df() // 4e40 fff0\n{\n\tif(m_trap_hook) m_trap_hook(m_ird & 15, m_da[0]); // Kairo68: set_trap_hook\n\t// 1d0 trap1\n'),
+    ('src/devices/cpu/m68000/m68000-sif.cpp',
+     'void m68000_device::trap_imm4_if() // 4e40 fff0\n{\n\t// 1d0 trap1\n',
+     'void m68000_device::trap_imm4_if() // 4e40 fff0\n{\n\tif(m_trap_hook) m_trap_hook(m_ird & 15, m_da[0]); // Kairo68: set_trap_hook\n\t// 1d0 trap1\n'),
+    ('src/devices/cpu/m68000/m68000-sdp.cpp',
+     'void m68000_device::trap_imm4_dp() // 4e40 fff0\n{\n\tswitch(m_inst_substate) {\n\tcase 0:\n',
+     'void m68000_device::trap_imm4_dp() // 4e40 fff0\n{\n\tswitch(m_inst_substate) {\n\tcase 0:\n\tif(m_trap_hook) m_trap_hook(m_ird & 15, m_da[0]); // Kairo68: set_trap_hook\n'),
+    ('src/devices/cpu/m68000/m68000-sip.cpp',
+     'void m68000_device::trap_imm4_ip() // 4e40 fff0\n{\n\tswitch(m_inst_substate) {\n\tcase 0:\n',
+     'void m68000_device::trap_imm4_ip() // 4e40 fff0\n{\n\tswitch(m_inst_substate) {\n\tcase 0:\n\tif(m_trap_hook) m_trap_hook(m_ird & 15, m_da[0]); // Kairo68: set_trap_hook\n'),
+]
+
 PATCHES = {'x68k-save-state': X68K_SAVE_STATE, 'x68k-sasi-count': X68K_SASI_COUNT, 'x68k-sasi-dma': X68K_SASI_DMA,
            'x68k-sasi-busy': X68K_SASI_BUSY,
            'osdlib-without-sdl': OSDLIB_WITHOUT_SDL, 'upd765-save-state': UPD765_SAVE_STATE, 'rtc-save-state': RTC_SAVE_STATE,
@@ -1471,4 +1498,5 @@ PATCHES = {'x68k-save-state': X68K_SAVE_STATE, 'x68k-sasi-count': X68K_SASI_COUN
            'x68k-under-row': X68K_UNDER_ROW,
            'x68k-gvram-1024': X68K_GVRAM_1024,
            'x68k-crtc-unseen-registers': X68K_CRTC_UNSEEN_REGISTERS,
-           'x68k-unchanged-frame': X68K_UNCHANGED_FRAME}
+           'x68k-unchanged-frame': X68K_UNCHANGED_FRAME,
+           'm68000-trap-hook': M68000_TRAP_HOOK}
