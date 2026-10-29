@@ -5,10 +5,12 @@
 #include "x68k_machine.h"
 #include "kairo68_perf.h"
 
+#include <algorithm>
 #include <array>
 #include <atomic>
 #include <bit>
 #include <condition_variable>
+#include <cstring>
 #include <deque>
 #include <functional>
 #include <mutex>
@@ -28,6 +30,7 @@
 #include "screen.h"
 #include "cpu/m68000/m68000.h"
 #include "imagedev/floppy.h"
+#include "machine/ram.h"
 #include "sound/ymopm.h"
 #include "sharp/x68k_hdc.h"
 #include "audio_effects/compressor.h"
@@ -179,6 +182,19 @@ struct X68kMachine::Impl : public osd_interface {
     // (X68kMachine::guest_input), counted on MAME's thread.
     std::atomic<uint64_t> keyboard_waits{0}, keyboard_polls{0}, mouse_reads{0};
     std::atomic<bool> mouse_set_up{false};
+    // Direct touch (X68kMachine::mouse_warp): the frame point IOCS's mouse pointer heads for, set on
+    // the host's thread and steered in input_update. Main RAM holds the pointer, a word each at
+    // $0ACE (x) and $0AD0 (y), as _MS_CURGT reads it.
+    std::atomic<bool> warp_done{true}, warp_new{false};
+    std::atomic<int> warp_x{0}, warp_y{0};
+    const u8 *ram = nullptr;
+    int warp_wait = 0, warp_still = 0, warp_last_x = -1, warp_last_y = -1;
+    // IOCS speeds a fast mouse up, so each step goes a quarter of the way, and the next waits until
+    // the ROM's mouse poll (about 47 a second) has taken it. A pointer that has not moved for
+    // kWarpStill frames is where the guest stops it.
+    static constexpr int kWarpWait = 3;
+    static constexpr int kWarpStill = 30;
+    void steer_warp();
     memory_passthrough_handler mouse_tap;
     void update_booting();
 #ifdef KAIRO68_PERF
@@ -353,12 +369,52 @@ void X68kMachine::Impl::init(running_machine &running) {
     }
 }
 
+void X68kMachine::Impl::steer_warp() {
+    if (warp_new.exchange(false)) {
+        warp_wait = warp_still = 0;
+        warp_last_x = warp_last_y = -1;
+    }
+    // Main RAM's words are in host order.
+    const auto word = [this](offs_t address) {
+        u16 value;
+        std::memcpy(&value, ram + address, sizeof value);
+        return int(value);
+    };
+    const int x = word(0x0ace), y = word(0x0ad0);
+    const int dx = warp_x.load() - x, dy = warp_y.load() - y;
+    if (dx == 0 && dy == 0) {
+        warp_done = true;
+        return;
+    }
+    warp_still = x == warp_last_x && y == warp_last_y ? warp_still + 1 : 0;
+    warp_last_x = x;
+    warp_last_y = y;
+    if (warp_still >= kWarpStill) {
+        warp_done = true;
+        return;
+    }
+    if (warp_wait > 0) {
+        --warp_wait;
+        return;
+    }
+    const auto step = [](int distance) {
+        if (distance == 0) return 0;
+        const int quarter = distance / 4;
+        return std::clamp(quarter != 0 ? quarter : (distance > 0 ? 1 : -1), -127, 127);
+    };
+    mouse_frame_dx += step(dx);
+    mouse_frame_dy += step(dy);
+    warp_wait = kWarpWait;
+}
+
 void X68kMachine::Impl::input_update(bool) {
     mouse_frame_dx = mouse_dx.exchange(0);
     mouse_frame_dy = mouse_dy.exchange(0);
     // The ports are complete once the machine runs.
     if (machine->phase() != machine_phase::RUNNING) return;
     if (!fields_found) find_fields();
+    // Only a guest that set the IOCS mouse up has a pointer to steer; otherwise the warp waits.
+    if (!warp_done.load() && ram && mouse_set_up.load()) steer_warp();
     for (int code = 0; code < kKeyCodes; ++code) {
         const bool down = keys[code];
         if (key_fields[code] && down != keys_applied[code]) {
@@ -484,6 +540,9 @@ void X68kMachine::Impl::update(bool skip_redraw) {
             device_t *cpu = machine->root_device().subdevice("maincpu");
             if (!cpu) throw emu_fatalerror("The X68000's CPU was not found");
             cpu->set_unscaled_clock(u32(config.cpu_mhz) * 1000000);
+            device_t *main_ram = machine->root_device().subdevice("ram");
+            if (!main_ram) throw emu_fatalerror("The X68000's RAM was not found");
+            ram = downcast<ram_device &>(*main_ram).pointer();
             // Only the CPU changes main RAM while it runs; everything else may have a side effect.
             if (config.idle_skip)
                 downcast<m68000_device &>(*cpu).enable_idle_skip(offs_t(config.ram_mb) * 0x100000);
@@ -756,9 +815,24 @@ void X68kMachine::joystick(int control, bool down) {
 }
 
 void X68kMachine::mouse_move(int dx, int dy) {
+    // A drag after a direct tap moves the point the warp heads for.
+    if (!impl_->warp_done.load()) {
+        impl_->warp_x += dx;
+        impl_->warp_y += dy;
+        return;
+    }
     impl_->mouse_dx += dx;
     impl_->mouse_dy += dy;
 }
+
+void X68kMachine::mouse_warp(int x, int y) {
+    impl_->warp_x = x;
+    impl_->warp_y = y;
+    impl_->warp_new = true;
+    impl_->warp_done = false;
+}
+
+bool X68kMachine::mouse_warp_done() const { return impl_->warp_done.load(); }
 
 void X68kMachine::mouse_button(int button, bool down) {
     if (button == 1 || button == 2) impl_->mouse_buttons[button - 1] = down;

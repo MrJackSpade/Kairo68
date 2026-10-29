@@ -70,6 +70,8 @@ public:
     bool loading() override { return machine_->loading(); }
     // Bit 0 Caps, bit 1 Kana, as NativeMachine lists them (MainActivity).
     int locks() override { return machine_->locks(); }
+    void mouse_warp(int x, int y) override { machine_->mouse_warp(x, y); }
+    bool mouse_warp_done() override { return machine_->mouse_warp_done(); }
     // Auto touch mode (Kairo#78): the guest's IOCS keyboard and mouse calls.
     bool guest_input(GuestInput &input) override {
         machine_->guest_input(input.keyboard_waits, input.keyboard_polls, input.mouse_reads, input.mouse_enabled);

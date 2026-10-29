@@ -102,6 +102,11 @@ public:
     bool loading() const;
     // The lock keys on, as the keyboard's lights show them: bit 0 Caps, bit 1 Kana (かな).
     int locks();
+    // Direct touch: steers the IOCS mouse pointer to frame point (x, y) over the next frames. A guest
+    // that never set the IOCS mouse up has no pointer to steer, and the warp never finishes.
+    void mouse_warp(int x, int y);
+    // Whether the pointer reached the last warp's point, or stopped where the guest clamps it.
+    bool mouse_warp_done() const;
     // How the guest reads its input, as counts since the machine started: its IOCS calls waiting for
     // a key (_B_KEYINP) and polling the keyboard (_B_KEYSNS); and its mouse reads, IOCS calls
     // (_MS_STAT, _MS_GETDT, _MS_CURGT) and a program's own accesses to the mouse's SCC channel; and

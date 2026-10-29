@@ -11,6 +11,8 @@
     <string name="folder_description">Выберите папку с вашими играми для %1$s. %2$s просканирует ее образы дискет и жестких дисков и содержащие их архивы ZIP и 7z.</string>
     <!-- EN: The pad in joystick port 1. -->
     <string name="joystick_help">Геймпад в порту джойстика 1.</string>
+    <!-- EN: Direct tap lands on the touched point in games that use the X68000’s IOCS mouse. -->
+    <string name="touch_direct_explanation">Прямое касание попадает в точку касания в играх, использующих мышь IOCS X68000.</string>
     <!-- EN: Floppy 0 -->
     <string name="floppy_0">Дискета 0</string>
     <!-- EN: Floppy 1 -->

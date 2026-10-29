@@ -11,6 +11,8 @@
     <string name="folder_description">Selecione a pasta com seus jogos de %1$s. O %2$s vai verificar as imagens de disquete e de disco rígido dela e os arquivos ZIP e 7z que as contêm.</string>
     <!-- EN: The pad in joystick port 1. -->
     <string name="joystick_help">O controle na porta de joystick 1.</string>
+    <!-- EN: Direct tap lands on the touched point in games that use the X68000’s IOCS mouse. -->
+    <string name="touch_direct_explanation">O toque direto cai no ponto tocado nos jogos que usam o mouse IOCS do X68000.</string>
     <!-- EN: Floppy 0 -->
     <string name="floppy_0">Disquete 0</string>
     <!-- EN: Floppy 1 -->

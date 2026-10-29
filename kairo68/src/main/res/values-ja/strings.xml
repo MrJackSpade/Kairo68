@@ -11,6 +11,8 @@
     <string name="folder_description">%1$s のゲームが入っているフォルダを選択してください。%2$s がフロッピー・ハードディスクのイメージとそれを含む ZIP・7z アーカイブをスキャンします。</string>
     <!-- EN: The pad in joystick port 1. -->
     <string name="joystick_help">ジョイスティックポート1のパッド。</string>
+    <!-- EN: Direct tap lands on the touched point in games that use the X68000’s IOCS mouse. -->
+    <string name="touch_direct_explanation">直接タップは、X68000 の IOCS マウスを使うゲームでタッチした位置に届きます。</string>
     <!-- EN: Floppy 0 -->
     <string name="floppy_0">フロッピー0</string>
     <!-- EN: Floppy 1 -->

@@ -1,6 +1,6 @@
 // Boots an X68000 floppy or SASI hard disk on the host and checks what the app relies on.
 //
-//   boot_test <rom dir> <work dir> <image> <seconds> [<second floppy>]
+//   boot_test <rom dir> <work dir> <image> <seconds> [<second floppy> [warp:<x>,<y>]]
 //
 // Runs the floppy for <seconds> of guest time, writing <work dir>/boot.ppm of the last picture
 // and boot.wav of the sound (with <second floppy> in drive 1, when given), then presses the pad's A button, Space and Return and writes pressed.ppm. It
@@ -104,8 +104,8 @@ void write_wav(const std::string &file, const std::vector<int16_t> &sound, uint3
 } // namespace
 
 int main(int argc, char **argv) {
-    if (argc != 5 && argc != 6)
-        return fail("usage: boot_test <rom dir> <work dir> <image> <seconds> [<second floppy>]");
+    if (argc < 5 || argc > 7)
+        return fail("usage: boot_test <rom dir> <work dir> <image> <seconds> [<second floppy> [warp:<x>,<y>]]");
     const std::string work = argv[2];
     Config config;
     config.rom_dir = argv[1];
@@ -115,7 +115,11 @@ int main(int argc, char **argv) {
     const bool hard_disk = image.size() > 4 && (image.substr(image.size() - 4) == ".hdf" || image.substr(image.size() - 4) == ".HDF");
     const kairo68::Drive drive = hard_disk ? kairo68::kHardDisk : kairo68::kFloppy0;
     config.media[drive] = image;
-    if (argc == 6) config.media[kairo68::kFloppy1] = argv[5];
+    if (argc >= 6 && *argv[5]) config.media[kairo68::kFloppy1] = argv[5];
+    // A direct-touch warp to this frame point after the boot, with warp.ppm of where it ends.
+    int warp_x = -1, warp_y = -1;
+    if (argc == 7 && std::sscanf(argv[6], "warp:%d,%d", &warp_x, &warp_y) != 2)
+        return fail(std::string("not warp:<x>,<y>: ") + argv[6]);
     const double seconds = std::atof(argv[4]);
 
     std::string error;
@@ -138,6 +142,19 @@ int main(int argc, char **argv) {
                 (unsigned long long) mouse_reads, mouse_set_up ? "set up" : "not set up");
     std::printf("booting in %llu frames of the boot run\n", (unsigned long long) boot.booting_frames);
     std::printf("drive after boot: %s\n", machine->media_path(drive).c_str());
+    if (warp_x >= 0) {
+        machine->mouse_warp(warp_x, warp_y);
+        Run warped;
+        int warp_frames = 0;
+        while (!machine->mouse_warp_done() && warp_frames < 600) {
+            if (!run(*machine, kOneFrame, warped, error)) return fail("run while warping: " + error);
+            ++warp_frames;
+        }
+        if (!run(*machine, 0.1, warped, error)) return fail("run after the warp: " + error);
+        write_ppm(work + "/warp.ppm", warped);
+        std::printf("warp to %d,%d: %s after %d frames\n", warp_x, warp_y,
+                    machine->mouse_warp_done() ? "done" : "not done", warp_frames);
+    }
     const double expected = boot.seconds * machine->sample_rate();
     if (boot.audio_frames < expected * 0.95 || boot.audio_frames > expected * 1.05)
         return fail("audio does not follow guest time");

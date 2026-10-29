@@ -11,6 +11,8 @@
     <string name="folder_description">Selecciona la carpeta que contiene tus juegos de %1$s. %2$s analizará sus imágenes de disquete y disco duro y los archivos ZIP y 7z que las contienen.</string>
     <!-- EN: The pad in joystick port 1. -->
     <string name="joystick_help">El control del puerto de joystick 1.</string>
+    <!-- EN: Direct tap lands on the touched point in games that use the X68000’s IOCS mouse. -->
+    <string name="touch_direct_explanation">El toque directo cae en el punto tocado en los juegos que usan el ratón IOCS del X68000.</string>
     <!-- EN: Floppy 0 -->
     <string name="floppy_0">Disquete 0</string>
     <!-- EN: Floppy 1 -->

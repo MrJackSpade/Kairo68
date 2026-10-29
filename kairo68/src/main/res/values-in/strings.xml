@@ -11,6 +11,8 @@
     <string name="folder_description">Pilih folder yang berisi game %1$s Anda. %2$s akan memindai image disket dan hard disk di dalamnya serta arsip ZIP dan 7z yang berisi image tersebut.</string>
     <!-- EN: The pad in joystick port 1. -->
     <string name="joystick_help">Pad di port joystick 1.</string>
+    <!-- EN: Direct tap lands on the touched point in games that use the X68000’s IOCS mouse. -->
+    <string name="touch_direct_explanation">Ketuk langsung mendarat di titik yang disentuh pada game yang memakai mouse IOCS X68000.</string>
     <!-- EN: Floppy 0 -->
     <string name="floppy_0">Disket 0</string>
     <!-- EN: Floppy 1 -->

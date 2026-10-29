@@ -8,6 +8,7 @@
     <string name="folder_description">Select the folder containing your %1$s games. %2$s will scan its floppy and hard disk images and the ZIP and 7z archives holding them.</string>
 
     <string name="joystick_help">The pad in joystick port 1.</string>
+    <string name="touch_direct_explanation">Direct tap lands on the touched point in games that use the X68000’s IOCS mouse.</string>
 
     <string name="floppy_0">Floppy 0</string>
     <string name="floppy_1">Floppy 1</string>

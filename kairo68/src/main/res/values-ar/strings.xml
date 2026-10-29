@@ -11,6 +11,8 @@
     <string name="folder_description">اختر المجلد الذي يحتوي على ألعاب %1$s. سيفحص %2$s صور الأقراص المرنة والصلبة فيه وأرشيفات ZIP و7z التي تحتويها.</string>
     <!-- EN: The pad in joystick port 1. -->
     <string name="joystick_help">ذراع التحكم في منفذ عصا الألعاب 1.</string>
+    <!-- EN: Direct tap lands on the touched point in games that use the X68000’s IOCS mouse. -->
+    <string name="touch_direct_explanation">تصل النقرة المباشرة إلى النقطة الملموسة في الألعاب التي تستخدم فأرة IOCS في X68000.</string>
     <!-- EN: Floppy 0 -->
     <string name="floppy_0">القرص المرن 0</string>
     <!-- EN: Floppy 1 -->
