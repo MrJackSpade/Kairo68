@@ -166,6 +166,8 @@ struct X68kMachine::Impl : public osd_interface {
 
     // The boot (X68kMachine::booting), read at the end of each frame on MAME's thread.
     std::atomic<bool> booting{true};
+    // Whether a floppy drive's motor ran at the end of the last frame (X68kMachine::loading).
+    std::atomic<bool> floppy_running{false};
     bool drive_ran = false;
     // Whether the guest read a joystick port in this frame and in the one before. A game polls the
     // joystick every frame once it runs, which ends a boot whose drive motor stays on (Kairo68#2);
@@ -561,13 +563,15 @@ void X68kMachine::Impl::count_accesses(address_space &space) {
 #endif
 
 void X68kMachine::Impl::update_booting() {
-    if (!booting.load() || !machine) return;
-    if (joystick_read && joystick_read_before) booting = false;
-    joystick_read_before = joystick_read;
-    joystick_read = false;
+    if (!machine) return;
     bool running = false;
     for (floppy_image_device &drive : device_type_enumerator<floppy_image_device>(machine->root_device()))
         if (drive.exists() && !drive.mon_r()) running = true;
+    floppy_running = running;
+    if (!booting.load()) return;
+    if (joystick_read && joystick_read_before) booting = false;
+    joystick_read_before = joystick_read;
+    joystick_read = false;
     for (x68k_hdc_image_device &disk : device_type_enumerator<x68k_hdc_image_device>(machine->root_device()))
         if (disk.exists() && disk.busy()) booting = false;
     if (running) drive_ran = true;
@@ -746,6 +750,8 @@ void X68kMachine::reset() {
 }
 
 bool X68kMachine::booting() const { return impl_->config.skip_memory_check && impl_->booting.load(); }
+
+bool X68kMachine::loading() const { return booting() || impl_->floppy_running.load(); }
 
 int X68kMachine::locks() {
     return impl_->between_frames<int>([this](running_machine &) {

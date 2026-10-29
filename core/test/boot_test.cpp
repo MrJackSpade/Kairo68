@@ -42,6 +42,10 @@ struct Run {
     uint64_t audio_frames = 0, loud_frames = 0;
     double seconds = 0;
     std::vector<int16_t> sound;
+    // Frames the host would run flat out (X68kMachine::loading).
+    uint64_t loading_frames = 0;
+    // Of those, frames of the boot (X68kMachine::booting).
+    uint64_t booting_frames = 0;
 };
 
 bool run(X68kMachine &machine, double seconds, Run &result, std::string &error) {
@@ -50,6 +54,8 @@ bool run(X68kMachine &machine, double seconds, Run &result, std::string &error) 
     while (result.seconds - start < seconds) {
         if (!machine.run_frame(error)) return false;
         result.seconds += machine.frame_seconds();
+        if (machine.loading()) ++result.loading_frames;
+        if (machine.booting()) ++result.booting_frames;
         uint32_t got;
         while ((got = machine.read_audio(audio.data(), 4096)) > 0) {
             result.audio_frames += got;
@@ -121,6 +127,8 @@ int main(int argc, char **argv) {
                 boot.width, boot.height, (unsigned long long) boot.audio_frames, (unsigned long long) boot.loud_frames,
                 boot.seconds, machine->frame_seconds());
     if (boot.picture.empty()) return fail("no picture");
+    std::printf("loading in %llu frames of the boot run\n", (unsigned long long) boot.loading_frames);
+    std::printf("booting in %llu frames of the boot run\n", (unsigned long long) boot.booting_frames);
     std::printf("drive after boot: %s\n", machine->media_path(drive).c_str());
     const double expected = boot.seconds * machine->sample_rate();
     if (boot.audio_frames < expected * 0.95 || boot.audio_frames > expected * 1.05)
@@ -136,6 +144,9 @@ int main(int argc, char **argv) {
     machine->key(kReturn, false);
     if (!run(*machine, 4, pressed, error)) return fail("run after press: " + error);
     write_ppm(work + "/pressed.ppm", pressed);
+    // A press ends the boot: from then on only a running floppy motor runs the host flat out.
+    std::printf("after the press: loading in %llu frames, booting in %llu\n",
+                (unsigned long long) pressed.loading_frames, (unsigned long long) pressed.booting_frames);
     std::printf("press: the picture %s\n", pressed.picture == boot.picture ? "did not change" : "changed");
 
     // Caps: the ROM's keyboard handling lights its lamp, which locks() reports (bit 0), and a state
