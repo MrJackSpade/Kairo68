@@ -29,8 +29,15 @@ object X68kCatalog : LayeredGameCatalog.Schema {
     val skipMemoryCheck = MachineOption.skipMemoryCheck()
     val options = listOf(memory, cpu, skipMemoryCheck)
 
-    override val settings: List<CatalogSetting> = options.map(CatalogSetting::Choice) + 
-        CatalogSetting.Drive("floppyB", UiText.res(R.string.floppy_1))
+    const val LAUNCH = "launch"
+    const val COMMANDS = "commands"
+
+    /** The lines typed at Human68k's command prompt (A>) to start the game. */
+    val startupCommands = CatalogSetting.Lines(LAUNCH, COMMANDS, UiText.res(FrontendR.string.kairo_startup_commands),
+        UiText.res(FrontendR.string.kairo_startup_commands_hint), Regex("[ -~]{1,120}"), 8) { _, _ -> emptyList() }
+
+    override val settings: List<CatalogSetting> = options.map(CatalogSetting::Choice) +
+        CatalogSetting.Drive("floppyB", UiText.res(R.string.floppy_1)) + startupCommands
     override val fields = CatalogSetting.fields(settings)
     /** The core steers IOCS's mouse pointer to a point (X68kMachine::mouse_warp). */
     override val directTouch = true

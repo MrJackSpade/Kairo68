@@ -11,6 +11,7 @@ import com.mrjackspade.kairo.frontend.LibraryStrings
 import com.mrjackspade.kairo.frontend.MachineActivity
 import com.mrjackspade.kairo.frontend.MachineFirstRun
 import com.mrjackspade.kairo.frontend.NativeMachine
+import com.mrjackspade.kairo.frontend.StartupCommands
 import com.mrjackspade.kairo.frontend.UiText
 import com.mrjackspade.kairo.frontend.companionFor
 import com.mrjackspade.kairo.frontend.R as FrontendR
@@ -80,7 +81,9 @@ class MainActivity : MachineActivity<DiskImageEntry>() {
         val media = listOf(floppy0, floppy1, hardDisk)
         val images = media.map { disk -> disk?.let { disks.prepare(it, cancelled, progress).absolutePath } }
         val home = File(filesDir, "mame").apply { mkdirs() }
-        check(bridge.start(romDir.absolutePath, home.absolutePath, images, optionValues(game))) {
+        val options = optionValues(game)
+        val launch = options + StartupCommands.setting(X68kCatalog.startupCommands.value(game, options))
+        check(bridge.start(romDir.absolutePath, home.absolutePath, images, launch)) {
             "Another machine is still running"
         }
         awaitRunning()

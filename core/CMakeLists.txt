@@ -131,8 +131,9 @@ target_link_libraries(mame_utils PUBLIC mame_osd mame_expat mame_zlib mame_zstd 
 add_library(kairo68_core STATIC ${MAME_EMU_SOURCES} ${MAME_DEVICE_SOURCES}
     "${GENERATED}/drivlist.cpp" "${GENERATED}/version.cpp" x68k_machine.cpp)
 target_include_directories(kairo68_core PUBLIC "${CMAKE_CURRENT_LIST_DIR}")
-# kairo/ordered_worker.h, the shared worker the YM2151's synthesis runs on (Kairo68#22).
-target_include_directories(kairo68_core PRIVATE "${CMAKE_CURRENT_LIST_DIR}/../shared/frontend/src/main/cpp")
+# kairo/ordered_worker.h, the shared worker the YM2151's synthesis runs on (Kairo68#22), and
+# kairo/startup_typer.h, whose prompt hooks x68k_machine.h declares (Kairo68#70).
+target_include_directories(kairo68_core PUBLIC "${CMAKE_CURRENT_LIST_DIR}/../shared/frontend/src/main/cpp")
 target_include_directories(kairo68_core PRIVATE "${MAME_ROOT}/src/emu" "${MAME_ROOT}/src/devices" "${MAME_ROOT}/src/mame"
     "${MAME_ROOT}/src/mame/shared" "${MAME_ROOT}/src/lib/netlist" "${MAME_ROOT}/3rdparty/softfloat3/source/include"
     "${MAME_ROOT}/3rdparty/rapidjson/include" "${MAME_ROOT}/3rdparty/asio/include" "${GENERATED}" "${GENERATED}/ui" "${GENERATED}/emu" "${MAME_ROOT}/src/lib/formats")

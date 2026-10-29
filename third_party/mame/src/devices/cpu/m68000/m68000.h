@@ -54,6 +54,9 @@ public:
 	// this CPU changes while it runs (Kairo68#12). The guest sees no difference.
 	void enable_idle_skip(offs_t free_end);
 
+	// Kairo68: called on each line-F instruction (a Human68k DOS call) with its opcode, before the exception.
+	void set_linef_hook(std::function<void (u16)> hook) { m_linef_hook = std::move(hook); }
+
 	// Kairo68: read and write plain memory through host pointers (direct_pages). Nothing may tap
 	// that memory: a tap's accesses would be skipped.
 	void enable_direct_memory();
@@ -280,6 +283,7 @@ protected:
 
 	// Kairo68: the idle-loop skip (enable_idle_skip, idle_check).
 	static constexpr int IDLE_STATE_WORDS = 56;
+	std::function<void (u16)> m_linef_hook; // Kairo68: set_linef_hook
 	bool m_idle_enabled = false;
 	u32 m_idle_run = 0;            // execute_run's calls: a pass only repeats within one
 	u32 m_idle_last_pc = 0;        // the previous instruction's address

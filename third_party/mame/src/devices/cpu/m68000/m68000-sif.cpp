@@ -1694,6 +1694,7 @@ void m68000_device::state_linea_if()
 
 void m68000_device::state_linef_if()
 {
+	if(m_linef_hook) m_linef_hook(m_ird); // Kairo68: set_linef_hook
 	// 1c0 trac1
 	m_ftu = m_sr;
 	m_au = m_pc - 2;

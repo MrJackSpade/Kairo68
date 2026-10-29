@@ -12,6 +12,8 @@
 #include <utility>
 #include <vector>
 
+#include "kairo/startup_typer.h"
+
 namespace kairo68 {
 
 // The X68000's drives: floppy drives 0 and 1, and the SASI hard disk.
@@ -102,6 +104,11 @@ public:
     bool loading() const;
     // The lock keys on, as the keyboard's lights show them: bit 0 Caps, bit 1 Kana (かな).
     int locks();
+    // Startup commands (kairo::StartupTyper): whether Human68k's command prompt waits for a line, the
+    // JIS key that types a character, and the X68000's own Return, Shift, Ctrl and function keys.
+    kairo::Prompt prompt() const;
+    static bool typed_key(char c, int &code, bool &shift);
+    static int special_key(kairo::SpecialKey key);
     // Direct touch: steers the IOCS mouse pointer to frame point (x, y) over the next frames. A guest
     // that never set the IOCS mouse up has no pointer to steer, and the warp never finishes.
     void mouse_warp(int x, int y);

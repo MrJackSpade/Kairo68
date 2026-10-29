@@ -1,6 +1,6 @@
 // Boots an X68000 floppy or SASI hard disk on the host and checks what the app relies on.
 //
-//   boot_test <rom dir> <work dir> <image> <seconds> [<second floppy> [warp:<x>,<y>]]
+//   boot_test <rom dir> <work dir> <image> <seconds> [<second floppy> [warp:<x>,<y> | type:<line>]]
 //
 // Runs the floppy for <seconds> of guest time, writing <work dir>/boot.ppm of the last picture
 // and boot.wav of the sound (with <second floppy> in drive 1, when given), then presses the pad's A button, Space and Return and writes pressed.ppm. It
@@ -105,7 +105,7 @@ void write_wav(const std::string &file, const std::vector<int16_t> &sound, uint3
 
 int main(int argc, char **argv) {
     if (argc < 5 || argc > 7)
-        return fail("usage: boot_test <rom dir> <work dir> <image> <seconds> [<second floppy> [warp:<x>,<y>]]");
+        return fail("usage: boot_test <rom dir> <work dir> <image> <seconds> [<second floppy> [warp:<x>,<y> | type:<line>]]");
     const std::string work = argv[2];
     Config config;
     config.rom_dir = argv[1];
@@ -118,8 +118,11 @@ int main(int argc, char **argv) {
     if (argc >= 6 && *argv[5]) config.media[kairo68::kFloppy1] = argv[5];
     // A direct-touch warp to this frame point after the boot, with warp.ppm of where it ends.
     int warp_x = -1, warp_y = -1;
-    if (argc == 7 && std::sscanf(argv[6], "warp:%d,%d", &warp_x, &warp_y) != 2)
-        return fail(std::string("not warp:<x>,<y>: ") + argv[6]);
+    // A startup command typed after the boot, as the app's typer types it, with typed.ppm of the result.
+    std::string typed;
+    if (argc == 7 && std::string_view(argv[6]).starts_with("type:")) typed = argv[6] + 5;
+    else if (argc == 7 && std::sscanf(argv[6], "warp:%d,%d", &warp_x, &warp_y) != 2)
+        return fail(std::string("not warp:<x>,<y> or type:<line>: ") + argv[6]);
     const double seconds = std::atof(argv[4]);
 
     std::string error;
@@ -142,6 +145,32 @@ int main(int argc, char **argv) {
                 (unsigned long long) mouse_reads, mouse_set_up ? "set up" : "not set up");
     std::printf("booting in %llu frames of the boot run\n", (unsigned long long) boot.booting_frames);
     std::printf("drive after boot: %s\n", machine->media_path(drive).c_str());
+    if (!typed.empty()) {
+        // The machine as kairo::StartupTyper types into it, through X68kMachine's prompt hooks.
+        struct Typing {
+            X68kMachine &machine;
+            kairo::Prompt prompt() { return machine.prompt(); }
+            bool typed_key(char c, int &code, bool &shift) { return X68kMachine::typed_key(c, code, shift); }
+            int special_key(kairo::SpecialKey key) { return X68kMachine::special_key(key); }
+            bool expand_command(std::string &) { return true; }
+            void key(int code, bool down) { machine.key(code, down); }
+        } typing{*machine};
+        std::printf("before typing: the prompt %s\n", machine->prompt() == kairo::Prompt::Line ? "waits" : "does not wait");
+        kairo::StartupTyper typer;
+        typer.start(typed);
+        Run typed_run;
+        int frames = 0;
+        while (typer.active() && frames < 600) {
+            if (!run(*machine, kOneFrame, typed_run, error)) return fail("run while typing: " + error);
+            if (!typer.frame(typing, error)) return fail("typing: " + error);
+            ++frames;
+        }
+        if (!run(*machine, 3, typed_run, error)) return fail("run after typing: " + error);
+        write_ppm(work + "/typed.ppm", typed_run);
+        std::printf("typed \"%s\" %s after %d frames; the prompt %s again\n", typed.c_str(),
+                    typer.active() ? "not finished" : "finished", frames,
+                    machine->prompt() == kairo::Prompt::Line ? "waits" : "does not wait");
+    }
     if (warp_x >= 0) {
         machine->mouse_warp(warp_x, warp_y);
         Run warped;

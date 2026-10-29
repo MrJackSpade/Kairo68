@@ -3,6 +3,7 @@
 // its sound, and the player's input across to the host thread.
 
 #include "x68k_machine.h"
+#include "kairo/jis_keys.h"
 #include "kairo68_perf.h"
 
 #include <algorithm>
@@ -182,6 +183,10 @@ struct X68kMachine::Impl : public osd_interface {
     // (X68kMachine::guest_input), counted on MAME's thread.
     std::atomic<uint64_t> keyboard_waits{0}, keyboard_polls{0}, mouse_reads{0};
     std::atomic<bool> mouse_set_up{false};
+    // Human68k's buffered line input (DOS _GETS, $FF0A), where COMMAND.X waits for a command, as
+    // called so far and when a key last went down (X68kMachine::prompt).
+    std::atomic<uint64_t> line_inputs{0};
+    uint64_t line_inputs_at_key = 0;
     // Direct touch (X68kMachine::mouse_warp): the frame point IOCS's mouse pointer heads for, set on
     // the host's thread and steered in input_update. Main RAM holds the pointer, a word each at
     // $0ACE (x) and $0AD0 (y), as _MS_CURGT reads it.
@@ -560,6 +565,9 @@ void X68kMachine::Impl::update(bool skip_redraw) {
             // key, _B_KEYSNS ($01) asks for one, _MS_STAT/_MS_GETDT/_MS_CURGT ($73-$75) read the mouse.
             // Any mouse call ($70-$7C) sets the mouse up: a program may then read its data from the
             // IOCS work area, in RAM no tap sees (Cat's Part-1).
+            downcast<m68000_device &>(*cpu).set_linef_hook([this](u16 opcode) {
+                if (opcode == 0xff0a) line_inputs.fetch_add(1, std::memory_order_relaxed);
+            });
             downcast<m68000_device &>(*cpu).set_trap_hook([this](int trap, u32 d0) {
                 if (trap != 15) return;
                 const u8 call = u8(d0);
@@ -806,7 +814,28 @@ uint32_t X68kMachine::read_audio(int16_t *stereo, uint32_t max_frames) {
 
 void X68kMachine::key(int code, bool down) {
     if (code > 0 && code < kKeyCodes) impl_->keys[code] = down;
-    if (down) impl_->booting = false;
+    if (down) {
+        impl_->booting = false;
+        impl_->line_inputs_at_key = impl_->line_inputs.load();
+    }
+}
+
+// The command prompt waits for a line from its _GETS until a key goes down; the line's Return ends
+// it, and the next prompt calls _GETS again.
+kairo::Prompt X68kMachine::prompt() const {
+    return impl_->line_inputs.load() > impl_->line_inputs_at_key ? kairo::Prompt::Line : kairo::Prompt::None;
+}
+
+bool X68kMachine::typed_key(char c, int &code, bool &shift) { return kairo::jis::typed_key(c, code, shift); }
+
+int X68kMachine::special_key(kairo::SpecialKey key) {
+    constexpr int kShift = 0x70, kCtrl = 0x71, kF1 = 0x63;
+    switch (key) {
+    case kairo::SpecialKey::Return: return kairo::jis::kReturn;
+    case kairo::SpecialKey::Shift: return kShift;
+    case kairo::SpecialKey::Ctrl: return kCtrl;
+    default: return kF1 + static_cast<int>(key) - static_cast<int>(kairo::SpecialKey::F1);
+    }
 }
 
 void X68kMachine::joystick(int control, bool down) {

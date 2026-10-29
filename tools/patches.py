@@ -1449,6 +1449,31 @@ X68K_SASI_BUSY = [
 # Auto touch mode (Kairo#78) hears how a program reads its input from its IOCS calls (trap #15, the
 # call in D0): the ROM polls the mouse on its own, used or not, so the mouse's polls say nothing.
 # The CPU reports each TRAP to a hook (X68kMachine::guest_input).
+# Typed startup commands (Kairo68#70) wait for Human68k's command prompt, which reads a line through a
+# DOS call: an F-line instruction ($FFxx), which the CPU reports to a hook (X68kMachine::prompt).
+M68000_LINEF_HOOK = [
+    ('src/devices/cpu/m68000/m68000.h',
+     '\tvoid enable_idle_skip(offs_t free_end);\n',
+     '\tvoid enable_idle_skip(offs_t free_end);\n\n'
+     '\t// Kairo68: called on each line-F instruction (a Human68k DOS call) with its opcode, before the exception.\n'
+     '\tvoid set_linef_hook(std::function<void (u16)> hook) { m_linef_hook = std::move(hook); }\n'),
+    ('src/devices/cpu/m68000/m68000.h',
+     '\tbool m_idle_enabled = false;\n',
+     '\tstd::function<void (u16)> m_linef_hook; // Kairo68: set_linef_hook\n\tbool m_idle_enabled = false;\n'),
+    ('src/devices/cpu/m68000/m68000-sdf.cpp',
+     'void m68000_device::state_linef_df()\n{\n\t// 1c0 trac1\n',
+     'void m68000_device::state_linef_df()\n{\n\tif(m_linef_hook) m_linef_hook(m_ird); // Kairo68: set_linef_hook\n\t// 1c0 trac1\n'),
+    ('src/devices/cpu/m68000/m68000-sif.cpp',
+     'void m68000_device::state_linef_if()\n{\n\t// 1c0 trac1\n',
+     'void m68000_device::state_linef_if()\n{\n\tif(m_linef_hook) m_linef_hook(m_ird); // Kairo68: set_linef_hook\n\t// 1c0 trac1\n'),
+    ('src/devices/cpu/m68000/m68000-sdp.cpp',
+     'void m68000_device::state_linef_dp()\n{\n\tswitch(m_inst_substate) {\n\tcase 0:\n\t// 1c0 trac1\n',
+     'void m68000_device::state_linef_dp()\n{\n\tswitch(m_inst_substate) {\n\tcase 0:\n\tif(m_linef_hook) m_linef_hook(m_ird); // Kairo68: set_linef_hook\n\t// 1c0 trac1\n'),
+    ('src/devices/cpu/m68000/m68000-sip.cpp',
+     'void m68000_device::state_linef_ip()\n{\n\tswitch(m_inst_substate) {\n\tcase 0:\n\t// 1c0 trac1\n',
+     'void m68000_device::state_linef_ip()\n{\n\tswitch(m_inst_substate) {\n\tcase 0:\n\tif(m_linef_hook) m_linef_hook(m_ird); // Kairo68: set_linef_hook\n\t// 1c0 trac1\n'),
+]
+
 M68000_TRAP_HOOK = [
     ('src/devices/cpu/m68000/m68000.h',
      '\tvoid enable_direct_memory();\n',
@@ -1499,4 +1524,5 @@ PATCHES = {'x68k-save-state': X68K_SAVE_STATE, 'x68k-sasi-count': X68K_SASI_COUN
            'x68k-gvram-1024': X68K_GVRAM_1024,
            'x68k-crtc-unseen-registers': X68K_CRTC_UNSEEN_REGISTERS,
            'x68k-unchanged-frame': X68K_UNCHANGED_FRAME,
-           'm68000-trap-hook': M68000_TRAP_HOOK}
+           'm68000-trap-hook': M68000_TRAP_HOOK,
+           'm68000-linef-hook': M68000_LINEF_HOOK}
