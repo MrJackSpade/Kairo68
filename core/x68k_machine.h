@@ -135,6 +135,11 @@ public:
     // loaded state restores the machine exactly.
     std::vector<std::pair<std::string, std::vector<uint8_t>>> state_entries();
 
+    // Kairo68#33: draws the machine's current picture whole, then in two pieces split before each of
+    // its lines, and compares; "" when every split gives the whole picture, else the first split line
+    // and pixel that differ. Between frames only.
+    std::string split_check();
+
     // Inserts an image in a drive, or ejects it for ""; true when it is in.
     bool insert(Drive drive, const std::string &path);
     // The image in a drive; "" when it is empty.

@@ -199,6 +199,23 @@ protected:
 	virtual void video_start() override ATTR_COLD;
 	virtual void device_post_load() override ATTR_COLD;
 	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+public:
+	// Kairo68#33: draws cliprect of the machine's current state into bitmap as screen_update does,
+	// whatever this frame drew before, and leaves the frame's drawing as it was: for the check that
+	// a frame drawn whole and drawn in pieces gives the same picture.
+	void kairo68_draw(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+	{
+		const uint64_t frame = m_update_frame, drawn = m_drawn_generation;
+		const bool skipped = m_frame_skipped;
+		m_update_frame = screen.frame_number();
+		m_frame_skipped = false;
+		m_drawn_generation = 0;
+		screen_update(screen, bitmap, cliprect);
+		m_update_frame = frame;
+		m_frame_skipped = skipped;
+		m_drawn_generation = drawn;
+	}
+protected:
 	TIMER_CALLBACK_MEMBER(floppy_tc_tick);
 	TIMER_CALLBACK_MEMBER(adpcm_drq_tick);
 	TIMER_CALLBACK_MEMBER(led_callback);

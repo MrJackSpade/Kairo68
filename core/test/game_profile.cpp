@@ -30,6 +30,8 @@
 //                     m_reg for the CRTC's registers) as 16-bit words, to see how the guest set a device
 //   --csv <file>      write each frame's host time and counters
 //   --sound <file>    write the measured frames' sound, 16-bit stereo at the machine's rate
+//   --split-check <a>:<b>  after each measured frame from a to b, draw its picture whole and in two
+//                     pieces split before each line, and stop at the first split that differs (Kairo68#33)
 //   --hashes <file>   write a hash of each frame's picture and sound, to show that two builds run
 //                     the guest identically (a fast path must not change a single frame)
 //
@@ -157,6 +159,7 @@ int main(int argc, char **argv) {
     std::string error;
     if (!parse_script(argv[7], events, error)) return fail(error);
     long shots = 0;
+    long split_from = -1, split_to = -1;
     std::vector<std::string> state_names;
     std::vector<std::pair<uint32_t, size_t>> word_dumps;
     long warmup = 0;
@@ -181,6 +184,11 @@ int main(int argc, char **argv) {
             config.on_emulation_thread = [nice] { set_priority(nice); };
         }
         else if (option == "--shots" && i + 1 < argc) shots = std::strtol(argv[++i], nullptr, 10);
+        else if (option == "--split-check" && i + 1 < argc) {
+            const std::string range = argv[++i];
+            split_from = std::strtol(range.c_str(), nullptr, 10);
+            split_to = std::strtol(range.substr(range.find(':') + 1).c_str(), nullptr, 10);
+        }
         else if (option == "--state" && i + 1 < argc) state_names.push_back(argv[++i]);
         else if (option == "--words" && i + 1 < argc) {
             const std::string spec = argv[++i];
@@ -289,6 +297,10 @@ int main(int argc, char **argv) {
             std::fprintf(csv, "%ld,%.3f", frame, ms);
             for (const auto &name : csv_columns) std::fprintf(csv, ",%llu", (unsigned long long)row[name]);
             std::fprintf(csv, "\n");
+        }
+        if (frame >= split_from && frame <= split_to) {
+            const std::string differs = machine->split_check();
+            if (!differs.empty()) return fail("frame " + std::to_string(frame) + ": " + differs);
         }
         if (shots > 0 && frame % shots == 0) {
             uint32_t width = 0, height = 0;

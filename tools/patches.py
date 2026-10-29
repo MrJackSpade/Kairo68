@@ -1498,6 +1498,12 @@ M68000_TRAP_HOOK = [
      'void m68000_device::trap_imm4_ip() // 4e40 fff0\n{\n\tswitch(m_inst_substate) {\n\tcase 0:\n\tif(m_trap_hook) m_trap_hook(m_ird & 15, m_da[0]); // Kairo68: set_trap_hook\n'),
 ]
 
+# Kairo68#33: the split check draws a frame of the machine's state whole and in pieces
+# (X68kMachine::split_check), through screen_update without the frame's own bookkeeping.
+X68K_SPLIT_CHECK = [
+    ('src/mame/sharp/x68k.h', '\tuint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);\n', "\tuint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);\npublic:\n\t// Kairo68#33: draws cliprect of the machine's current state into bitmap as screen_update does,\n\t// whatever this frame drew before, and leaves the frame's drawing as it was: for the check that\n\t// a frame drawn whole and drawn in pieces gives the same picture.\n\tvoid kairo68_draw(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)\n\t{\n\t\tconst uint64_t frame = m_update_frame, drawn = m_drawn_generation;\n\t\tconst bool skipped = m_frame_skipped;\n\t\tm_update_frame = screen.frame_number();\n\t\tm_frame_skipped = false;\n\t\tm_drawn_generation = 0;\n\t\tscreen_update(screen, bitmap, cliprect);\n\t\tm_update_frame = frame;\n\t\tm_frame_skipped = skipped;\n\t\tm_drawn_generation = drawn;\n\t}\nprotected:\n"),
+]
+
 PATCHES = {'x68k-save-state': X68K_SAVE_STATE, 'x68k-sasi-count': X68K_SASI_COUNT, 'x68k-sasi-dma': X68K_SASI_DMA,
            'x68k-sasi-busy': X68K_SASI_BUSY,
            'osdlib-without-sdl': OSDLIB_WITHOUT_SDL, 'upd765-save-state': UPD765_SAVE_STATE, 'rtc-save-state': RTC_SAVE_STATE,
@@ -1525,4 +1531,6 @@ PATCHES = {'x68k-save-state': X68K_SAVE_STATE, 'x68k-sasi-count': X68K_SASI_COUN
            'x68k-crtc-unseen-registers': X68K_CRTC_UNSEEN_REGISTERS,
            'x68k-unchanged-frame': X68K_UNCHANGED_FRAME,
            'm68000-trap-hook': M68000_TRAP_HOOK,
-           'm68000-linef-hook': M68000_LINEF_HOOK}
+           'm68000-linef-hook': M68000_LINEF_HOOK,
+           'x68k-split-check': X68K_SPLIT_CHECK
+}

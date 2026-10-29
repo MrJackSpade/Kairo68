@@ -34,6 +34,7 @@
 #include "machine/ram.h"
 #include "sound/ymopm.h"
 #include "sharp/x68k_hdc.h"
+#include "sharp/x68k.h"
 #include "audio_effects/compressor.h"
 #include "audio_effects/eq.h"
 #include "audio_effects/filter.h"
@@ -984,6 +985,31 @@ std::vector<std::pair<std::string, std::vector<uint8_t>>> X68kMachine::state_ent
             entries.emplace_back(name, std::move(bytes));
         }
         return entries;
+    });
+}
+
+std::string X68kMachine::split_check() {
+    return impl_->between_frames<std::string>([](running_machine &m) -> std::string {
+        x68k_state &driver = downcast<x68k_state &>(m.root_device());
+        screen_device &screen = *screen_device_enumerator(m.root_device()).first();
+        const rectangle visible = screen.visible_area();
+        bitmap_rgb32 whole(screen.width(), screen.height()), split(screen.width(), screen.height());
+        whole.fill(0);
+        driver.kairo68_draw(screen, whole, visible);
+        for (int line = visible.min_y + 1; line <= visible.max_y; ++line) {
+            split.fill(0);
+            driver.kairo68_draw(screen, split, rectangle(visible.min_x, visible.max_x, visible.min_y, line - 1));
+            driver.kairo68_draw(screen, split, rectangle(visible.min_x, visible.max_x, line, visible.max_y));
+            for (int y = visible.min_y; y <= visible.max_y; ++y)
+                for (int x = visible.min_x; x <= visible.max_x; ++x)
+                    if (whole.pix(y, x) != split.pix(y, x)) {
+                        char text[160];
+                        std::snprintf(text, sizeof(text), "split before line %d: pixel (%d, %d) whole %06x split %06x",
+                                      line, x, y, unsigned(whole.pix(y, x) & 0xffffff), unsigned(split.pix(y, x) & 0xffffff));
+                        return text;
+                    }
+        }
+        return "";
     });
 }
 
