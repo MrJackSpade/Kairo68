@@ -1459,6 +1459,9 @@
     "x68000:38 Man Kilo No Kokuu (1989)(System Sacom).zip"
    ],
    "title": "38-man Kilo no Kokuu",
+   "titles": {
+    "ja": "38万キロの虚空"
+   },
    "year": 1989
   },
   "x68000:150116": {
@@ -1491,6 +1494,9 @@
     "x68000:Santakun (199x)(Active).zip"
    ],
    "title": "Santa-kun",
+   "titles": {
+    "ja": "3太くん"
+   },
    "year": 1991
   },
   "x68000:150138": {
@@ -1686,6 +1692,9 @@
     "x68000:Abunai Tengoku Densetsu (1989)(Alice Soft).zip"
    ],
    "title": "Abunai Tengu Densetsu",
+   "titles": {
+    "ja": "あぶない天狗伝説"
+   },
    "year": 1989
   },
   "x68000:150540": {
@@ -1996,6 +2005,9 @@
     "x68000:Alfaim (1989)(Zainsoft).zip"
    ],
    "title": "ALFAIM",
+   "titles": {
+    "ja": "アルフェイム"
+   },
    "year": 1989
   },
   "x68000:150587": {
@@ -2083,6 +2095,9 @@
     "x68000:Alice No Yakata I+II (19xx)(Alice Soft).zip"
    ],
    "title": "Alice no Yakata",
+   "titles": {
+    "ja": "ALICEの館"
+   },
    "year": 1990
   },
   "x68000:150590": {
@@ -2128,6 +2143,9 @@
     "x68000:Alice No Yakata I+II (19xx)(Alice Soft).zip"
    ],
    "title": "Alice no Yakata II",
+   "titles": {
+    "ja": "ALICEの館II"
+   },
    "year": 1992
   },
   "x68000:150612": {
@@ -2768,7 +2786,10 @@
    "mobygames": 58059,
    "publisher": "Data West",
    "screenshotUrl": "https://images.launchbox-app.com/b5fae06b-9bf4-4ba4-a4b2-f9562b798d6a.png",
-   "title": "The 4th Unit 2"
+   "title": "The 4th Unit 2",
+   "titles": {
+    "ja": "第４のユニット２"
+   }
   },
   "x68000:156887": {
    "aliases": [
@@ -2792,7 +2813,10 @@
    "launchbox": "156887",
    "mobygames": 58062,
    "publisher": "Data West",
-   "title": "The 4th Unit: Act 3 Dual Target"
+   "title": "The 4th Unit: Act 3 Dual Target",
+   "titles": {
+    "ja": "デュアルターゲット -第４のユニット３-"
+   }
   },
   "x68000:156888": {
    "aliases": [
@@ -2836,7 +2860,10 @@
    "mobygames": 58056,
    "publisher": "Data West",
    "screenshotUrl": "https://images.launchbox-app.com/5f203999-7160-44f3-8311-4cd9152a643f.png",
-   "title": "The 4th Unit"
+   "title": "The 4th Unit",
+   "titles": {
+    "ja": "第４のユニット"
+   }
   },
   "x68000:156895": {
    "aliases": [
@@ -2884,7 +2911,10 @@
    "mobygames": 58086,
    "publisher": "Data West",
    "screenshotUrl": "https://images.launchbox-app.com/5919f48d-7af1-4891-b4d7-908693f5cf3d.png",
-   "title": "The 4th Unit: Act 5 D-Again"
+   "title": "The 4th Unit: Act 5 D-Again",
+   "titles": {
+    "ja": "第４のユニット５ Ｄ－Ａｇａｉｎ"
+   }
   },
   "x68000:156897": {
    "aliases": [
@@ -2956,6 +2986,9 @@
     "x68000:Artemis (199x)(Birdy Soft).zip"
    ],
    "title": "Artemis",
+   "titles": {
+    "ja": "アルテミス"
+   },
    "year": 1991
   },
   "x68000:156905": {
@@ -3242,6 +3275,9 @@
     "x68000:Ambivalenz (1994)(Alice Soft).zip"
    ],
    "title": "AmbivalenZ: Niritsu Haihan",
+   "titles": {
+    "ja": "AmbivalenZ -二律背反-"
+   },
    "year": 1994
   },
   "x68000:156950": {
@@ -3556,6 +3592,9 @@
    "publisher": "Birdy Soft",
    "screenshotUrl": "https://images.launchbox-app.com/2e12daa2-d537-4a34-b8e0-c305f3d13481.png",
    "title": "Beast",
+   "titles": {
+    "ja": "BEAST ～淫獣の館～"
+   },
    "year": 1991
   },
   "x68000:156961": {
@@ -3968,6 +4007,9 @@
     "x68000:Nostalgia 1907 (1991)(Sur De' Wave).zip"
    ],
    "title": "Nostalgia 1907",
+   "titles": {
+    "ja": "ノスタルジア1907"
+   },
    "year": 1991
   },
   "x68000:157427": {
@@ -4138,6 +4180,9 @@
     "x68000:Ani Mahjongg V3 (demo) (1993)(Sogna).zip"
    ],
    "title": "Animahjong V3",
+   "titles": {
+    "ja": "あにまーじゃんV3"
+   },
    "year": 1993
   },
   "x68000:157431": {
@@ -4160,6 +4205,9 @@
    "publisher": "Wendy Magazine",
    "screenshotUrl": "https://images.launchbox-app.com/e64d644b-00d1-4b58-8373-b07777cd2283.png",
    "title": "Bell's Avenue",
+   "titles": {
+    "ja": "ベルズアベニュー"
+   },
    "year": 1993
   },
   "x68000:157432": {
@@ -4209,6 +4257,9 @@
    "publisher": "Software House Parsley",
    "screenshotUrl": "https://images.launchbox-app.com/5a9c55b0-9d57-4d8c-9623-ce6bcc7f2c5c.png",
    "title": "Bonnou Yobikou 3",
+   "titles": {
+    "ja": "煩悩予備校３"
+   },
    "year": 1993
   },
   "x68000:157434": {
@@ -4263,6 +4314,9 @@
     "x68000:Branmarker (1991)(DO).zip"
    ],
    "title": "Branmarker",
+   "titles": {
+    "ja": "ブランマーカー"
+   },
    "year": 1991
   },
   "x68000:157435": {
@@ -4368,6 +4422,9 @@
     "x68000:Cal 2 (1991)(Birdy Soft).zip"
    ],
    "title": "Cal II",
+   "titles": {
+    "ja": "キャルツー"
+   },
    "year": 1991
   },
   "x68000:157437": {
@@ -4438,6 +4495,9 @@
     "x68000:Can Can Bunny ++.zip"
    ],
    "title": "Can Can Bunny",
+   "titles": {
+    "ja": "きゃんきゃんバニー"
+   },
    "year": 1990
   },
   "x68000:157438": {
@@ -4460,6 +4520,9 @@
    "publisher": "Cocktail Soft",
    "screenshotUrl": "https://images.launchbox-app.com/30266aae-9566-41be-9d0a-e195303aee91.png",
    "title": "Can Can Bunny Extra",
+   "titles": {
+    "ja": "きゃんきゃんバニー　エクストラ"
+   },
    "year": 1993
   },
   "x68000:157441": {
@@ -4481,7 +4544,10 @@
    "mobygames": 43153,
    "publisher": "IDES",
    "screenshotUrl": "https://images.launchbox-app.com/f109a9ff-a3cc-4a40-82b8-db7da9ff273e.png",
-   "title": "Can Can Bunny Premiere"
+   "title": "Can Can Bunny Premiere",
+   "titles": {
+    "ja": "きゃんきゃんバニー プルミエール"
+   }
   },
   "x68000:157442": {
    "adult": true,
@@ -4503,6 +4569,9 @@
    "publisher": "FairyTale",
    "screenshotUrl": "https://images.launchbox-app.com/2de9ff8b-34a8-4b07-aae2-9e7861fdd01c.png",
    "title": "Can Can Bunny Superior",
+   "titles": {
+    "ja": "きゃんきゃんバニー スペリオール"
+   },
    "year": 1990
   },
   "x68000:157443": {
@@ -4842,6 +4911,9 @@
     "x68000:Cosmic Psyco (1991)(Cocktail Soft).zip"
    ],
    "title": "Cosmic Psycho",
+   "titles": {
+    "ja": "コズミックサイコ"
+   },
    "year": 1991
   },
   "x68000:157451": {
@@ -4888,6 +4960,9 @@
     "x68000:Crescent (199x)(Silky's).zip"
    ],
    "title": "Crescent",
+   "titles": {
+    "ja": "クレセント"
+   },
    "year": 1993
   },
   "x68000:157452": {
@@ -4932,6 +5007,9 @@
     "x68000:Crescent Moon Girl (1989)(Alice Soft).zip"
    ],
    "title": "Crescent Moon Girl",
+   "titles": {
+    "ja": "CRESCENT MOON がぁる"
+   },
    "year": 1989
   },
   "x68000:157457": {
@@ -5275,6 +5353,9 @@
     "x68000:Doukyuusei (1992)(Elf).zip"
    ],
    "title": "Dōkyūsei",
+   "titles": {
+    "ja": "同級生"
+   },
    "year": 1993
   },
   "x68000:157479": {
@@ -5321,7 +5402,10 @@
    "sourceGroups": [
     "x68000:Dome (1988)(System Sacom).zip"
    ],
-   "title": "Dome"
+   "title": "Dome",
+   "titles": {
+    "ja": "ドーム"
+   }
   },
   "x68000:157480": {
    "adult": true,
@@ -5437,6 +5521,9 @@
    "publisher": "D.O.",
    "screenshotUrl": "https://images.launchbox-app.com/b2502d65-a98b-4682-b69f-095e525695aa.jpg",
    "title": "DOR Special Edition: Sakigake",
+   "titles": {
+    "ja": "ＤＯＲ ＳＰＥＣＩＡＬ ＥＤＩＴＩＯＮ 魁"
+   },
    "year": 1993
   },
   "x68000:157485": {
@@ -5544,6 +5631,9 @@
     "x68000:Dracula Hakushaku (1992)(Fairy Tale).zip"
    ],
    "title": "Dracula Hakushaku",
+   "titles": {
+    "ja": "ドラキュラ伯爵"
+   },
    "year": 1992
   },
   "x68000:157488": {
@@ -5621,7 +5711,10 @@
    "sourceGroups": [
     "x68000:Dragon Eyes (1991)(Technopolis).zip"
    ],
-   "title": "Dragon Eyes"
+   "title": "Dragon Eyes",
+   "titles": {
+    "ja": "ドラゴンアイズ"
+   }
   },
   "x68000:157490": {
    "adult": true,
@@ -5643,6 +5736,9 @@
    "publisher": "elf",
    "screenshotUrl": "https://images.launchbox-app.com/ba34e3e9-24f2-4935-b6dc-9296ebdf175b.png",
    "title": "Dragon Knight",
+   "titles": {
+    "ja": "ドラゴンナイト"
+   },
    "year": 1990
   },
   "x68000:157491": {
@@ -5665,6 +5761,9 @@
    "publisher": "elf",
    "screenshotUrl": "https://images.launchbox-app.com/cf3a481b-0f0a-451c-afbb-93d702d21360.png",
    "title": "Dragon Knight 4",
+   "titles": {
+    "ja": "ドラゴンナイト4"
+   },
    "year": 1994
   },
   "x68000:157492": {
@@ -5690,6 +5789,9 @@
    "publisher": "elf",
    "screenshotUrl": "https://images.launchbox-app.com/b8885adb-2422-44f3-846f-cdef4bb5edee.png",
    "title": "Dragon Knight II",
+   "titles": {
+    "ja": "ドラゴンナイトII"
+   },
    "year": 1991
   },
   "x68000:157493": {
@@ -6248,6 +6350,9 @@
     "x68000:Exterlian (1990)(DO).zip"
    ],
    "title": "Exterlien",
+   "titles": {
+    "ja": "エクスタリアン"
+   },
    "year": 1990
   },
   "x68000:157508": {
@@ -6621,6 +6726,9 @@
     "x68000:Fushigi No Umi No Nadia (1992)(Gainax).zip"
    ],
    "title": "Fushigi no Umi no Nadia",
+   "titles": {
+    "ja": "ふしぎの海のナディア"
+   },
    "year": 1992
   },
   "x68000:157518": {
@@ -6692,6 +6800,9 @@
     "x68000:Gakuen Bomber (1994)(Active).zip"
    ],
    "title": "Gakuen Bomber",
+   "titles": {
+    "ja": "学園ボンバー"
+   },
    "year": 1994
   },
   "x68000:157520": {
@@ -6776,6 +6887,9 @@
     "x68000:Gaudi Barcelona No Kaze (19xx)(Wolf Team).zip"
    ],
    "title": "Gaudi: Barcelona no Kaze",
+   "titles": {
+    "ja": "ガウディ ～バルセロナの風～"
+   },
    "year": 1989
   },
   "x68000:157522": {
@@ -6985,6 +7099,9 @@
     "x68000:Giza! XIX (1991)(Fairytale).zip"
    ],
    "title": "Gize! XIX",
+   "titles": {
+    "ja": "ギゼ! XIX"
+   },
    "year": 1992
   },
   "x68000:157527": {
@@ -7222,6 +7339,9 @@
     "x68000:Illumina (1991)(Cocktail Soft)(Disk 1 of 3).zip"
    ],
    "title": "Illumina!",
+   "titles": {
+    "ja": "イルミナ！"
+   },
    "year": 1991
   },
   "x68000:157541": {
@@ -7316,6 +7436,9 @@
     "x68000:Image (1992)(Software House Parsley).zip"
    ],
    "title": "Image",
+   "titles": {
+    "ja": "イマージュ"
+   },
    "year": 1992
   },
   "x68000:157543": {
@@ -7340,6 +7463,9 @@
    "mobygames": 47937,
    "publisher": "Software House Parsley",
    "title": "Image II",
+   "titles": {
+    "ja": "イマージュ２"
+   },
    "year": 1993
   },
   "x68000:157544": {
@@ -7566,6 +7692,9 @@
     "x68000:Jan Jaka Jan (1992)(Elf).zip"
    ],
    "title": "Jan Jaka Jan",
+   "titles": {
+    "ja": "雀ＪＡＫＡ雀"
+   },
    "year": 1992
   },
   "x68000:157562": {
@@ -7587,6 +7716,9 @@
    "publisher": "Enix",
    "screenshotUrl": "https://images.launchbox-app.com/a192c791-ae57-47e5-957e-c7f7556d9d6d.png",
    "title": "Jesus II",
+   "titles": {
+    "ja": "ジーザスII"
+   },
    "year": 1991
   },
   "x68000:157563": {
@@ -7612,6 +7744,9 @@
    "publisher": "Birdy Soft",
    "screenshotUrl": "https://images.launchbox-app.com/4ea146b6-2245-43b9-ab1d-af014b89053e.png",
    "title": "The Joker",
+   "titles": {
+    "ja": "ジョーカー"
+   },
    "year": 1991
   },
   "x68000:157564": {
@@ -7634,6 +7769,9 @@
    "publisher": "Birdy Soft",
    "screenshotUrl": "https://images.launchbox-app.com/5b490b43-cd80-4278-a142-247e42a040c9.png",
    "title": "Joker II",
+   "titles": {
+    "ja": "ジョーカーII"
+   },
    "year": 1992
   },
   "x68000:157565": {
@@ -7730,6 +7868,9 @@
     "x68000:Karei Naru Jinsei Minasan No Okage Desu (1992)(Fairy Tale).zip"
    ],
    "title": "Karei naru Jinsei: Mina-san no okage desu",
+   "titles": {
+    "ja": "華麗なる人生 みなさんのおかげです"
+   },
    "year": 1992
   },
   "x68000:157567": {
@@ -7782,6 +7923,9 @@
     "x68000:Kawaharazaki Ie No Ichizoku .zip"
    ],
    "title": "Kawarazakike no Ichizoku",
+   "titles": {
+    "ja": "河原崎家の一族"
+   },
    "year": 1993
   },
   "x68000:157568": {
@@ -7931,6 +8075,9 @@
     "x68000:Kimi Dake Ni Ai Wo (1991)(Technopolis).zip"
    ],
    "title": "Kimi Dake ni Ai o... ",
+   "titles": {
+    "ja": "キミだけに愛を・・・"
+   },
    "year": 1991
   },
   "x68000:157573": {
@@ -8033,6 +8180,9 @@
    "publisher": "elf",
    "screenshotUrl": "https://images.launchbox-app.com/48e1d229-d300-4e62-8e05-a64225098203.png",
    "title": "Dragon Knight III",
+   "titles": {
+    "ja": "ドラゴンナイトIII"
+   },
    "year": 1992
   },
   "x68000:157592": {
@@ -8077,6 +8227,9 @@
     "x68000:Kurutta Kajitsu (1992)(Fairy Tale).zip"
    ],
    "title": "Kurutta Kajitsu",
+   "titles": {
+    "ja": "狂った果実"
+   },
    "year": 1992
   },
   "x68000:157593": {
@@ -8602,7 +8755,10 @@
    "mobygames": 45927,
    "publisher": "IDES",
    "screenshotUrl": "https://images.launchbox-app.com/32d3b81f-f418-4848-880c-0f95e117e701.png",
-   "title": "Lipstick Adventure 3"
+   "title": "Lipstick Adventure 3",
+   "titles": {
+    "ja": "リップスティックアドベンチャー３"
+   }
   },
   "x68000:157619": {
    "aliases": [
@@ -9107,7 +9263,10 @@
    "mobygames": 45910,
    "publisher": "Riverhill Soft",
    "screenshotUrl": "https://images.launchbox-app.com/c07f7696-1ee0-4c10-9a83-bc8f02209ddd.jpg",
-   "title": "Manhattan Requiem"
+   "title": "Manhattan Requiem",
+   "titles": {
+    "ja": "J.B.ハロルドの事件簿 - マンハッタンレクイエム - 闇に翔ぶ天使たち"
+   }
   },
   "x68000:157632": {
    "aliases": [
@@ -9264,6 +9423,9 @@
     "x68000:Martial Age (1992)(Tenshindou).zip"
    ],
    "title": "Martial Age",
+   "titles": {
+    "ja": "マーシャルエイジ"
+   },
    "year": 1993
   },
   "x68000:157637": {
@@ -9306,6 +9468,9 @@
     "x68000:Mayumi (1992)(Cocktail Soft).zip"
    ],
    "title": "Mayumi",
+   "titles": {
+    "ja": "まゆみ"
+   },
    "year": 1992
   },
   "x68000:157638": {
@@ -10202,6 +10367,9 @@
    "publisher": "elf",
    "screenshotUrl": "https://images.launchbox-app.com/f3460bfa-9ad6-4cad-b95b-83215ad2723c.png",
    "title": "Pinky Ponky Dai-2 Shū: Twilight Games",
+   "titles": {
+    "ja": "ぴんきぃぽんきぃ２ とわいらいとげぇむず"
+   },
    "year": 1990
   },
   "x68000:157660": {
@@ -10229,6 +10397,9 @@
    "publisher": "elf",
    "screenshotUrl": "https://images.launchbox-app.com/5b512de2-00f6-4b80-b169-cb21bb07705e.png",
    "title": "Pinky Ponky Dai-3 Shū: Battle Lovers ",
+   "titles": {
+    "ja": "ぴんきぃぽんきぃ３ ばとるらばぁ"
+   },
    "year": 1990
   },
   "x68000:157661": {
@@ -10433,6 +10604,9 @@
     "x68000:Pro Student G (1993)(Alice Soft).zip"
    ],
    "title": "Pro Student G",
+   "titles": {
+    "ja": "ぷろすちゅーでんとG"
+   },
    "year": 1993
   },
   "x68000:157668": {
@@ -10646,6 +10820,9 @@
     "x68000:Quintia Road (1991)(Great).zip"
    ],
    "title": "Quintia Road",
+   "titles": {
+    "ja": "クィンティアロード"
+   },
    "year": 1991
   },
   "x68000:157673": {
@@ -10671,6 +10848,9 @@
    "publisher": "Alice Soft",
    "screenshotUrl": "https://images.launchbox-app.com/4d2e3a9d-1e92-4d7b-8888-e61969d8cfa4.png",
    "title": "Rance: Hikari o Motomete",
+   "titles": {
+    "ja": "Rance -光をもとめて-"
+   },
    "year": 1989
   },
   "x68000:157674": {
@@ -10881,6 +11061,9 @@
     "x68000:Saori Bishoujotachi No Yakata (1991)(Fairytale).zip"
    ],
    "title": "Saori: Bishōjo-tachi no Yakata",
+   "titles": {
+    "ja": "沙織 -美少女たちの館-"
+   },
    "year": 1991
   },
   "x68000:157683": {
@@ -11002,7 +11185,10 @@
    "mobygames": 58692,
    "publisher": "Gainax",
    "screenshotUrl": "https://images.launchbox-app.com/a2734255-a513-4787-9715-05e21024c0f1.png",
-   "title": "Silent Möbius: Case: Titanic"
+   "title": "Silent Möbius: Case: Titanic",
+   "titles": {
+    "ja": "サイレントメビウス"
+   }
   },
   "x68000:157695": {
    "boxArtUrl": "https://images.launchbox-app.com/d205e8eb-e250-44ac-91b1-2ec8318f73c9.jpg",
@@ -11182,6 +11368,9 @@
    "publisher": "System Sacom",
    "screenshotUrl": "https://images.launchbox-app.com/b983bd75-6fa6-4b6a-9767-1191e7d0962a.png",
    "title": "Soft de Hard na Monogatari",
+   "titles": {
+    "ja": "ソフトでハードな物語"
+   },
    "year": 1988
   },
   "x68000:157701": {
@@ -11203,6 +11392,9 @@
    "publisher": "System Sacom",
    "screenshotUrl": "https://images.launchbox-app.com/48305f38-5f70-467e-a509-e78259b5ffe3.png",
    "title": "Soft de Hard na Monogatari 2",
+   "titles": {
+    "ja": "ソフトでハードな物語 II"
+   },
    "year": 1989
   },
   "x68000:157703": {
@@ -11251,6 +11443,9 @@
     "x68000:Sotsugyou Shashin with Biki (1992)(Cocktail Soft).zip"
    ],
    "title": "Sotsugyou Shashin / Miki",
+   "titles": {
+    "ja": "卒業写真/美姫"
+   },
    "year": 1992
   },
   "x68000:157704": {
@@ -11854,6 +12049,9 @@
     "x68000:Sweet Angel (1992)(Active).zip"
    ],
    "title": "Sweet Angel",
+   "titles": {
+    "ja": "スウィートエンジェル"
+   },
    "year": 1992
   },
   "x68000:157714": {
@@ -12054,6 +12252,9 @@
     "x68000:Tenshin Ranma (1992)(Elf).zip"
    ],
    "title": "Tenshin Ranma",
+   "titles": {
+    "ja": "天神乱魔"
+   },
    "year": 1992
   },
   "x68000:157720": {
@@ -12196,6 +12397,9 @@
    "publisher": "Alice Soft",
    "screenshotUrl": "https://images.launchbox-app.com/6e7eccfe-84c8-4f6f-bebd-4de89ec893c6.png",
    "title": "Toushin Toshi",
+   "titles": {
+    "ja": "闘神都市"
+   },
    "year": 1991
   },
   "x68000:157724": {
@@ -12294,6 +12498,9 @@
     "x68000:Uchuu Kaitou Funny Bee (1994)(Alice Soft).zip"
    ],
    "title": "Uchuu Kaitou Funny Bee",
+   "titles": {
+    "ja": "宇宙快盗ファニーBee"
+   },
    "year": 1994
   },
   "x68000:157726": {
@@ -12361,6 +12568,9 @@
     "x68000:Urotsuki Douji (199x)(Fairy Tale).zip"
    ],
    "title": "Urotsukidōji",
+   "titles": {
+    "ja": "うろつき童子"
+   },
    "year": 1990
   },
   "x68000:157728": {
@@ -12844,6 +13054,9 @@
    "publisher": "System Sacom",
    "screenshotUrl": "https://images.launchbox-app.com/b15565a5-bd97-438a-824b-7e8122938384.png",
    "title": "Yami no Ketsuzoku",
+   "titles": {
+    "ja": "闇の血族"
+   },
    "year": 1991
   },
   "x68000:157748": {
@@ -12899,6 +13112,9 @@
     "x68000:Yami No Ketsuzoku + Kanketsuhen (1990)(System Sacom).zip"
    ],
    "title": "Yami no Ketsuzoku: Kanketsu-hen",
+   "titles": {
+    "ja": "闇の血族 完結編"
+   },
    "year": 1990
   },
   "x68000:157749": {
@@ -12925,6 +13141,9 @@
     "x68000:Yesterday (1990)(System House Oh!).zip"
    ],
    "title": "Yesterday",
+   "titles": {
+    "ja": "イエスタディ"
+   },
    "year": 1990
   },
   "x68000:157750": {
@@ -12976,6 +13195,9 @@
     "x68000:Youjuu Senki AD 2048 (199x)(DO).zip"
    ],
    "title": "Youjuu Senki: AD 2048",
+   "titles": {
+    "ja": "妖獣戦記 －Ａ．Ｄ．２０４８－"
+   },
    "year": 1994
   },
   "x68000:157751": {
@@ -13817,6 +14039,9 @@
     "x68000:Cal Eien No Bishoujotachi (19xx)(Birdy Soft).zip"
    ],
    "title": "Cal",
+   "titles": {
+    "ja": "キャル"
+   },
    "year": 1991
   },
   "x68000:184319": {
@@ -15166,6 +15391,9 @@
     "x68000:Byakuya Monogatari (1989)(East Cube).zip"
    ],
    "title": "Byakuya Monogatari: Winchester Ke no Matsuei",
+   "titles": {
+    "ja": "白夜物語 ～ウィンチェスター家の末裔～"
+   },
    "year": 1989
   },
   "x68000:185741": {
@@ -15370,6 +15598,9 @@
     "x68000:Collector D Bangaihen (199x)(DO).zip"
    ],
    "title": "Collector D: Bangaihen",
+   "titles": {
+    "ja": "コレクターＤ 番外編 極楽台西地区セールス大作戦"
+   },
    "year": 1993
   },
   "x68000:185893": {
@@ -15848,6 +16079,9 @@
     "x68000:Gakuen Toshi Z (199x)(Striker).zip"
    ],
    "title": "Gakuen Toshi Z",
+   "titles": {
+    "ja": "学園都市Ｚ"
+   },
    "year": 1991
   },
   "x68000:186622": {
@@ -15870,6 +16104,9 @@
    "publisher": "D.O.",
    "screenshotUrl": "https://images.launchbox-app.com/c7debf21-2c79-4138-b9e6-68a6f9cb2480.png",
    "title": "Hoshi no Suna Monogatari",
+   "titles": {
+    "ja": "星の砂物語"
+   },
    "year": 1991
   },
   "x68000:186623": {
@@ -15892,6 +16129,9 @@
    "publisher": "D.O.",
    "screenshotUrl": "https://images.launchbox-app.com/52d153aa-9a75-4b3e-b329-4262a22d1567.png",
    "title": "Hoshi no Suna Monogatari 2",
+   "titles": {
+    "ja": "星の砂物語２"
+   },
    "year": 1992
   },
   "x68000:186629": {
@@ -16233,6 +16473,9 @@
    "mobygames": 47913,
    "publisher": "Active Software",
    "title": "If",
+   "titles": {
+    "ja": "イフ"
+   },
    "year": 1993
   },
   "x68000:186749": {
@@ -16254,6 +16497,9 @@
    "mobygames": 47918,
    "publisher": "Active Software",
    "title": "If 2",
+   "titles": {
+    "ja": "イフ ２"
+   },
    "year": 1993
   },
   "x68000:186750": {
@@ -16275,6 +16521,9 @@
    "mobygames": 47919,
    "publisher": "Active Software",
    "title": "If 3",
+   "titles": {
+    "ja": "イフ ３"
+   },
    "year": 1995
   },
   "x68000:186751": {
@@ -16377,6 +16626,9 @@
     "x68000:Mahjongg Gensou Kyoku (1992)(Active)(Disk 4 of 4)(Disk D).zip"
    ],
    "title": "Mahjong Gensoukyoku",
+   "titles": {
+    "ja": "麻雀幻想曲"
+   },
    "year": 1992
   },
   "x68000:186785": {
@@ -16402,6 +16654,9 @@
    "publisher": "Active Software",
    "screenshotUrl": "https://images.launchbox-app.com/b2867524-0fe0-4eea-9a99-65eceda86752.png",
    "title": "Mahjong Gensoukyoku II",
+   "titles": {
+    "ja": "麻雀幻想曲II"
+   },
    "year": 1993
   },
   "x68000:186788": {
@@ -17049,6 +17304,9 @@
     "x68000:Thanatos (1991)(Birdy Soft).zip"
    ],
    "title": "Thanatos",
+   "titles": {
+    "ja": "サナトス"
+   },
    "year": 1991
   },
   "x68000:187090": {
@@ -17262,6 +17520,9 @@
     "x68000:Birdy World (1991)(Birdy Soft).zip"
    ],
    "title": "Birdy World",
+   "titles": {
+    "ja": "バーディーワールド"
+   },
    "year": 1992
   },
   "x68000:187147": {
@@ -17291,6 +17552,9 @@
     "x68000:Bishoujo Noriko (19xx)(System House Oh!).zip"
    ],
    "title": "Bishoujo Noriko",
+   "titles": {
+    "ja": "媚少女ＮＯＲＩＫＯ"
+   },
    "year": 1989
   },
   "x68000:187148": {
@@ -18124,6 +18388,9 @@
     "x68000:Endan Genpei Souranki ~Irohanihoheto~ (1988)(Studio Angel).zip"
    ],
    "title": "Endan Genpei Souranki: Irohanihoheto",
+   "titles": {
+    "ja": "艶談・源平争乱記 ～いろはにほへと～"
+   },
    "year": 1988
   },
   "x68000:187767": {
@@ -18162,6 +18429,9 @@
    "launchbox": "187789",
    "publisher": "Zenryuutuu",
    "title": "Endan Tokugawa Kouryuuki Gorakuin",
+   "titles": {
+    "ja": "艶談・徳川興隆記 ～ごらくいん～"
+   },
    "year": 1988
   },
   "x68000:187790": {
@@ -18325,6 +18595,9 @@
     "x68000:Girls Paradise Rakuen no Tenshi-tachi(1989)(Great).zip"
    ],
    "title": "Girls Paradise: Rakuen no Tenshitachi",
+   "titles": {
+    "ja": "ガールズパラダイス 楽園の天使たち"
+   },
    "year": 1989
   },
   "x68000:187802": {
@@ -18380,6 +18653,9 @@
    "publisher": "HARD",
    "screenshotUrl": "https://images.launchbox-app.com/5a2acb58-061a-4329-88fa-9a3e105d1d62.png",
    "title": "Hacchake Ayayo-san",
+   "titles": {
+    "ja": "はっちゃけあやよさん"
+   },
    "year": 1990
   },
   "x68000:187804": {
@@ -18408,6 +18684,9 @@
    "publisher": "HARD",
    "screenshotUrl": "https://images.launchbox-app.com/2fd7b82c-08cd-49e7-adb1-b44154b77d14.png",
    "title": "Hacchake Ayayo-san 3: Watashi, Icchatta n' desu",
+   "titles": {
+    "ja": "はっちゃけあやよさん３ 私、逝っちゃったんです ＡＹＡＹＯ＇Ｓ ＬＩＦＥ ＡＦＴＥＲ"
+   },
    "year": 1992
   },
   "x68000:187805": {
@@ -18451,7 +18730,10 @@
    "sourceGroups": [
     "x68000:Himitsu No Hanazono (1992)(Technopolis).zip"
    ],
-   "title": "Himitsu no Hanazono"
+   "title": "Himitsu no Hanazono",
+   "titles": {
+    "ja": "秘密の花園"
+   }
   },
   "x68000:187807": {
    "aliases": [
@@ -18545,6 +18827,9 @@
    "publisher": "Zenryuutuu",
    "screenshotUrl": "https://images.launchbox-app.com/bdf5f67e-fd7d-40d2-a0ca-35d57a857ccd.png",
    "title": "Evil Stone",
+   "titles": {
+    "ja": "イーヴルストーン"
+   },
    "year": 1989
   },
   "x68000:187818": {
@@ -19020,6 +19305,9 @@
    "publisher": "Jast",
    "screenshotUrl": "https://images.launchbox-app.com/348d3755-14d3-4cd3-ac07-3af50731a26a.png",
    "title": "Tenshitachi no Gogo III: Bangai-hen",
+   "titles": {
+    "ja": "天使たちの午後ＩＩＩ -番外編-"
+   },
    "year": 1990
   },
   "x68000:187954": {
@@ -19147,6 +19435,9 @@
     "x68000:Gram Cats 2 (1993)(Dot Kikaku).zip"
    ],
    "title": "Gram Cats 2",
+   "titles": {
+    "ja": "グラムキャッツ２"
+   },
    "year": 1993
   },
   "x68000:188064": {
@@ -19310,6 +19601,9 @@
     "x68000:Hare Nochi Oosawagi (1989)(Cocktail Soft).zip"
    ],
    "title": "Hare Nochi Oosawagi!",
+   "titles": {
+    "ja": "晴れのちおおさわぎ！"
+   },
    "year": 1990
   },
   "x68000:188083": {
@@ -19482,6 +19776,9 @@
     "x68000:Imitation wa Aisenai.zip"
    ],
    "title": "Imitation wa Ai Senai",
+   "titles": {
+    "ja": "イミテーションは愛せない"
+   },
    "year": 1990
   },
   "x68000:188092": {
@@ -19573,7 +19870,10 @@
    "mobygames": 58967,
    "publisher": "Great",
    "screenshotUrl": "https://images.launchbox-app.com/a2ccac4f-28c4-4f9c-b942-ac718a5465c1.png",
-   "title": "Twilight Zone Vol. 4: Tokubetsu-hen"
+   "title": "Twilight Zone Vol. 4: Tokubetsu-hen",
+   "titles": {
+    "ja": "トワイライトゾーン VOL. 4 特別編"
+   }
   },
   "x68000:188139": {
    "boxArtUrl": "https://images.launchbox-app.com/4cedc309-3d9f-44c4-ae07-319c36352bea.jpg",
@@ -19777,6 +20077,9 @@
     "x68000:Kaerimichi Ha Kiken Ga Ippai (1990)(DO).zip"
    ],
    "title": "Kaerimichi wa Kiken ga Ippai",
+   "titles": {
+    "ja": "帰り道は危険がいっぱい"
+   },
    "year": 1990
   },
   "x68000:188166": {
@@ -19801,6 +20104,9 @@
    "publisher": "Zenryuutuu",
    "screenshotUrl": "https://images.launchbox-app.com/0da6089e-1a09-4f86-ad3d-ac2c1f568339.png",
    "title": "Joshi Kousei Idol: Osanadzuma Funsenki",
+   "titles": {
+    "ja": "女子高生アイドル おさな妻奮戦記"
+   },
    "year": 1988
   },
   "x68000:188192": {
@@ -19844,6 +20150,9 @@
     "x68000:Kera Kera Hoshi (1993)(Cocktail Soft).zip"
    ],
    "title": "Kerakera Boshi",
+   "titles": {
+    "ja": "けらけら星"
+   },
    "year": 1992
   },
   "x68000:188199": {
@@ -19915,6 +20224,9 @@
     "x68000:Kibun Ha Pastel Touch (19xx)(Great).zip"
    ],
    "title": "Kibun wa Pastel Touch!",
+   "titles": {
+    "ja": "気分はぱすてるたっち"
+   },
    "year": 1990
   },
   "x68000:188207": {
@@ -19961,6 +20273,9 @@
     "x68000:Koube Renai Monogatari (1989)(Zain Soft).zip"
    ],
    "title": "Kobe Renai Monogatari",
+   "titles": {
+    "ja": "神戸恋愛物語"
+   },
    "year": 1990
   },
   "x68000:188210": {
@@ -20050,6 +20365,9 @@
    "publisher": "Zenryuutuu",
    "screenshotUrl": "https://images.launchbox-app.com/e69efe7a-de0e-4327-817c-3688bb5873a2.png",
    "title": "Kokuren Uchuu Gun Shikan Gakkou: Saotome Gakuen Nyuugaku Annai",
+   "titles": {
+    "ja": "国連宇宙軍士官学校 早乙女学園 入学案内"
+   },
    "year": 1989
   },
   "x68000:188238": {
@@ -20152,6 +20470,9 @@
    "publisher": "IDES",
    "screenshotUrl": "https://images.launchbox-app.com/1fc22a0a-073c-40df-9e42-a15da9e7da17.jpg",
    "title": "Koroshi no Dress 3",
+   "titles": {
+    "ja": "殺しのドレス３"
+   },
    "year": 1993
   },
   "x68000:188243": {
@@ -20194,7 +20515,10 @@
    "launchbox": "188259",
    "publisher": "HARD",
    "screenshotUrl": "https://images.launchbox-app.com/843194b9-0038-4609-bed4-5cc083750346.png",
-   "title": "Kudokikata Oshiemasu"
+   "title": "Kudokikata Oshiemasu",
+   "titles": {
+    "ja": "口説き方教えます"
+   }
   },
   "x68000:188360": {
    "aliases": [
@@ -20240,6 +20564,9 @@
    "publisher": "IDES",
    "screenshotUrl": "https://images.launchbox-app.com/7ae2a835-811e-49fe-8f73-c002bee28b7b.png",
    "title": "Lam-Mal",
+   "titles": {
+    "ja": "蘭丸"
+   },
    "year": 1992
   },
   "x68000:188379": {
@@ -20605,6 +20932,9 @@
     "x68000:Makenshi Kumiko (19xx)(System House Oh!).zip"
    ],
    "title": "Makenshi Kumiko",
+   "titles": {
+    "ja": "魔剣士ＫＵＭＩＫＯ"
+   },
    "year": 1989
   },
   "x68000:188420": {
@@ -21240,6 +21570,9 @@
    "publisher": "Orange House",
    "screenshotUrl": "https://images.launchbox-app.com/0b548c64-2f46-4e87-b4c0-943d5dff0672.png",
    "title": "Present 2",
+   "titles": {
+    "ja": "プレゼント２"
+   },
    "year": 1992
   },
   "x68000:188536": {
@@ -21311,6 +21644,9 @@
     "x68000:Princess Ha Street Girl (19xx)(Zenryuutsuu).zip"
    ],
    "title": "Princess wa Street Girl?",
+   "titles": {
+    "ja": "プリンセスはストリートガール？"
+   },
    "year": 1989
   },
   "x68000:188539": {
@@ -21446,6 +21782,9 @@
    "publisher": "Alice Soft",
    "screenshotUrl": "https://images.launchbox-app.com/3144fb9e-444b-4b9d-bdcf-333384ee26f1.jpg",
    "title": "Rance III: Leazas Kanraku",
+   "titles": {
+    "ja": "ランス III　－リーザス陥落－"
+   },
    "year": 1991
   },
   "x68000:188554": {
@@ -21536,6 +21875,9 @@
     "x68000:Review Jashin Fukkastu (1991)(Orange House).zip"
    ],
    "title": "Review: Jashin Fukkatsu",
+   "titles": {
+    "ja": "ＲＥＶＩＥＷ －邪神復活－"
+   },
    "year": 1991
   },
   "x68000:188556": {
@@ -21617,6 +21959,9 @@
     "x68000:Rouge (19xx)(Birdy Soft).zip"
    ],
    "title": "Rouge: Manatsu no Kuchibeni",
+   "titles": {
+    "ja": "ルージュ ～真夏の口紅～"
+   },
    "year": 1990
   },
   "x68000:188664": {
@@ -21723,6 +22068,9 @@
    "launchbox": "188667",
    "publisher": "Active Software",
    "title": "Sakura no Mori",
+   "titles": {
+    "ja": "櫻の杜 ～さくらのもり～"
+   },
    "year": 1995
   },
   "x68000:188668": {
@@ -21811,6 +22159,9 @@
    "publisher": "Great",
    "screenshotUrl": "https://images.launchbox-app.com/e4260508-cb69-4fb5-b1c1-214565f8f7c8.png",
    "title": "SAP Tokushu Koudou Keisatsu File: M661-51",
+   "titles": {
+    "ja": "SAP特殊行動警察　FILE：M661－51"
+   },
    "year": 1991
   },
   "x68000:188675": {
@@ -21896,6 +22247,9 @@
     "x68000:Sekai De Ichiban Kimi Ga Suki! (1990)(Cocktail Soft).zip"
    ],
    "title": "Sekai Deichiban Kimigasuki!",
+   "titles": {
+    "ja": "世界でいちばん君がすき！"
+   },
    "year": 1990
   },
   "x68000:188872": {
@@ -21915,6 +22269,9 @@
    "launchbox": "188872",
    "publisher": "IDES",
    "title": "Shinjuku Monogatari",
+   "titles": {
+    "ja": "新宿物語"
+   },
    "year": 1992
   },
   "x68000:188873": {
@@ -22221,6 +22578,9 @@
     "x68000:Uchuu Kakeru Businessman (1989)(Zenryuutsuu).zip"
    ],
    "title": "Sorakakeru Businessman",
+   "titles": {
+    "ja": "宇宙翔けるビジネスマン"
+   },
    "year": 1990
   },
   "x68000:188978": {
@@ -22478,6 +22838,9 @@
     "x68000:Maririn DX (1994)(Jast).zip"
    ],
    "title": "Super Ultra Mutchin Puri Puri Cyborg: Maririn DX",
+   "titles": {
+    "ja": "スーパーウルトラむっちんぷりぷりサイボーグ マリリンＤＸ"
+   },
    "year": 1994
   },
   "x68000:189056": {
@@ -22522,6 +22885,9 @@
     "x68000:Sweet Emotion (1991)(Discovery Software).zip"
    ],
    "title": "Sweet Emotion",
+   "titles": {
+    "ja": "スウィートエモーション"
+   },
    "year": 1991
   },
   "x68000:189061": {
@@ -22738,6 +23104,9 @@
    "publisher": "Jast",
    "screenshotUrl": "https://images.launchbox-app.com/1bb6de59-a82e-4796-8df6-095626336a35.png",
    "title": "Tenshi-Tachi no Gogo III: Ribbon",
+   "titles": {
+    "ja": "天使たちの午後ＩＩＩ リボン"
+   },
    "year": 1989
   },
   "x68000:189120": {
@@ -22763,6 +23132,9 @@
    "publisher": "Jast",
    "screenshotUrl": "https://images.launchbox-app.com/af2b3da4-c13d-4b3d-98a7-eb273f8c136f.png",
    "title": "Tenshi-Tachi no Gogo IV: Yuuko",
+   "titles": {
+    "ja": "天使たちの午後ＩＶ -ゆう子-"
+   },
    "year": 1991
   },
   "x68000:189121": {
@@ -22785,6 +23157,9 @@
    "publisher": "Jast",
    "screenshotUrl": "https://images.launchbox-app.com/697c345d-176f-41ae-8a39-94b6ea0fc24a.png",
    "title": "Tenshi-Tachi no Gogo VI: My Fair Teacher",
+   "titles": {
+    "ja": "天使たちの午後ＶＩ -My Fair Teacher-"
+   },
    "year": 1993
   },
   "x68000:189122": {
@@ -23095,6 +23470,9 @@
     "x68000:Twilight (1995)(Studio Twin'kle).zip"
    ],
    "title": "Twilight",
+   "titles": {
+    "ja": "トワイライト"
+   },
    "year": 1995
   },
   "x68000:189133": {
@@ -23143,6 +23521,9 @@
     "x68000:Vampire Highschool (1993)(Inter Heart).zip"
    ],
    "title": "Vampire High School",
+   "titles": {
+    "ja": "バンパイアハイすく～る"
+   },
    "year": 1994
   },
   "x68000:189135": {
@@ -23268,6 +23649,9 @@
     "x68000:Virus No Dengon (199x)(Cocktail Soft).zip"
    ],
    "title": "Will no Dengon",
+   "titles": {
+    "ja": "ウィルの伝言"
+   },
    "year": 1992
   },
   "x68000:189138": {
@@ -23355,6 +23739,9 @@
    "publisher": "Zenryuutuu",
    "screenshotUrl": "https://images.launchbox-app.com/e5baf8c4-7746-4946-8477-b952f6e55d11.png",
    "title": "Yaritai Houdai",
+   "titles": {
+    "ja": "やりたい放題"
+   },
    "year": 1988
   },
   "x68000:189150": {
@@ -23379,6 +23766,9 @@
    "publisher": "Zenryuutuu",
    "screenshotUrl": "https://images.launchbox-app.com/5c30039b-c842-44cd-b0f2-678ab673f4a3.png",
    "title": "Yaritai Houdai 2: Tourist o Nerae!!",
+   "titles": {
+    "ja": "やりたい放題２ ツーリストを狙え！！"
+   },
    "year": 1989
   },
   "x68000:189151": {
@@ -23466,6 +23856,9 @@
    "publisher": "D.O.",
    "screenshotUrl": "https://images.launchbox-app.com/effadd11-fbb8-45ad-9fde-4c54cbe7f40b.png",
    "title": "Youjuu Club",
+   "titles": {
+    "ja": "妖獣クラブ"
+   },
    "year": 1990
   },
   "x68000:189154": {
@@ -23490,6 +23883,9 @@
    "publisher": "D.O.",
    "screenshotUrl": "https://images.launchbox-app.com/4a8e92e2-cb72-4212-8e05-764e3fe6fc7b.png",
    "title": "Youjuu Club 2",
+   "titles": {
+    "ja": "妖獣クラブ2"
+   },
    "year": 1991
   },
   "x68000:189155": {
@@ -23534,6 +23930,9 @@
    "launchbox": "189156",
    "publisher": "IDES",
    "title": "Yumeji: Asakusa Kitan",
+   "titles": {
+    "ja": "夢二 浅草綺譚"
+   },
    "year": 1992
   },
   "x68000:189157": {
@@ -23770,6 +24169,9 @@
    "publisher": "Mankai Seisakusho",
    "screenshotUrl": "https://images.launchbox-app.com/5845f0bd-805f-4ea4-93dc-9afdb59389f0.png",
    "title": "Ano, Subarashii o Mou Ichido",
+   "titles": {
+    "ja": "あの、素晴らしい　　をもう一度"
+   },
    "year": 1999
   },
   "x68000:189184": {
@@ -23870,7 +24272,10 @@
    "sourceGroups": [
     "x68000:Lovely Horror Ochame Na Yuurei (19xx)(Zenryuutsuu).zip"
    ],
-   "title": "Lovely Horror: Ochame Na Yuurei"
+   "title": "Lovely Horror: Ochame Na Yuurei",
+   "titles": {
+    "ja": "ラブリーホラー おちゃめなゆうれい"
+   }
   },
   "x68000:189188": {
    "boxArtUrl": "https://images.launchbox-app.com/r2_38e16c4d-9f5a-4d48-bfbd-0fa379f3f1d7.png",
@@ -27052,7 +27457,10 @@
    "sourceGroups": [
     "x68000:Hitomi Zaka (19xx)(Higashikaihotsujuku).zip"
    ],
-   "title": "Hitomi Zaka"
+   "title": "Hitomi Zaka",
+   "titles": {
+    "ja": "ひとみ坂"
+   }
   },
   "x68000:190515": {
    "contentIds": [
@@ -28710,6 +29118,9 @@
     "x68000:Molo-Q (19xx)(-).zip"
    ],
    "title": "Molo-Q",
+   "titles": {
+    "ja": "モロQ"
+   },
    "year": 1990
   },
   "x68000:190910": {
@@ -30028,7 +30439,10 @@
    "sourceGroups": [
     "x68000:SD Toki No Kagi (1989).zip"
    ],
-   "title": "SD Toki No Kagi"
+   "title": "SD Toki No Kagi",
+   "titles": {
+    "ja": "SD時の鍵"
+   }
   },
   "x68000:191717": {
    "contentIds": [
@@ -31523,7 +31937,10 @@
    "sourceGroups": [
     "x68000:Twin Soul (1989)(-).zip"
    ],
-   "title": "Twin Soul"
+   "title": "Twin Soul",
+   "titles": {
+    "ja": "ツインソウル"
+   }
   },
   "x68000:192346": {
    "contentIds": [
@@ -31885,6 +32302,9 @@
    "launchbox": "193475",
    "publisher": "Birdy Soft",
    "title": "Beast 2",
+   "titles": {
+    "ja": "ビースト 2"
+   },
    "year": 1992
   },
   "x68000:193476": {
@@ -31908,7 +32328,10 @@
    "launchbox": "193476",
    "mobygames": 256594,
    "publisher": "Wendy Magazine",
-   "title": "Bell's Avenue 2"
+   "title": "Bell's Avenue 2",
+   "titles": {
+    "ja": "ベルズアベニュー２"
+   }
   },
   "x68000:193477": {
    "boxArtUrl": "https://images.launchbox-app.com/0925eb22-b413-4469-ba03-109c63197eca.jpg",
@@ -32223,7 +32646,10 @@
    "developer": "Studio Angel",
    "launchbox": "456680",
    "publisher": "Zenryuutsuu",
-   "title": "Kindan no Paradise"
+   "title": "Kindan no Paradise",
+   "titles": {
+    "ja": "禁断のパラダイス"
+   }
   },
   "x68000:459677": {
    "boxArtUrl": "https://images.launchbox-app.com/25d39d1b-4b43-4549-9a42-5030a7f4cea5.png",
@@ -34810,6 +35236,9 @@
     "x68000:Bishoujo Shashinkan Moving School (1988)(Hard).zip"
    ],
    "title": "Bishoujo Shashinkan Moving School",
+   "titles": {
+    "ja": "美少女写真館 ムービング・スクール"
+   },
    "year": 1988
   },
   "x68000:local-6cead5a675": {
@@ -37590,6 +38019,9 @@
     "x68000:Ranmaru (1992)(Fairytale).zip"
    ],
    "title": "Ranmaru",
+   "titles": {
+    "ja": "蘭丸"
+   },
    "year": 1992
   },
   "x68000:local-e9e730f332": {
@@ -38459,6 +38891,9 @@
    },
    "mobygames": 45863,
    "title": "Alice-tachi no Gogo Vol. 1",
+   "titles": {
+    "ja": "アリスたちの午後 Vol.1"
+   },
    "year": 1989
   },
   "x68000:moby-45871": {
