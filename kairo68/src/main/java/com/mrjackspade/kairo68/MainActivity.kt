@@ -55,6 +55,11 @@ class MainActivity : MachineActivity<DiskImageEntry>() {
     private fun isFloppy(entry: DiskImageEntry) = format.kind(entry.displayName) == "fd"
 
     override val machineOptions = X68kCatalog.options
+    // Unformatted, as new disks were: Human68k's FORMAT.X, from a system floppy, prepares one.
+    override val blankDisks = listOf(coreBlankDisk("floppy-2hd", UiText.res(FrontendR.string.kairo_blank_floppy, "1.2 MB · 2HD"), "xdf")) +
+        listOf(10, 20, 40).map { mb ->
+            coreBlankDisk("sasi-$mb", UiText.res(FrontendR.string.kairo_blank_hard_disk, "$mb MB · SASI"), "hdf")
+        }
     // In the core's drive order (x68k_machine.h Drive).
     override val mediaSlots = listOf(MediaSlot<DiskImageEntry>(UiText.res(R.string.floppy_0)) { !isHardDisk(it) },
         MediaSlot(UiText.res(R.string.floppy_1)) { !isHardDisk(it) }, MediaSlot(UiText.res(FrontendR.string.kairo_hard_disk), ::isHardDisk))

@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 
+#include "kairo/blank_image.h"
 #include "kairo/machine_core.h"
 #include "kairo/thread_priority.h"
 #include "x68k_machine.h"
@@ -144,4 +145,18 @@ std::unique_ptr<kairo::MachineCore> kairo::create_core(const kairo::Launch &laun
     auto machine = X68kMachine::create(config, error);
     if (!machine) return nullptr;
     return std::make_unique<X68kCore>(std::move(machine));
+}
+
+// The blank disks MainActivity.blankDisks lists, as the X68000's drives took them; Human68k's
+// FORMAT.X prepares each. A 2HD floppy is an XDF, its 1,232 KB of sectors. SASI hard disks of
+// 10, 20 and 40 MB are zeroed 256-byte blocks, the layout MAME's own SASI image creator writes
+// (x68k_hdc_image_device::call_create, 0x13c98 blocks for 20 MB).
+std::string kairo::create_blank_disk(const std::string &kind, const std::string &path) {
+    if (kind == "floppy-2hd") return kairo::write_zeroed_image(path, 77 * 2 * 8 * 1024);
+    uint64_t blocks;
+    if (kind == "sasi-10") blocks = 0x9f54;
+    else if (kind == "sasi-20") blocks = 0x13c98;
+    else if (kind == "sasi-40") blocks = 0x279c8;
+    else return "Kairo68 makes no blank disk " + kind;
+    return kairo::write_zeroed_image(path, blocks * 256);
 }
