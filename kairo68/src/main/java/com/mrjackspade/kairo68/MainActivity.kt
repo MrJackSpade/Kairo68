@@ -51,8 +51,8 @@ class MainActivity : MachineActivity<DiskImageEntry>() {
     override fun createCatalog() = LayeredGameCatalog(this, X68kCatalog)
     override fun createLibrary(catalog: LayeredGameCatalog) = disks
 
-    private fun isHardDisk(entry: DiskImageEntry) = format.kind(entry.displayName) == "hd"
-    private fun isFloppy(entry: DiskImageEntry) = format.kind(entry.displayName) == "fd"
+    private fun isHardDisk(entry: DiskImageEntry) = entry.kind == "hd"
+    private fun isFloppy(entry: DiskImageEntry) = entry.kind == "fd"
 
     override val machineOptions = X68kCatalog.options
     // Unformatted, as new disks were: Human68k's FORMAT.X, from a system floppy, prepares one.
