@@ -16,11 +16,13 @@
       },
       "checks": {
         "boot": {
-          "frames": 600
+          "frames": 600,
+          "audio": true
         },
         "state": {
           "at": 120,
-          "frames": 120
+          "frames": 120,
+          "sound": true
         },
         "sessions": {
           "frames": 180

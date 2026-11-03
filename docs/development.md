@@ -12,7 +12,7 @@ shared\tools\build.ps1 -Install <adb serial>
 
 The machine also builds for the host, without Android: build `core/` with CMake for the host. Run them under `shared\tools\run-limited.ps1`.
 
-- `boot_test <rom dir> <work dir> <image> <seconds>` boots a floppy or SASI hard disk, presses the pad's A button, Space and Return, checks that a save state loads back to the same picture and sound, and starts a second machine in the same process, as the app does for its next game.
+- The shared PC boot test runs the core from `core/test/boot-tests.json`: `shared\tools\test-core.ps1` builds it and runs every check there (the boot and its sound's timing, a save state that loads back to the same picture and sound, sessions in one process, lock keys, loading, the Disks page's swaps, startup commands, the clock, the SASI hard disk, direct taps and mouse motion).
 - `boot_profile <rom dir> <work dir> <image> <cpu MHz> <memory MB> <max guest seconds>` measures a boot: the guest and host seconds to the first picture that is not black and to the end of the boot, with both pictures written as PPM files.
 
 <!-- kairo:ui-tests -->
