@@ -100,10 +100,14 @@ public:
     // a floppy drive that has run stops, a hard disk has been read, or the guest polls the joystick
     // ports. A key, pad or mouse press ends it at once. Always false without skip_memory_check.
     bool booting() const;
-    // Whether the guest boots or a floppy drive's motor runs, which the host runs flat out (Kairo#82).
+    // Whether the guest boots, which the host runs flat out (Kairo#82). Not while a floppy's motor
+    // runs: a game whose drive runs as it plays would run flat out (Kairo68#94).
     bool loading() const;
     // The lock keys on, as the keyboard's lights show them: bit 0 Caps, bit 1 Kana (かな).
     int locks();
+    // IOCS's mouse pointer in frame pixels, the words at $0ACE and $0AD0 _MS_CURGT reads; false
+    // before main RAM is mapped. A guest with a pointer of its own (Lemmings) leaves it where it was.
+    bool pointer(int &x, int &y);
     // Startup commands (kairo::StartupTyper): whether Human68k's command prompt waits for a line, the
     // JIS key that types a character, and the X68000's own Return, Shift, Ctrl and function keys.
     kairo::Prompt prompt() const;

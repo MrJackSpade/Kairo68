@@ -173,9 +173,14 @@ struct X68kMachine::Impl : public osd_interface {
 
     // The boot (X68kMachine::booting), read at the end of each frame on MAME's thread.
     std::atomic<bool> booting{true};
-    // Whether a floppy drive's motor ran at the end of the last frame (X68kMachine::loading).
-    std::atomic<bool> floppy_running{false};
     bool drive_ran = false;
+    // IOCS's pointer at the end of the last frame, x in the high half and y in the low; -1 before main
+    // RAM is mapped (X68kMachine::pointer, read after every frame on the host's thread).
+    std::atomic<int64_t> pointer{-1};
+    // The floppy drives, found once: they are floppy_image_device's subclasses (the X68000's 5.25"
+    // 2HD drives), which a device_type_enumerator of the base type never finds (Kairo68#94).
+    std::vector<floppy_image_device *> floppies;
+    bool floppies_found = false;
     // Whether the guest read a joystick port in this frame and in the one before. A game polls the
     // joystick every frame once it runs, which ends a boot whose drive motor stays on (Kairo68#2);
     // a startup driver that reads the ports does so within one frame, so one frame is not enough.
@@ -361,6 +366,8 @@ void X68kMachine::Impl::free_target() {
 
 void X68kMachine::Impl::init(running_machine &running) {
     machine = &running;
+    floppies.clear();
+    floppies_found = false;
     // A target showing only the screen (no views with artwork, such as the driver's floppy lamps),
     // at its native pixels. Nothing draws it: MAME updates a screen only while a target shows it,
     // and render_frame copies the screen's own bitmap.
@@ -730,16 +737,33 @@ void X68kMachine::Impl::count_accesses(address_space &space) {
 
 void X68kMachine::Impl::update_booting() {
     if (!machine) return;
-    bool running = false;
-    for (floppy_image_device &drive : device_type_enumerator<floppy_image_device>(machine->root_device()))
-        if (drive.exists() && !drive.mon_r()) running = true;
-    floppy_running = running;
+    if (ram) {
+        u16 x, y;
+        std::memcpy(&x, ram + 0x0ace, sizeof x);
+        std::memcpy(&y, ram + 0x0ad0, sizeof y);
+        pointer.store(int64_t(x) << 16 | int64_t(y), std::memory_order_relaxed);
+    }
+    bool running = false, media = false;
+    if (!floppies_found) {
+        for (device_t &device : device_enumerator(machine->root_device()))
+            if (auto *drive = dynamic_cast<floppy_image_device *>(&device)) floppies.push_back(drive);
+        floppies_found = true;
+    }
+    for (floppy_image_device *drive : floppies) {
+        if (!drive->exists()) continue;
+        media = true;
+        if (!drive->mon_r()) running = true;
+    }
     if (!booting.load()) return;
     if (joystick_read && joystick_read_before) booting = false;
     joystick_read_before = joystick_read;
     joystick_read = false;
-    for (x68k_hdc_image_device &disk : device_type_enumerator<x68k_hdc_image_device>(machine->root_device()))
+    for (x68k_hdc_image_device &disk : device_type_enumerator<x68k_hdc_image_device>(machine->root_device())) {
+        if (disk.exists()) media = true;
         if (disk.exists() && disk.busy()) booting = false;
+    }
+    // Nothing to boot from: the IPL waits for a disk at its own screen, and nothing loads (Kairo68#94).
+    if (!media) booting = false;
     if (running) drive_ran = true;
     else if (drive_ran) booting = false;
 }
@@ -953,7 +977,7 @@ void X68kMachine::reset() {
 
 bool X68kMachine::booting() const { return impl_->config.skip_memory_check && impl_->booting.load(); }
 
-bool X68kMachine::loading() const { return booting() || impl_->floppy_running.load(); }
+bool X68kMachine::loading() const { return booting(); }
 
 void X68kMachine::guest_input(uint64_t &keyboard_waits, uint64_t &keyboard_polls, uint64_t &mouse_reads,
                               bool &mouse_set_up) const {
@@ -961,6 +985,14 @@ void X68kMachine::guest_input(uint64_t &keyboard_waits, uint64_t &keyboard_polls
     keyboard_polls = impl_->keyboard_polls.load(std::memory_order_relaxed);
     mouse_reads = impl_->mouse_reads.load(std::memory_order_relaxed);
     mouse_set_up = impl_->mouse_set_up.load(std::memory_order_relaxed);
+}
+
+bool X68kMachine::pointer(int &x, int &y) {
+    const int64_t at = impl_->pointer.load(std::memory_order_relaxed);
+    if (at < 0) return false;
+    x = int(at >> 16);
+    y = int(at & 0xffff);
+    return true;
 }
 
 int X68kMachine::locks() {
