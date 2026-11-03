@@ -1,0 +1,302 @@
+{
+  "tests": [
+    {
+      "name": "Alien Syndrome",
+      "firmware": {
+        "x68000/cgrom.dat": "bios/cgrom.dat",
+        "x68000/iplrom.dat": "bios/iplrom.dat"
+      },
+      "media": [
+        "games/Alien Syndrome (1992)(Dempa)/Alien Syndrome (1992)(Dempa).dim"
+      ],
+      "settings": {
+        "memory": "4",
+        "cpu": "25",
+        "skipMemoryCheck": "on"
+      },
+      "checks": {
+        "boot": {
+          "frames": 600
+        },
+        "state": {
+          "at": 120,
+          "frames": 120
+        },
+        "sessions": {
+          "frames": 180
+        },
+        "guestInput": {
+          "frames": 900,
+          "expect": "keyboard"
+        },
+        "locks": {
+          "at": 300,
+          "keys": [
+            {
+              "code": 93,
+              "bit": 0
+            },
+            {
+              "code": 90,
+              "bit": 1
+            }
+          ]
+        },
+        "loading": {
+          "startsBy": 120,
+          "doneBy": 1800,
+          "settled": 120,
+          "idle": {
+            "media": [],
+            "frames": 600
+          }
+        }
+      }
+    },
+    {
+      "name": "Lemmings",
+      "firmware": {
+        "x68000/cgrom.dat": "bios/cgrom.dat",
+        "x68000/iplrom.dat": "bios/iplrom.dat"
+      },
+      "media": [
+        "games/Lemmings (1991)(Imagineer)/Lemmings (1991)(Imagineer).dim"
+      ],
+      "settings": {
+        "memory": "4",
+        "cpu": "25",
+        "skipMemoryCheck": "on"
+      },
+      "checks": {
+        "guestInput": {
+          "frames": 1800,
+          "expect": "mouse"
+        }
+      }
+    },
+    {
+      "name": "Human68k",
+      "firmware": {
+        "x68000/cgrom.dat": "bios/cgrom.dat",
+        "x68000/iplrom.dat": "bios/iplrom.dat"
+      },
+      "media": [
+        "games/Human 68k v3.02 with WINDVR (1993)(Sharp - Hudson)/Human 68k v3.02 with WINDVR (1993)(Sharp - Hudson).dim"
+      ],
+      "settings": {
+        "memory": "4",
+        "cpu": "25",
+        "skipMemoryCheck": "on"
+      },
+      "checks": {
+        "commands": {
+          "commands": "VER",
+          "typedBy": 1800,
+          "answerBy": 600,
+          "screens": [
+            "2e30103170bf41fb"
+          ]
+        },
+        "sessions": {
+          "frames": 600
+        },
+        "loading": {
+          "startsBy": 120,
+          "doneBy": 1800,
+          "settled": 120
+        }
+      }
+    },
+    {
+      "name": "Mahjongg Saikyou Musashi",
+      "firmware": {
+        "x68000/cgrom.dat": "bios/cgrom.dat",
+        "x68000/iplrom.dat": "bios/iplrom.dat"
+      },
+      "media": [
+        "games/Mahjongg Saikyou Musashi (1989)(Cosmos Computer)(Disk 1 of 2)/Mahjongg Saikyou Musashi (1989)(Cosmos Computer)(Disk 1 of 2).dim",
+        "games/Mahjongg Saikyou Musashi (1989)(Cosmos Computer)(Disk 2 of 2)/Mahjongg Saikyou Musashi (1989)(Cosmos Computer)(Disk 2 of 2).dim"
+      ],
+      "settings": {
+        "memory": "4",
+        "cpu": "25",
+        "skipMemoryCheck": "on"
+      },
+      "checks": {
+        "stateDisks": {
+          "drive": 0,
+          "at": 600,
+          "swap": "games/Lemmings (1991)(Imagineer)/Lemmings (1991)(Imagineer).dim"
+        }
+      }
+    },
+    {
+      "name": "Mahjongg Saikyou Musashi drive 1",
+      "firmware": {
+        "x68000/cgrom.dat": "bios/cgrom.dat",
+        "x68000/iplrom.dat": "bios/iplrom.dat"
+      },
+      "media": [
+        "games/Mahjongg Saikyou Musashi (1989)(Cosmos Computer)(Disk 1 of 2)/Mahjongg Saikyou Musashi (1989)(Cosmos Computer)(Disk 1 of 2).dim",
+        "games/Mahjongg Saikyou Musashi (1989)(Cosmos Computer)(Disk 2 of 2)/Mahjongg Saikyou Musashi (1989)(Cosmos Computer)(Disk 2 of 2).dim"
+      ],
+      "settings": {
+        "memory": "4",
+        "cpu": "25",
+        "skipMemoryCheck": "on"
+      },
+      "checks": {
+        "stateDisks": {
+          "drive": 1,
+          "at": 600,
+          "swap": ""
+        }
+      }
+    },
+    {
+      "name": "IPL memory check",
+      "firmware": {
+        "x68000/cgrom.dat": "bios/cgrom.dat",
+        "x68000/iplrom.dat": "bios/iplrom.dat"
+      },
+      "media": [],
+      "settings": {
+        "memory": "4",
+        "cpu": "25",
+        "skipMemoryCheck": "off"
+      },
+      "checks": {
+        "clock": {
+          "setting": "cpu",
+          "values": [
+            "10",
+            "25"
+          ],
+          "doneBy": 7200,
+          "ratio": 0.7,
+          "margin": 0.05,
+          "screens": [
+            "1903f37182169eca"
+          ]
+        }
+      }
+    },
+    {
+      "name": "SASI hard disk",
+      "firmware": {
+        "x68000/cgrom.dat": "bios/cgrom.dat",
+        "x68000/iplrom.dat": "bios/iplrom.dat"
+      },
+      "media": [
+        "games/Human 68k v3.02 with WINDVR (1993)(Sharp - Hudson)/Human 68k v3.02 with WINDVR (1993)(Sharp - Hudson).dim",
+        "",
+        "games/R+R (1995) (NIN-NIKI).HDF"
+      ],
+      "settings": {
+        "memory": "4",
+        "cpu": "25",
+        "skipMemoryCheck": "on"
+      },
+      "checks": {
+        "hardDisk": {
+          "settle": 300,
+          "write": {
+            "commands": "ECHO KAIRO68>E:KAIRO.TXT",
+            "typedBy": 1800
+          },
+          "read": {
+            "commands": "TYPE E:KAIRO.TXT",
+            "typedBy": 1800,
+            "answerBy": 300,
+            "screens": [
+              "fbec0dedc91a5db2"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "Cat's Part-1",
+      "firmware": {
+        "x68000/cgrom.dat": "bios/cgrom.dat",
+        "x68000/iplrom.dat": "bios/iplrom.dat"
+      },
+      "media": [
+        "games/Cat's Part-1 (1993)(Cat's Pro)/Cat's Part-1 (1993)(Cat's Pro)(Disk 1 of 3)(Disk A).dim",
+        "games/Cat's Part-1 (1993)(Cat's Pro)/Cat's Part-1 (1993)(Cat's Pro)(Disk 2 of 3)(Disk B).dim"
+      ],
+      "settings": {
+        "memory": "4",
+        "cpu": "25",
+        "skipMemoryCheck": "on"
+      },
+      "checks": {
+        "directTap": {
+          "frames": 1800,
+          "warpBy": 600,
+          "tolerance": 4,
+          "points": [
+            {
+              "x": 200,
+              "y": 150
+            },
+            {
+              "x": 560,
+              "y": 380
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Cat's Part-1 mouse left",
+      "firmware": {
+        "x68000/cgrom.dat": "bios/cgrom.dat",
+        "x68000/iplrom.dat": "bios/iplrom.dat"
+      },
+      "media": [
+        "games/Cat's Part-1 (1993)(Cat's Pro)/Cat's Part-1 (1993)(Cat's Pro)(Disk 1 of 3)(Disk A).dim",
+        "games/Cat's Part-1 (1993)(Cat's Pro)/Cat's Part-1 (1993)(Cat's Pro)(Disk 2 of 3)(Disk B).dim"
+      ],
+      "settings": {
+        "memory": "4",
+        "cpu": "25",
+        "skipMemoryCheck": "on"
+      },
+      "checks": {
+        "mouseMotion": {
+          "frames": 1800,
+          "dx": -8,
+          "dy": 0,
+          "moves": 600,
+          "tolerance": 2
+        }
+      }
+    },
+    {
+      "name": "Cat's Part-1 mouse up",
+      "firmware": {
+        "x68000/cgrom.dat": "bios/cgrom.dat",
+        "x68000/iplrom.dat": "bios/iplrom.dat"
+      },
+      "media": [
+        "games/Cat's Part-1 (1993)(Cat's Pro)/Cat's Part-1 (1993)(Cat's Pro)(Disk 1 of 3)(Disk A).dim",
+        "games/Cat's Part-1 (1993)(Cat's Pro)/Cat's Part-1 (1993)(Cat's Pro)(Disk 2 of 3)(Disk B).dim"
+      ],
+      "settings": {
+        "memory": "4",
+        "cpu": "25",
+        "skipMemoryCheck": "on"
+      },
+      "checks": {
+        "mouseMotion": {
+          "frames": 1800,
+          "dx": 0,
+          "dy": -8,
+          "moves": 600,
+          "tolerance": 2
+        }
+      }
+    }
+  ]
+}

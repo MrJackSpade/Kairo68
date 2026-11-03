@@ -71,6 +71,11 @@ public:
     bool loading() override { return machine_->loading(); }
     // Bit 0 Caps, bit 1 Kana, as NativeMachine lists them (MainActivity).
     int locks() override { return machine_->locks(); }
+    // IOCS's pointer, for the shared PC boot test's direct-tap check (Kairo#121).
+    std::string details() override {
+        int x = 0, y = 0;
+        return machine_->pointer(x, y) ? "pointer=" + std::to_string(x) + "," + std::to_string(y) : "";
+    }
     void mouse_warp(int x, int y) override { machine_->mouse_warp(x, y); }
 
     // Startup commands (Kairo68#70), typed at Human68k's command prompt.
