@@ -42,11 +42,7 @@ class MainActivity : MachineActivity<DiskImageEntry>() {
     override val artworkDownloadsEnabled: Boolean get() = resources.getBoolean(R.bool.catalog_art_download_enabled)
 
     /** Floppy images in the formats MAME's X68000 reads, and SASI hard disk images. */
-    private val format = DiskImageLibrary.Format(
-        kinds = listOf("xdf", "dim", "d88", "88d", "hdm", "2hd", "dup").associateWith { "fd" } + mapOf("hdf" to "hd"),
-        labels = mapOf("fd" to UiText.res(FrontendR.string.kairo_floppy_disk), "hd" to UiText.res(FrontendR.string.kairo_hard_disk)),
-        maxBytes = mapOf("fd" to 64L * 1024 * 1024, "hd" to 4L * 1024 * 1024 * 1024),
-        guestName = "X68000")
+    private val format = X68kMedia.format
     private val disks by lazy { DiskImageLibrary(this, format) }
     override fun createCatalog() = LayeredGameCatalog(this, X68kCatalog)
     override fun createLibrary(catalog: LayeredGameCatalog) = disks
@@ -67,13 +63,7 @@ class MainActivity : MachineActivity<DiskImageEntry>() {
     /** MAME's ROM path: it reads the X68000 set from its x68000 folder. */
     private val romDir by lazy { File(filesDir, "firmware") }
     private val firmwareDir by lazy { File(romDir, "x68000") }
-    override val firmwareSets by lazy {
-        fun rom(name: String, label: UiText, description: Int, size: Int) = FirmwareSet.Part(name, label,
-            UiText.res(FrontendR.string.kairo_firmware_part, name, UiText.res(description, "X68000")), setOf(name), true, setOf(size.toLong()))
-        listOf(UiText.res(FrontendR.string.kairo_firmware_title, "X68000") to FirmwareSet(firmwareDir, listOf(
-            rom("iplrom.dat", UiText.fixed("IPL"), R.string.firmware_ipl_description, 0x20000),
-            rom("cgrom.dat", UiText.res(R.string.firmware_font), R.string.firmware_font_description, 0xC0000))))
-    }
+    override val firmwareSets by lazy { X68kFirmware.sets(firmwareDir) }
 
     override fun startGame(entry: DiskImageEntry, game: CatalogGame, cancelled: AtomicBoolean,
                            progress: (String) -> Unit) {
