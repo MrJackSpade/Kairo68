@@ -299,6 +299,75 @@
           "tolerance": 2
         }
       }
+    },
+    {
+      "name": "X68000 mouse program",
+      "firmware": {
+        "x68000/cgrom.dat": "bios/cgrom.dat",
+        "x68000/iplrom.dat": "bios/iplrom.dat"
+      },
+      "media": [
+        "games/Human 68k v3.02 with WINDVR (1993)(Sharp - Hudson)/Human 68k v3.02 with WINDVR (1993)(Sharp - Hudson).dim",
+        "app:core/test/x68k/mouse.xdf"
+      ],
+      "settings": {
+        "memory": "4",
+        "cpu": "25",
+        "skipMemoryCheck": "on"
+      },
+      "checks": {
+        "directTap": {
+          "commands": "B:MOUSE68.R",
+          "typedBy": 1800,
+          "frames": 120,
+          "warpBy": 1200,
+          "tolerance": 0,
+          "ownPointer": true,
+          "clickFrames": 42,
+          "points": [
+            {
+              "x": 4,
+              "y": 4,
+              "screens": [
+                "3c0f458f2f5b1ba5"
+              ],
+              "selectedBy": 60
+            },
+            {
+              "x": 764,
+              "y": 4,
+              "screens": [
+                "6d99a4508caad165"
+              ],
+              "selectedBy": 60
+            },
+            {
+              "x": 4,
+              "y": 508,
+              "screens": [
+                "6bd08c5e66273b25"
+              ],
+              "selectedBy": 60
+            },
+            {
+              "x": 764,
+              "y": 508,
+              "screens": [
+                "55f48b008b3f0765"
+              ],
+              "selectedBy": 60
+            },
+            {
+              "x": 384,
+              "y": 256,
+              "screens": [
+                "d8e3df951db2d1a5"
+              ],
+              "selectedBy": 60
+            }
+          ]
+        }
+      }
     }
   ]
 }
