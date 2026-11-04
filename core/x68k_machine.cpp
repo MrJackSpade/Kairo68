@@ -491,14 +491,19 @@ void X68kMachine::Impl::steer_corner() {
     if (corner.done() && !corner_dx && !corner_dy) warp_done = true;
 }
 
-void X68kMachine::Impl::input_update(bool) {
-    mouse_frame_dx = mouse_dx.exchange(0);
-    mouse_frame_dy = mouse_dy.exchange(0);
+// MAME calls this twice a frame (video_manager::frame_update), and the ports read the mouse once,
+// after both: relative_reset starts the frame's motion, and the second call only adds what came
+// since. A frame's work (the warp's steering) is the first call's; the second redoing it threw
+// away the first's motion (Kairo68#95).
+void X68kMachine::Impl::input_update(bool relative_reset) {
+    const int dx = mouse_dx.exchange(0), dy = mouse_dy.exchange(0);
+    mouse_frame_dx = relative_reset ? dx : mouse_frame_dx + dx;
+    mouse_frame_dy = relative_reset ? dy : mouse_frame_dy + dy;
     // The ports are complete once the machine runs.
     if (machine->phase() != machine_phase::RUNNING) return;
     if (!fields_found) find_fields();
     // Only a guest that set the IOCS mouse up has a pointer to steer; otherwise the warp waits.
-    if (!warp_done.load() && ram && mouse_set_up.load()) steer_warp();
+    if (relative_reset && !warp_done.load() && ram && mouse_set_up.load()) steer_warp();
     for (int code = 0; code < kKeyCodes; ++code) {
         const bool down = keys[code];
         if (key_fields[code] && down != keys_applied[code]) {
