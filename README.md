@@ -39,6 +39,14 @@
 Both editions are built from the same source and have the same features. Requires an ARM64 device running Android 8.0 or newer.
 <!-- /kairo:download -->
 
+## Screenshots
+
+| Library | Details | Playing |
+| --- | --- | --- |
+| ![Kairo68 game library](docs/screenshots/library.png) | ![Game details in Kairo68](docs/screenshots/game-details.png) | ![Akumajou Dracula running in Kairo68](docs/screenshots/running-game.png) |
+
+Games shown in screenshots are user-provided and are not bundled with the app.
+
 ## Quick start
 
 1. Install Kairo68 from [GitHub Releases](https://github.com/MrJackSpade/Kairo68/releases).
