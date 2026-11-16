@@ -15,6 +15,8 @@
 #include <condition_variable>
 #include <cstring>
 #include <deque>
+#include <filesystem>
+#include <fstream>
 #include <functional>
 #include <mutex>
 #include <sstream>
@@ -253,6 +255,10 @@ struct X68kMachine::Impl : public osd_interface {
     void update(bool skip_redraw) override;
     void render_frame();
     void own_picture();
+    // A state saved during the boot (Kairo68#92): the boot and its fast-forward, written beside
+    // MAME's state, and put back by a load. "" or what went wrong.
+    std::string write_boot_state(const std::string &file);
+    std::string read_boot_state(const std::string &file);
     void run_tasks(std::unique_lock<std::mutex> &lock);
     void input_update(bool relative_reset) override;
     void find_fields();
@@ -1057,26 +1063,103 @@ bool X68kMachine::await_state_ready(std::string &error) {
 
 bool X68kMachine::save_state(const std::string &file, std::string &error) {
     if (!await_state_ready(error)) return false;
-    error = impl_->between_frames<std::string>([file](running_machine &m) -> std::string {
+    Impl *impl = impl_.get();
+    error = impl_->between_frames<std::string>([file, impl](running_machine &m) -> std::string {
         emu_file out(OPEN_FLAG_WRITE | OPEN_FLAG_CREATE | OPEN_FLAG_CREATE_PATHS);
         if (out.open(file)) return "could not create " + file;
         const save_error saved = m.save().write_file(out);
-        return saved == STATERR_NONE ? "" : state_error_text(saved);
+        if (saved != STATERR_NONE) return state_error_text(saved);
+        return impl->write_boot_state(file);
     });
     return error.empty();
 }
 
 bool X68kMachine::load_state(const std::string &file, std::string &error) {
-    // A saved state is past the boot.
-    impl_->booting = false;
     if (!await_state_ready(error)) return false;
-    error = impl_->between_frames<std::string>([file](running_machine &m) -> std::string {
+    Impl *impl = impl_.get();
+    error = impl_->between_frames<std::string>([file, impl](running_machine &m) -> std::string {
         emu_file in(OPEN_FLAG_READ);
         if (in.open(file)) return "could not open " + file;
         const save_error loaded = m.save().read_file(in);
-        return loaded == STATERR_NONE ? "" : state_error_text(loaded);
+        if (loaded != STATERR_NONE) return state_error_text(loaded);
+        return impl->read_boot_state(file);
     });
     return error.empty();
+}
+
+namespace {
+
+// A state's boot file: MAME's state file's name with this after it.
+constexpr const char *kBootSuffix = ".boot";
+constexpr char kBootMagic[8] = {'K', '6', '8', 'B', 'O', 'O', 'T', '1'};
+
+} // namespace
+
+// The boot file holds, in this order: kBootMagic; one byte each for booting, drive_ran,
+// joystick_read_before, MAME's fast-forward and whether it skips the next frame's screen update;
+// MAME's frame-skip step; then the picture the skipped frames show (32-bit width and height, then
+// its 0xAARRGGBB words), 0 by 0 when the boot does not fast-forward. A state saved past the boot
+// has no boot file, as every state from before Kairo68#92.
+std::string X68kMachine::Impl::write_boot_state(const std::string &file) {
+    const std::string path = file + kBootSuffix;
+    std::error_code removed;
+    std::filesystem::remove(std::filesystem::u8path(path), removed);
+    if (removed) return "could not remove the old " + path + ": " + removed.message();
+    if (!booting.load()) return "";
+    video_manager &video = machine->video();
+    const bool fastforward = video.fastforward();
+    // Fast-forwarded frames show the picture own_picture copied (update).
+    if (fastforward && picture != owned.data()) return "the boot's picture is not its own copy";
+    std::ofstream out(std::filesystem::u8path(path), std::ios::binary | std::ios::trunc);
+    if (!out) return "could not create " + path;
+    out.write(kBootMagic, sizeof kBootMagic);
+    const u8 flags[6] = {u8(booting.load()), u8(drive_ran), u8(joystick_read_before), u8(fastforward),
+                         u8(video.skip_this_frame()), video.kairo_frameskip_step()};
+    out.write(reinterpret_cast<const char *>(flags), sizeof flags);
+    const uint32_t size[2] = {fastforward ? width : 0, fastforward ? height : 0};
+    out.write(reinterpret_cast<const char *>(size), sizeof size);
+    if (fastforward) out.write(reinterpret_cast<const char *>(owned.data()), std::streamsize(owned.size() * sizeof owned[0]));
+    out.close();
+    return out ? "" : "could not write " + path;
+}
+
+std::string X68kMachine::Impl::read_boot_state(const std::string &file) {
+    const std::string path = file + kBootSuffix;
+    video_manager &video = machine->video();
+    if (!std::filesystem::exists(std::filesystem::u8path(path))) {
+        // Saved past the boot: no fast-forward, and the next frame drawn.
+        booting = false;
+        video.set_fastforward(false);
+        video.kairo_restore_frameskip(video.kairo_frameskip_step(), false);
+        return "";
+    }
+    std::ifstream in(std::filesystem::u8path(path), std::ios::binary);
+    if (!in) return "could not open " + path;
+    char magic[sizeof kBootMagic];
+    u8 flags[6];
+    uint32_t size[2];
+    in.read(magic, sizeof magic);
+    in.read(reinterpret_cast<char *>(flags), sizeof flags);
+    in.read(reinterpret_cast<char *>(size), sizeof size);
+    if (!in || std::memcmp(magic, kBootMagic, sizeof magic) != 0) return path + " is not a Kairo68 boot state";
+    std::vector<uint32_t> pixels(size_t(size[0]) * size[1]);
+    in.read(reinterpret_cast<char *>(pixels.data()), std::streamsize(pixels.size() * sizeof pixels[0]));
+    if (!in || in.peek() != std::ifstream::traits_type::eof()) return path + " is not a whole Kairo68 boot state";
+    booting = flags[0] != 0;
+    drive_ran = flags[1] != 0;
+    joystick_read_before = flags[2] != 0;
+    joystick_read = false;
+    video.set_fastforward(flags[3] != 0);
+    video.kairo_restore_frameskip(flags[5], flags[4] != 0);
+    if (flags[3]) {
+        if (pixels.empty()) return path + " has no picture for its fast-forward";
+        width = size[0];
+        height = size[1];
+        owned = std::move(pixels);
+        picture = owned.data();
+        picture_pitch = width;
+    }
+    return "";
 }
 
 std::vector<std::pair<std::string, uint64_t>> X68kMachine::take_perf() {

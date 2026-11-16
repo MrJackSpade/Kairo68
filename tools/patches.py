@@ -888,6 +888,20 @@ SCREEN_COLOR_GETTERS = [
 """,),
 ]
 
+# Where frame skipping is in its cycle (Kairo68#92). The boot's fast-forward skips the screen
+# updates of 11 frames in 12 by a counter MAME does not save, so a state saved during the boot keeps
+# it (core/x68k_machine.cpp, BootState) and a load puts it back: the frames after the load are drawn
+# and skipped as the frames after the save were.
+VIDEO_FRAMESKIP_STEP = [
+    ('src/emu/video.h',
+     """	void set_fastforward(bool ffwd) { m_fastforward = ffwd; }
+""",
+     """	void set_fastforward(bool ffwd) { m_fastforward = ffwd; }
+	u8 kairo_frameskip_step() const { return m_frameskip_counter; }   // Kairo68
+	void kairo_restore_frameskip(u8 step, bool skipping) { m_frameskip_counter = step; m_skipping_this_frame = skipping; }   // Kairo68
+""",),
+]
+
 # Measurement counters for x68k_state::screen_update's stages (Kairo68#18): the layer under BG, the
 # graphics pages, BG and sprites, and the per-pixel mix with the text layer. Empty unless the
 # build defines KAIRO68_PERF.
@@ -1553,5 +1567,6 @@ PATCHES = {'x68k-save-state': X68K_SAVE_STATE, 'x68k-sasi-count': X68K_SASI_COUN
            'm68000-linef-hook': M68000_LINEF_HOOK,
            'x68k-split-check': X68K_SPLIT_CHECK,
            'x68k-mouse-wrap': X68K_MOUSE_WRAP,
-           'x68k-mouse-pending': X68K_MOUSE_PENDING
+           'x68k-mouse-pending': X68K_MOUSE_PENDING,
+           'video-frameskip-step': VIDEO_FRAMESKIP_STEP
 }

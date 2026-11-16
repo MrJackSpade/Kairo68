@@ -59,6 +59,8 @@ public:
 	void set_throttled(bool throttled) { m_throttled = throttled; }
 	void set_throttle_rate(float throttle_rate) { m_throttle_rate = throttle_rate; }
 	void set_fastforward(bool ffwd) { m_fastforward = ffwd; }
+	u8 kairo_frameskip_step() const { return m_frameskip_counter; }   // Kairo68
+	void kairo_restore_frameskip(u8 step, bool skipping) { m_frameskip_counter = step; m_skipping_this_frame = skipping; }   // Kairo68
 	void set_output_changed() { m_output_changed = true; }
 	void set_speed_factor(int speed) { m_speed = speed; }
 
