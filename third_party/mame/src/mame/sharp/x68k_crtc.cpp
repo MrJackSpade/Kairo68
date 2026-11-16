@@ -72,6 +72,8 @@ void x68k_crtc_device::device_start()
 	save_item(NAME(m_vtotal));
 	save_item(NAME(m_hend));
 	save_item(NAME(m_vend));
+	save_item(NAME(m_hbegin)); // Kairo68
+	save_item(NAME(m_vbegin)); // Kairo68
 	save_item(NAME(m_hsync_end));
 	save_item(NAME(m_vsync_end));
 	save_item(NAME(m_hsyncadjust));

@@ -920,6 +920,22 @@ YMFM_OPM_NOISE_LFO_STATE = [
 """,),
 ]
 
+# The CRTC's picture origin in saved states (Kairo68#100). refresh_mode computes where the picture begins
+# (m_hbegin, m_vbegin) from the registers whenever they change, and every layer is drawn from it,
+# but the device saved only where it ends: a loaded state drew its picture from the origin of the
+# screen mode before the load, shifted, until the game set its mode again (Lemmings: 231 frames).
+X68K_CRTC_BEGIN_SAVE = [
+    ('src/mame/sharp/x68k_crtc.cpp',
+     """	save_item(NAME(m_hend));
+	save_item(NAME(m_vend));
+""",
+     """	save_item(NAME(m_hend));
+	save_item(NAME(m_vend));
+	save_item(NAME(m_hbegin)); // Kairo68
+	save_item(NAME(m_vbegin)); // Kairo68
+""",),
+]
+
 # Measurement counters for x68k_state::screen_update's stages (Kairo68#18): the layer under BG, the
 # graphics pages, BG and sprites, and the per-pixel mix with the text layer. Empty unless the
 # build defines KAIRO68_PERF.
@@ -1587,5 +1603,6 @@ PATCHES = {'x68k-save-state': X68K_SAVE_STATE, 'x68k-sasi-count': X68K_SASI_COUN
            'x68k-mouse-wrap': X68K_MOUSE_WRAP,
            'x68k-mouse-pending': X68K_MOUSE_PENDING,
            'video-frameskip-step': VIDEO_FRAMESKIP_STEP,
-           'ymfm-opm-noise-lfo-state': YMFM_OPM_NOISE_LFO_STATE
+           'ymfm-opm-noise-lfo-state': YMFM_OPM_NOISE_LFO_STATE,
+           'x68k-crtc-begin-save': X68K_CRTC_BEGIN_SAVE
 }
