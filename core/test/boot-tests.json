@@ -73,6 +73,12 @@
         "midiOut": "none"
       },
       "checks": {
+        "state": {
+          "at": 1100,
+          "frames": 300,
+          "sound": true,
+          "sameState": true
+        },
         "guestInput": {
           "frames": 1800,
           "expect": "mouse"

@@ -128,6 +128,15 @@ protected:
 	uint64_t m_update_frame = ~uint64_t(0);
 	bool m_frame_skipped = false;
 	uint64_t m_drawn_generation = 0;
+	// Kairo68#100 (kairo68_blank): the frame m_blank_rows is of, the columns each of its lines was
+	// drawn across so far (left > right: not drawn), and whether every line drawn so far was drawn
+	// across m_blank_span, the columns of the last call.
+	uint64_t m_blank_frame = ~uint64_t(0);
+	std::vector<std::pair<int, int>> m_blank_rows;
+	std::pair<int, int> m_blank_span{1, 0};
+	bool m_blank_one_span = true;
+	void kairo68_blank(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect,
+		const rectangle &rect, bool dark);
 
 	void floppy_load_unload(bool load, floppy_image_device *dev);
 	void floppy_load(floppy_image_device *dev);
@@ -207,13 +216,23 @@ public:
 	{
 		const uint64_t frame = m_update_frame, drawn = m_drawn_generation;
 		const bool skipped = m_frame_skipped;
+		const uint64_t blank_frame = m_blank_frame;
+		const auto blank_span = m_blank_span;
+		const bool blank_one_span = m_blank_one_span;
+		std::vector<std::pair<int, int>> blank_rows;
+		blank_rows.swap(m_blank_rows);
 		m_update_frame = screen.frame_number();
 		m_frame_skipped = false;
 		m_drawn_generation = 0;
+		m_blank_frame = ~uint64_t(0);
 		screen_update(screen, bitmap, cliprect);
 		m_update_frame = frame;
 		m_frame_skipped = skipped;
 		m_drawn_generation = drawn;
+		m_blank_frame = blank_frame;
+		m_blank_span = blank_span;
+		m_blank_one_span = blank_one_span;
+		m_blank_rows.swap(blank_rows);
 	}
 protected:
 	TIMER_CALLBACK_MEMBER(floppy_tc_tick);

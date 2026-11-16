@@ -21,7 +21,9 @@
 #include "png.h"
 
 #include <cstdio>
+#include <cstring> // Kairo68#100
 #include <set>
+#include <vector> // Kairo68#100
 
 
 //**************************************************************************
@@ -1099,8 +1101,33 @@ void screen_device::realloc_screen_bitmaps()
 	s32 effheight = std::max(m_height, m_visarea.bottom() + 1);
 
 	// resize all registered screen bitmaps
+	// Kairo68#100: each pixel stays at its own row and column, and what the new size adds is 0
+	// (black). bitmap_t::resize reuses the memory with the new row length when it fits, so a mode
+	// change in mid-frame (Lemmings after its DMA Design logo) sheared the lines drawn before it
+	// over bytes earlier frames had left, which a saved state does not hold.
 	for (auto &item : m_auto_bitmap_list)
-		item->m_bitmap.resize(effwidth, effheight);
+	{
+		bitmap_t &bitmap = item->m_bitmap;
+		if (bitmap.width() == effwidth && bitmap.height() == effheight)
+		{
+			bitmap.resize(effwidth, effheight);
+			continue;
+		}
+		const s32 keep_width = std::min(bitmap.width(), effwidth), keep_height = std::min(bitmap.height(), effheight);
+		const size_t pixel_bytes = bitmap.bpp() / 8;
+		std::vector<u8> kept(size_t(keep_width) * keep_height * pixel_bytes);
+		for (s32 y = 0; y < keep_height; y++)
+			std::memcpy(&kept[size_t(y) * keep_width * pixel_bytes], bitmap.raw_pixptr(y), size_t(keep_width) * pixel_bytes);
+		bitmap.resize(effwidth, effheight);
+		for (s32 y = 0; y < effheight; y++)
+		{
+			u8 *const row = static_cast<u8 *>(bitmap.raw_pixptr(y));
+			const s32 kept_here = y < keep_height ? keep_width : 0;
+			if (kept_here)
+				std::memcpy(row, &kept[size_t(y) * keep_width * pixel_bytes], size_t(kept_here) * pixel_bytes);
+			std::memset(row + size_t(kept_here) * pixel_bytes, 0, size_t(effwidth - kept_here) * pixel_bytes);
+		}
+	}
 
 	// re-set up textures
 	if (m_palette)

@@ -1571,6 +1571,47 @@ X68K_MOUSE_PENDING = [
      '\tvirtual void input_rts(int state) override; // MSCTRL (active low)\n\n\t// Kairo68: whether the axes moved since the guest last polled the mouse, so a packet has motion\n\t// the guest has not taken yet.\n\tbool kairo68_motion_pending() { return u16(m_x_axis->read()) != m_x || u16(m_y_axis->read()) != m_y; }\n',),
 ]
 
+# A frame's picture holds only what that frame drew (Kairo68#100): the screen's resize keeps each
+# pixel at its own row and column (bitmap_t::resize sheared them over bytes earlier frames left), and
+# screen_update blacks out what a call leaves undrawn: the columns lines drawn earlier in the frame
+# never covered, cliprect outside the CRTC's window, all of it at contrast 0. A Lemmings state loaded
+# before its mid-frame mode change showed the pictures from before the load there.
+X68K_FRAME_HOLDS_ITS_OWN = [
+    ('src/emu/screen.cpp',
+     '#include <cstdio>\n#include <set>\n',
+     '#include <cstdio>\n#include <cstring> // Kairo68#100\n#include <set>\n'),
+    ('src/emu/screen.cpp',
+     '#include <set>\n\n',
+     '#include <set>\n#include <vector> // Kairo68#100\n\n'),
+    ('src/emu/screen.cpp',
+     '\t// resize all registered screen bitmaps\n\tfor (auto &item : m_auto_bitmap_list)\n',
+     '\t// resize all registered screen bitmaps\n\t// Kairo68#100: each pixel stays at its own row and column, and what the new size adds is 0\n\t// (black). bitmap_t::resize reuses the memory with the new row length when it fits, so a mode\n\t// change in mid-frame (Lemmings after its DMA Design logo) sheared the lines drawn before it\n\t// over bytes earlier frames had left, which a saved state does not hold.\n\tfor (auto &item : m_auto_bitmap_list)\n'),
+    ('src/emu/screen.cpp',
+     '\tfor (auto &item : m_auto_bitmap_list)\n\t\titem->m_bitmap.resize(effwidth, effheight);\n\n',
+     '\tfor (auto &item : m_auto_bitmap_list)\n\t{\n\t\tbitmap_t &bitmap = item->m_bitmap;\n\t\tif (bitmap.width() == effwidth && bitmap.height() == effheight)\n\t\t{\n\t\t\tbitmap.resize(effwidth, effheight);\n\t\t\tcontinue;\n\t\t}\n\t\tconst s32 keep_width = std::min(bitmap.width(), effwidth), keep_height = std::min(bitmap.height(), effheight);\n\t\tconst size_t pixel_bytes = bitmap.bpp() / 8;\n\t\tstd::vector<u8> kept(size_t(keep_width) * keep_height * pixel_bytes);\n\t\tfor (s32 y = 0; y < keep_height; y++)\n\t\t\tstd::memcpy(&kept[size_t(y) * keep_width * pixel_bytes], bitmap.raw_pixptr(y), size_t(keep_width) * pixel_bytes);\n\t\tbitmap.resize(effwidth, effheight);\n\t\tfor (s32 y = 0; y < effheight; y++)\n\t\t{\n\t\t\tu8 *const row = static_cast<u8 *>(bitmap.raw_pixptr(y));\n\t\t\tconst s32 kept_here = y < keep_height ? keep_width : 0;\n\t\t\tif (kept_here)\n\t\t\t\tstd::memcpy(row, &kept[size_t(y) * keep_width * pixel_bytes], size_t(kept_here) * pixel_bytes);\n\t\t\tstd::memset(row + size_t(kept_here) * pixel_bytes, 0, size_t(effwidth - kept_here) * pixel_bytes);\n\t\t}\n\t}\n\n'),
+    ('src/mame/sharp/x68k.h',
+     '\tuint64_t m_drawn_generation = 0;\n\n',
+     '\tuint64_t m_drawn_generation = 0;\n\t// Kairo68#100 (kairo68_blank): the frame m_blank_rows is of, the columns each of its lines was\n\t// drawn across so far (left > right: not drawn), and whether every line drawn so far was drawn\n\t// across m_blank_span, the columns of the last call.\n\tuint64_t m_blank_frame = ~uint64_t(0);\n\tstd::vector<std::pair<int, int>> m_blank_rows;\n\tstd::pair<int, int> m_blank_span{1, 0};\n\tbool m_blank_one_span = true;\n\tvoid kairo68_blank(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect,\n\t\tconst rectangle &rect, bool dark);\n\n'),
+    ('src/mame/sharp/x68k.h',
+     '\t\tconst bool skipped = m_frame_skipped;\n\t\tm_update_frame = screen.frame_number();\n',
+     '\t\tconst bool skipped = m_frame_skipped;\n\t\tconst uint64_t blank_frame = m_blank_frame;\n\t\tconst auto blank_span = m_blank_span;\n\t\tconst bool blank_one_span = m_blank_one_span;\n\t\tstd::vector<std::pair<int, int>> blank_rows;\n\t\tblank_rows.swap(m_blank_rows);\n\t\tm_update_frame = screen.frame_number();\n'),
+    ('src/mame/sharp/x68k.h',
+     '\t\tm_drawn_generation = 0;\n\t\tscreen_update(screen, bitmap, cliprect);\n',
+     '\t\tm_drawn_generation = 0;\n\t\tm_blank_frame = ~uint64_t(0);\n\t\tscreen_update(screen, bitmap, cliprect);\n'),
+    ('src/mame/sharp/x68k.h',
+     '\t\tm_drawn_generation = drawn;\n\t}\n',
+     '\t\tm_drawn_generation = drawn;\n\t\tm_blank_frame = blank_frame;\n\t\tm_blank_span = blank_span;\n\t\tm_blank_one_span = blank_one_span;\n\t\tm_blank_rows.swap(blank_rows);\n\t}\n'),
+    ('src/mame/sharp/x68k_v.cpp',
+     '\nuint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect_in)\n',
+     "\n// Kairo68#100: a frame's picture holds only what that frame drew, black elsewhere, as the monitor\n// shows nothing outside the CRTC's display period. screen_update draws the CRTC's window (rect) of\n// cliprect, and MAME's screen bitmaps, which a saved state does not hold, kept whatever an earlier\n// frame left in the rest: the lines of a frame drawn before a mid-frame change to a wider screen\n// mode (Lemmings after its DMA Design logo changes mode at line 425; the screen's resize keeps\n// their pixels, screen_device::realloc_screen_bitmaps), and every line at contrast 0. A state\n// loaded before such a frame showed the pictures from before the load there.\nvoid x68k_state::kairo68_blank(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect,\n\tconst rectangle &rect, bool dark)\n{\n\tif (m_blank_frame != screen.frame_number())\n\t{\n\t\tm_blank_frame = screen.frame_number();\n\t\tstd::fill(m_blank_rows.begin(), m_blank_rows.end(), std::make_pair(1, 0));\n\t\tm_blank_span = std::make_pair(1, 0);\n\t\tm_blank_one_span = true;\n\t}\n\tif (m_blank_rows.size() < size_t(bitmap.height()))\n\t\tm_blank_rows.resize(bitmap.height(), std::make_pair(1, 0));\n\tconst auto span = std::make_pair(cliprect.min_x, cliprect.max_x);\n\t// The lines this frame drew before, across less than cliprect's width: the rest of the width\n\t// was never displayed on them. Every line drawn so far across cliprect's width (the screen\n\t// mode the same all frame, nearly always) has none.\n\tconst bool same_width = m_blank_one_span && (m_blank_span.first > m_blank_span.second || m_blank_span == span);\n\tfor (int y = screen.visible_area().min_y; !same_width && y < cliprect.min_y; y++)\n\t{\n\t\tauto &[left, right] = m_blank_rows[y];\n\t\tif (left > right)\n\t\t\tcontinue; // not drawn this frame\n\t\tif (cliprect.min_x < left)\n\t\t\tbitmap.fill(0, rectangle(cliprect.min_x, std::min(left - 1, cliprect.max_x), y, y));\n\t\tif (cliprect.max_x > right)\n\t\t\tbitmap.fill(0, rectangle(std::max(right + 1, cliprect.min_x), cliprect.max_x, y, y));\n\t\tleft = std::min(left, cliprect.min_x);\n\t\tright = std::max(right, cliprect.max_x);\n\t}\n\t// cliprect outside the window, or all of it with the contrast at 0.\n\tconst rectangle window(std::max(rect.min_x, cliprect.min_x), std::min(rect.max_x, cliprect.max_x),\n\t\tstd::max(rect.min_y, cliprect.min_y), std::min(rect.max_y, cliprect.max_y));\n\tif (dark || window.min_x > window.max_x || window.min_y > window.max_y)\n\t\tbitmap.fill(0, cliprect);\n\telse\n\t{\n\t\tif (cliprect.min_y < window.min_y)\n\t\t\tbitmap.fill(0, rectangle(cliprect.min_x, cliprect.max_x, cliprect.min_y, window.min_y - 1));\n\t\tif (window.max_y < cliprect.max_y)\n\t\t\tbitmap.fill(0, rectangle(cliprect.min_x, cliprect.max_x, window.max_y + 1, cliprect.max_y));\n\t\tif (cliprect.min_x < window.min_x)\n\t\t\tbitmap.fill(0, rectangle(cliprect.min_x, window.min_x - 1, window.min_y, window.max_y));\n\t\tif (window.max_x < cliprect.max_x)\n\t\t\tbitmap.fill(0, rectangle(window.max_x + 1, cliprect.max_x, window.min_y, window.max_y));\n\t}\n\tfor (int y = cliprect.min_y; y <= cliprect.max_y; y++)\n\t\tm_blank_rows[y] = span;\n\tif (!same_width)\n\t\tm_blank_one_span = false;\n\tm_blank_span = span;\n}\n\nuint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect_in)\n"),
+    ('src/mame/sharp/x68k_v.cpp',
+     "\n\tif(m_sysport.contrast == 0)  // if monitor contrast is 0, then don't bother displaying anything\n\t\treturn 0;\n\n\trect.min_x=m_crtc->hbegin();\n",
+     '\n\trect.min_x=m_crtc->hbegin();\n'),
+    ('src/mame/sharp/x68k_v.cpp',
+     '\t\trect.max_y = cliprect.max_y;\n\n',
+     "\t\trect.max_y = cliprect.max_y;\n\n\t// Kairo68#100: what this call leaves undrawn shows black, as the monitor does (kairo68_blank).\n\tkairo68_blank(screen, bitmap, cliprect, rect, m_sysport.contrast == 0);\n\n\tif(m_sysport.contrast == 0)  // if monitor contrast is 0, then don't bother displaying anything\n\t\treturn 0;\n\n"),
+]
+
 PATCHES = {'x68k-save-state': X68K_SAVE_STATE, 'x68k-sasi-count': X68K_SASI_COUNT, 'x68k-sasi-dma': X68K_SASI_DMA,
            'x68k-sasi-busy': X68K_SASI_BUSY,
            'osdlib-without-sdl': OSDLIB_WITHOUT_SDL, 'upd765-save-state': UPD765_SAVE_STATE, 'rtc-save-state': RTC_SAVE_STATE,
@@ -1604,5 +1645,6 @@ PATCHES = {'x68k-save-state': X68K_SAVE_STATE, 'x68k-sasi-count': X68K_SASI_COUN
            'x68k-mouse-pending': X68K_MOUSE_PENDING,
            'video-frameskip-step': VIDEO_FRAMESKIP_STEP,
            'ymfm-opm-noise-lfo-state': YMFM_OPM_NOISE_LFO_STATE,
-           'x68k-crtc-begin-save': X68K_CRTC_BEGIN_SAVE
+           'x68k-crtc-begin-save': X68K_CRTC_BEGIN_SAVE,
+           'x68k-frame-holds-its-own': X68K_FRAME_HOLDS_ITS_OWN
 }

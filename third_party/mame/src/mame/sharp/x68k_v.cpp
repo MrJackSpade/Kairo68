@@ -969,6 +969,65 @@ x68k_mix_fn x68k_mixer(int textprio, int pcgprio, int gfxprio, bool blend)
 
 } // anonymous namespace
 
+// Kairo68#100: a frame's picture holds only what that frame drew, black elsewhere, as the monitor
+// shows nothing outside the CRTC's display period. screen_update draws the CRTC's window (rect) of
+// cliprect, and MAME's screen bitmaps, which a saved state does not hold, kept whatever an earlier
+// frame left in the rest: the lines of a frame drawn before a mid-frame change to a wider screen
+// mode (Lemmings after its DMA Design logo changes mode at line 425; the screen's resize keeps
+// their pixels, screen_device::realloc_screen_bitmaps), and every line at contrast 0. A state
+// loaded before such a frame showed the pictures from before the load there.
+void x68k_state::kairo68_blank(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect,
+	const rectangle &rect, bool dark)
+{
+	if (m_blank_frame != screen.frame_number())
+	{
+		m_blank_frame = screen.frame_number();
+		std::fill(m_blank_rows.begin(), m_blank_rows.end(), std::make_pair(1, 0));
+		m_blank_span = std::make_pair(1, 0);
+		m_blank_one_span = true;
+	}
+	if (m_blank_rows.size() < size_t(bitmap.height()))
+		m_blank_rows.resize(bitmap.height(), std::make_pair(1, 0));
+	const auto span = std::make_pair(cliprect.min_x, cliprect.max_x);
+	// The lines this frame drew before, across less than cliprect's width: the rest of the width
+	// was never displayed on them. Every line drawn so far across cliprect's width (the screen
+	// mode the same all frame, nearly always) has none.
+	const bool same_width = m_blank_one_span && (m_blank_span.first > m_blank_span.second || m_blank_span == span);
+	for (int y = screen.visible_area().min_y; !same_width && y < cliprect.min_y; y++)
+	{
+		auto &[left, right] = m_blank_rows[y];
+		if (left > right)
+			continue; // not drawn this frame
+		if (cliprect.min_x < left)
+			bitmap.fill(0, rectangle(cliprect.min_x, std::min(left - 1, cliprect.max_x), y, y));
+		if (cliprect.max_x > right)
+			bitmap.fill(0, rectangle(std::max(right + 1, cliprect.min_x), cliprect.max_x, y, y));
+		left = std::min(left, cliprect.min_x);
+		right = std::max(right, cliprect.max_x);
+	}
+	// cliprect outside the window, or all of it with the contrast at 0.
+	const rectangle window(std::max(rect.min_x, cliprect.min_x), std::min(rect.max_x, cliprect.max_x),
+		std::max(rect.min_y, cliprect.min_y), std::min(rect.max_y, cliprect.max_y));
+	if (dark || window.min_x > window.max_x || window.min_y > window.max_y)
+		bitmap.fill(0, cliprect);
+	else
+	{
+		if (cliprect.min_y < window.min_y)
+			bitmap.fill(0, rectangle(cliprect.min_x, cliprect.max_x, cliprect.min_y, window.min_y - 1));
+		if (window.max_y < cliprect.max_y)
+			bitmap.fill(0, rectangle(cliprect.min_x, cliprect.max_x, window.max_y + 1, cliprect.max_y));
+		if (cliprect.min_x < window.min_x)
+			bitmap.fill(0, rectangle(cliprect.min_x, window.min_x - 1, window.min_y, window.max_y));
+		if (window.max_x < cliprect.max_x)
+			bitmap.fill(0, rectangle(window.max_x + 1, cliprect.max_x, window.min_y, window.max_y));
+	}
+	for (int y = cliprect.min_y; y <= cliprect.max_y; y++)
+		m_blank_rows[y] = span;
+	if (!same_width)
+		m_blank_one_span = false;
+	m_blank_span = span;
+}
+
 uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect_in)
 {
 	// Kairo68 (x68k-unchanged-frame): a frame drawn whole with nothing the picture shows changing
@@ -1016,9 +1075,6 @@ uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, 
 	int pixel = 0, scanline = 0;
 	//uint8_t *rom;
 
-	if(m_sysport.contrast == 0)  // if monitor contrast is 0, then don't bother displaying anything
-		return 0;
-
 	rect.min_x=m_crtc->hbegin();
 	rect.min_y=m_crtc->vbegin();
 	rect.max_x=m_crtc->hend();
@@ -1028,6 +1084,12 @@ uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, 
 		rect.min_y = cliprect.min_y;
 	if(rect.max_y > cliprect.max_y)
 		rect.max_y = cliprect.max_y;
+
+	// Kairo68#100: what this call leaves undrawn shows black, as the monitor does (kairo68_blank).
+	kairo68_blank(screen, bitmap, cliprect, rect, m_sysport.contrast == 0);
+
+	if(m_sysport.contrast == 0)  // if monitor contrast is 0, then don't bother displaying anything
+		return 0;
 
 	// update tiles
 	for(x=0;x<256;x++)
