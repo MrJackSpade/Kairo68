@@ -153,6 +153,9 @@ std::unique_ptr<kairo::MachineCore> kairo::create_core(const kairo::Launch &laun
         return nullptr;
     }
     config.midi_port = midi == "port";
+    // The guest reads the real-time clock, which runs from the host's time: a repeatable run starts
+    // it at a fixed time, as game_profile does (Alien Syndrome's sound followed it, Kairo68#101).
+    if (launch.repeatable) config.rtc = "19930101000000";
     auto machine = X68kMachine::create(config, error);
     if (!machine) return nullptr;
     return std::make_unique<X68kCore>(std::move(machine));
