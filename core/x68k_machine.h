@@ -55,6 +55,10 @@ struct Config {
     // A measurement build also counts the guest's instructions by address (take_perf's "pc."
     // entries), to find where the guest spends them; slower still.
     bool count_pcs = false;
+    // MIDI out (Kairo68#97): the MIDI interface (CZ-6BM1, MAME's x68k_midi) in expansion slot 1, its MIDI
+    // out to the port picked under Configurations, every byte as the guest's YM3802 sends it. Off, the
+    // slot is empty, as the machine has always run.
+    bool midi_port = false;
     // The real-time clock's start, as YYYYMMDDhhmmss; "" for the host's time. A fixed start makes
     // two runs of a game identical, for checking that a change keeps the guest's behavior.
     std::string rtc;

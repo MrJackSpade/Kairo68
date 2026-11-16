@@ -4,6 +4,7 @@
 
 #include "x68k_machine.h"
 #include "kairo/jis_keys.h"
+#include "kairo/midi_bytes.h"
 #include "kairo/relative_warp.h"
 #include "kairo68_perf.h"
 
@@ -72,6 +73,18 @@ namespace {
 constexpr const char *kSystem = "x68000";
 // Each Drive's image device by its command-line (brief instance) name.
 constexpr const char *kDriveNames[kDrives] = {"flop1", "flop2", "sasi"};
+// The MIDI interface's slot and the port its MIDI out opens (Config::midi_port): the shared sender.
+constexpr const char *kMidiSlot = "exp1";
+constexpr const char *kMidiCard = "x68k_midi";
+constexpr const char *kMidiOutImage = "midiout";
+constexpr const char *kMidiPortName = "kairo";
+
+// Each byte the MIDI interface sends, as MAME's midiout receives it off the wire, to the shared cutter.
+class KairoMidiPort : public osd::midi_output_port {
+public:
+    ~KairoMidiPort() override { kairo_midi_out_flush(); }
+    void write(uint8_t data) override { kairo_midi_out_byte(data); }
+};
 // A guest frame's sound is read by the host after every frame; more than a second waiting means
 // the host stopped reading, and the machine stops instead of growing the buffer.
 constexpr size_t kMaxQueuedSeconds = 1;
@@ -267,7 +280,9 @@ struct X68kMachine::Impl : public osd_interface {
     bool get_font_families(std::string const &, std::vector<std::pair<std::string, std::string>> &) override { return false; }
     bool execute_command(const char *) override { return false; }
     std::unique_ptr<osd::midi_input_port> create_midi_input(std::string_view) override { return nullptr; }
-    std::unique_ptr<osd::midi_output_port> create_midi_output(std::string_view) override { return nullptr; }
+    std::unique_ptr<osd::midi_output_port> create_midi_output(std::string_view name) override {
+        return name == kMidiPortName ? std::make_unique<KairoMidiPort>() : nullptr;
+    }
     std::vector<osd::midi_port_info> list_midi_ports() override { return {}; }
     std::unique_ptr<osd::network_device> open_network_device(int, osd::network_handler &) override { return nullptr; }
     std::vector<osd::network_device_info> list_network_devices() override { return {}; }
@@ -317,6 +332,10 @@ void X68kMachine::Impl::run_mame() {
             if (!config.media[drive].empty())
                 // By the drive's command-line name; image_option() wants its full instance name.
                 options.set_value(kDriveNames[drive], config.media[drive], OPTION_PRIORITY_CMDLINE);
+        if (config.midi_port) {
+            options.set_value(kMidiSlot, kMidiCard, OPTION_PRIORITY_CMDLINE);
+            options.set_value(kMidiOutImage, kMidiPortName, OPTION_PRIORITY_CMDLINE);
+        }
         Manager manager(options, *this);
         // running_machine requires the manager's HTTP manager; with OPTION_HTTP off it serves nothing.
         manager.start_http_server();

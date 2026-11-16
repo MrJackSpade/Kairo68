@@ -51,6 +51,8 @@ class MainActivity : MachineActivity<DiskImageEntry>() {
     private fun isFloppy(entry: DiskImageEntry) = entry.kind == "fd"
 
     override val machineOptions = X68kCatalog.options
+    // A game set to the MIDI port sends its MIDI music to the port picked under Configurations (Kairo68#97).
+    override val guestMidiOut = true
     // Unformatted, as new disks were: Human68k's FORMAT.X, from a system floppy, prepares one.
     override val blankDisks = listOf(coreBlankDisk("floppy-2hd", UiText.res(FrontendR.string.kairo_blank_floppy, "1.2 MB · 2HD"), "xdf")) +
         listOf(10, 20, 40).map { mb ->

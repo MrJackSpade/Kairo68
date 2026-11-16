@@ -31,7 +31,9 @@ object X68kCatalog : LayeredGameCatalog.Schema {
     val cpu = MachineOption("cpu", UiText.res(FrontendR.string.kairo_option_clock),
         listOf(25, 16, 10).map { ChoiceOption("$it", UiText.res(FrontendR.string.kairo_clock_mhz, it)) }, "25", numeric = true)
     val skipMemoryCheck = MachineOption.skipMemoryCheck()
-    val options = listOf(memory, cpu, skipMemoryCheck)
+    /** The MIDI interface's MIDI out: none (no interface), or the port picked under Configurations (Kairo68#97). */
+    val midiOut = MachineOption.midiOut()
+    val options = listOf(memory, cpu, skipMemoryCheck, midiOut)
 
     const val LAUNCH = "launch"
     const val COMMANDS = "commands"

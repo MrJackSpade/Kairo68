@@ -147,6 +147,12 @@ std::unique_ptr<kairo::MachineCore> kairo::create_core(const kairo::Launch &laun
         return nullptr;
     }
     config.skip_memory_check = skip == "on";
+    const std::string &midi = launch.settings.at("midiOut");
+    if (midi != "none" && midi != "port") {
+        error = "MIDI out is \"" + midi + "\", not none or port";
+        return nullptr;
+    }
+    config.midi_port = midi == "port";
     auto machine = X68kMachine::create(config, error);
     if (!machine) return nullptr;
     return std::make_unique<X68kCore>(std::move(machine));

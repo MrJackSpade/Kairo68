@@ -12,7 +12,8 @@
       "settings": {
         "memory": "4",
         "cpu": "25",
-        "skipMemoryCheck": "on"
+        "skipMemoryCheck": "on",
+        "midiOut": "none"
       },
       "checks": {
         "boot": {
@@ -67,7 +68,8 @@
       "settings": {
         "memory": "4",
         "cpu": "25",
-        "skipMemoryCheck": "on"
+        "skipMemoryCheck": "on",
+        "midiOut": "none"
       },
       "checks": {
         "guestInput": {
@@ -88,7 +90,8 @@
       "settings": {
         "memory": "4",
         "cpu": "25",
-        "skipMemoryCheck": "on"
+        "skipMemoryCheck": "on",
+        "midiOut": "none"
       },
       "checks": {
         "commands": {
@@ -122,7 +125,8 @@
       "settings": {
         "memory": "4",
         "cpu": "25",
-        "skipMemoryCheck": "on"
+        "skipMemoryCheck": "on",
+        "midiOut": "none"
       },
       "checks": {
         "stateDisks": {
@@ -145,7 +149,8 @@
       "settings": {
         "memory": "4",
         "cpu": "25",
-        "skipMemoryCheck": "on"
+        "skipMemoryCheck": "on",
+        "midiOut": "none"
       },
       "checks": {
         "stateDisks": {
@@ -165,7 +170,8 @@
       "settings": {
         "memory": "4",
         "cpu": "25",
-        "skipMemoryCheck": "off"
+        "skipMemoryCheck": "off",
+        "midiOut": "none"
       },
       "checks": {
         "clock": {
@@ -197,7 +203,8 @@
       "settings": {
         "memory": "4",
         "cpu": "25",
-        "skipMemoryCheck": "on"
+        "skipMemoryCheck": "on",
+        "midiOut": "none"
       },
       "checks": {
         "hardDisk": {
@@ -230,7 +237,8 @@
       "settings": {
         "memory": "4",
         "cpu": "25",
-        "skipMemoryCheck": "on"
+        "skipMemoryCheck": "on",
+        "midiOut": "none"
       },
       "checks": {
         "directTap": {
@@ -263,7 +271,8 @@
       "settings": {
         "memory": "4",
         "cpu": "25",
-        "skipMemoryCheck": "on"
+        "skipMemoryCheck": "on",
+        "midiOut": "none"
       },
       "checks": {
         "mouseMotion": {
@@ -288,7 +297,8 @@
       "settings": {
         "memory": "4",
         "cpu": "25",
-        "skipMemoryCheck": "on"
+        "skipMemoryCheck": "on",
+        "midiOut": "none"
       },
       "checks": {
         "mouseMotion": {
@@ -313,7 +323,8 @@
       "settings": {
         "memory": "4",
         "cpu": "25",
-        "skipMemoryCheck": "on"
+        "skipMemoryCheck": "on",
+        "midiOut": "none"
       },
       "checks": {
         "directTap": {
@@ -366,6 +377,65 @@
               "selectedBy": 60
             }
           ]
+        }
+      }
+    },
+    {
+      "name": "X68000 MIDI out",
+      "firmware": {
+        "x68000/cgrom.dat": "bios/cgrom.dat",
+        "x68000/iplrom.dat": "bios/iplrom.dat"
+      },
+      "media": [
+        "games/Human 68k v3.02 with WINDVR (1993)(Sharp - Hudson)/Human 68k v3.02 with WINDVR (1993)(Sharp - Hudson).dim",
+        "app:core/test/x68k/midi.xdf"
+      ],
+      "settings": {
+        "memory": "4",
+        "cpu": "25",
+        "skipMemoryCheck": "on",
+        "midiOut": "port"
+      },
+      "checks": {
+        "midiOut": {
+          "commands": "B:MIDI68.R",
+          "typedBy": 1800,
+          "frames": 120,
+          "messages": [
+            "F0 7E 7F 09 01 F7",
+            "C1 05",
+            "91 3C 64",
+            "3C 00",
+            "3E 64",
+            "F8",
+            "B1 07 7F",
+            "81 3E 00"
+          ]
+        }
+      }
+    },
+    {
+      "name": "X68000 MIDI out off",
+      "firmware": {
+        "x68000/cgrom.dat": "bios/cgrom.dat",
+        "x68000/iplrom.dat": "bios/iplrom.dat"
+      },
+      "media": [
+        "games/Human 68k v3.02 with WINDVR (1993)(Sharp - Hudson)/Human 68k v3.02 with WINDVR (1993)(Sharp - Hudson).dim",
+        "app:core/test/x68k/midi.xdf"
+      ],
+      "settings": {
+        "memory": "4",
+        "cpu": "25",
+        "skipMemoryCheck": "on",
+        "midiOut": "none"
+      },
+      "checks": {
+        "midiOut": {
+          "commands": "B:MIDI68.R",
+          "typedBy": 1800,
+          "frames": 120,
+          "messages": []
         }
       }
     }
