@@ -106,6 +106,7 @@ void opm_registers::save_restore(ymfm_saved_state &state)
 	state.save_restore(m_noise_state);
 	state.save_restore(m_noise_lfo);
 	state.save_restore(m_regdata);
+	state.save_restore(m_lfo_waveform[3]); // Kairo68
 }
 
 

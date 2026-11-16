@@ -902,6 +902,24 @@ VIDEO_FRAMESKIP_STEP = [
 """,),
 ]
 
+# The YM2151's noise LFO waveform in its saved state (Kairo68#72). clock_noise_and_lfo writes the
+# noise into m_lfo_waveform[3] one entry ahead of the LFO as it runs, but save_restore leaves the
+# table out, so a loaded chip kept the table from before the load: a channel whose pitch the noise
+# LFO modulates stepped its phases differently from the saved run's (Carat's channels 5 and 7). The
+# other three waveforms never change.
+YMFM_OPM_NOISE_LFO_STATE = [
+    ('3rdparty/ymfm/src/ymfm_opm.cpp',
+     """	state.save_restore(m_noise_lfo);
+	state.save_restore(m_regdata);
+}
+""",
+     """	state.save_restore(m_noise_lfo);
+	state.save_restore(m_regdata);
+	state.save_restore(m_lfo_waveform[3]); // Kairo68
+}
+""",),
+]
+
 # Measurement counters for x68k_state::screen_update's stages (Kairo68#18): the layer under BG, the
 # graphics pages, BG and sprites, and the per-pixel mix with the text layer. Empty unless the
 # build defines KAIRO68_PERF.
@@ -1568,5 +1586,6 @@ PATCHES = {'x68k-save-state': X68K_SAVE_STATE, 'x68k-sasi-count': X68K_SASI_COUN
            'x68k-split-check': X68K_SPLIT_CHECK,
            'x68k-mouse-wrap': X68K_MOUSE_WRAP,
            'x68k-mouse-pending': X68K_MOUSE_PENDING,
-           'video-frameskip-step': VIDEO_FRAMESKIP_STEP
+           'video-frameskip-step': VIDEO_FRAMESKIP_STEP,
+           'ymfm-opm-noise-lfo-state': YMFM_OPM_NOISE_LFO_STATE
 }

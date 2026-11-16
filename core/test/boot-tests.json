@@ -23,7 +23,8 @@
         "state": {
           "at": 120,
           "frames": 120,
-          "sound": true
+          "sound": true,
+          "sameState": true
         },
         "sessions": {
           "frames": 180
