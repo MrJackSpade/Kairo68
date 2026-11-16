@@ -1,0 +1,68 @@
+{
+  "tests": [
+    {
+      "name": "Alien Syndrome",
+      "firmware": {
+        "x68000/cgrom.dat": "bios/cgrom.dat",
+        "x68000/iplrom.dat": "bios/iplrom.dat"
+      },
+      "media": [
+        "games/Alien Syndrome (1992)(Dempa)/Alien Syndrome (1992)(Dempa).dim"
+      ],
+      "settings": {
+        "memory": "4",
+        "cpu": "25",
+        "skipMemoryCheck": "on"
+      },
+      "checks": {
+        "profile": {
+          "boot": 600,
+          "frames": 3000
+        }
+      }
+    },
+    {
+      "name": "Lemmings",
+      "firmware": {
+        "x68000/cgrom.dat": "bios/cgrom.dat",
+        "x68000/iplrom.dat": "bios/iplrom.dat"
+      },
+      "media": [
+        "games/Lemmings (1991)(Imagineer)/Lemmings (1991)(Imagineer).dim"
+      ],
+      "settings": {
+        "memory": "4",
+        "cpu": "25",
+        "skipMemoryCheck": "on"
+      },
+      "checks": {
+        "profile": {
+          "boot": 1800,
+          "frames": 3000
+        }
+      }
+    },
+    {
+      "name": "Mahjongg Saikyou Musashi",
+      "firmware": {
+        "x68000/cgrom.dat": "bios/cgrom.dat",
+        "x68000/iplrom.dat": "bios/iplrom.dat"
+      },
+      "media": [
+        "games/Mahjongg Saikyou Musashi (1989)(Cosmos Computer)(Disk 1 of 2)/Mahjongg Saikyou Musashi (1989)(Cosmos Computer)(Disk 1 of 2).dim",
+        "games/Mahjongg Saikyou Musashi (1989)(Cosmos Computer)(Disk 2 of 2)/Mahjongg Saikyou Musashi (1989)(Cosmos Computer)(Disk 2 of 2).dim"
+      ],
+      "settings": {
+        "memory": "4",
+        "cpu": "25",
+        "skipMemoryCheck": "on"
+      },
+      "checks": {
+        "profile": {
+          "boot": 1800,
+          "frames": 3000
+        }
+      }
+    }
+  ]
+}
