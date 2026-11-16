@@ -145,7 +145,7 @@ int main(int argc, char **argv) {
 #endif
     if (argc < 8)
         return fail("usage: game_profile <rom dir> <work dir> <image> <cpu MHz> <memory MB> <frames> <script> "
-                    "[--nice <n>] [--disk2 <image>] [--boot-frames <n>] [--warmup <n>] [--rtc <time>] [--no-idle-skip] [--no-synth-worker] [--no-direct-memory] [--accesses] [--pcs <n>] [--shots <n>] [--words <a>:<n>] [--state <name>] [--csv <file>] [--hashes <file>] [--sound <file>]");
+                    "[--nice <n>] [--disk2 <image>] [--boot-frames <n>] [--warmup <n>] [--rtc <time>] [--no-idle-skip] [--no-synth-worker] [--no-direct-memory] [--accesses] [--pcs <n>] [--shots <n>] [--words <a>:<n>] [--state <name>] [--state-map] [--csv <file>] [--hashes <file>] [--sound <file>]");
     const std::string work = argv[2];
     Config config;
     config.rom_dir = argv[1];
@@ -161,6 +161,7 @@ int main(int argc, char **argv) {
     long shots = 0;
     long split_from = -1, split_to = -1;
     std::vector<std::string> state_names;
+    bool state_map = false;
     std::vector<std::pair<uint32_t, size_t>> word_dumps;
     long warmup = 0;
     long top_pcs = 0;
@@ -190,6 +191,8 @@ int main(int argc, char **argv) {
             split_to = std::strtol(range.substr(range.find(':') + 1).c_str(), nullptr, 10);
         }
         else if (option == "--state" && i + 1 < argc) state_names.push_back(argv[++i]);
+        // Every state entry at the end, with its offset in a state file and its size (Kairo68#72).
+        else if (option == "--state-map") state_map = true;
         else if (option == "--words" && i + 1 < argc) {
             const std::string spec = argv[++i];
             const size_t colon = spec.find(':');
@@ -362,6 +365,15 @@ int main(int argc, char **argv) {
         std::printf("words %06x:", unsigned(address));
         for (const uint16_t word : machine->read_words(address, count)) std::printf(" %04x", word);
         std::printf("\n");
+    }
+    if (state_map) {
+        // As save_manager::write_file lays a state file out: its 32-byte header, then each entry.
+        size_t offset = 32;
+        for (const auto &[entry, bytes] : machine->state_entries()) {
+            std::printf("state-map %zu %zu %s\n", offset, bytes.size(), entry.c_str());
+            offset += bytes.size();
+        }
+        std::printf("state-map %zu end\n", offset);
     }
     for (const auto &name : state_names) {
         for (const auto &[entry, bytes] : machine->state_entries()) {

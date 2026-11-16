@@ -149,16 +149,20 @@ endif()
 option(KAIRO68_TOOL_SHARED "Link the measurement tool's core as a shared library" OFF)
 
 if(NOT ANDROID OR KAIRO68_TOOLS)
+    # The shared MIDI byte queue the core's MIDI out writes to (Kairo68#97), which the app's library
+    # and the shared boot test build beside the core (KairoMachine.cmake).
+    set(KAIRO68_TOOL_SOURCES test/game_profile.cpp "${CMAKE_CURRENT_LIST_DIR}/../shared/frontend/src/main/cpp/kairo/midi_bytes.cpp"
+        "${CMAKE_CURRENT_LIST_DIR}/../shared/frontend/src/main/cpp/kairo/midi_out.cpp")
     if(KAIRO68_TOOL_SHARED)
         # The tool and the core it uses in one library, as the app's library holds its code and the
         # core; the executable only starts it.
-        add_library(kairo68_tool_core SHARED test/game_profile.cpp)
+        add_library(kairo68_tool_core SHARED ${KAIRO68_TOOL_SOURCES})
         target_compile_definitions(kairo68_tool_core PRIVATE GAME_PROFILE_LIBRARY)
         target_link_libraries(kairo68_tool_core PRIVATE kairo68_core)
         add_executable(game_profile test/tool_core.cpp)
         target_link_libraries(game_profile PRIVATE kairo68_tool_core)
     else()
-        add_executable(game_profile test/game_profile.cpp)
+        add_executable(game_profile ${KAIRO68_TOOL_SOURCES})
         target_link_libraries(game_profile PRIVATE kairo68_core)
     endif()
     if(WIN32 OR (ANDROID AND NOT KAIRO68_TOOL_SHARED))
